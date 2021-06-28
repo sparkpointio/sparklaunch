@@ -20,6 +20,10 @@ const App: React.FC = () => {
             <Route path="/launch" exact>
                 <Home />
             </Route>
+            {/* Redirects */}
+            <Route path="/" exact>
+                <Redirect to="/launch" />
+            </Route>
           </Switch>
         </SuspenseWithChunkError>
     </Menu>
