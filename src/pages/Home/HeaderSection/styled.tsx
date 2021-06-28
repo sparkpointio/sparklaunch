@@ -9,7 +9,7 @@ export const StyledContainer = styled(Container)`
     padding: 20px;
     line-height: 3px;
     // background: rgb(2, 0, 36);
-    background: ${({theme}) => theme.isDark && "linear-gradient(0deg, rgba(2, 0, 36, 1) 0%, rgba(5, 24, 56, 1) 55%, rgba(2, 0, 36, 1) 100%)"}; 
+    background: ${({theme}) => theme.isDark && "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(5,23,54,1) 50%, rgba(0,0,0,1) 100%)"}; 
     width: 100%;
     justify-content: space-evenly;
 

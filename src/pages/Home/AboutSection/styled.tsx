@@ -7,7 +7,7 @@ export const StyledContainer = styled(Container)`
     height: auto;
     padding: 20px;
     justify-content: space-evenly;
-    
+    background: ${({theme}) => theme.isDark && "linear-gradient(180deg, rgba(6,10,15,1) 0%, rgba(5,25,51,1) 100%)" };
 `;
 
 export const StyledHeading = styled(Heading)`
