@@ -8,7 +8,7 @@ import history from './routerHistory'
 
 
 const Home = lazy(() => import('./pages/Home'));
-
+const LaunchPad = lazy(() => import('./pages/Launchpad'));
 const App: React.FC = () => {
 
 
@@ -19,6 +19,9 @@ const App: React.FC = () => {
           <Switch>
             <Route path="/launch" exact>
                 <Home />
+            </Route>
+            <Route path="/launch/home" exact>
+              <LaunchPad />
             </Route>
             {/* Redirects */}
             <Route path="/" exact>

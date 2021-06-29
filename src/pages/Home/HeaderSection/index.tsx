@@ -1,5 +1,6 @@
 import React from 'react';
 import { Text, Button, Heading } from '@sparkpointio/sparkswap-uikit';
+import { Link } from 'react-router-dom';
 import useMedia from 'use-media';
 import Divider from 'components/Divider';
 import { StyledContainer, StyledHeader, StyledDiv, ActionsDiv, EnterButton, ApplyButton } from './styled'; 
@@ -24,7 +25,7 @@ const Section: React.FC = () => {
                 <Button as="a" href="https://sparkswap.finance/#/swap" fullWidth>
                     Buy on SparkSwap
                 </Button>
-                <EnterButton fullWidth>Enter SparkLaunch</EnterButton>
+                <Button as={Link} to="/launch/home" fullWidth style={{backgroundColor: '#32a31b'}}>Enter SparkLaunch</Button>
                 <ApplyButton fullWidth>Apply for IDO</ApplyButton>
             </ActionsDiv>
         </StyledContainer>
