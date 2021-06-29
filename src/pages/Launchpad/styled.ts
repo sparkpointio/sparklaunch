@@ -2,9 +2,8 @@ import styled from 'styled-components';
 import Column from 'components/Column'
 
 const Section = styled.div`
-    max-width: 1200px;
-    width: 100%;
     margin: 35px;
+    width: 100%;
 `
 
 export const CardGroup = styled(Column)`

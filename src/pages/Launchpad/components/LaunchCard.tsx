@@ -1,8 +1,10 @@
 import React, { useContext } from 'react';
 import { Card, Text, Button, Progress, Flex } from '@sparkpointio/sparkswap-uikit';
+import { useWeb3React } from '@web3-react/core'
 import { Globe, Twitter, Send } from 'react-feather';
 import styled, { ThemeContext } from 'styled-components';
 import PlaceHolder from 'pages/Home/AboutSection/icons';
+import UnlockButton from 'components/ConnectWalletButton';
 
 const Img = styled.img`
     border-radius: 50%;
@@ -53,7 +55,9 @@ const DataGroup = styled(Flex)`
 `;
 
 const LaunchCard: React.FC = ({ children }) => {
+    const { account } = useWeb3React()
     const theme = useContext(ThemeContext);
+
     return (
         <Card style={{padding: '5px'}}>
             <CardHeader>
@@ -103,7 +107,7 @@ const LaunchCard: React.FC = ({ children }) => {
                 </Details>
             </CardBody>
             <CardAction>
-                <Button fullWidth> Connect Wallet </Button>
+                {!account?( <UnlockButton fullWidth/> ): (<Button fullWidth style={{backgroundColor: '#32a31b'}}> Participate </Button>)}
             </CardAction>
         </Card>
     );
