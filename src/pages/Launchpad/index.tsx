@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useMemo, useCallback } from 'react';
 import styled from 'styled-components';
 import { Heading, Text } from '@sparkpointio/sparkswap-uikit';
+import ProjectList from 'config/dummy-data/Projects';
 import Page from 'components/layout/Page';
 import CardNav from 'components/CardNav';
-import Section, { CardGroup } from './styled';
-import Card from './components/LaunchCard';
+import Section from './styled';
+import CardContainer from './components/CardContainer';
 
 const Container = styled.div`
     display: flex;
@@ -19,30 +20,28 @@ const SectionTitle = styled(Heading)`
     font-size: 24px;
 `;
 
+
+
 const LaunchpadHome: React.FC = () => {
+    const ActiveProjects = ProjectList.filter(project => project.status === "active")
+    const UpcomingProjects = ProjectList.filter(project => project.status === "upcoming")
+    const CompletedProjects = ProjectList.filter(project => project.status === "completed")
+
     return (
         <Page>
             <Container>
                 <CardNav />
                 <Section>
                     <SectionTitle>Ongoing Launches</SectionTitle>
-                    <CardGroup>
-                        <Card />
-                        <Card />
-                        <Card />
-                    </CardGroup>
+                    <CardContainer ProjectList={ActiveProjects} />
                 </Section>
                 <Section>
-                    <SectionTitle>Ongoing Launches</SectionTitle>
-                    <CardGroup>
-                        <Card />
-                    </CardGroup>
+                    <SectionTitle>Upcoming Launches</SectionTitle>
+                    <CardContainer ProjectList={UpcomingProjects} />
                 </Section>
                 <Section>
-                    <SectionTitle>Ongoing Launches</SectionTitle>
-                    <CardGroup>
-                        <Card />
-                    </CardGroup>
+                    <SectionTitle>Completed Launches</SectionTitle>
+                    <CardContainer ProjectList={CompletedProjects} />
                 </Section>
             </Container>
         </Page>
