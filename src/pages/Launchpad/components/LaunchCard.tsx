@@ -36,8 +36,8 @@ const Options = styled(Flex)`
 `;
 
 const SocmedGroup = styled(Flex)`
-    flex: 0.5;
-    justify-content: space-evenly;
+    flex: 0.6;
+    justify-content: space-between;
 `;
 
 const Details = styled(Flex)`
@@ -84,7 +84,7 @@ const LaunchCard: React.FC = ({ children }) => {
                     </Text>
                     <ProgressGroup>
                         <Text as="h1">Progress</Text>
-                        <Progress primaryStep={25} />
+                        <Progress primaryStep={25}  variant="flat" />
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">25%</Text>
                             <Text color="textSubtle">118.0&nbsp;/&nbsp;150.0BNB</Text>

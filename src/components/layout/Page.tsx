@@ -61,7 +61,7 @@ const PageFooter = () => {
                 <Flex justifyContent="space-evenly" style={{ width: '100%' }}>
                     <CustomLink href="#">Terms and Condition</CustomLink>
                     <StyledLink href="#">Privacy Policy</StyledLink>
-                    <CustomLink href="#">Sitemap</CustomLink>
+                    <CustomLink href="https://srk.finance/#roadmap">Sitemap</CustomLink>
                 </Flex>
             </Flex>
             <Flex

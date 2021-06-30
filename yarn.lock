@@ -2926,10 +2926,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@sparkpointio/sparkswap-uikit@1.0.11":
-  version "1.0.11"
-  resolved "https://registry.nlark.com/@sparkpointio/sparkswap-uikit/download/@sparkpointio/sparkswap-uikit-1.0.11.tgz#9737d88f8e5cb73baf802b8c8f47b2c444535d0f"
-  integrity sha1-lzfYj45ctzuvgCuMj0eyxERTXQ8=
+"@sparkpointio/sparkswap-uikit@1.0.13":
+  version "1.0.13"
+  resolved "https://registry.nlark.com/@sparkpointio/sparkswap-uikit/download/@sparkpointio/sparkswap-uikit-1.0.13.tgz#95594c24b0d7fc8f08b2b6646e645042ccaba628"
+  integrity sha1-lVlMJLDX/I8IsrZkbmRQQsyrpig=
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"
