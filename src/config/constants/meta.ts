@@ -23,8 +23,8 @@ export const customMeta: { [key: string]: PageMeta } = {
   '/launch': {
     title: 'Launch | SparkDeFi'
   },
-  '/pools': {
-    title: 'Pools | SparkDefi',
+  '/launch/home': {
+    title: 'Projects | SparkDefi',
   },
   '/lottery': {
     title: 'Lottery | SparkDefi',

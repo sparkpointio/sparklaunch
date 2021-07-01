@@ -4,6 +4,7 @@ import { IProjects } from "pages/Launchpad/components/type";
 const ProjectList: Array<IProjects> = [
     {
         title: 'Ownly',
+        address: '0x001',
         image: 'ownly.png',
         wallpaperBg: 'ownlyBg.jpg',
         desc: 'CryptoArt is still a foreign concept to many artists. The Combination of art and blockchain seems too complicated. However, we believe its rather simple.',
@@ -16,6 +17,7 @@ const ProjectList: Array<IProjects> = [
     },
     {
         title: 'Ownly2',
+        address: '0x002',
         image: 'ownly.png',
         wallpaperBg: 'ownlyBg.jpg',
         desc: 'Lorem Ipsum Sid Amet',
@@ -28,6 +30,7 @@ const ProjectList: Array<IProjects> = [
     },
     {
         title: 'Ownly4',
+        address: '0x003',
         image: 'ownly.png',
         wallpaperBg: 'ownlyBg.jpg',
         desc: 'Lorem Ipsum Sid Amet',
@@ -40,10 +43,11 @@ const ProjectList: Array<IProjects> = [
     },
     {
         title: 'Lyown',
+        address: '0x004',
         image: 'ownly.png',
         wallpaperBg: 'ownlyBg.jpg',
         desc: 'Lorem Ipsum Sid Amet',
-        progress: 150,
+        progress: 50,
         totalRaise: 150,
         ownSale: 165000000.0,
         buyingCoin: 'BNB',
@@ -52,6 +56,7 @@ const ProjectList: Array<IProjects> = [
     },
     {
         title: 'LownLy',
+        address: '0x005',
         image: 'ownly.png',
         wallpaperBg: 'ownlyBg.jpg',
         desc: 'Lorem Ipsum Sid Amet',
