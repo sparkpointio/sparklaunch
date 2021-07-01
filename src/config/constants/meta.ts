@@ -1,4 +1,4 @@
-import { PageMeta } from './types'
+import { PageMeta } from './type'
 
 export const DEFAULT_META: PageMeta = {
   title: 'SparkDefi',

@@ -1,31 +1,17 @@
 import React, { useMemo, useCallback } from 'react';
-import styled from 'styled-components';
-import { Heading, Text } from '@sparkpointio/sparkswap-uikit';
-import ProjectList from 'config/dummy-data/Projects';
+import { useProject } from 'state/hooks';
 import Page from 'components/layout/Page';
 import CardNav from 'components/CardNav';
-import Section from './styled';
+import Section, { Container, SectionTitle} from './styled';
 import CardContainer from './components/CardContainer';
-
-const Container = styled.div`
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 20px;
-    max-width: 1200px;
-    width: 100%;
-    margin: 0 auto;
-`;
-const SectionTitle = styled(Heading)`
-    font-size: 24px;
-`;
-
 
 
 const LaunchpadHome: React.FC = () => {
-    const ActiveProjects = ProjectList.filter(project => project.status === "active")
-    const UpcomingProjects = ProjectList.filter(project => project.status === "upcoming")
-    const CompletedProjects = ProjectList.filter(project => project.status === "completed")
+    const { data: ProjectsLS } = useProject();
+    
+    const ActiveProjects = ProjectsLS.filter(project => project.status === "active")
+    const UpcomingProjects = ProjectsLS.filter(project => project.status === "upcoming")
+    const CompletedProjects = ProjectsLS.filter(project => project.status === "completed")
 
 
     return (

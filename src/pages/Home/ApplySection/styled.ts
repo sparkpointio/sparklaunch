@@ -23,7 +23,3 @@ export const StyledHeading = styled(Heading)`
         border-bottom: 3px solid ${({ theme }) => theme.colors.primary};
     }
 `;
-
-export const ContactButton = styled(Button)`
-    background: #7a1ba3;
-`

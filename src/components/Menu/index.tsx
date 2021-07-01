@@ -12,8 +12,7 @@ const Menu: React.FC = props => {
   const { account, activate, deactivate } = useWeb3React()
   const { selectedLanguage, setSelectedLanguage } = useContext(LanguageContext)
   const { isDark, toggleTheme } = useTheme()
-  const priceData = useGetPriceData()
-  const srkPriceUsd = priceData ? Number(priceData.prices.bSRK) : undefined
+
   return (
     <UikitMenu
       links={links}
@@ -35,7 +34,7 @@ const Menu: React.FC = props => {
       currentLang={selectedLanguage?.code || ''}
       langs={allLanguages}
       setLang={setSelectedLanguage}
-      srkPriceUsd={srkPriceUsd}
+ 
       {...props}
     />
   )

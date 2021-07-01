@@ -11,3 +11,19 @@ export interface IProjects {
     status?: string;
     address?: string;
 }
+
+interface ListType {
+    address: string;
+}
+
+export interface IAccountType {
+    whiteList: ListType[]
+}
+
+export type PageMeta = {
+    title: string
+    description?: string
+    image?: string
+  }
+
+  

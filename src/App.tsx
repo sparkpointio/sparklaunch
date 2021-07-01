@@ -5,8 +5,6 @@ import PageLoader from 'components/PageLoader'
 import Menu from 'components/Menu'
 import history from './routerHistory'
 
-
-
 const Home = lazy(() => import('./pages/Home'));
 const LaunchPad = lazy(() => import('./pages/Launchpad'));
 const Project = lazy(() => import('./pages/Launchpad/Project/Layout'));
@@ -25,8 +23,6 @@ const App: React.FC = () => {
               <LaunchPad />
             </Route>
             <Route path="/launch/projects/:ProjectAddress" component={Project} />
-              {/* <Project /> */}
-          
             {/* Redirects */}
             <Route path="/" exact>
                 <Redirect to="/launch" />

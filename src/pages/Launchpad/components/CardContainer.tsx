@@ -2,7 +2,7 @@ import React from 'react';
 // import ProjectList from 'config/dummy-data/Projects';
 import { CardGroup } from '../styled';
 import Card from './LaunchCard';
-import { IProjects } from './type';
+import { IProjects } from '../../../config/constants/type';
 
 interface Props {
     ProjectList?: Array<IProjects>
@@ -16,6 +16,7 @@ const CardContainer: React.FC<Props> = (props) => {
                 const { title, image, desc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status, address } = item;
                 return (
                     <Card
+                        key={address}
                         title={title}
                         image={image}
                         wallpaperBg={wallpaperBg}

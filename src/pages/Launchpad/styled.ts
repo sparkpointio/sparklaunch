@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { Heading, Flex} from '@sparkpointio/sparkswap-uikit';
 import Column from 'components/Column'
 
 const Section = styled.div`
@@ -13,6 +14,17 @@ export const CardGroup = styled(Column)`
     column-gap: 35px;
     margin-top: 20px;
 `
-// export const Card = styled.div``
+
+export const Container = styled(Flex)`
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+`;
+export const SectionTitle = styled(Heading)`
+    font-size: 24px;
+`;
 
 export default Section;

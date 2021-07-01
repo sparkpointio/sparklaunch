@@ -32,18 +32,13 @@ const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => {
     return (
     <StyledNav>
       <StyledButtonMenu size="md" activeIndex={activeIndex}  variant='primary'>
-        <ButtonMenuItem fullWidth id="swap-nav-link" to="/launch/home" as={Link} style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`}}} >
+        <ButtonMenuItem fullWidth id="swap-nav-link" to="/launch/projects" as={Link} style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`}}} >
           LaunchPad
         </ButtonMenuItem>
         <ButtonMenuItem fullWidth id="pool-nav-link" to="/launch/staking" as={Link} style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`} }}  >
           Staking
         </ButtonMenuItem>
       </StyledButtonMenu>
-  
-  
-      {/* <StyledButton variant="text" fullWidth onClick={onPresentRecentTransactions} style={{ ...theme.isDark ? {color: theme.colors.textSubtle} : {color: theme.colors.primary}}}>
-          <TranslatedText translationId={74}>History</TranslatedText>
-      </StyledButton> */}
     </StyledNav>
   )}
   

@@ -1,4 +1,4 @@
-import { IProjects } from "pages/Launchpad/components/type";
+import { IProjects } from "config/constants/type";
 
 
 const ProjectList: Array<IProjects> = [
@@ -12,7 +12,7 @@ const ProjectList: Array<IProjects> = [
         totalRaise: 150,
         ownSale: 165000000.0,
         buyingCoin: 'BNB',
-        socMeds: ['facebook.com', 'twitter.com', 'telegram.com', 'medium.com'],
+        socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
         status: "active"
     },
     {
@@ -25,7 +25,7 @@ const ProjectList: Array<IProjects> = [
         totalRaise: 150,
         ownSale: 165000000.0,
         buyingCoin: 'BNB',
-        socMeds: ['facebook.com', 'twitter.com', 'telegram.com', 'medium.com'],
+        socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
         status: "completed"
     },
     {
@@ -38,7 +38,7 @@ const ProjectList: Array<IProjects> = [
         totalRaise: 150,
         ownSale: 0,
         buyingCoin: 'BNB',
-        socMeds: ['facebook.com', 'twitter.com', 'telegram.com', 'medium.com'],
+        socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
         status: "upcoming"
     },
     {
@@ -51,7 +51,7 @@ const ProjectList: Array<IProjects> = [
         totalRaise: 150,
         ownSale: 165000000.0,
         buyingCoin: 'BNB',
-        socMeds: ['facebook.com', 'twitter.com', 'telegram.com', 'medium.com'],
+        socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
         status: "active"
     },
     {
@@ -64,7 +64,7 @@ const ProjectList: Array<IProjects> = [
         totalRaise: 150,
         ownSale: 165000000.0,
         buyingCoin: 'BNB',
-        socMeds: ['facebook.com', 'twitter.com', 'telegram.com', 'medium.com'],
+        socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
         status: "active"
     }
 ]

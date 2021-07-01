@@ -1,9 +1,10 @@
 import React from 'react';
 import { Text, Button, Heading } from '@sparkpointio/sparkswap-uikit';
-import { Link } from 'react-router-dom';
+
 import useMedia from 'use-media';
 import Divider from 'components/Divider';
-import { StyledContainer, StyledHeader, StyledDiv, ActionsDiv, EnterButton, ApplyButton } from './styled'; 
+import { StyledContainer, StyledHeader, StyledDiv, ActionsDiv, StyledLink } from './styled'; 
+
 
 const Section: React.FC = () => {
     const isMobile = useMedia({maxWidth: 500})
@@ -22,12 +23,13 @@ const Section: React.FC = () => {
                 </Text>
             </StyledDiv>
             <ActionsDiv>
-                <Button as="a" href="https://sparkswap.finance/#/swap" fullWidth>
+                <Button as="a" href="https://sparkswap.finance/#/swap" style={{width: '100%'}}>
                     Buy on SparkSwap
                 </Button>
-                <Button as={Link} to="/launch/projects" fullWidth style={{backgroundColor: '#32a31b'}}>Enter SparkLaunch</Button>
-                <ApplyButton fullWidth>Apply for IDO</ApplyButton>
+                <StyledLink to="/launch/projects" >Enter SparkLaunch</StyledLink>
+                <Button fullWidth style={{backgroundColor: '#7a1ba3'}} >Apply for IDO</Button>
             </ActionsDiv>
+        
         </StyledContainer>
     );
 };

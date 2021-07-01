@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { Button } from '@sparkpointio/sparkswap-uikit';
+import { Link } from 'react-router-dom';
 import Container from '../styled';
 
 
@@ -53,6 +54,14 @@ export const SetUnderline = styled.span`
 export const EnterButton = styled(Button)`
     background-color: #32a31b;
 `;
-export const ApplyButton = styled(Button)`
-    background-color: #7a1ba3;
-`;
+
+
+export const StyledLink = styled(Link)`
+    background-color: #32a31b;
+    width: 100%;
+    display: flex;
+    color: ${({theme}) => theme.colors.text};
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+`

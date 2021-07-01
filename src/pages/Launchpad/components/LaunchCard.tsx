@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Card, Text, Button, Progress, Flex } from '@sparkpointio/sparkswap-uikit';
+import { Card, Text, Button, Progress, Flex, CardBody, CardHeader } from '@sparkpointio/sparkswap-uikit';
 import { Link } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core';
 import { Globe, Twitter, Send } from 'react-feather';
@@ -7,64 +7,10 @@ import styled, { ThemeContext } from 'styled-components';
 import PlaceHolder from 'pages/Home/AboutSection/icons';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
-import { IProjects } from './type';
+import { IProjects } from '../../../config/constants/type';
 import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
-
-const Img = styled.img`
-    border-radius: 50%;
-    height: 60px;
-    width: 60px;
-    margin-right: 15px;
-`;
-
-const CardHeader = styled(Flex)`
-    padding: 20px;
-    align-items: center;
-`;
-const CardBody = styled(Flex)`
-    flex-direction: column;
-    text-align: left;
-    padding: 15px;
-`;
-
-const CardAction = styled(Flex)`
-    padding: 25px 15px;
-`;
-
-const Options = styled(Flex)`
-    padding: 10px;
-    justify-content: space-between;
-    width: 100%;
-    align-items: center;
-    margin-bottom: 10px;
-`;
-
-const SocmedGroup = styled(Flex)`
-    flex: 0.7;
-    justify-content: space-between;
-`;
-
-const Details = styled(Flex)`
-    flex-direction: column;
-    min-height: 300px;
-    justify-content: space-between;
-`;
-const ProgressGroup = styled(Flex)`
-    flex-direction: column;
-    margin: 15px 0px;
-`;
-
-const DataGroup = styled(Flex)`
-    & > * {
-        margin: 5px 0px;
-    }
-`;
-
-const StyledButton = styled(Button)`
-    cursor: context-menu;
-    height: 35px;
-    border-radius: 5px;
-`;
+import { StyledCardBody, StyledCardHeader, CardAction, Options, SocmedGroup, Details, ProgressGroup, DataGroup, StyledImage, StyledButton} from './styled';
+import Anchor, {StyledLink } from './StyledLink';
 
 const LaunchCard: React.FC<IProjects> = ({
     title,
@@ -86,27 +32,27 @@ const LaunchCard: React.FC<IProjects> = ({
     const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
     return (
         <Card style={{ padding: '5px' }}>
-            <CardHeader>
-                <Img src={srcs} alt="token-logo" />
+            <StyledCardHeader>
+                <StyledImage src={srcs} alt="token-logo" />
                 <Text bold fontSize="24px">
                     {title}
                 </Text>
-            </CardHeader>
-            <CardBody>
+            </StyledCardHeader>
+            <StyledCardBody>
                 <Options>
                     <SocmedGroup>
-                        <a href={`https://www.${socMeds?.[0]}`}>
+                        <Anchor href={socMeds?.[0]}>
                             <Globe size="24px" />
-                        </a>
-                        <a href={`https://www.${socMeds?.[1]}`}>
+                        </Anchor>
+                        <Anchor href={socMeds?.[1]}>
                             <Twitter size="24px" fill={theme.colors.text} />
-                        </a>
-                        <a href={`https://www.${socMeds?.[2]}`}>
+                        </Anchor>
+                        <Anchor href={socMeds?.[2]}>
                             <Send size="24px" fill={theme.colors.text} />
-                        </a>
-                        <a href={`https://www.${socMeds?.[3]}`}>
+                        </Anchor>
+                        <Anchor href={socMeds?.[3]}>
                             <SvgIcon width={24} Icon={MediumIcon} />
-                        </a>
+                        </Anchor>
                     </SocmedGroup>
                     {status === 'active' ? (
                         <StyledButton style={{ backgroundColor: '#32a31b' }}>LIVE NOW</StyledButton>
@@ -152,15 +98,15 @@ const LaunchCard: React.FC<IProjects> = ({
                         </Flex>
                     </DataGroup>
                 </Details>
-            </CardBody>
+            </StyledCardBody>
             {status === 'active' && (
                 <CardAction>
                     {!account ? (
                         <UnlockButton fullWidth />
                     ) : (
-                        <Button as={Link} to={`/launch/projects/${address}`} fullWidth style={{ backgroundColor: '#32a31b' }}>
+                        <StyledLink to={`/launch/projects/${address}`}>
                             Participate
-                        </Button>
+                        </StyledLink>
                     )}
                 </CardAction>
             )}
