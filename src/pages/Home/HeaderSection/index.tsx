@@ -25,7 +25,7 @@ const Section: React.FC = () => {
                 <Button as="a" href="https://sparkswap.finance/#/swap" fullWidth>
                     Buy on SparkSwap
                 </Button>
-                <Button as={Link} to="/launch/home" fullWidth style={{backgroundColor: '#32a31b'}}>Enter SparkLaunch</Button>
+                <Button as={Link} to="/launch/projects" fullWidth style={{backgroundColor: '#32a31b'}}>Enter SparkLaunch</Button>
                 <ApplyButton fullWidth>Apply for IDO</ApplyButton>
             </ActionsDiv>
         </StyledContainer>
