@@ -14,6 +14,7 @@ import {
     CardFooter,
 } from '@sparkpointio/sparkswap-uikit';
 import { useAccountWhiteList } from 'state/hooks';
+import { IProjects } from 'config/constants/type';
 import PlaceHolder from 'pages/Home/AboutSection/icons';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
@@ -73,6 +74,12 @@ const CFooter = styled(Flex)`
     padding: 25px;
 `;
 
+export type AppProps = {
+    project: IProjects;
+};
+
+type ActionProps = AppProps & {account?: string | null; whiteListed?: boolean}
+
 const Allocations: React.FC = () => {
     return (
         <div style={{ marginTop: '20px' }}>
@@ -85,14 +92,18 @@ const Allocations: React.FC = () => {
     );
 };
 
-const ActionCard: React.FC<{ account?: string | null; whiteListed?: boolean }> = ({ account, whiteListed }) => {
+
+const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
+    const ProgressTitle = `${project.progress} ${project.title}`
+    const percentage = parseInt(((project.progress / project.totalRaise) * 100).toFixed());
+    const standing = `${project.progress} / ${project.totalRaise} ${project.buyingCoin}`;
     return (
         <CardBody
             style={{
                 width: '100%',
-                backgroundColor: theme.isDark? customTheme.customColors?.BG1 : customTheme.customColors?.BG2,
+                backgroundColor: theme.isDark ? customTheme.customColors?.BG1 : customTheme.customColors?.BG2,
                 display: 'flex',
                 flexDirection: 'column',
                 justifyContent: 'space-around',
@@ -100,12 +111,12 @@ const ActionCard: React.FC<{ account?: string | null; whiteListed?: boolean }> =
         >
             <ProgressGroup>
                 <Text bold as="h1" fontSize="24px">
-                    79% OWNLY Sold
+                    {ProgressTitle} Sold
                 </Text>
-                <Progress primaryStep={79} variant="flat" />
+                <Progress primaryStep={percentage} variant="flat" />
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">79%</Text>
-                    <Text color="textSubtle">118.0 / 150.0 BNB</Text>
+                    <Text color="textSubtle">{percentage}%</Text>
+                    <Text color="textSubtle">{standing}</Text>
                 </Flex>
             </ProgressGroup>
             <CustomDataGroup flexDirection="column">
@@ -143,10 +154,15 @@ const ActionCard: React.FC<{ account?: string | null; whiteListed?: boolean }> =
     );
 };
 
-const ProjectComponent: React.FC = (props) => {
+
+const ProjectComponent: React.FC<AppProps> = ({ project }) => {
     const { account } = useWeb3React();
     const [whiteListed, setWhiteList] = useState(false);
     const acc = useAccountWhiteList(account);
+
+    const { title, image, desc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status, address } =
+        project;
+    const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
 
     useEffect(() => {
         if (acc[0][0]) {
@@ -158,9 +174,9 @@ const ProjectComponent: React.FC = (props) => {
     return (
         <CCont>
             <CHeader>
-                <TokenImage src={PlaceHolder} alt="token-image" />
+                <TokenImage src={srcs} alt="token-image" />
                 <Heading bold fontSize="24px">
-                    Ownly
+                    {title}
                 </Heading>
             </CHeader>
             <CBody>
@@ -168,38 +184,37 @@ const ProjectComponent: React.FC = (props) => {
                     <Flex flex="1" flexDirection="column" padding="10px">
                         <Flex alignItems="center" justifyContent="space-between" marginBottom="10px" padding="10px 0px">
                             <SocmedGroup>
-                                <Anchor href="Google.com">
+                                <Anchor href={socMeds?.[0]}>
                                     <Globe />
                                 </Anchor>
-                                <Anchor href="Twitter.com">
+                                <Anchor href={socMeds?.[1]}>
                                     <Twitter fill={theme.colors.text} />
                                 </Anchor>
-                                <Anchor href="Telegram.org">
+                                <Anchor href={socMeds?.[2]}>
                                     <Send fill={theme.colors.text} />
                                 </Anchor>
-                                <Anchor href="Medium.com">
+                                <Anchor href={socMeds?.[3]}>
                                     <SvgIcon width={24} Icon={MediumIcon} />
                                 </Anchor>
                             </SocmedGroup>
-                            <StyledButton style={{ backgroundColor: '#32a31b' }}>LIVE NOW</StyledButton>
+                            {status === 'active' ? (
+                                <StyledButton style={{ backgroundColor: '#32a31b' }}>LIVE NOW</StyledButton>
+                            ) : status === 'upcoming' ? (
+                                <StyledButton style={{ backgroundColor: '#7a1ba3' }}>UPCOMING</StyledButton>
+                            ) : (
+                                <StyledButton style={{ backgroundColor: '#8e98a5' }}>COMPLETED</StyledButton>
+                            )}
                         </Flex>
                         <Text color="textSubtle" as="p">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Neque viverra justo nec ultrices dui sapien. Ut venenatis
-                            tellus in metus vulputate eu scelerisque felis. Arcu bibendum at varius vel pharetra.
-                            Egestas sed tempus urna et pharetra pharetra massa massa ultricies. Lorem ipsum dolor sit
-                            amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                            magna aliqua. Neque viverra justo nec ultrices dui sapien. Ut venenatis tellus in metus
-                            vulputate eu scelerisque felis. Arcu bibendum at varius vel pharetra. Egestas sed tempus
-                            urna et pharetra pharetra massa massa ultricies. Lorem ipsum dolor sit amet, consectetur
-                            adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Neque
-                            viverra justo nec ultrices dui sapien. Ut venenatis tellus in metus vulputate eu scelerisque
-                            felis. Arcu bibendum at varius vel pharetra. Egestas sed tempus urna et pharetra pharetra
-                            massa massa ultricies.
+                            {desc}
                         </Text>
                     </Flex>
                     <Flex flex="1">
-                        <ActionCard account={account} whiteListed={whiteListed} />
+                        <ActionCard 
+                        account={account} 
+                        whiteListed={whiteListed}
+                        project={project}
+                        />
                     </Flex>
                 </Flex>
             </CBody>

@@ -8,6 +8,13 @@ export const useProject = () => {
     return projects;
 }
 
+export const useFindProject = (address?:string|null) => {
+    const project = useSelector((state: State) => {
+        return state.projects.data.filter(p => p.address === address);
+    })
+
+    return project;
+}
 
 export const useAccount = () => {
     const accounts = useSelector((state: State) => state.accounts.data);
