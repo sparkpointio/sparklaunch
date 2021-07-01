@@ -27,6 +27,7 @@ const LaunchpadHome: React.FC = () => {
     const UpcomingProjects = ProjectList.filter(project => project.status === "upcoming")
     const CompletedProjects = ProjectList.filter(project => project.status === "completed")
 
+
     return (
         <Page>
             <Container>

@@ -13,7 +13,7 @@ const CardContainer: React.FC<Props> = (props) => {
     return (
         <CardGroup>
             {ProjectList?.map((item) => {
-                const { title, image, desc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status } = item;
+                const { title, image, desc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status, address } = item;
                 return (
                     <Card
                         title={title}
@@ -26,6 +26,7 @@ const CardContainer: React.FC<Props> = (props) => {
                         buyingCoin={buyingCoin}
                         socMeds={socMeds}
                         status={status}
+                        address={address}
                     />
                 );
             })}

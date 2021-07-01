@@ -77,6 +77,7 @@ const LaunchCard: React.FC<IProjects> = ({
     socMeds,
     wallpaperBg,
     status,
+    address,
 }) => {
     const { account } = useWeb3React();
     const theme = useContext(ThemeContext);
@@ -157,7 +158,7 @@ const LaunchCard: React.FC<IProjects> = ({
                     {!account ? (
                         <UnlockButton fullWidth />
                     ) : (
-                        <Button as={Link} to="/launch" fullWidth style={{ backgroundColor: '#32a31b' }}>
+                        <Button as={Link} to={`/launch/projects/${address}`} fullWidth style={{ backgroundColor: '#32a31b' }}>
                             Participate
                         </Button>
                     )}

@@ -9,4 +9,5 @@ export interface IProjects {
     socMeds?: Array<string>;
     wallpaperBg?: string;
     status?: string;
+    address?: string;
 }
