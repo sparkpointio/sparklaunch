@@ -1,18 +1,18 @@
 export interface IProjects {
+    address?: string;
+    buyingCoin: string;
     title: string;
     symbol: string;
     image: string;
+    wallpaperBg?: string;
     desc: string;
     longDesc: string;
-    price: string;
+    price: number;
     progress: number;
     totalRaise: number;
     ownSale: number;
-    buyingCoin: string;
-    socMeds?: Array<string>;
-    wallpaperBg?: string;
     status?: string;
-    address?: string;
+    socMeds?: string[]
 }
 
 export interface IUserAccount {
@@ -23,11 +23,10 @@ export interface IUserAccount {
 
 export interface IPoolInformation {
     open: string;
-    closes: string;
-    cap: string;
-    totalUserParticipated: string;
-    totalFundsSwapped: string;
-    buyingToken: string;
+    close: string;
+    cap: number;
+    totalUserParticipated: number;
+    totalFundsSwapped?: number;
     projectAddress: string;
 }
 
