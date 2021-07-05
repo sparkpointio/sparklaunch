@@ -1,4 +1,5 @@
 import { Flex, Button, Heading, Text } from '@sparkpointio/sparkswap-uikit';
+import { IPoolInformation, IProjects } from 'config/constants/type';
 import React, { useContext, useState, useCallback } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { CustomThemeContext } from 'ThemeContext';
@@ -15,6 +16,11 @@ const NavOptions = styled(Button)<{ activeIndex: boolean }>`
     border-bottom: ${({ theme, activeIndex }) => activeIndex && `3px solid ${theme.colors.primary}`};
 `;
 
+type AppProps = {
+    pool: IPoolInformation;
+    project: IProjects;
+}
+
 const FooterNav = ({ activeIndex = 0, handleClick}: { activeIndex?: number; handleClick: (i:number) => void }) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
@@ -27,11 +33,11 @@ const FooterNav = ({ activeIndex = 0, handleClick}: { activeIndex?: number; hand
     );
 };
 
-const FooterDetails: React.FC = () => {
+const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
-    const [ activeIndex , setActive ] = useState<number>(0)
-
+    const [ activeIndex , setActive ] = useState<number>(0);
+    const { open, close, cap, totalUserParticipated, totalFundsSwapped } = pool;
     const handleClick = useCallback((i) => {
         setActive(i)
     }, [])
@@ -52,41 +58,41 @@ const FooterDetails: React.FC = () => {
                     </Heading>
                     <Flex justifyContent="space-between">
                         <Text>Opens</Text>
-                        <Text color="textSubtle">06/12/2021 7:00 UTC</Text>
+                        <Text color="textSubtle">{open}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Closes</Text>
-                        <Text color="textSubtle">06/31/2021 7:00 UTC</Text>
+                        <Text color="textSubtle">{close}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Cap</Text>
-                        <Text color="textSubtle">150 BNB</Text>
+                        <Text color="textSubtle">{cap} {project.buyingCoin}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Users Participated</Text>
-                        <Text color="textSubtle">123456789</Text>
+                        <Text color="textSubtle">{totalUserParticipated}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Funds Swapped</Text>
-                        <Text color="textSubtle">118 BNB</Text>
+                        <Text color="textSubtle">{totalFundsSwapped} {project.buyingCoin}</Text>
                     </Flex>
                 </Flex>
                 <Flex flex="1" marginLeft="10px" flexDirection="column">
                     <Heading margin="10px 0px 30px 0px" bold>
-                        {' '}
+                        
                         Token Information
                     </Heading>
                     <Flex justifyContent="space-between">
                         <Text>Name</Text>
-                        <Text color="textSubtle">OWNLY</Text>
+                        <Text color="textSubtle">{project.title}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Token Symbol</Text>
-                        <Text color="textSubtle">OWN</Text>
+                        <Text color="textSubtle">{project.symbol}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Supply</Text>
-                        <Text color="textSubtle">165,000,000.00</Text>
+                        <Text color="textSubtle">{project.ownSale}</Text>
                     </Flex>
                 </Flex>
             </Flex>}

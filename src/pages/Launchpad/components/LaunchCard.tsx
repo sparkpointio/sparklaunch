@@ -13,17 +13,7 @@ import { StyledCardBody, StyledCardHeader, CardAction, Options, SocmedGroup, Det
 import Anchor, {StyledLink } from './StyledLink';
 
 const LaunchCard: React.FC<IProjects> = ({
-    title,
-    image,
-    desc,
-    progress,
-    totalRaise,
-    ownSale,
-    buyingCoin,
-    socMeds,
-    wallpaperBg,
-    status,
-    address,
+    address, buyingCoin, title, symbol,  image, wallpaperBg, desc, longDesc, price, progress, totalRaise, ownSale, status, socMeds
 }) => {
     const { account } = useWeb3React();
     const theme = useContext(ThemeContext);

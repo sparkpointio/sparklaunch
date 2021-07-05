@@ -1,4 +1,4 @@
-import React, { useMemo, useCallback } from 'react';
+import React, { useMemo } from 'react';
 import { useProject } from 'state/hooks';
 import Page from 'components/layout/Page';
 import CardNav from 'components/CardNav';
@@ -9,9 +9,9 @@ import CardContainer from './components/CardContainer';
 const LaunchpadHome: React.FC = () => {
     const { data: ProjectsLS } = useProject();
     
-    const ActiveProjects = ProjectsLS.filter(project => project.status === "active")
-    const UpcomingProjects = ProjectsLS.filter(project => project.status === "upcoming")
-    const CompletedProjects = ProjectsLS.filter(project => project.status === "completed")
+    const ActiveProjects = useMemo(() => ProjectsLS.filter(project => project.status === "active"), [ProjectsLS])
+    const UpcomingProjects = useMemo(() => ProjectsLS.filter(project => project.status === "upcoming"), [ProjectsLS])
+    const CompletedProjects = useMemo(() => ProjectsLS.filter(project => project.status === "completed"), [ProjectsLS])
 
 
     return (

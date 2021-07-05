@@ -13,7 +13,7 @@ import {
     Progress,
     CardFooter,
 } from '@sparkpointio/sparkswap-uikit';
-import { useAccountWhiteList } from 'state/hooks';
+import { useAccountWhiteList, useGetPoolsByAddress } from 'state/hooks';
 import { IProjects } from 'config/constants/type';
 import PlaceHolder from 'pages/Home/AboutSection/icons';
 import SvgIcon from 'components/SvgIcon';
@@ -80,25 +80,31 @@ export type AppProps = {
 
 type ActionProps = AppProps & {account?: string | null; whiteListed?: boolean}
 
-const Allocations: React.FC = () => {
+const Allocations: React.FC<{tokenImage:string; symbol: string}> = ({tokenImage, symbol}) => {
+    const srcs = `${process.env.PUBLIC_URL}/images/icons/${tokenImage}`;
     return (
         <div style={{ marginTop: '20px' }}>
             <Text>My Allocations</Text>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <TokenImage src={PlaceHolder} alt="token-logo" />
-                <Text bold>0.0 OWNLY</Text>
+                <TokenImage src={srcs} alt="token-logo" />
+                <Text bold>0.0 {symbol}</Text>
             </div>
         </div>
     );
 };
 
-
 const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
-    const ProgressTitle = `${project.progress} ${project.title}`
-    const percentage = parseInt(((project.progress / project.totalRaise) * 100).toFixed());
-    const standing = `${project.progress} / ${project.totalRaise} ${project.buyingCoin}`;
+    
+    const tokenReport = { 
+        title: `${project.progress} ${project.symbol} token`,
+        progress: project.price * project.progress,
+        percentage: parseInt((((project.progress * project.price) / project.totalRaise) * 100).toFixed()),
+        standing: `${(project.progress * project.price)} / ${project.totalRaise} ${project.buyingCoin}`,
+        tokenPrice: `${project.price} ${project.buyingCoin}`
+    }
+
     return (
         <CardBody
             style={{
@@ -111,22 +117,22 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
         >
             <ProgressGroup>
                 <Text bold as="h1" fontSize="24px">
-                    {ProgressTitle} Sold
+                    {tokenReport.title} Sold
                 </Text>
-                <Progress primaryStep={percentage} variant="flat" />
+                <Progress primaryStep={tokenReport.percentage} variant="flat" />
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">{percentage}%</Text>
-                    <Text color="textSubtle">{standing}</Text>
+                    <Text color="textSubtle">{tokenReport.percentage}%</Text>
+                    <Text color="textSubtle">{tokenReport.standing}</Text>
                 </Flex>
             </ProgressGroup>
             <CustomDataGroup flexDirection="column">
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">OWNLY Price</Text>
-                    <Text>0.00000090900 BNB</Text>
+                    <Text>{project.price}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">OWNLY Sold</Text>
-                    <Text>129,835,369.01</Text>
+                    <Text>{project.progress}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">Total Raise</Text>
@@ -146,9 +152,12 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                     <UnlockButton fullWidth />
                 </div>
             ) : !whiteListed ? (
-                <Allocations />
+                <Allocations tokenImage={project.image} symbol={project.symbol} />
             ) : (
-                <h1>Yes</h1>
+                <>
+                <Allocations tokenImage={project.image} symbol={project.symbol} />
+                <Button fullWidth style={{marginTop: '10px'}}>Purchase {project.symbol}</Button>
+                </>
             )}
         </CardBody>
     );
@@ -159,11 +168,10 @@ const ProjectComponent: React.FC<AppProps> = ({ project }) => {
     const { account } = useWeb3React();
     const [whiteListed, setWhiteList] = useState(false);
     const acc = useAccountWhiteList(account);
-
-    const { title, image, desc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status, address } =
+    const pool = useGetPoolsByAddress(project.address);
+    const { title, image, longDesc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status, address } =
         project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
-
     useEffect(() => {
         if (acc[0][0]) {
             setWhiteList(true);
@@ -206,7 +214,7 @@ const ProjectComponent: React.FC<AppProps> = ({ project }) => {
                             )}
                         </Flex>
                         <Text color="textSubtle" as="p">
-                            {desc}
+                            {longDesc}
                         </Text>
                     </Flex>
                     <Flex flex="1">
@@ -219,7 +227,7 @@ const ProjectComponent: React.FC<AppProps> = ({ project }) => {
                 </Flex>
             </CBody>
             <CFooter>
-                <FooterDetails />
+                <FooterDetails pool={pool?.[0]} project={project} />
             </CFooter>
         </CCont>
     );
