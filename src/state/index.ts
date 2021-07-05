@@ -3,12 +3,14 @@ import { configureStore } from '@reduxjs/toolkit'
 import { useDispatch } from 'react-redux'
 import projectReducer from './projects';
 import accountReducer from './acounts';
+import poolReducer from './pools';
 
 const store = configureStore({
     devTools: process.env.NODE_ENV !== 'production',
     reducer: {
         projects: projectReducer,
-        accounts: accountReducer
+        accounts: accountReducer,
+        pools: poolReducer,
     }
 })
 
