@@ -13,7 +13,7 @@ const LaunchpadHome: React.FC = () => {
     const UpcomingProjects = useMemo(() => ProjectsLS.filter(project => project.status === "upcoming"), [ProjectsLS])
     const CompletedProjects = useMemo(() => ProjectsLS.filter(project => project.status === "completed"), [ProjectsLS])
 
-
+  
     return (
         <Page>
             <Container>

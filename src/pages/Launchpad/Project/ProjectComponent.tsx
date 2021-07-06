@@ -20,59 +20,12 @@ import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
 import { StyledHr2 as Divider } from 'components/Divider';
 import { CustomThemeContext } from 'ThemeContext';
-import { SocmedGroup, ProgressGroup, DataGroup } from '../components/styled';
+import { SocmedGroup, ProgressGroup } from '../components/styled';
 import { ReactComponent as MediumIcon } from '../components/icons/MediumIcon.svg';
 import Anchor from '../components/StyledLink';
 import FooterDetails from './FooterDetails';
+import { CCont, CHeader, TokenImage, CBody, StyledButton, CustomDataGroup, CFooter } from './styled'
 
-const CCont = styled(Card)`
-    width: 100%;
-`;
-const CHeader = styled(CardHeader)`
-    display: flex;
-    align-items: center;
-    height: auto;
-    min-height: 10vh;
-    max-height: 15vh;
-`;
-const TokenImage = styled.img`
-    border-radius: 50%;
-    width: 60px;
-    height: 60px;
-    margin: 10px 15px;
-`;
-
-const CBody = styled(CardBody)`
-    padding: 20px;
-`;
-
-const StyledButton = styled(Button)`
-    cursor: context-menu;
-    height: 35px;
-    border-radius: 5px;
-`;
-
-const CustomDataGroup = styled(DataGroup)`
-    &:before {
-        content: '';
-        border-top: 5px solid ${({ theme }) => theme.colors.primary};
-        padding-top: 10px;
-        margin-bottom: 10px;
-    }
-    &:after {
-        content: '';
-        border-bottom: 5px solid ${({ theme }) => theme.colors.primary};
-        padding-bottom: 10px;
-        margin-top: 10px;
-    }
-`;
-
-const CFooter = styled(Flex)`
-    width: 100%;
-    min-height: 20vh;
-    height: auto;
-    padding: 25px;
-`;
 
 export type AppProps = {
     project: IProjects;
@@ -96,7 +49,7 @@ const Allocations: React.FC<{tokenImage:string; symbol: string}> = ({tokenImage,
 const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
-    
+
     const tokenReport = { 
         title: `${project.progress} ${project.symbol} token`,
         progress: project.price * project.progress,
