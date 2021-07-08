@@ -15,8 +15,9 @@ import {
     useModal,
 } from '@sparkpointio/sparkswap-uikit';
 import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject } from 'state/hooks';
-import { IProjects } from 'config/constants/type';
+import { IProjects, ITokens } from 'config/constants/type';
 import PlaceHolder from 'pages/Home/AboutSection/icons';
+import { useSelectToken } from 'state/tokens/hooks';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
 import { StyledHr2 as Divider } from 'components/Divider';
@@ -28,8 +29,10 @@ import Anchor from '../components/StyledLink';
 import FooterDetails from './FooterDetails';
 import { CCont, CHeader, TokenImage, CBody, StyledButton, CustomDataGroup, CFooter } from './styled'
 
+
 type AppProps = { 
     project: IProjects
+    buyingToken?: ITokens
 }
 type ActionProps = AppProps & {account?: string | null; whiteListed?: boolean}
 
@@ -46,17 +49,18 @@ const Allocations: React.FC<{tokenImage:string; symbol: string}> = ({tokenImage,
     );
 };
 
-const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) => {
+const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, buyingToken}) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
-    const [ onPurchaseModal ] = useModal(<PurchaseModal />)
-
+    const Paddress = useFindProject();
+    const [ onPurchaseModal ] = useModal(<PurchaseModal address={Paddress} />)
+    
     const tokenReport = { 
         title: `${project.progress} ${project.symbol} token`,
         progress: project.price * project.progress,
         percentage: parseInt((((project.progress * project.price) / project.totalRaise) * 100).toFixed()),
-        standing: `${(project.progress * project.price)} / ${project.totalRaise} ${project.buyingCoin}`,
-        tokenPrice: `${project.price} ${project.buyingCoin}`
+        standing: `${(project.progress * project.price)} / ${project.totalRaise} ${buyingToken?.symbol}`,
+        tokenPrice: `${project.price} ${buyingToken?.symbol}`
     }
 
     return (
@@ -124,11 +128,11 @@ const ProjectComponent: React.FC = () => {
     const Paddress = useFindProject();
     const project = useFindProjectByAddress(Paddress);
     const acc = useAccountWhiteList(account);
-  
-
     const pool = useGetPoolsByAddress(Paddress);
-
     const { title, image, longDesc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status, address } = project;
+    const token = useSelectToken(buyingCoin)
+
+
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     useEffect(() => {
         if (acc[0][0]) {
@@ -180,12 +184,13 @@ const ProjectComponent: React.FC = () => {
                         account={account} 
                         whiteListed={whiteListed}
                         project={project}
+                        buyingToken={token}
                         />
                     </Flex>
                 </Flex>
             </CBody>
             <CFooter>
-                <FooterDetails pool={pool} project={project} />
+                <FooterDetails pool={pool} project={project} buyingToken={token} />
             </CFooter>
         </CCont>
     );

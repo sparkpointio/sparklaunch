@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 import { useWeb3React } from '@web3-react/core';
 import { Globe, Twitter, Send } from 'react-feather';
 import styled, { ThemeContext } from 'styled-components';
+import { useSelectToken } from 'state/tokens/hooks';
 import PlaceHolder from 'pages/Home/AboutSection/icons';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
@@ -12,10 +13,12 @@ import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
 import { StyledCardBody, StyledCardHeader, CardAction, Options, SocmedGroup, Details, ProgressGroup, DataGroup, StyledImage, StyledButton} from './styled';
 import Anchor, {StyledLink } from './StyledLink';
 
+
 const LaunchCard: React.FC<IProjects> = ({
     address, buyingCoin, title, symbol,  image, wallpaperBg, desc, longDesc, price, progress, totalRaise, ownSale, status, socMeds
 }) => {
     const { account } = useWeb3React();
+    const token = useSelectToken(buyingCoin)
     const theme = useContext(ThemeContext);
     const percentage = ((progress / totalRaise) * 100).toFixed();
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
@@ -63,7 +66,7 @@ const LaunchCard: React.FC<IProjects> = ({
                             <Text color="textSubtle">{percentage}%</Text>
                             <Text color="textSubtle">
                                 {progress}&nbsp;/&nbsp;{totalRaise}
-                                {buyingCoin}
+                                {token?.symbol}
                             </Text>
                         </Flex>
                     </ProgressGroup>
@@ -71,7 +74,7 @@ const LaunchCard: React.FC<IProjects> = ({
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">Total Raise</Text>
                             <Text>
-                                {totalRaise} {buyingCoin}
+                                {totalRaise} {token?.symbol}
                             </Text>
                         </Flex>
                         <Flex justifyContent="space-between">
@@ -84,7 +87,7 @@ const LaunchCard: React.FC<IProjects> = ({
                         </Flex>
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">Buying Coin</Text>
-                            <Text>{buyingCoin}</Text>
+                            <Text>{token?.symbol}</Text>
                         </Flex>
                     </DataGroup>
                 </Details>

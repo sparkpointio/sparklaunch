@@ -1,5 +1,5 @@
 import { Flex, Button, Heading, Text } from '@sparkpointio/sparkswap-uikit';
-import { IPoolInformation, IProjects } from 'config/constants/type';
+import { IPoolInformation, IProjects, ITokens } from 'config/constants/type';
 import React, { useContext, useState, useCallback } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { CustomThemeContext } from 'ThemeContext';
@@ -19,6 +19,7 @@ const NavOptions = styled(Button)<{ activeIndex: boolean }>`
 type AppProps = {
     pool: IPoolInformation;
     project: IProjects;
+    buyingToken?: ITokens;
 }
 
 const FooterNav = ({ activeIndex = 0, handleClick}: { activeIndex?: number; handleClick: (i:number) => void }) => {
@@ -33,7 +34,7 @@ const FooterNav = ({ activeIndex = 0, handleClick}: { activeIndex?: number; hand
     );
 };
 
-const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
+const FooterDetails: React.FC<AppProps> = ({pool, project, buyingToken}) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
     const [ activeIndex , setActive ] = useState<number>(0);
@@ -66,7 +67,7 @@ const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Cap</Text>
-                        <Text color="textSubtle">{cap} {project.buyingCoin}</Text>
+                        <Text color="textSubtle">{cap} {buyingToken?.symbol}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Users Participated</Text>
@@ -74,7 +75,7 @@ const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Funds Swapped</Text>
-                        <Text color="textSubtle">{totalFundsSwapped} {project.buyingCoin}</Text>
+                        <Text color="textSubtle">{totalFundsSwapped} {buyingToken?.symbol}</Text>
                     </Flex>
                 </Flex>
                 <Flex flex="1" marginLeft="10px" flexDirection="column">

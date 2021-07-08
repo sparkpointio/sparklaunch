@@ -51,9 +51,9 @@ export const StyledButton = styled(Button)`
     border-radius: 5px;
 `;
 
-export const StyledImage = styled.img`
+export const StyledImage = styled.img<{size?: string}>`
     border-radius: 50%;
-    height: 60px;
-    width: 60px;
+    height: ${({ size }) => !size? '60px': size};
+    width: ${({ size }) => !size? '60px' : size};
     margin-right: 15px;
 `;
