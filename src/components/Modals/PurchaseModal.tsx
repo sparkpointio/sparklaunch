@@ -3,7 +3,10 @@ import { Modal, Text, Button, IconButton, Flex } from "@sparkpointio/sparkswap-u
 import {Field} from 'state/swap/action';
 import styled from "styled-components";
 import { useSwapActionHandlers, useSwapState } from "state/swap/hooks";
+import { useFindProjectByAddress } from "state/hooks";
+import { useSelectToken } from "state/tokens/hooks";
 import CurrencyInputPanel from "components/CurrencyInputPanel";
+import { StyledImage } from 'pages/Launchpad/components/styled';
 import Icon from 'assets/icons/Arrow';
 import SvgIcon from 'components/SvgIcon';
 import { ArrowWrapper } from './styleds';
@@ -11,6 +14,7 @@ import { ArrowWrapper } from './styleds';
 
 interface AppProps {
     onDismiss?: () => void
+    address: string | null | undefined
   }
 
 const StyledHeading = styled(Text)`
@@ -24,10 +28,11 @@ const ActionDiv = styled(Flex)`
   flex-direction: column;
 `
 
-const PurchaseModal: React.FC<AppProps> = ({onDismiss}) => {
+const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
   const { onUserInput } = useSwapActionHandlers();
   const { independentField, typedValue } = useSwapState();
-
+  const project = useFindProjectByAddress(address);
+  const token = useSelectToken(project.buyingCoin);
   const formattedAmounts = {
     [independentField]: typedValue,
   }
@@ -40,15 +45,16 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss}) => {
     onUserInput(Field.OUTPUT, value)
   }, [onUserInput])
 
-
+  
     return (
         <Modal title="Swap Coins" onDismiss={onDismiss}>
-            <StyledHeading>Max. Allocation is 159662.6 OWN</StyledHeading>
+            <StyledHeading>Max. Allocation is  {project.symbol}</StyledHeading>
             <CurrencyInputPanel 
                 label="From"
                 id="swap-input"
                 value={formattedAmounts[Field.INPUT]}
                 onUserInput={handleTypeInput}
+                currency={token}
                 showMaxButton
             />
             <div style={{margin: '30px 0px 20px 0px'}}>
@@ -64,14 +70,16 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss}) => {
                 id="swap-input"
                 value={formattedAmounts[Field.OUTPUT]}
                 onUserInput={handleTypeOutput}
+                currency={project}
             />
             <ActionDiv>
             <Button fullWidth>Swap</Button>
             </ActionDiv>
             <ActionDiv>
               <Text>My Allocations</Text>
-              <Flex>
-                <Text color="textSubtle">0.0 OWN</Text>
+              <Flex alignItems="center" marginTop="12px">
+                <StyledImage src={`${process.env.PUBLIC_URL}/images/icons/${project?.symbol}.png`} />
+                <Text color="textSubtle">0.0 {project.symbol}</Text>
               </Flex>
             </ActionDiv>
   
