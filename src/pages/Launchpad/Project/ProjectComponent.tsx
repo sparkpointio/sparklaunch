@@ -12,13 +12,15 @@ import {
     Text,
     Progress,
     CardFooter,
+    useModal,
 } from '@sparkpointio/sparkswap-uikit';
-import { useAccountWhiteList, useGetPoolsByAddress } from 'state/hooks';
+import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject } from 'state/hooks';
 import { IProjects } from 'config/constants/type';
 import PlaceHolder from 'pages/Home/AboutSection/icons';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
 import { StyledHr2 as Divider } from 'components/Divider';
+import PurchaseModal from 'components/Modals/PurchaseModal';
 import { CustomThemeContext } from 'ThemeContext';
 import { SocmedGroup, ProgressGroup } from '../components/styled';
 import { ReactComponent as MediumIcon } from '../components/icons/MediumIcon.svg';
@@ -26,11 +28,9 @@ import Anchor from '../components/StyledLink';
 import FooterDetails from './FooterDetails';
 import { CCont, CHeader, TokenImage, CBody, StyledButton, CustomDataGroup, CFooter } from './styled'
 
-
-export type AppProps = {
-    project: IProjects;
-};
-
+type AppProps = { 
+    project: IProjects
+}
 type ActionProps = AppProps & {account?: string | null; whiteListed?: boolean}
 
 const Allocations: React.FC<{tokenImage:string; symbol: string}> = ({tokenImage, symbol}) => {
@@ -49,6 +49,7 @@ const Allocations: React.FC<{tokenImage:string; symbol: string}> = ({tokenImage,
 const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
+    const [ onPurchaseModal ] = useModal(<PurchaseModal />)
 
     const tokenReport = { 
         title: `${project.progress} ${project.symbol} token`,
@@ -109,7 +110,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
             ) : (
                 <>
                 <Allocations tokenImage={project.image} symbol={project.symbol} />
-                <Button fullWidth style={{marginTop: '10px'}}>Purchase {project.symbol}</Button>
+                <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}}>Purchase {project.symbol}</Button>
                 </>
             )}
         </CardBody>
@@ -117,13 +118,17 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
 };
 
 
-const ProjectComponent: React.FC<AppProps> = ({ project }) => {
+const ProjectComponent: React.FC = () => {
     const { account } = useWeb3React();
     const [whiteListed, setWhiteList] = useState(false);
+    const Paddress = useFindProject();
+    const project = useFindProjectByAddress(Paddress);
     const acc = useAccountWhiteList(account);
-    const pool = useGetPoolsByAddress(project.address);
-    const { title, image, longDesc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status, address } =
-        project;
+  
+
+    const pool = useGetPoolsByAddress(Paddress);
+
+    const { title, image, longDesc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status, address } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     useEffect(() => {
         if (acc[0][0]) {
@@ -180,7 +185,7 @@ const ProjectComponent: React.FC<AppProps> = ({ project }) => {
                 </Flex>
             </CBody>
             <CFooter>
-                <FooterDetails pool={pool?.[0]} project={project} />
+                <FooterDetails pool={pool} project={project} />
             </CFooter>
         </CCont>
     );
