@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { couldStartTrivia } from 'typescript'
 // import { HelpCircle } from 'react-feather'
 
 const BAD_SRCS: { [tokenAddress: string]: true } = {}
@@ -15,9 +16,7 @@ export interface LogoProps {
  */
 export default function Logo({ srcs, alt, ...rest }: LogoProps) {
   const [, refresh] = useState<number>(0)
-
   const src: string | undefined = srcs.find((s) => !BAD_SRCS[s])
-
   
     return (
       <img

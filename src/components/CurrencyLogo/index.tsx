@@ -1,7 +1,8 @@
 import React, { useMemo } from 'react'
-import { Currency, ETHER, Token } from '@sparkpointio/sparkswap-sdk'
+import { ETHER, Token } from '@sparkpointio/sparkswap-sdk'
 import styled from 'styled-components'
 import EthereumLogo from 'assets/icons/images/binance-logo.png'
+import { Currency } from 'components/types'
 import Logo from '../Logo'
 
 const StyledEthereumLogo = styled.img<{ size: string }>`
@@ -29,27 +30,26 @@ const getTokenLogoURL = (address: string) =>
     size = '24px',
     style
   }: {
-    currency?: Currency
+    currency?: Currency | null 
     size?: string
     style?: React.CSSProperties
   }) {
     // const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
     const srcs: string[] = useMemo(() => {
-      if (currency === ETHER) return []
+      // if (currency === ETHER) return []
   
-      if (currency instanceof Token) {
+      // if (currency instanceof Token) {
         // if (currency instanceof WrappedTokenInfo) {
         //   return [...uriLocations, `${process.env.PUBLIC_URL}/images/coins/${currency?.symbol ?? 'default'}.png`, getTokenLogoURL(currency.address)]
         // }
-        return [`${process.env.PUBLIC_URL}/images/coins/${currency?.symbol ?? 'default'}.png`, getTokenLogoURL(currency.address)]
-      }
-      return []
+        return [`${process.env.PUBLIC_URL}/images/coins/${currency?.symbol ?? 'default'}.png`]
+      // }
+      // return []
     }, [currency])
-  
+    console.log(`${process.env.PUBLIC_URL}/images/coins/${currency?.symbol}`)
     if (currency === ETHER) {
       return <StyledEthereumLogo src={EthereumLogo} size={size} style={style} />
     }
-    
     return (currency as any)?.symbol ? (
       <StyledLogo size={size} srcs={srcs} alt={`${currency?.symbol ?? 'token'} logo`} style={style} />
     ) : (

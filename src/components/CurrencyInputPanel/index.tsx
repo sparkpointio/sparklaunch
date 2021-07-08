@@ -1,12 +1,15 @@
 import React, { useState, useCallback, useContext } from 'react'
-import { Currency } from '@sparkpointio/sparkswap-sdk'
 import { Button, ChevronDownIcon, Dropdown, Text } from '@sparkpointio/sparkswap-uikit'
 import { useWeb3React } from '@web3-react/core'
 import styled, { ThemeContext } from 'styled-components'
 import { darken } from 'polished'
+import { IProjects, ITokens } from 'config/constants/type'
+import { StyledImage } from 'pages/Launchpad/components/styled'
+import { Currency } from 'components/types'
 import { Input as NumericalInput } from '../NumericalInput'
 import { RowBetween } from '../Row'
 import CurrencyLogo from '../CurrencyLogo'
+
 // import { useActiveWeb3React } from '../../hooks'
 
 const InputRow = styled.div<{ selected: boolean }>`
@@ -69,6 +72,7 @@ const Container = styled.div<{ hideInput: boolean }>`
   box-shadow: ${({ theme }) => theme.shadows.inset};
 `
 
+
 interface CurrencyInputPanelProps {
   value: string
   onUserInput: (value: string) => void
@@ -79,7 +83,6 @@ interface CurrencyInputPanelProps {
   disableCurrencySelect?: boolean
   hideBalance?: boolean
   hideInput?: boolean
-  otherCurrency?: Currency | null
   id: string
   showCommonBases?: boolean
 }
@@ -94,7 +97,6 @@ export default function CurrencyInputPanel({
     disableCurrencySelect = false,
     hideBalance = false,
     hideInput = false,
-    otherCurrency,
     id,
     showCommonBases,
   }: CurrencyInputPanelProps) {
@@ -113,19 +115,17 @@ export default function CurrencyInputPanel({
         <Container hideInput={hideInput}>
           <InputRow style={hideInput ? { padding: '0', borderRadius: '8px' } : {}} selected={disableCurrencySelect}>
           <Aligner>
-             
                 {/* <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} /> */}
-              
-              {
+                <StyledImage src={`${process.env.PUBLIC_URL}/images/icons/${currency?.symbol}.png`} size="24px" />
                 <Text>
-                  {/* {`${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
+                {(currency && currency.symbol && currency.symbol.length > 20
+                    ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(
                         currency.symbol.length - 5,
                         currency.symbol.length
-                      )}`} */}
-                      Test &nbsp;
+                      )}`
+                    : currency?.symbol)}
+                    &nbsp;
                 </Text>
-              }
-            
             </Aligner>
             {!hideInput && (
               <>
@@ -150,16 +150,10 @@ export default function CurrencyInputPanel({
           <RowBetween>
               {account && (
                 <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
-                  {/* {!hideBalance && !!currency && selectedCurrencyBalance
-                    ? `Available: ${selectedCurrencyBalance?.toSignificant(6)} ${currency.symbol}`
-                    : ' -'} */}
-                    {
-                      label === 'From'? (
-                        `Available: 0.192 BNB`
-                      ) : (
-                        `Remaining: 3053423 OWN`
-                      )
-                    }
+                  {!hideBalance && !!currency 
+                    ? `Available: ${currency.symbol}`
+                    : ' -'}
+
                 </Text>
               )}  
           </RowBetween>
