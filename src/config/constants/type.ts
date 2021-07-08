@@ -1,3 +1,12 @@
+export interface ITokens {
+    name: string;
+    symbol: string;
+    address: string;
+    chainId: number;
+    decimals: number;
+    logoURI: string;
+}
+
 export interface IProjects {
     address?: string;
     buyingCoin: string;

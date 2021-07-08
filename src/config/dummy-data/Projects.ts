@@ -4,7 +4,7 @@ import { IProjects } from "config/constants/type";
 const ProjectList: Array<IProjects> = [
     {
         address: '0x001',
-        buyingCoin: 'BNB',
+        buyingCoin: '0x1e33833a035069f42d68D1F53b341643De1C018D',
         title: 'Ownly',
         symbol: 'OWNLY',
         image: 'ownly.png',
@@ -20,7 +20,7 @@ const ProjectList: Array<IProjects> = [
     },
     {
         address: '0x002',
-        buyingCoin: 'BNB',
+        buyingCoin: '0xe09B8661D80CF24dB230A167969d18B94a5a3266',
         title: 'Lonely Token',
         symbol: 'LOWNLY',
         image: 'ownly.png',
@@ -36,7 +36,7 @@ const ProjectList: Array<IProjects> = [
     },
     {
         address: '0x003',
-        buyingCoin: 'BNB',
+        buyingCoin: '0x1e33833a035069f42d68D1F53b341643De1C018D',
         title: 'Sad Token',
         symbol: 'SADLY',
         image: 'ownly.png',
@@ -52,7 +52,7 @@ const ProjectList: Array<IProjects> = [
     },
     {
         address: '0x004',
-        buyingCoin: 'BNB',
+        buyingCoin: '0x1e33833a035069f42d68D1F53b341643De1C018D',
         title: 'Ownly',
         symbol: 'OWNLY',
         image: 'ownly.png',
@@ -68,7 +68,7 @@ const ProjectList: Array<IProjects> = [
     },
     {
         address: '0x005',
-        buyingCoin: 'BNB',
+        buyingCoin: '0x1e33833a035069f42d68D1F53b341643De1C018D',
         title: 'Ownly',
         symbol: 'OWNLY',
         image: 'ownly.png',
