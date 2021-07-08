@@ -1,26 +1,38 @@
-import { useSelector } from 'react-redux';
-import { State } from './type';
+import { Field } from 'state/swap/action';
+import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
+import { setProject } from './actions';
+import { AppDispatch, AppState } from './index';
+
+export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
+export const useAppDispatch = () => useDispatch<AppDispatch>()
 
 export const useProject = () => {
-    const projects = useSelector((state: State) => state.projects);
+    const projects = useAppSelector((state) => state.projects);
     return projects;
 };
 
-export const useFindProject = (address?: string | null) => {
-    const project = useSelector((state: State) => {
-        return state.projects.data.filter((p) => p.address === address);
-    });
+export const useFindProject = () => useAppSelector((state) => state.projects.selectedProject); 
 
-    return project;
+export const useSetProject = (address?: string | null) => {
+    const dispatch = useAppDispatch();
+    if (!address) {
+        return ''
+    }
+    return dispatch(setProject(address));
 };
 
+export const useFindProjectByAddress = (address?: string | null) => {
+    const project = useAppSelector((state) => state.projects.data.filter(p => p.address === address));
+    return project[0]
+}
+
 export const useAccount = () => {
-    const accounts = useSelector((state: State) => state.accounts.data);
+    const accounts = useAppSelector((state) => state.accounts.data);
     return accounts;
 };
 
 export const useAccountWhiteList = (acc?: string | null) => {
-    const account = useSelector((state: State) =>
+    const account = useAppSelector((state) =>
         state.accounts.data.map((acs) => {
             return acs.whiteList.filter((ls) => ls.address === acc);
         }),
@@ -29,13 +41,13 @@ export const useAccountWhiteList = (acc?: string | null) => {
 };
 
 export const usePools = () => {
-    const pools = useSelector((state: State) => state.pools);
+    const pools = useAppSelector((state) => state.pools);
     return pools;
 };
 
 export const useGetPoolsByAddress = (address?: string | null) => {
-    const pool = useSelector((state: State) => {
+    const pool = useAppSelector((state) => {
         return state.pools.data.filter((pl) => pl.projectAddress === address);
     })
-    return pool;
+    return pool[0];
 }

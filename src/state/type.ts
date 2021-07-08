@@ -1,7 +1,24 @@
+import { ThunkAction } from 'redux-thunk'
+import { AnyAction } from '@reduxjs/toolkit'
 import { IProjects, IAccountType, IPoolInformation } from 'config/constants/type';
+import { Field } from './swap/action';
+
+export type AppThunk<ReturnType = void> = ThunkAction<ReturnType, State, unknown, AnyAction>
+
+export interface SwapState { 
+    readonly independentField: Field;
+    readonly typedValue: string;
+    readonly [Field.INPUT]: {
+        readonly currencyId: string | undefined
+      }
+      readonly [Field.OUTPUT]: {
+        readonly currencyId: string | undefined
+      }
+}
 
 export interface ProjectState {
-    data: IProjects[]
+    selectedProject?: string | null;
+    data: IProjects[];
 }
 
 export interface AccountState {
