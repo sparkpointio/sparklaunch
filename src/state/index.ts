@@ -4,6 +4,7 @@ import projectReducer from './projects';
 import accountReducer from './acounts';
 import poolReducer from './pools';
 import swapReducer from './swap';
+import tokenReducer from './tokens';
 
 const store = configureStore({
     devTools: process.env.NODE_ENV !== 'production',
@@ -12,6 +13,7 @@ const store = configureStore({
         accounts: accountReducer,
         pools: poolReducer,
         swaps: swapReducer, 
+        tokens: tokenReducer,
     }
 })
 
