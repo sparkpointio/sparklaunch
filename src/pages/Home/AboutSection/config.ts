@@ -33,19 +33,19 @@ const DetailsList = [
 
 export const TierSystemList = [
     {
-        title: 'SPARKLE',
+        title: 'IGNITE',
         requirement: '10,000 SFUEL tokens',
         poolWeight: 10,
         guaranteedAllocation: 'yes',
     },
     {
-        title: 'FLARE',
+        title: 'BLAZE',
         requirement: '10,000 SFUEL tokens',
         poolWeight: 10,
         guaranteedAllocation: 'yes',
     },
     {
-        title: 'GLOW',
+        title: 'SPARK',
         requirement: '10,000 SFUEL tokens',
         poolWeight: 10,
         guaranteedAllocation: 'yes',
