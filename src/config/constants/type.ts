@@ -16,6 +16,8 @@ export interface IProjects {
     wallpaperBg?: string;
     desc: string;
     longDesc: string;
+    longDesc2?: string | null
+    longDesc3?: string | null 
     price: number;
     progress: number;
     totalRaise: number;
@@ -45,6 +47,16 @@ interface ListType {
 
 export interface IAccountType {
     whiteList: ListType[]
+}
+
+export interface ITransactionDetails { 
+    hash: string
+    approval?: { tokenAddress: string; spender: string };
+    summary?: string;
+    lastCheckedBlockNumber?: number;
+    addedTime: number
+    confirmedTime?: number
+    from: string;
 }
 
 export type PageMeta = {
