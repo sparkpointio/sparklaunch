@@ -1,5 +1,5 @@
 import React, { useCallback } from "react";
-import { Modal, Text, Button, IconButton, Flex } from "@sparkpointio/sparkswap-uikit";
+import { Modal, Text, Button, IconButton, Flex, Heading } from "@sparkpointio/sparkswap-uikit";
 import {Field} from 'state/swap/action';
 import styled from "styled-components";
 import { useSwapActionHandlers, useSwapState } from "state/swap/hooks";
@@ -18,8 +18,6 @@ interface AppProps {
   }
 
 const StyledHeading = styled(Text)`
-  margin-top: -40px;
-  padding-bottom: 25px;
   color: ${({theme}) => theme.colors.textSubtle};
 `
 const ActionDiv = styled(Flex)`
@@ -47,8 +45,12 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
 
   
     return (
-        <Modal title="Swap Coins" onDismiss={onDismiss}>
+        <Modal title="" onDismiss={onDismiss}>
+          <div style={{ width: '400px', padding: '0px 24px 24px 24px'}}>
+            <div style={{marginBottom: '24px', marginTop: '-24px'}}>
+            <Heading bold fontSize="21px">Swap Coins</Heading>
             <StyledHeading>Max. Allocation is  {project.symbol}</StyledHeading>
+            </div>
             <CurrencyInputPanel 
                 label="From"
                 id="swap-input"
@@ -82,7 +84,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                 <Text color="textSubtle">0.0 {project.symbol}</Text>
               </Flex>
             </ActionDiv>
-  
+            </div>
         </Modal>
     )
 }
