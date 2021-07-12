@@ -1,8 +1,10 @@
 import { Flex, Button, Heading, Text } from '@sparkpointio/sparkswap-uikit';
+import { useWeb3React } from '@web3-react/core';
 import { IPoolInformation, IProjects, ITokens } from 'config/constants/type';
 import React, { useContext, useState, useCallback } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { CustomThemeContext } from 'ThemeContext';
+import { TBHeader, TBBody } from './styled';
 
 const Container = styled(Flex)`
     margin: 10px;
@@ -34,8 +36,30 @@ const FooterNav = ({ activeIndex = 0, handleClick}: { activeIndex?: number; hand
     );
 };
 
+const AllocationSection = () => {
+    return (
+        <Flex margin="20px" padding="20px" flexDirection="column">
+            <TBHeader justifyContent="space-between" >
+                <Text bold>No.</Text>
+                <Text bold>Token Allocation</Text>
+                <Text bold>Date</Text>
+                <Text bold>Token(s) claimed</Text>
+                <Text bold>Action</Text>
+            </TBHeader>
+            <TBBody justifyContent="space-between" >
+                <Text color="textSubtle">001</Text>
+                <Text color="textSubtle">159662.6 OWN</Text>
+                <Text color="textSubtle">06/24/2021</Text>
+                <Text color="textSubtle">OWNLY</Text>
+                <Text color="textSubtle">SWAP</Text>
+            </TBBody>
+        </Flex>
+    )
+}
+
 const FooterDetails: React.FC<AppProps> = ({pool, project, buyingToken}) => {
     const theme = useContext(ThemeContext);
+    const { account } = useWeb3React();
     const customTheme = useContext(CustomThemeContext);
     const [ activeIndex , setActive ] = useState<number>(0);
     const { open, close, cap, totalUserParticipated, totalFundsSwapped } = pool;
@@ -96,7 +120,13 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, buyingToken}) => {
                         <Text color="textSubtle">{project.ownSale}</Text>
                     </Flex>
                 </Flex>
-            </Flex>}
+            </Flex>
+            }
+            {
+                account && activeIndex === 2 && (
+                    <AllocationSection />
+                )
+            }
         </Container>
     );
 };

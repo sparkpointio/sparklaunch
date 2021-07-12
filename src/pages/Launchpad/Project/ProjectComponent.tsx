@@ -27,7 +27,7 @@ import { SocmedGroup, ProgressGroup } from '../components/styled';
 import { ReactComponent as MediumIcon } from '../components/icons/MediumIcon.svg';
 import Anchor from '../components/StyledLink';
 import FooterDetails from './FooterDetails';
-import { CCont, CHeader, TokenImage, CBody, StyledButton, CustomDataGroup, CFooter } from './styled'
+import { CCont, CHeader, TokenImage, CBody, StyledButton, CustomDataGroup, CFooter, TextDescription } from './styled'
 
 
 type AppProps = { 
@@ -129,7 +129,7 @@ const ProjectComponent: React.FC = () => {
     const project = useFindProjectByAddress(Paddress);
     const acc = useAccountWhiteList(account);
     const pool = useGetPoolsByAddress(Paddress);
-    const { title, image, longDesc, progress, totalRaise, ownSale, buyingCoin, socMeds, wallpaperBg, status, address } = project;
+    const { title, image, longDesc, longDesc2, buyingCoin, socMeds, wallpaperBg, status } = project;
     const token = useSelectToken(buyingCoin)
 
 
@@ -175,9 +175,14 @@ const ProjectComponent: React.FC = () => {
                                 <StyledButton style={{ backgroundColor: '#8e98a5' }}>COMPLETED</StyledButton>
                             )}
                         </Flex>
-                        <Text color="textSubtle" as="p">
+                        <Flex flexDirection="column" justifyContent="space-between">
+                        <TextDescription color="textSubtle" as="p">
                             {longDesc}
-                        </Text>
+                        </TextDescription>   
+                        <TextDescription color="textSubtle" as="p">
+                            {longDesc2}
+                        </TextDescription>
+                        </Flex>
                     </Flex>
                     <Flex flex="1">
                         <ActionCard 

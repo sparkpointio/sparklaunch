@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { Card, CardHeader, CardBody, Button, Flex} from '@sparkpointio/sparkswap-uikit';
+import { Card, CardHeader, CardBody, Button, Flex, Text} from '@sparkpointio/sparkswap-uikit';
 import { SocmedGroup, ProgressGroup, DataGroup } from '../components/styled';
 
 export const CCont = styled(Card)`
@@ -50,3 +50,18 @@ export const CFooter = styled(Flex)`
     height: auto;
     padding: 25px;
 `;
+
+
+const TableDiv = styled(Flex)`
+    width: 100%;
+    max-width: 720px;
+`
+
+export const TBHeader = styled(TableDiv)``;
+export const TBBody = styled(TableDiv)`
+    margin-top: 10px;
+`;
+
+export const TextDescription = styled(Text)`
+    margin: 10px 5px
+`
