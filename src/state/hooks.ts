@@ -18,7 +18,8 @@ export const useSetProject = (address?: string | null) => {
     if (!address) {
         return ''
     }
-    return dispatch(setProject(address));
+    dispatch(setProject(address))
+    return address;
 };
 
 export const useFindProjectByAddress = (address?: string | null) => {
