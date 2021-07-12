@@ -34,19 +34,19 @@ const DetailsList = [
 export const TierSystemList = [
     {
         title: 'IGNITE',
-        requirement: '10,000 SFUEL tokens',
+        requirement: '100,000 SRKb/ 6070 SFUEL Staked',
         poolWeight: 10,
         guaranteedAllocation: 'yes',
     },
     {
         title: 'BLAZE',
-        requirement: '10,000 SFUEL tokens',
+        requirement: '4,000,000+ SRKb/ 201379+ SFUEL Staked',
         poolWeight: 10,
         guaranteedAllocation: 'yes',
     },
     {
         title: 'SPARK',
-        requirement: '10,000 SFUEL tokens',
+        requirement: '650,000 SRKb/ 38344 SFUEL Staked',
         poolWeight: 10,
         guaranteedAllocation: 'yes',
     },
