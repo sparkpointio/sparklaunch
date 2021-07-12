@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'
 import { Text, Button } from '@sparkpointio/sparkswap-uikit';
-import StyledContainer, { StyledHeading, ContactButton } from './styled';
+import StyledContainer, { StyledHeading } from './styled';
 
 const Actions = styled.div`
     width: 100%;
@@ -18,7 +18,7 @@ const ApplySection: React.FC = () => {
              <Text>Apply for an IDO on SparkLaunch, submit your project and get a response within 24 hours.</Text>
              <Actions>
                  <Button fullWidth margin="10px">Apply Now</Button>
-                 <ContactButton fullWidth margin="10px">Contact Us</ContactButton>
+                 <Button fullWidth margin="10px" style={{backgroundColor: '#7a1ba3'}}>Contact Us</Button>
              </Actions>
         </StyledContainer>
        

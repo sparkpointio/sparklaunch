@@ -8,4 +8,12 @@ const StyledHr = styled.hr`
     margin: 15px;
 `
 
+export const StyledHr2 = styled.hr`
+    height: 3px;
+    background-color: ${({theme}) => theme.colors.primary};
+    border: none;
+    width: 100%;
+  
+`
+
 export default StyledHr;

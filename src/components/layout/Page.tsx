@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { Children, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { Text, Flex } from '@sparkpointio/sparkswap-uikit';
 import { Facebook, Twitter, Mail, Send } from 'react-feather';
@@ -48,6 +48,10 @@ const StyledLink = styled(CustomLink)`
     }
 `;
 
+const SocLink = ({socLink, children}) => (
+    <a href={socLink}>{children}</a>
+)
+
 const PageFooter = () => {
     const theme = useContext(ThemeContext);
     return (
@@ -57,7 +61,7 @@ const PageFooter = () => {
                 <Flex justifyContent="space-evenly" style={{ width: '100%' }}>
                     <CustomLink href="#">Terms and Condition</CustomLink>
                     <StyledLink href="#">Privacy Policy</StyledLink>
-                    <CustomLink href="#">Sitemap</CustomLink>
+                    <CustomLink href="https://srk.finance/#roadmap">Sitemap</CustomLink>
                 </Flex>
             </Flex>
             <Flex
@@ -66,10 +70,10 @@ const PageFooter = () => {
                 style={{ maxWidth: '250px', width: '100%', textAlign: 'center' }}
             >
                 <Flex justifyContent="space-evenly" style={{margin: '20px' }}>
-                    <Facebook size="30" color={theme.colors.text} />
-                    <Twitter size="30" color={theme.colors.text} />
-                    <Send size="30" color={theme.colors.text} />
-                    <Mail size="30" color={theme.colors.text} />
+                    <SocLink socLink="https://www.facebook.com"><Facebook size="30" color={theme.colors.text} /></SocLink>
+                    <SocLink socLink="https://www.twitter.com"><Twitter size="30" color={theme.colors.text} />  </SocLink>
+                    <SocLink socLink="https://www.telegram.com"><Send size="30" color={theme.colors.text} /></SocLink>
+                    <SocLink socLink="https://www.gmail.com"><Mail size="30" color={theme.colors.text} /></SocLink>
                 </Flex>
                 <Text>© SparkLaunch 2021</Text>
             </Flex>

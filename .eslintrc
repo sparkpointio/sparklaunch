@@ -21,6 +21,7 @@
     "camelcase": 0,
     "no-alert": 0,
     "no-underscore-dangle": 0,
+    "import/prefer-default-export": "off",
     // Start temporary rules
     // These rules are here just to keep the lint error to 0 during the migration to the new rule set
     // They need to be removed and fixed as soon as possible

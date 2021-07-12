@@ -24,7 +24,7 @@ const DetailBox = ({ image, title, description }: Details) => {
 
 const RenderDetails = () => {
     return DetailsList.map((item) => {
-        return <DetailBox image={item.image} title={item.title} description={item.description} />;
+        return <DetailBox  key={item.title} image={item.image} title={item.title} description={item.description} />;
     });
 };
 
@@ -33,6 +33,7 @@ const RenderTierSystem = () => {
         const { title, requirement, poolWeight, guaranteedAllocation } = item;
         return (
             <TierBox
+                key={title}
                 title={title}
                 requirement={requirement}
                 poolWeight={poolWeight}
