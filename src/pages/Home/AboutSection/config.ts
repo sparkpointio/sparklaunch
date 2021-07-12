@@ -39,15 +39,15 @@ export const TierSystemList = [
         guaranteedAllocation: 'yes',
     },
     {
-        title: 'BLAZE',
-        requirement: '4,000,000+ SRKb/ 201379+ SFUEL Staked',
-        poolWeight: 1,000,
-        guaranteedAllocation: 'yes',
-    },
-    {
         title: 'SPARK',
         requirement: '650,000 SRKb/ 38344 SFUEL Staked',
         poolWeight: 100,
+        guaranteedAllocation: 'yes',
+    },
+    {
+        title: 'BLAZE',
+        requirement: '4,000,000+ SRKb/ 201379+ SFUEL Staked',
+        poolWeight: 1000,
         guaranteedAllocation: 'yes',
     },
 ];
