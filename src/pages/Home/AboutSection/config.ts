@@ -25,8 +25,8 @@ const DetailsList = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
     {
-        image: '#',
-        title: 'GrowingIcon',
+        image: 'GrowingIcon',
+        title: 'Growing',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     },
 ];
