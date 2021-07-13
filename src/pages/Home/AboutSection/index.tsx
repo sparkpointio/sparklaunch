@@ -1,15 +1,22 @@
 import React from 'react';
 import { Text, Heading, Button } from '@sparkpointio/sparkswap-uikit';
 import { AboutColumn as Column } from 'components/Column';
+import { SvgProps } from 'components/SvgIcon/types';
 import { StyledContainer, StyledHeading, Image, Box, BoxHeading, TierTitle, TierDetails, TierFooter } from './styled';
 import DetailsList, { TierSystemList } from './config';
 import { Details, TierSystem } from './types';
-import PlaceHolderIcon from './icons';
+import * as IconModule from './icons';
+
+const Icons = (IconModule as unknown) as {[key: string]: React.FC<SvgProps>}
 
 const DetailBox = ({ image, title, description }: Details) => {
+    const test = 'SpecializingIcon'
+    const Icon = Icons[test];
+    const iconElement:React.ReactElement = <Icon width="24px" mr="8px" height="24"/> 
+    console.log(iconElement)
     return (
         <Box>
-            <Image src={PlaceHolderIcon} alt="detail-icon" />
+           {iconElement}
             <div style={{ textAlign: 'left', margin: '10px' }}>
                 <BoxHeading>{title}</BoxHeading>
                 <Text fontSize="14px" color="textSubtle">
@@ -46,7 +53,7 @@ const RenderTierSystem = () => {
 const TierBox = ({ title, requirement, poolWeight, guaranteedAllocation }: TierSystem) => {
     return (
         <Box>
-            <Image src={PlaceHolderIcon} alt="detail-icon" />
+            <Image src='#' alt="detail-icon" />
             <TierTitle>{title}</TierTitle>
             <TierDetails>
                 <div>

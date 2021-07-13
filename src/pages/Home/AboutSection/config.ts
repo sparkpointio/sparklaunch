@@ -1,21 +1,21 @@
 const DetailsList = [
     {
-        image: '#',
+        image: 'SpecializingIcon',
         title: 'Specializing',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     },
     {
-        image: '#',
+        image: 'CommunityIcon',
         title: 'Community',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     },
     {
-        image: '#',
+        image: 'RapidIcon',
         title: 'Rapid',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     },
     {
-        image: '#',
+        image: 'FairIcon',
         title: 'Fair',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
