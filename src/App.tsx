@@ -6,11 +6,11 @@ import Menu from 'components/Menu'
 import history from './routerHistory'
 
 const Home = lazy(() => import('./pages/Home'));
-const LaunchPad = lazy(() => import('./pages/Launchpad'));
 const Project = lazy(() => import('./pages/Launchpad/Project/Layout'));
+const LaunchPad = lazy(() => import('./pages/Launchpad'));
+const Staking = lazy(() => import('./pages/Staking'))
+
 const App: React.FC = () => {
-
-
   return (
    <Router history={history}>
     <Menu>
@@ -21,6 +21,9 @@ const App: React.FC = () => {
             </Route>
             <Route path="/launch/projects" exact>
               <LaunchPad />
+            </Route>
+            <Route path="/launch/staking" exact>
+              <Staking />
             </Route>
             <Route path="/launch/projects/:ProjectAddress" component={Project} />
             {/* Redirects */}
