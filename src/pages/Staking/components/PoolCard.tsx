@@ -1,7 +1,7 @@
 import React, { useState, useContext} from 'react';
 import styled, { ThemeContext } from 'styled-components'
 import { useWeb3React } from '@web3-react/core';
-import { ChevronDown } from 'react-feather'
+import { ChevronDown, ChevronUp, ExternalLink } from 'react-feather'
 import { Card, Text, Flex, Button } from '@sparkpointio/sparkswap-uikit';
 import UnlockButton from 'components/ConnectWalletButton';
 import { StyledCardHeader, StyledImage, StyledHeading, StyledCardBody, Options, StyledButton } from '../../Launchpad/components/styled';
@@ -77,12 +77,29 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
                     { !account ? RenderNotConnected() : <RenderConnected pool={pool} /> }
                 </StyledActionsGroup>
                 <MoreAction justifyContent="flex-end">
-                    <ActionButton style={{color: theme.colors.text}} onClick={() => setShow(!show)} variant="text">Details <ChevronDown/> </ActionButton>
+                    <Text style={{color: theme.colors.text, display: 'flex', alignItems: 'center', cursor: 'pointer'}} onClick={() => setShow(!show)} >
+                        {
+                            show && account ? (
+                                <>
+                                Hide <ChevronUp />
+                                </>
+                            ):(
+                                <>
+                                Details <ChevronDown />
+                                </>
+                            )
+                        }
+                    </Text>
                 </MoreAction>
-               { show && (
-                <div>
-                    h1
-                </div>
+               { show && account && (
+                <Flex justifyContent="space-between">
+                    <Text bold>Total Staked</Text>
+                    <Flex flexDirection="column" alignItems="flex-end">
+                        <Text>0 SRK</Text>
+                        <Text>View contract <ExternalLink /></Text>
+                        <Text>Add to Metamask <ExternalLink /></Text>
+                    </Flex>
+                </Flex>
                 )}
             </StyledCardBody>
         </Card>

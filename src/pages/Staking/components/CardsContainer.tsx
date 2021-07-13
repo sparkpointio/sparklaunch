@@ -10,6 +10,30 @@ const data = [
         rewardToken: 'OWNLY',
         apy: '488.37%',
         status: 'live'
+    },
+    {
+        title: 'Ownly Pool',
+        address: '0x001',
+        stakeToken: 'SRK',
+        rewardToken: 'OWNLY',
+        apy: '488.37%',
+        status: 'live'
+    },
+    {
+        title: 'Ownly Pool',
+        address: '0x001',
+        stakeToken: 'SRK',
+        rewardToken: 'OWNLY',
+        apy: '488.37%',
+        status: 'live'
+    },
+    {
+        title: 'Ownly Pool',
+        address: '0x001',
+        stakeToken: 'SRK',
+        rewardToken: 'OWNLY',
+        apy: '488.37%',
+        status: 'live'
     }
 ]
 
