@@ -10,8 +10,7 @@ import * as IconModule from './icons';
 const Icons = (IconModule as unknown) as {[key: string]: React.FC<SvgProps>}
 
 const DetailBox = ({ image, title, description }: Details) => {
-    const test = 'SpecializingIcon'
-    const Icon = Icons[test];
+    const Icon = Icons[image];
     const iconElement:React.ReactElement = <Icon width="24px" mr="8px" height="24"/> 
     console.log(iconElement)
     return (
