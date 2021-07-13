@@ -1,11 +1,36 @@
 import styled from 'styled-components';
-import { CardHeader, CardBody, Flex, Button } from '@sparkpointio/sparkswap-uikit'
+import { CardHeader, CardBody, Flex, Button, Heading } from '@sparkpointio/sparkswap-uikit'
 
-export const StyledCardHeader = styled(CardHeader)`
+export const StyledCardHeader = styled(CardHeader)<{ src?: string }>`
     display: flex;
     padding: 20px;
     align-items: center;
+    position: relative;
+    ${({ src }) => src && `
+        &:before {
+            content: ' ';
+            display: block;
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0.3;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            background-image: url(${src});
+            background-repeat: no-repeat;
+            // background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+        }
+    `}  
 `;
+
+export const StyledHeading = styled(Heading)`
+    z-index: 2;
+    font-size: 24px;
+`
+
 export const StyledCardBody = styled(CardBody)`
     flex-direction: column;
     text-align: left;
@@ -56,4 +81,5 @@ export const StyledImage = styled.img<{size?: string}>`
     height: ${({ size }) => !size? '60px': size};
     width: ${({ size }) => !size? '60px' : size};
     margin-right: 15px;
+    z-index: 2;
 `;

@@ -16,7 +16,7 @@ import {
 } from '@sparkpointio/sparkswap-uikit';
 import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject } from 'state/hooks';
 import { IProjects, ITokens } from 'config/constants/type';
-import PlaceHolder from 'pages/Home/AboutSection/icons';
+import {PlaceHolderIcon} from 'pages/Home/AboutSection/icons';
 import { useSelectToken } from 'state/tokens/hooks';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
