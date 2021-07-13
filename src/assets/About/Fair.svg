@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="193.897" height="195.004" viewBox="0 0 193.897 195.004">
+  <g id="Group_1169" data-name="Group 1169" transform="translate(-1012.73 -1761.127)">
+    <g id="Group_1167" data-name="Group 1167" transform="translate(1135.652 1800.507)">
+      <g id="Group_1166" data-name="Group 1166" transform="translate(0 0)">
+        <path id="Subtraction_39" data-name="Subtraction 39" d="M35.312,155.624H0V96.776H2.892a12.958,12.958,0,0,0,3.5,6.364L8.348,105.1a13,13,0,0,0,18.385,0L61.057,70.775a13,13,0,0,0,0-18.385L59.1,50.431a12.926,12.926,0,0,0-9.075-3.807V10a10.011,10.011,0,0,1,10-10h.923a10.011,10.011,0,0,1,10,10V82.388h-.73L35.53,128.416l-.219-.165v27.372Z" transform="translate(0.029)" fill="#fff"/>
+        <path id="Path_319" data-name="Path 319" d="M9.44,0c5.214,0,9.44,4.5,9.44,10.053V69.7H0V10.053C0,4.5,4.227,0,9.44,0Z" transform="translate(49.283 47.436) rotate(45)" fill="#fff"/>
+      </g>
+      <rect id="Rectangle_363" data-name="Rectangle 363" width="10.462" height="31.894" transform="translate(34.915 87.174) rotate(45)" fill="#fff"/>
+    </g>
+    <g id="Group_1168" data-name="Group 1168" transform="translate(1012.73 1800.505)">
+      <g id="Group_1166-2" data-name="Group 1166" transform="translate(0 0)">
+        <path id="Subtraction_39-2" data-name="Subtraction 39" d="M60.944,155.622h-.923a10.011,10.011,0,0,1-10-10V109a12.925,12.925,0,0,0,9.075-3.807l1.958-1.959a13,13,0,0,0,0-18.384L26.731,50.524a13,13,0,0,0-18.384,0L6.387,52.483a12.959,12.959,0,0,0-3.5,6.364H0V0H35.309V27.372l.22-.165L70.214,73.235h.73v72.387A10.011,10.011,0,0,1,60.944,155.622Z" transform="translate(70.944 155.622) rotate(180)" fill="#fff"/>
+        <path id="Path_319-2" data-name="Path 319" d="M9.44,69.7c5.214,0,9.44-4.5,9.44-10.052V0H0V59.645C0,65.2,4.227,69.7,9.44,69.7Z" transform="translate(70.976 96.719) rotate(135)" fill="#fff"/>
+      </g>
+      <rect id="Rectangle_363-2" data-name="Rectangle 363" width="10.462" height="31.894" transform="translate(58.613 109.726) rotate(135)" fill="#fff"/>
+    </g>
+    <path id="Subtraction_43" data-name="Subtraction 43" d="M16.754,78.758A39.045,39.045,0,0,1,0,75.025,44.355,44.355,0,0,0,18.889,38.747,43.926,43.926,0,0,0,1.074,3.246,39.348,39.348,0,0,1,44.6,11.533,39.368,39.368,0,0,1,16.754,78.758Z" transform="translate(1116.871 1761.127)" fill="#1b60a3"/>
+    <circle id="Ellipse_224" data-name="Ellipse 224" cx="39.378" cy="39.378" r="39.378" transform="translate(1046.085 1761.127)" fill="#39beec"/>
+  </g>
+</svg>

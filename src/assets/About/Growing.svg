@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="165.117" height="195.004" viewBox="0 0 165.117 195.004">
+  <g id="Group_1181" data-name="Group 1181" transform="translate(-1449.256 -1820.364)">
+    <g id="Group_1180" data-name="Group 1180" transform="translate(1449.256 1886.375)">
+      <path id="Icon_ionic-md-leaf" data-name="Icon ionic-md-leaf" d="M44.3,41.239C45.39,13.793,23.847,0,23.847,0S1.134,15.481.039,42.927c-.781,19.56,10.321,22.7,16.761,22.9L12.728,81.565l8.851-.338,4.073-15.753C32.128,64.8,43.514,60.8,44.3,41.239Z" transform="translate(0 38.396) rotate(-60)" fill="#1b60a3"/>
+      <path id="Icon_ionic-md-leaf-2" data-name="Icon ionic-md-leaf" d="M44.295,40.327c1.1,27.446-20.449,41.239-20.449,41.239S1.134,66.085.039,38.638c-.781-19.56,10.321-22.7,16.762-22.9L12.728,0l8.851.338,4.073,15.753C32.128,16.765,43.514,20.767,44.295,40.327Z" transform="translate(94.479 92.654) rotate(-120)" fill="#39beec"/>
+    </g>
+    <path id="Path_327" data-name="Path 327" d="M0,0H77.989L64.307,44.919H13.682Z" transform="translate(1492.689 1970.449)" fill="#fff"/>
+    <line id="Line_244" data-name="Line 244" y1="107.806" transform="translate(1531.683 1862.42)" fill="none" stroke="#fff" stroke-width="9"/>
+    <circle id="Ellipse_225" data-name="Ellipse 225" cx="38.995" cy="38.995" r="38.995" transform="translate(1492.688 1820.364)" fill="#fff"/>
+  </g>
+</svg>
