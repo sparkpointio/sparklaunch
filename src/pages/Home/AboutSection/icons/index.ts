@@ -1,6 +1,5 @@
 
 
-export { default as PlaceHolderIcon} from './PlaceHolder'
 export { default as SpecializingIcon} from './Specializing'
 export { default as CommunityIcon} from './Community'
 export { default as RapidIcon} from './Rapid'
