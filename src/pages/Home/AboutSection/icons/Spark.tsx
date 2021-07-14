@@ -7,7 +7,7 @@ import SvgIcon from "components/SvgIcon";
 const Icon: React.FC<SvgProps> = (props) => {
  
   return (
-    <SvgIcon width={101} Icon={SparkIcon} />
+    <SvgIcon width={94.5} Icon={SparkIcon} />
   )
 };
 

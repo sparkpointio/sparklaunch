@@ -7,7 +7,7 @@ import SvgIcon from "components/SvgIcon";
 const Icon: React.FC<SvgProps> = (props) => {
  
   return (
-    <SvgIcon width={100} Icon={IgniteIcon} />
+    <SvgIcon width={76.5} Icon={IgniteIcon} />
   )
 };
 
