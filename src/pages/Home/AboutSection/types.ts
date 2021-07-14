@@ -5,6 +5,7 @@ export type Details = {
 }
 
 export type TierSystem = {
+    image: string;
     title: string;
     requirement: string;
     poolWeight: number;

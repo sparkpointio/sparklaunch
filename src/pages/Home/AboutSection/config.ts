@@ -1,3 +1,5 @@
+
+
 const DetailsList = [
     {
         image: 'SpecializingIcon',
@@ -25,26 +27,29 @@ const DetailsList = [
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
     {
-        image: '#',
-        title: 'GrowingIcon',
+        image: 'GrowingIcon',
+        title: 'Growing',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     },
 ];
 
 export const TierSystemList = [
     {
+        image: 'IgniteIcon',
         title: 'IGNITE',
         requirement: '100,000 SRKb/ 6070 SFUEL Staked',
         poolWeight: 10,
         guaranteedAllocation: 'yes',
     },
     {
+        image: 'SparkIcon',
         title: 'SPARK',
         requirement: '650,000 SRKb/ 38344 SFUEL Staked',
         poolWeight: 100,
         guaranteedAllocation: 'yes',
     },
     {
+        image: 'BlazeIcon',
         title: 'BLAZE',
         requirement: '4,000,000+ SRKb/ 201379+ SFUEL Staked',
         poolWeight: 1000,

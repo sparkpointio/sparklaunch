@@ -8,6 +8,8 @@ import { Details, TierSystem } from './types';
 import * as IconModule from './icons';
 
 const Icons = (IconModule as unknown) as {[key: string]: React.FC<SvgProps>}
+const Tiers = (IconModule as unknown) as {[key: string]: React.FC<SvgProps>}
+/* Update and create separate Tier component */
 
 const DetailBox = ({ image, title, description }: Details) => {
     const Icon = Icons[image];
@@ -30,29 +32,34 @@ const DetailBox = ({ image, title, description }: Details) => {
 
 const RenderDetails = () => {
     return DetailsList.map((item) => {
-        return <DetailBox  key={item.title} image={item.image} title={item.title} description={item.description} />;
+        return <DetailBox  key={item.title} image={item.image} title={item.title} description={item.description}/>;
     });
 };
 
 const RenderTierSystem = () => {
     return TierSystemList.map((item) => {
-        const { title, requirement, poolWeight, guaranteedAllocation } = item;
+       // const { image, title, requirement, poolWeight, guaranteedAllocation } = item;
         return (
             <TierBox
-                key={title}
-                title={title}
-                requirement={requirement}
-                poolWeight={poolWeight}
-                guaranteedAllocation={guaranteedAllocation}
+                key={item.title}
+                image={item.image}
+                title={item.title}
+                requirement={item.requirement}
+                poolWeight={item.poolWeight}
+                guaranteedAllocation={item.guaranteedAllocation}
             />
         );
     });
 };
 
-const TierBox = ({ title, requirement, poolWeight, guaranteedAllocation }: TierSystem) => {
+const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }: TierSystem) => {
+    const Tier = Tiers[image];
+    const tierElement:React.ReactElement = <Tier width="24px" mr="8px" height="24"/>   
+    
+    console.log(tierElement)
     return (
         <Box>
-            <Image src='#' alt="detail-icon" />
+            {tierElement}
             <TierTitle>{title}</TierTitle>
             <TierDetails>
                 <div>
@@ -80,6 +87,7 @@ const TierBox = ({ title, requirement, poolWeight, guaranteedAllocation }: TierS
         </Box>
     );
 };
+
 
 const Section: React.FC = () => {
     return (
