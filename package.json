@@ -2,7 +2,7 @@
   "name": "sparklaunch",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sparkpointio.github.io/sparklaunch/",
+  "homepage": "https://sparkpointio.github.io/launch/",
   "dependencies": {
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
@@ -62,7 +62,7 @@
     "react-popper": "^2.2.3",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^4.0.1",
+    "react-scripts": "^4.0.3",
     "react-spring": "^8.0.27",
     "react-table": "^7.7.0",
     "react-tooltip": "^4.2.18",
@@ -79,7 +79,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "predeploy":"yarn run build",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d build"
   },
   "eslintConfig": {

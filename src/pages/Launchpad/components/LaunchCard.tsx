@@ -5,12 +5,11 @@ import { useWeb3React } from '@web3-react/core';
 import { Globe, Twitter, Send } from 'react-feather';
 import styled, { ThemeContext } from 'styled-components';
 import { useSelectToken } from 'state/tokens/hooks';
-import PlaceHolder from 'pages/Home/AboutSection/icons';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
 import { IProjects } from '../../../config/constants/type';
 import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
-import { StyledCardBody, StyledCardHeader, CardAction, Options, SocmedGroup, Details, ProgressGroup, DataGroup, StyledImage, StyledButton} from './styled';
+import { StyledCardBody, StyledCardHeader, CardAction, Options, SocmedGroup, Details, ProgressGroup, DataGroup, StyledImage, StyledButton, StyledHeading} from './styled';
 import Anchor, {StyledLink } from './StyledLink';
 
 
@@ -27,9 +26,9 @@ const LaunchCard: React.FC<IProjects> = ({
         <Card style={{ padding: '5px' }}>
             <StyledCardHeader>
                 <StyledImage src={srcs} alt="token-logo" />
-                <Text bold fontSize="24px">
+                <StyledHeading bold>
                     {title}
-                </Text>
+                </StyledHeading>
             </StyledCardHeader>
             <StyledCardBody>
                 <Options>

@@ -1,31 +1,33 @@
+
+
 const DetailsList = [
     {
-        image: '#',
+        image: 'SpecializingIcon',
         title: 'Specializing',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     },
     {
-        image: '#',
+        image: 'CommunityIcon',
         title: 'Community',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     },
     {
-        image: '#',
+        image: 'RapidIcon',
         title: 'Rapid',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     },
     {
-        image: '#',
+        image: 'FairIcon',
         title: 'Fair',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
     {
-        image: '#',
+        image: 'FundraisingIcon',
         title: 'Fundraising',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
     },
     {
-        image: '#',
+        image: 'GrowingIcon',
         title: 'Growing',
         description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
     },
@@ -33,22 +35,25 @@ const DetailsList = [
 
 export const TierSystemList = [
     {
+        image: 'IgniteIcon',
         title: 'IGNITE',
         requirement: '100,000 SRKb/ 6070 SFUEL Staked',
         poolWeight: 10,
-        guaranteedAllocation: 'yes',
+        guaranteedAllocation: 'YES',
     },
     {
+        image: 'SparkIcon',
         title: 'SPARK',
         requirement: '650,000 SRKb/ 38344 SFUEL Staked',
         poolWeight: 100,
-        guaranteedAllocation: 'yes',
+        guaranteedAllocation: 'YES',
     },
     {
+        image: 'BlazeIcon',
         title: 'BLAZE',
         requirement: '4,000,000+ SRKb/ 201379+ SFUEL Staked',
         poolWeight: 1000,
-        guaranteedAllocation: 'yes',
+        guaranteedAllocation: 'YES',
     },
 ];
 

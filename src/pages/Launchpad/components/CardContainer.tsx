@@ -1,5 +1,4 @@
 import React from 'react';
-// import ProjectList from 'config/dummy-data/Projects';
 import { CardGroup } from '../styled';
 import Card from './LaunchCard';
 import { IProjects } from '../../../config/constants/type';

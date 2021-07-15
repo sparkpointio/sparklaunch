@@ -11,37 +11,13 @@ export const customMeta: { [key: string]: PageMeta } = {
   '/': {
     title: 'Home | SparkDefi',
   },
-  '/competition': {
-    title: 'Trading Battle | SparkDefi',
-  },
-  '/prediction': {
-    title: 'Prediction | SparkDefi',
-  },
-  '/farms': {
-    title: 'Farms | SparkDefi',
-  },
   '/launch': {
     title: 'Launch | SparkDeFi'
   },
-  '/launch/home': {
+  '/launch/projects': {
     title: 'Projects | SparkDefi',
   },
-  '/lottery': {
-    title: 'Lottery | SparkDefi',
-  },
-  '/collectibles': {
-    title: 'Collectibles | SparkDefi',
-  },
-  '/ifo': {
-    title: 'Initial Farm Offering | SparkDefi',
-  },
-  '/teams': {
-    title: 'Leaderboard | SparkDefi',
-  },
-  '/profile/tasks': {
-    title: 'Task Center | SparkDefi',
-  },
-  '/profile': {
-    title: 'Your Profile | SparkDefi',
+  '/launch/staking': {
+    title: 'Staking | SparkDefi',
   },
 }
