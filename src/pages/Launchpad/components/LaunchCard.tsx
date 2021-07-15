@@ -5,7 +5,6 @@ import { useWeb3React } from '@web3-react/core';
 import { Globe, Twitter, Send } from 'react-feather';
 import styled, { ThemeContext } from 'styled-components';
 import { useSelectToken } from 'state/tokens/hooks';
-import { PlaceHolderIcon } from 'pages/Home/AboutSection/icons';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
 import { IProjects } from '../../../config/constants/type';
