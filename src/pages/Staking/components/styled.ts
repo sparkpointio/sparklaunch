@@ -27,9 +27,5 @@ export const MoreAction = styled(Flex)`
 
 export const ActionButton = styled(Button)`
     height: 40px;
-    min-height: 40px;
-    max-height: 40px
     width: 120px;
-    max-width: 120px;
-    min-width: 120px;
 `

@@ -2,8 +2,9 @@ import React, { useState, useContext} from 'react';
 import styled, { ThemeContext } from 'styled-components'
 import { useWeb3React } from '@web3-react/core';
 import { ChevronDown, ChevronUp, ExternalLink } from 'react-feather'
-import { Card, Text, Flex, Button } from '@sparkpointio/sparkswap-uikit';
+import { Card, Text, Flex, Button, useModal } from '@sparkpointio/sparkswap-uikit';
 import UnlockButton from 'components/ConnectWalletButton';
+import StakingModal from 'components/Modals/StakingModal';
 import { StyledCardHeader, StyledImage, StyledHeading, StyledCardBody, Options, StyledButton } from '../../Launchpad/components/styled';
 import { ActionButton, MoreAction, StyledActionsGroup } from './styled';
 
@@ -18,6 +19,8 @@ interface CardProps {
 }
 
 const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
+    const [ enable, setEnable ] = useState(false);
+    const [ onStakingModal ]= useModal(<StakingModal />)
     return (
         <>
         <Flex justifyContent="space-between" alignItems="center">
@@ -29,12 +32,12 @@ const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
             <ActionButton variant="secondary">Claim <ChevronDown/> </ActionButton>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
-            <Flex flexDirection="column">
+           { enable && <Flex flexDirection="column">
                 <Text>{pool.stakeToken} Staked</Text>
                 <Text fontSize="24px">10,121.552.407</Text>
                 <Text color="textSubtle">~ 1,695.20 USD</Text>
-            </Flex>
-            <ActionButton variant="secondary">Stake</ActionButton>
+            </Flex>}
+           { !enable? ( <Button onClick={() => setEnable(true)} fullWidth>Enable</Button>) : (<ActionButton variant="secondary" onClick={onStakingModal}>Stake</ActionButton>)}
         </Flex>
         </>
     )
@@ -95,7 +98,7 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
                 <Flex justifyContent="space-between">
                     <Text bold>Total Staked</Text>
                     <Flex flexDirection="column" alignItems="flex-end">
-                        <Text>0 SRK</Text>
+                        <Text>0 {stakeToken}</Text>
                         <Text>View contract <ExternalLink /></Text>
                         <Text>Add to Metamask <ExternalLink /></Text>
                     </Flex>
