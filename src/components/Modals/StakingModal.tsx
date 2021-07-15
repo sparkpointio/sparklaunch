@@ -11,6 +11,7 @@ interface ModalProps {
     onDismiss?: () => void;
 }
 
+
 const CurrencyLogo = styled(StyledImage)`
     border-radius: 50%;
 `
@@ -92,6 +93,7 @@ const RenderInsufficientBalance: React.FC<ModalProps> = ({onDismiss}) => {
 }
 
 const StakeModal:React.FC<ModalProps> = ({onDismiss}) => {
+    
     return (
         <Modal title='' onDismiss={onDismiss} >
             <Flex flexDirection="column">

@@ -30,6 +30,7 @@ export const ModalDescription = styled(Flex)`
 export const ModalAction = styled(Flex)`
  margin: 10px 0px;
  min-width: 250px;
+
  & > * {
    color: ${({theme}) => theme.colors.text};
    margin-top: 15px;

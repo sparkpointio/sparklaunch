@@ -2,9 +2,11 @@ import React, { useState, useContext} from 'react';
 import styled, { ThemeContext } from 'styled-components'
 import { useWeb3React } from '@web3-react/core';
 import { ChevronDown, ChevronUp, ExternalLink } from 'react-feather'
-import { Card, Text, Flex, Button, useModal } from '@sparkpointio/sparkswap-uikit';
+import { Card, Text, Flex, Button, useModal, Dropdown } from '@sparkpointio/sparkswap-uikit';
 import UnlockButton from 'components/ConnectWalletButton';
 import StakingModal from 'components/Modals/StakingModal';
+import WithdrawModal from 'components/Modals/WithdrawModal';
+import ExitStakingModal from 'components/Modals/ExitStakingModal';
 import { StyledCardHeader, StyledImage, StyledHeading, StyledCardBody, Options, StyledButton } from '../../Launchpad/components/styled';
 import { ActionButton, MoreAction, StyledActionsGroup } from './styled';
 
@@ -19,8 +21,11 @@ interface CardProps {
 }
 
 const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
-    const [ enable, setEnable ] = useState(false);
+    const [ enable, setEnable ] = useState<boolean>(false);
+    const [ showClaim, setShowClaim ] = useState<boolean>(false);
     const [ onStakingModal ]= useModal(<StakingModal />)
+    const [ onWithdraw ] = useModal(<WithdrawModal />)
+    const [ onExit ] = useModal(<ExitStakingModal />)
     return (
         <>
         <Flex justifyContent="space-between" alignItems="center">
@@ -29,7 +34,12 @@ const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
                 <Text fontSize="24px">110.407</Text>
                 <Text color="textSubtle">~ 18.49 USD</Text>
             </Flex>
-            <ActionButton variant="secondary">Claim <ChevronDown/> </ActionButton>
+            <div onMouseEnter={()=> setShowClaim(true)} onMouseLeave={()=> setShowClaim(false)}>
+            <Dropdown target={<ActionButton variant="secondary" >Claim {!showClaim? <ChevronDown /> : <ChevronUp /> }</ActionButton>}>
+                <ActionButton variant="primary" fullWidth onClick={onWithdraw}>Claim </ActionButton>
+                <ActionButton variant="primary" fullWidth onClick={onExit}>Claim & Withdraw </ActionButton>
+            </Dropdown>
+            </div>
         </Flex>
         <Flex justifyContent="space-between" alignItems="center">
            { enable && <Flex flexDirection="column">
