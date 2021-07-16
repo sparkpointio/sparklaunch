@@ -21,6 +21,7 @@ interface CardProps {
     status: string
 }
 
+// Modify for setEnable btn: (false) if not active
 const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
     const [ enable, setEnable ] = useState<boolean>(false);
     const [ showClaim, setShowClaim ] = useState<boolean>(false);
@@ -48,8 +49,10 @@ const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
                 <Text fontSize="24px">10,121.552.407</Text>
                 <Text color="textSubtle">~ 1,695.20 USD</Text>
             </Flex>}
-           { !enable? ( <Button onClick={() => setEnable(true)} fullWidth>Enable</Button>) : (<ActionButton variant="secondary" onClick={onStakingModal}>Stake</ActionButton>)}
-        </Flex>
+           
+               { !enable? ( <Button onClick={() => setEnable(true)} fullWidth>Enable</Button>) : (<ActionButton variant="secondary" onClick={onStakingModal}>Stake</ActionButton>)}
+            
+           </Flex>
         </>
     )
 }

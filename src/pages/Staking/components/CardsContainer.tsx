@@ -2,48 +2,22 @@ import React from 'react'
 import { CardGroup } from '../styled'
 import Card from './PoolCard'
 
-const data = [
-    {
-        title: 'Ownly Pool',
-        address: '0x001',
-        stakeToken: 'SRK',
-        rewardToken: 'OWNLY',
-        apy: '488.37%',
-        status: 'live'
-    },
-    {
-        title: 'Ownly Pool',
-        address: '0x001',
-        stakeToken: 'SRK',
-        rewardToken: 'OWNLY',
-        apy: '488.37%',
-        status: 'upcoming'
-    },
-    {
-        title: 'Ownly Pool',
-        address: '0x001',
-        stakeToken: 'SRK',
-        rewardToken: 'OWNLY',
-        apy: '488.37%',
-        status: 'completed'
-    },
-    {
-        title: 'Ownly Pool',
-        address: '0x001',
-        stakeToken: 'SRK',
-        rewardToken: 'OWNLY',
-        apy: '488.37%',
-        status: 'live'
-    }
-]
+interface PoolProps {
+    title: string;
+    address: string;
+    stakeToken: string;
+    rewardToken: string;
+    apy: string;
+    status: string;
+}
 
-const CardContainer:React.FC = () => {
+const CardContainer:React.FC<{pool?: PoolProps[]}> = ({pool}) => {
     return (
         <CardGroup>
             {
-                data.map(pool => (
+                pool?.map(p => (
                     <Card 
-                        pool={pool}
+                        pool={p}
                     />
                 ))
             }
@@ -52,3 +26,4 @@ const CardContainer:React.FC = () => {
 }
 
 export default CardContainer
+
