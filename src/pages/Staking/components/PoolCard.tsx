@@ -7,6 +7,7 @@ import UnlockButton from 'components/ConnectWalletButton';
 import StakingModal from 'components/Modals/StakingModal';
 import WithdrawModal from 'components/Modals/WithdrawModal';
 import ExitStakingModal from 'components/Modals/ExitStakingModal';
+import { StatusColor } from 'pages/styled';
 import { StyledCardHeader, StyledImage, StyledHeading, StyledCardBody, Options, StyledButton } from '../../Launchpad/components/styled';
 import { ActionButton, MoreAction, StyledActionsGroup } from './styled';
 
@@ -70,6 +71,7 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
     const src = `${process.env.PUBLIC_URL}/images/pools/${address}.png`
     const bgSrc = `${process.env.PUBLIC_URL}/images/pools/${address}BG.jpg`
     const description = `Stake ${stakeToken} earm ${rewardToken}`
+    
 
     return (
         <div>
@@ -81,7 +83,14 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
             <StyledCardBody>
                 <Options>
                     <Text>{description}</Text>
-                    <StyledButton style={{ backgroundColor: '#32a31b' }}>LIVE NOW</StyledButton>
+                    {
+                        status === 'live' ? (
+                            <StyledButton style={{ backgroundColor: StatusColor.live }}>LIVE NOW</StyledButton>
+                        ): status === 'upcoming' ? (
+                            <StyledButton style={{ backgroundColor: StatusColor.upcoming }}>UPCOMING</StyledButton>
+                        ) : status === 'completed' && ( <StyledButton style={{ backgroundColor: StatusColor.completed }}>COMPLETED</StyledButton>)
+                    }
+                    
                 </Options>
                 <StyledActionsGroup flexDirection="column">
                     <Flex justifyContent="space-between">
@@ -108,7 +117,7 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
             </StyledCardBody>
         </Card>
         { show && account && (
-                <Flex justifyContent="space-between" style={{background: theme.colors.card, padding: '0px 15px 15px 15px'}}>
+                <Flex justifyContent="space-between" style={{background: theme.colors.card, padding: '0px 15px 15px '}}>
                     <Text bold>Total Staked</Text>
                     <Flex flexDirection="column" alignItems="flex-end">
                         <Text>0 {stakeToken}</Text>

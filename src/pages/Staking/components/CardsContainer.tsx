@@ -17,7 +17,7 @@ const data = [
         stakeToken: 'SRK',
         rewardToken: 'OWNLY',
         apy: '488.37%',
-        status: 'live'
+        status: 'upcoming'
     },
     {
         title: 'Ownly Pool',
@@ -25,7 +25,7 @@ const data = [
         stakeToken: 'SRK',
         rewardToken: 'OWNLY',
         apy: '488.37%',
-        status: 'live'
+        status: 'completed'
     },
     {
         title: 'Ownly Pool',
