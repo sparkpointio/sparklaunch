@@ -72,6 +72,7 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
     const description = `Stake ${stakeToken} earm ${rewardToken}`
 
     return (
+        <div>
         <Card>
             <StyledCardHeader src={bgSrc}>
                 <StyledImage src={src} alt="pool-logo" />
@@ -104,8 +105,10 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
                         }
                     </Text>
                 </MoreAction>
-               { show && account && (
-                <Flex justifyContent="space-between">
+            </StyledCardBody>
+        </Card>
+        { show && account && (
+                <Flex justifyContent="space-between" style={{background: theme.colors.card, padding: '0px 15px 15px 15px'}}>
                     <Text bold>Total Staked</Text>
                     <Flex flexDirection="column" alignItems="flex-end">
                         <Text>0 {stakeToken}</Text>
@@ -114,8 +117,7 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
                     </Flex>
                 </Flex>
                 )}
-            </StyledCardBody>
-        </Card>
+        </div>
     )
 }
 
