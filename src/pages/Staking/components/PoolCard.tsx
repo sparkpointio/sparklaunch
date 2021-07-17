@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import styled, { ThemeContext } from 'styled-components'
 import { useWeb3React } from '@web3-react/core';
 import { ChevronDown, ChevronUp, ExternalLink } from 'react-feather'
@@ -24,7 +24,17 @@ interface CardProps {
 const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
     const [ enable, setEnable ] = useState<boolean>(false);
     const [ showClaim, setShowClaim ] = useState<boolean>(false);
-    const [ onStakingModal ]= useModal(<StakingModal />)
+
+    // Temporary setter 
+    const [ random, setRandom ] = useState<boolean>(true);
+    const randomizer = () => {
+        setRandom(!random);
+        onStakingModal();
+    }
+
+    
+
+    const [ onStakingModal ]= useModal(<StakingModal  random={random} />)
     const [ onWithdraw ] = useModal(<WithdrawModal />)
     const [ onExit ] = useModal(<ExitStakingModal />)
     return (
@@ -48,7 +58,7 @@ const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
                 <Text fontSize="24px">10,121.552.407</Text>
                 <Text color="textSubtle">~ 1,695.20 USD</Text>
             </Flex>}
-           { !enable? ( <Button onClick={() => setEnable(true)} fullWidth>Enable</Button>) : (<ActionButton variant="secondary" onClick={onStakingModal}>Stake</ActionButton>)}
+           { !enable? ( <Button onClick={() => setEnable(true)} fullWidth>Enable</Button>) : (<ActionButton variant="secondary" onClick={randomizer}>Stake</ActionButton>)}
         </Flex>
         </>
     )

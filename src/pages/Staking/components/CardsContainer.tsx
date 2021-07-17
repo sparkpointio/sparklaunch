@@ -13,7 +13,7 @@ const data = [
     },
     {
         title: 'Ownly Pool',
-        address: '0x001',
+        address: '0x004',
         stakeToken: 'SRK',
         rewardToken: 'OWNLY',
         apy: '488.37%',
@@ -21,7 +21,7 @@ const data = [
     },
     {
         title: 'Ownly Pool',
-        address: '0x001',
+        address: '0x003',
         stakeToken: 'SRK',
         rewardToken: 'OWNLY',
         apy: '488.37%',
@@ -29,7 +29,7 @@ const data = [
     },
     {
         title: 'Ownly Pool',
-        address: '0x001',
+        address: '0x002',
         stakeToken: 'SRK',
         rewardToken: 'OWNLY',
         apy: '488.37%',
@@ -43,6 +43,7 @@ const CardContainer:React.FC = () => {
             {
                 data.map(pool => (
                     <Card 
+                        key={pool.address}
                         pool={pool}
                     />
                 ))
