@@ -78,11 +78,11 @@ const PoolComponent: React.FC = () => {
                 <CardContainer pool={LivePools}/> 
             </Section>
             <Section>
-                    <SectionTitle>Upcoming Launches</SectionTitle>
+                    <SectionTitle>Upcoming Pools</SectionTitle>
                     <CardContainer pool={UpcomingPools} />
                 </Section>
                 <Section>
-                    <SectionTitle>Completed Launches</SectionTitle>
+                    <SectionTitle>Completed Pools</SectionTitle>
                     <CardContainer pool={CompletedPools} />
                 </Section>
             </Container>

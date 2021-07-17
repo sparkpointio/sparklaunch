@@ -73,7 +73,7 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
     const { title, address, stakeToken, rewardToken, apy, status } = pool
     const src = `${process.env.PUBLIC_URL}/images/pools/${address}.png`
     const bgSrc = `${process.env.PUBLIC_URL}/images/pools/${address}BG.jpg`
-    const description = `Stake ${stakeToken} earm ${rewardToken}`
+    const description = `Stake ${stakeToken} earn ${rewardToken}`
     
 
     return (
