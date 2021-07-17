@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Heading, Modal, Flex, Text, Button, Radio, useModal } from '@sparkpointio/sparkswap-uikit';
 import styled, { ThemeContext } from 'styled-components';
 import Slider from 'components/Slider'
@@ -9,6 +9,7 @@ import WalletDetails from './WalletDetails';
 
 interface ModalProps { 
     onDismiss?: () => void;
+    random?: boolean;
 }
 
 
@@ -92,13 +93,12 @@ const RenderInsufficientBalance: React.FC<ModalProps> = ({onDismiss}) => {
     )
 }
 
-const StakeModal:React.FC<ModalProps> = ({onDismiss}) => {
-    
+const StakeModal:React.FC<ModalProps> = ({onDismiss, random}) => {
+
     return (
         <Modal title='' onDismiss={onDismiss} >
             <Flex flexDirection="column">
-                {/* <RenderInsufficientBalance onDismiss={onDismiss}/> */}
-                <RenderStakingAction />
+            { random? <RenderStakingAction /> : <RenderInsufficientBalance onDismiss={onDismiss}/> }  
             </Flex>
         </Modal>
     )
