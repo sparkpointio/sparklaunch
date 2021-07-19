@@ -32,11 +32,25 @@ const Option = styled.div`
 `
 
 const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
-    const [liquidity, setliquidity] = useState(0);
-    const handleChange = (val) => setliquidity(val)
-    const [ onWalletDetails ] = useModal(<WalletDetails />)
+    const [sliderVal, setSliderVal] = useState(0);
+    const [radioVal, setRadioVal] = useState(sliderVal.toString());
+
+    const handleSliderChange = (val) => {
+        setSliderVal(val)
+        setRadioVal(val.toString())
+    }
+    const handleRadioChange = (evt) => {
+        const { value } = evt.target
+        setRadioVal(value);
+        setSliderVal(parseInt(value));
+    }
+    
+
     const tokenName = stakeToken?.toUpperCase();
     const src = stakeToken?.toLowerCase();
+
+    const [ onWalletDetails ] = useModal(<WalletDetails />)
+    
     return (
         <ModalBody flexDirection="column">
                 <Heading>Stake in Pool</Heading>
@@ -58,7 +72,7 @@ const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
                 </Flex>
                 <ModalAction flexDirection="column">
                     <Flex>
-                    <Slider value={liquidity} onChange={e=> handleChange(e)}/>
+                    <Slider value={sliderVal} onChange={e => handleSliderChange(e)}/>
                     </Flex>
                     <Flex justifyContent="space-between">
                     {['0', '25', '50', '75', '100'].map(val => {
@@ -67,13 +81,16 @@ const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
                                 <Radio
                                     scale="sm"
                                     name="staking_percent"
+                                    value={val}
+                                    checked={radioVal === val}
+                                    onChange={e => handleRadioChange(e)}
                                 />
                                 <Text style={{ marginLeft: '5px' }}>{val === '100'? 'max': `${val} %`} </Text>
                             </Option>
                         )
                     })}
                     </Flex>
-                <Button fullWidth onClick={onWalletDetails}>Confirm</Button>
+                <Button fullWidth onClick={onWalletDetails} disabled={sliderVal ===0}>Confirm</Button>
                 </ModalAction>
         </ModalBody>
     )
