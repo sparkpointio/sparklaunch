@@ -17,6 +17,7 @@ const CardContainer:React.FC<{pool?: PoolProps[]}> = ({pool}) => {
             {
                 pool?.map(p => (
                     <Card 
+                        key={p.address}
                         pool={p}
                     />
                 ))

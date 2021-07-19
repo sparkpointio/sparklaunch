@@ -151,7 +151,7 @@ export default function CurrencyInputPanel({
               {account && (
                 <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
                   {!hideBalance && !!currency 
-                    ? `Available: ${currency.symbol}`
+                    ? `Remaining: ${currency.symbol}`
                     : ' -'}
 
                 </Text>

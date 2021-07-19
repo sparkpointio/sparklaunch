@@ -1,4 +1,4 @@
-import React, { useState, useContext} from 'react';
+import React, { useState, useContext, useEffect} from 'react';
 import styled, { ThemeContext } from 'styled-components'
 import { useWeb3React } from '@web3-react/core';
 import { ChevronDown, ChevronUp, ExternalLink } from 'react-feather'
@@ -21,14 +21,28 @@ interface CardProps {
     status: string
 }
 
+
 // Modify for setEnable btn: (false) if not active
 const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
     const [ enable, setEnable ] = useState<boolean>(false);
     const [ showClaim, setShowClaim ] = useState<boolean>(false);
-    const [ onStakingModal ]= useModal(<StakingModal />)
+
+    // Temporary setter 
+    const [ random, setRandom ] = useState<boolean>(true);
+    const randomizer = () => {
+        setRandom(!random);
+        onStakingModal();
+    }
+
+    const [ onStakingModal ]= useModal(<StakingModal  random={random} />)
     const [ onWithdraw ] = useModal(<WithdrawModal />)
     const [ onExit ] = useModal(<ExitStakingModal />)
+    
+    // Enable Action Btn 
+    // const enableBtn = !enable? ( <Button onClick={() => setEnable(true)} fullWidth>Enable</Button>) : (<ActionButton variant="secondary" onClick={randomizer}>Stake</ActionButton>)
+    
     return (
+        
         <>
         <Flex justifyContent="space-between" alignItems="center">
             <Flex flexDirection="column">
@@ -49,9 +63,13 @@ const RenderConnected: React.FC<{pool: CardProps}> = ({pool}) => {
                 <Text fontSize="24px">10,121.552.407</Text>
                 <Text color="textSubtle">~ 1,695.20 USD</Text>
             </Flex>}
-           
-               { !enable? ( <Button onClick={() => setEnable(true)} fullWidth>Enable</Button>) : (<ActionButton variant="secondary" onClick={onStakingModal}>Stake</ActionButton>)}
-            
+            {pool.status === 'live' ? (
+                        !enable? ( <Button onClick={() => setEnable(true)} fullWidth>Enable</Button>) : (<ActionButton variant="secondary" onClick={randomizer}>Stake</ActionButton>)
+                    ) : pool.status === 'upcoming' ? (
+                        " "
+                    ) : (
+                        " "
+                    )}
            </Flex>
         </>
     )
@@ -75,7 +93,6 @@ const PoolCard: React.FC<{pool: CardProps}> = ({pool}) => {
     const bgSrc = `${process.env.PUBLIC_URL}/images/pools/${address}BG.jpg`
     const description = `Stake ${stakeToken} earn ${rewardToken}`
     
-
     return (
         <div>
         <Card>
