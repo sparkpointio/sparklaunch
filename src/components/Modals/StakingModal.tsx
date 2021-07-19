@@ -35,6 +35,8 @@ const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
     const [liquidity, setliquidity] = useState(0);
     const handleChange = (val) => setliquidity(val)
     const [ onWalletDetails ] = useModal(<WalletDetails />)
+    const tokenName = stakeToken?.toUpperCase();
+    const src = stakeToken?.toLowerCase();
     return (
         <ModalBody flexDirection="column">
                 <Heading>Stake in Pool</Heading>
@@ -42,8 +44,8 @@ const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
                     <Flex justifyContent="space-between">
                         <Text bold>Stake:</Text>
                         <Flex>
-                        <CurrencyLogo src={`${process.env.PUBLIC_URL}/images/icons/${stakeToken}.png`} size="24px"/>
-                        <Text>SRK</Text>
+                        <CurrencyLogo src={`${process.env.PUBLIC_URL}/images/icons/${src}.png`} size="24px"/>
+                        <Text>{tokenName}</Text>
                         </Flex>
                     </Flex>
                     <Flex flexDirection="column">
