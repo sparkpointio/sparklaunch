@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react'
+import { Text, Flex} from '@sparkpointio/sparkswap-uikit'
 import styled from 'styled-components'
 
 const StyledRangeInput = styled.input<{ size: number }>`
@@ -16,7 +17,7 @@ const StyledRangeInput = styled.input<{ size: number }>`
     -webkit-appearance: none;
     height: ${({ size }) => size}px;
     width: ${({ size }) => size}px;
-    background-color: #565a69;
+    background-color: ${({theme}) => theme.colors.primary};
     border-radius: 100%;
     border: none;
     transform: translateY(-50%);
@@ -53,11 +54,12 @@ const StyledRangeInput = styled.input<{ size: number }>`
     }
   }
   &::-webkit-slider-runnable-track {
-    background: linear-gradient(
-      90deg,
-      ${({ theme }) => theme.colors.primaryDark},
-      ${({ theme }) => theme.colors.tertiary}
-    );
+    // background: linear-gradient(
+    //   90deg,
+    //   ${({ theme }) => theme.colors.primaryDark},
+    //   ${({ theme }) => theme.colors.tertiary}
+    // );
+    background: ${({theme}) => theme.colors.primary};
     height: 2px;
   }
   &::-moz-range-track {
@@ -83,6 +85,12 @@ const StyledRangeInput = styled.input<{ size: number }>`
   }
 `
 
+const Label = styled(Text)`
+  text-align: right;
+  padding-right: 20px;
+  margin-bottom: -10px;
+`
+
 interface InputSliderProps {
   value: number
   onChange: (value: number) => void
@@ -101,6 +109,7 @@ export default function Slider({ value, onChange, min = 0, step = 1, max = 100, 
   )
 
   return (
+    <Flex style={{ width: '100%'}} flexDirection="column-reverse">
     <StyledRangeInput
       size={size}
       type="range"
@@ -112,5 +121,7 @@ export default function Slider({ value, onChange, min = 0, step = 1, max = 100, 
       min={min}
       max={max}
     />
+    <Label>{value}</Label>
+    </Flex>
   )
 }
