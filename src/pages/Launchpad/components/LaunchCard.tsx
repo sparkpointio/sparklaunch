@@ -7,6 +7,7 @@ import styled, { ThemeContext } from 'styled-components';
 import { useSelectToken } from 'state/tokens/hooks';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
+import { StatusColor } from 'pages/styled';
 import { IProjects } from '../../../config/constants/type';
 import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
 import { StyledCardBody, StyledCardHeader, CardAction, Options, SocmedGroup, Details, ProgressGroup, DataGroup, StyledImage, StyledButton, StyledHeading} from './styled';
@@ -47,11 +48,11 @@ const LaunchCard: React.FC<IProjects> = ({
                         </Anchor>
                     </SocmedGroup>
                     {status === 'active' ? (
-                        <StyledButton style={{ backgroundColor: '#32a31b' }}>LIVE NOW</StyledButton>
+                        <StyledButton style={{ backgroundColor: StatusColor.live }}>LIVE NOW</StyledButton>
                     ) : status === 'upcoming' ? (
-                        <StyledButton style={{ backgroundColor: '#7a1ba3' }}>UPCOMING</StyledButton>
+                        <StyledButton style={{ backgroundColor: StatusColor.upcoming }}>UPCOMING</StyledButton>
                     ) : (
-                        <StyledButton style={{ backgroundColor: '#8e98a5' }}>COMPLETED</StyledButton>
+                        <StyledButton style={{ backgroundColor: StatusColor.completed }}>COMPLETED</StyledButton>
                     )}
                 </Options>
                 <Details>

@@ -70,9 +70,9 @@ const PageFooter = () => {
                 style={{ maxWidth: '250px', width: '100%', textAlign: 'center' }}
             >
                 <Flex justifyContent="space-evenly" style={{margin: '20px' }}>
-                    <SocLink socLink="https://www.facebook.com"><Facebook size="30" color={theme.colors.text} /></SocLink>
-                    <SocLink socLink="https://www.twitter.com"><Twitter size="30" color={theme.colors.text} />  </SocLink>
-                    <SocLink socLink="https://www.telegram.com"><Send size="30" color={theme.colors.text} /></SocLink>
+                    <SocLink socLink="https://www.facebook.com/sparkpointio/"><Facebook size="30" color={theme.colors.text} /></SocLink>
+                    <SocLink socLink="https://twitter.com/sparkpointio"><Twitter size="30" color={theme.colors.text} />  </SocLink>
+                    <SocLink socLink="https://t.me/SparkPointOfficial"><Send size="30" color={theme.colors.text} /></SocLink>
                     <SocLink socLink="https://www.gmail.com"><Mail size="30" color={theme.colors.text} /></SocLink>
                 </Flex>
                 <Text>© SparkLaunch 2021</Text>

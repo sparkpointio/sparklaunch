@@ -12,13 +12,13 @@ const Section: React.FC = () => {
         <StyledContainer>
             <StyledHeader>
                 <Heading as="h1" size={isMobile? "xl":"xxl"} bold>
-                    Make your token live at SparkLaunch
+                Ignite your token on SparkLaunch!
                 </Heading>
             </StyledHeader>
             <Divider />
             <StyledDiv style={{justifyContent: 'center', textAlign: 'center'}}>
                 <Text fontSize={isMobile?"17px":"21px"} color="textSubtle">
-                    A token launch platform for transformative crypto currency projects to distrubute tokens and
+                    A token launch platform for transformative crypto currency projects to distribute tokens and
                     increase liquidity
                 </Text>
             </StyledDiv>

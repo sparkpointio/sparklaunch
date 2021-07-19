@@ -151,7 +151,7 @@ const ProjectComponent: React.FC = () => {
             <CBody>
                 <Flex justifyContent="space-between">
                     <Flex flex="1" flexDirection="column" padding="10px">
-                        <Flex alignItems="center" justifyContent="space-between" marginBottom="10px" padding="10px 0px">
+                        <Flex alignItems="center" justifyContent="space-between" marginTop="-20px" marginBottom="10px" padding="10px 0px">
                             <SocmedGroup>
                                 <Anchor href={socMeds?.[0]}>
                                     <Globe />
