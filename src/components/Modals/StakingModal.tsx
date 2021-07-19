@@ -10,6 +10,7 @@ import WalletDetails from './WalletDetails';
 interface ModalProps { 
     onDismiss?: () => void;
     random?: boolean;
+    stakeToken?: string;
 }
 
 
@@ -30,7 +31,7 @@ const Option = styled.div`
   }
 `
 
-const RenderStakingAction: React.FC = () => {
+const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
     const [liquidity, setliquidity] = useState(0);
     const handleChange = (val) => setliquidity(val)
     const [ onWalletDetails ] = useModal(<WalletDetails />)
@@ -41,7 +42,7 @@ const RenderStakingAction: React.FC = () => {
                     <Flex justifyContent="space-between">
                         <Text bold>Stake:</Text>
                         <Flex>
-                        <CurrencyLogo src={`${process.env.PUBLIC_URL}/images/icons/srk.png`} size="24px"/>
+                        <CurrencyLogo src={`${process.env.PUBLIC_URL}/images/icons/${stakeToken}.png`} size="24px"/>
                         <Text>SRK</Text>
                         </Flex>
                     </Flex>
@@ -93,12 +94,12 @@ const RenderInsufficientBalance: React.FC<ModalProps> = ({onDismiss}) => {
     )
 }
 
-const StakeModal:React.FC<ModalProps> = ({onDismiss, random}) => {
+const StakeModal:React.FC<ModalProps> = ({onDismiss, random, stakeToken}) => {
 
     return (
         <Modal title='' onDismiss={onDismiss} >
             <Flex flexDirection="column">
-            { random? <RenderStakingAction /> : <RenderInsufficientBalance onDismiss={onDismiss}/> }  
+            { random? <RenderStakingAction stakeToken={stakeToken}/> : <RenderInsufficientBalance onDismiss={onDismiss}/> }  
             </Flex>
         </Modal>
     )
