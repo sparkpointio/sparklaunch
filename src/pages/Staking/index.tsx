@@ -11,7 +11,8 @@ const PoolComponent: React.FC = () => {
         {
             title: 'Ownly Pool',
             address: '0x001',
-            stakeToken: 'SRK',
+            stakeToken: 'srk',
+            stakeToken2: 'sfuel',
             rewardToken: 'OWNLY',
             apy: '488.37%',
             status: 'live'
@@ -20,6 +21,7 @@ const PoolComponent: React.FC = () => {
             title: 'Lonely Pool',
             address: '0x002',
             stakeToken: 'SRK',
+            stakeToken2: 'SFUEL',
             rewardToken: 'OWNLY',
             apy: '488.37%',
             status: 'upcoming'
@@ -28,6 +30,7 @@ const PoolComponent: React.FC = () => {
             title: 'Sadly Pool',
             address: '0x003',
             stakeToken: 'SRK',
+            stakeToken2: 'SFUEL',
             rewardToken: 'OWNLY',
             apy: '488.37%',
             status: 'completed'
@@ -36,6 +39,7 @@ const PoolComponent: React.FC = () => {
             title: 'Test Pool',
             address: '0x004',
             stakeToken: 'SRK',
+            stakeToken2: 'SFUEL',
             rewardToken: 'OWNLY',
             apy: '488.37%',
             status: 'completed'
@@ -44,6 +48,7 @@ const PoolComponent: React.FC = () => {
             title: 'Test2 Pool',
             address: '0x005',
             stakeToken: 'SRK',
+            stakeToken2: 'SFUEL',
             rewardToken: 'OWNLY',
             apy: '488.37%',
             status: 'live'
@@ -52,6 +57,7 @@ const PoolComponent: React.FC = () => {
             title: 'Test3 Pool',
             address: '0x006',
             stakeToken: 'SRK',
+            stakeToken2: 'SFUEL',
             rewardToken: 'OWNLY',
             apy: '488.37%',
             status: 'upcoming'
@@ -60,6 +66,7 @@ const PoolComponent: React.FC = () => {
             title: 'Test4 Pool',
             address: '0x007',
             stakeToken: 'SRK',
+            stakeToken2: 'sfuel',
             rewardToken: 'OWNLY',
             apy: '488.37%',
             status: 'live'

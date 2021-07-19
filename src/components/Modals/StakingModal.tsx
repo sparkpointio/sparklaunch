@@ -10,6 +10,7 @@ import WalletDetails from './WalletDetails';
 interface ModalProps { 
     onDismiss?: () => void;
     random?: boolean;
+    stakeToken?: string;
 }
 
 
@@ -30,10 +31,26 @@ const Option = styled.div`
   }
 `
 
-const RenderStakingAction: React.FC = () => {
-    const [liquidity, setliquidity] = useState(0);
-    const handleChange = (val) => setliquidity(val)
+const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
+    const [sliderVal, setSliderVal] = useState(0);
+    const [radioVal, setRadioVal] = useState(sliderVal.toString());
+
+    const handleSliderChange = (val) => {
+        setSliderVal(val)
+        setRadioVal(val.toString())
+    }
+    const handleRadioChange = (evt) => {
+        const { value } = evt.target
+        setRadioVal(value);
+        setSliderVal(parseInt(value));
+    }
+    
+
+    const tokenName = stakeToken?.toUpperCase();
+    const src = stakeToken?.toLowerCase();
+
     const [ onWalletDetails ] = useModal(<WalletDetails />)
+    
     return (
         <ModalBody flexDirection="column">
                 <Heading>Stake in Pool</Heading>
@@ -41,8 +58,8 @@ const RenderStakingAction: React.FC = () => {
                     <Flex justifyContent="space-between">
                         <Text bold>Stake:</Text>
                         <Flex>
-                        <CurrencyLogo src={`${process.env.PUBLIC_URL}/images/icons/srk.png`} size="24px"/>
-                        <Text>SRK</Text>
+                        <CurrencyLogo src={`${process.env.PUBLIC_URL}/images/icons/${src}.png`} size="24px"/>
+                        <Text>{tokenName}</Text>
                         </Flex>
                     </Flex>
                     <Flex flexDirection="column">
@@ -55,7 +72,7 @@ const RenderStakingAction: React.FC = () => {
                 </Flex>
                 <ModalAction flexDirection="column">
                     <Flex>
-                    <Slider value={liquidity} onChange={e=> handleChange(e)}/>
+                    <Slider value={sliderVal} onChange={e => handleSliderChange(e)}/>
                     </Flex>
                     <Flex justifyContent="space-between">
                     {['0', '25', '50', '75', '100'].map(val => {
@@ -64,13 +81,16 @@ const RenderStakingAction: React.FC = () => {
                                 <Radio
                                     scale="sm"
                                     name="staking_percent"
+                                    value={val}
+                                    checked={radioVal === val}
+                                    onChange={e => handleRadioChange(e)}
                                 />
                                 <Text style={{ marginLeft: '5px' }}>{val === '100'? 'max': `${val} %`} </Text>
                             </Option>
                         )
                     })}
                     </Flex>
-                <Button fullWidth onClick={onWalletDetails}>Confirm</Button>
+                <Button fullWidth onClick={onWalletDetails} disabled={sliderVal ===0}>Confirm</Button>
                 </ModalAction>
         </ModalBody>
     )
@@ -93,12 +113,12 @@ const RenderInsufficientBalance: React.FC<ModalProps> = ({onDismiss}) => {
     )
 }
 
-const StakeModal:React.FC<ModalProps> = ({onDismiss, random}) => {
+const StakeModal:React.FC<ModalProps> = ({onDismiss, random, stakeToken}) => {
 
     return (
         <Modal title='' onDismiss={onDismiss} >
             <Flex flexDirection="column">
-            { random? <RenderStakingAction /> : <RenderInsufficientBalance onDismiss={onDismiss}/> }  
+            { random? <RenderStakingAction stakeToken={stakeToken}/> : <RenderInsufficientBalance onDismiss={onDismiss}/> }  
             </Flex>
         </Modal>
     )

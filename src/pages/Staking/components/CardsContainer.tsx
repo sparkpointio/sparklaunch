@@ -6,6 +6,7 @@ interface PoolProps {
     title: string;
     address: string;
     stakeToken: string;
+    stakeToken2?: string;
     rewardToken: string;
     apy: string;
     status: string;
