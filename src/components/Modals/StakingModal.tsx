@@ -97,7 +97,7 @@ const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
 }
 
 const RenderInsufficientBalance: React.FC<ModalProps> = ({onDismiss}) => {
-    // const theme = useContext(ThemeContext)
+
     return (
         <ModalBody flexDirection="column" alignItems="center">
             <Heading>SRKb required</Heading>
@@ -106,7 +106,7 @@ const RenderInsufficientBalance: React.FC<ModalProps> = ({onDismiss}) => {
                 <Text>You will need to buy SRKb to stake in the pool!</Text>
             </ModalDescription>
             <ModalAction flexDirection="column" alignItems="center">
-                <Button fullWidth>Buy SRKb</Button>
+                <Button fullWidth as="a" href="https://sparkswap.finance/#/swap">Buy SRKb</Button>
                 <Button variant="text" fullWidth onClick={onDismiss}>Close Window</Button>
             </ModalAction>
         </ModalBody>        
