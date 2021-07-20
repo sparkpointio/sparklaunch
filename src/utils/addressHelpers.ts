@@ -8,5 +8,5 @@ export const getAddress = (address: Address): string => {
 }
 
 export const ownlyLaunchPad = () => {
-    return getAddress(addresses.ownlyLaunchPad.address)
+    return getAddress(addresses.ownlyLaunchPad)
 }

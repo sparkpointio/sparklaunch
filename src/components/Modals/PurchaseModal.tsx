@@ -10,6 +10,7 @@ import { SmallstyledImage } from 'pages/Launchpad/components/styled';
 import Icon from 'assets/icons/Arrow';
 import SvgIcon from 'components/SvgIcon';
 import { ArrowWrapper } from './styleds';
+import { useOwnlyLaunchpad } from '../../hooks/useContracts'
 
 
 interface AppProps {
@@ -43,7 +44,12 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
     onUserInput(Field.OUTPUT, value)
   }, [onUserInput])
 
-  
+  const contract = useOwnlyLaunchpad()
+
+  const handleBuy = async() => {
+    const tx = await contract.finishSale()
+  }
+    
     return (
         <Modal title="" onDismiss={onDismiss}>
           <div style={{ width: '400px', padding: '0px 24px 24px 24px'}}>
@@ -75,7 +81,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                 currency={project}
             />
             <ActionDiv>
-            <Button fullWidth>Swap</Button>
+            <Button onClick={handleBuy} fullWidth>Swap</Button>
             </ActionDiv>
             <ActionDiv>
               <Text>My Allocations</Text>
