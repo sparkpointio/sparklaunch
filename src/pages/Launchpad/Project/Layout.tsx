@@ -24,7 +24,7 @@ const Layout: React.FC <RouteComponentProps<{ProjectAddress?: string}>> = ({ mat
     return (
         <Page>
             <Container>
-                <Flex style={{width: '100%', height: '15vh'}} flexDirection="column"  justifyContent="space-between" marginTop="20px" padding="10px">
+                <Flex style={{width: '100%', height: '14vh'}} flexDirection="column"  justifyContent="space-between" marginTop="20px" padding="10px">
                 <Heading fontSize="24px" bold> SparkLaunch </Heading>
                 <Breadcrumbs>
                     <Text>SparkLaunch</Text>

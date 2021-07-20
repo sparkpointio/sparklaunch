@@ -2,34 +2,34 @@
 
 const DetailsList = [
     {
-        image: 'SpecializingIcon',
-        title: 'Specializing',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        image: 'SubscriptionmodelIcon',
+        title: 'Subscription Model',
+        description: 'SRKb and SFUEL holders are guaranteed various allocations based on our tiered-based system. ',
     },
     {
-        image: 'CommunityIcon',
-        title: 'Community',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        image: 'LiquiditylockingIcon',
+        title: 'Liquidity Locking',
+        description: 'Projects will be required to lock their liquidity for at least one (1) year to avoid rug pulls and increase investor\'s confidence. ',
     },
     {
-        image: 'RapidIcon',
-        title: 'Rapid',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        image: 'LaunchpadtreasuryIcon',
+        title: 'Launchpad Treasury',
+        description: 'Projects will be required to contribute to our community treasury as financial protection against potential project failure in the future. ',
     },
     {
-        image: 'FairIcon',
-        title: 'Fair',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        image: 'StakingservicesIcon',
+        title: 'Staking Services',
+        description: 'Use our staking platform to increase the projects\' userbase.',
     },
     {
-        image: 'FundraisingIcon',
-        title: 'Fundraising',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+        image: 'DecentralizedidoIcon',
+        title: 'Decentralized IDO',
+        description: 'Projects can raise capital based on a fair and decentralized manner. ',
     },
     {
-        image: 'GrowingIcon',
-        title: 'Growing',
-        description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ',
+        image: 'RapidlaunchesIcon',
+        title: 'Rapid Launches',
+        description: 'Launch your IDO on SparkLaunch within days of being approved. ',
     },
 ];
 

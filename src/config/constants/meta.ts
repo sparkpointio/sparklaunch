@@ -1,7 +1,7 @@
 import { PageMeta } from './type'
 
 export const DEFAULT_META: PageMeta = {
-  title: 'SparkDefi',
+  title: 'SparkDeFi',
   description:
     'Refuel your rocket with SFUEL and travel to the moon with SparkSwap, the prodigious decentralized exchange on Binance Smart Chain.',
   image: 'https://sparkswap.finance//images/192x192_App_Icon.png',
@@ -9,15 +9,15 @@ export const DEFAULT_META: PageMeta = {
 
 export const customMeta: { [key: string]: PageMeta } = {
   '/': {
-    title: 'Home | SparkDefi',
+    title: 'Home | SparkDeFi',
   },
   '/launch': {
     title: 'Launch | SparkDeFi'
   },
   '/launch/projects': {
-    title: 'Projects | SparkDefi',
+    title: 'Projects | SparkDeFi',
   },
   '/launch/staking': {
-    title: 'Staking | SparkDefi',
+    title: 'Staking | SparkDeFi',
   },
 }

@@ -71,7 +71,7 @@ const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
                     </Flex>
                 </Flex>
                 <ModalAction flexDirection="column">
-                    <Flex>
+                    <Flex> 
                     <Slider value={sliderVal} onChange={e => handleSliderChange(e)}/>
                     </Flex>
                     <Flex justifyContent="space-between">
@@ -85,7 +85,7 @@ const RenderStakingAction: React.FC<{stakeToken?: string}> = ({stakeToken}) => {
                                     checked={radioVal === val}
                                     onChange={e => handleRadioChange(e)}
                                 />
-                                <Text style={{ marginLeft: '5px' }}>{val === '100'? 'max': `${val} %`} </Text>
+                                <Text style={{ marginLeft: '5px' }}>{val === '100'? 'MAX': `${val} %`} </Text>
                             </Option>
                         )
                     })}
@@ -100,13 +100,13 @@ const RenderInsufficientBalance: React.FC<ModalProps> = ({onDismiss}) => {
     // const theme = useContext(ThemeContext)
     return (
         <ModalBody flexDirection="column" alignItems="center">
-            <Heading>SRK required</Heading>
+            <Heading>SRKb required</Heading>
             <ModalDescription flexDirection="column" alignItems="center">
-                <Text color="red">Insufficient SRK balance</Text>
-                <Text>You will need to buy SRK to stake in the pool!</Text>
+                <Text color="red">Insufficient SRKb balance</Text>
+                <Text>You will need to buy SRKb to stake in the pool!</Text>
             </ModalDescription>
             <ModalAction flexDirection="column" alignItems="center">
-                <Button fullWidth>Buy SRK</Button>
+                <Button fullWidth>Buy SRKb</Button>
                 <Button variant="text" fullWidth onClick={onDismiss}>Close Window</Button>
             </ModalAction>
         </ModalBody>        

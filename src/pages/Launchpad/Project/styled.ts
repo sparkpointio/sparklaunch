@@ -19,6 +19,13 @@ export const TokenImage = styled.img`
     margin: 10px 15px;
 `;
 
+export const SmalltokenImage = styled.img`
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    margin: 10px 15px;
+`;
+
 export const CBody = styled(CardBody)`
     padding: 20px;
 `;

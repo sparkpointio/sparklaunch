@@ -6,7 +6,7 @@ import { useSwapActionHandlers, useSwapState } from "state/swap/hooks";
 import { useFindProjectByAddress } from "state/hooks";
 import { useSelectToken } from "state/tokens/hooks";
 import CurrencyInputPanel from "components/CurrencyInputPanel";
-import { StyledImage } from 'pages/Launchpad/components/styled';
+import { SmallstyledImage } from 'pages/Launchpad/components/styled';
 import Icon from 'assets/icons/Arrow';
 import SvgIcon from 'components/SvgIcon';
 import { ArrowWrapper } from './styleds';
@@ -80,7 +80,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
             <ActionDiv>
               <Text>My Allocations</Text>
               <Flex alignItems="center" marginTop="12px">
-                <StyledImage src={`${process.env.PUBLIC_URL}/images/icons/${project?.symbol}.png`} />
+                <SmallstyledImage src={`${process.env.PUBLIC_URL}/images/icons/${project?.symbol}.png`} />
                 <Text color="textSubtle">0.0 {project.symbol}</Text>
               </Flex>
             </ActionDiv>

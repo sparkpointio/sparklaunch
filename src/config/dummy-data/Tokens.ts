@@ -11,7 +11,7 @@ const TokenList:ITokens[] = [
     },
     {
         name: "SparkPoint Token",
-        symbol: "SRK",
+        symbol: "SRKb",
         address: "0xe09B8661D80CF24dB230A167969d18B94a5a3266",
         chainId: 97,
         decimals: 18,

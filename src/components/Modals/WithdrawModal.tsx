@@ -49,7 +49,7 @@ const OnConfirmWithdraw: React.FC<{handleProcess: (process: string) => void}> = 
             <StyledModalBody flexDirection="column" alignItems="center">
                     <Heading>Confirm Withdrawal</Heading>
                     <Flex style={{textAlign: 'center'}}>
-                    <Text>In this step, you complete the transaction that withdraws your {TokenReward} </Text>
+                    <Text>In this step, you complete the transaction that withdraws your {TokenReward}. </Text>
                     </Flex>
                 </StyledModalBody>
                 <StyledModalAction>
@@ -67,7 +67,7 @@ const SuccessWithdraw: React.FC<{onDismiss?: () => void}> = ({onDismiss}) => {
              <StyledModalBody flexDirection="column" alignItems="center">
                     <Heading>Confirmed Withdrawal</Heading>
                     <Flex style={{textAlign: 'center'}} flexDirection="column">
-                        <Text>You have withdraw your { TokenInformation }.</Text>
+                        <Text>You have withdrawn your { TokenInformation }.</Text>
                         <Text>If desired, you may check Binance Smart Chain to confirm the transaction</Text>
                     </Flex>
                 </StyledModalBody>

@@ -36,7 +36,7 @@ const Icon = styled(StyledImage)`
 `
 
 const ExitConfirmed: React.FC<{onDismiss?: () => void}> = ({onDismiss}) => {
-    const RewardToken:React.ReactElement = <Bold>10, 433.552 <Icon src={`${process.env.PUBLIC_URL}/images/icons/srk.png`} size="20px"/> SRK tokens</Bold> 
+    const RewardToken:React.ReactElement = <Bold>10, 433.552 <Icon src={`${process.env.PUBLIC_URL}/images/icons/srk.png`} size="20px"/> SRKb tokens</Bold> 
     const StakingToken:React.ReactElement = <Bold>1110.407 <Icon src={`${process.env.PUBLIC_URL}/images/icons/ownly.png`} size="20px"/> OWNLY tokens</Bold> 
 
     return (
@@ -46,7 +46,7 @@ const ExitConfirmed: React.FC<{onDismiss?: () => void}> = ({onDismiss}) => {
             </Heading>
             <WarningMessage flexDirection="column" alignItems="center">
                 <Text>
-                  You have withdrawn your { RewardToken } and { StakingToken }. If desired, you may check Binance Smart Chain to Confirm the transaction
+                  You have withdrawn your { RewardToken } and { StakingToken }. If desired, you may check Binance Smart Chain to Confirm the transaction.
                 </Text>
             </WarningMessage>
             <Text color="textSubtle">View on BscScan <ExternalLink /> </Text>
@@ -58,7 +58,7 @@ const ExitConfirmed: React.FC<{onDismiss?: () => void}> = ({onDismiss}) => {
 } 
 
 const ConfirmExit: React.FC<{handleProcess: (process:string) => void;}> = ({handleProcess}) => {
-    const RewardToken:React.ReactElement = <Bold>10, 433.552 <Icon src={`${process.env.PUBLIC_URL}/images/icons/srk.png`} size="20px"/> SRK tokens</Bold> 
+    const RewardToken:React.ReactElement = <Bold>10, 433.552 <Icon src={`${process.env.PUBLIC_URL}/images/icons/srk.png`} size="20px"/> SRKb tokens</Bold> 
     const StakingToken:React.ReactElement = <Bold>1110.407 <Icon src={`${process.env.PUBLIC_URL}/images/icons/ownly.png`} size="20px"/> OWNLY tokens</Bold> 
     return (
         <ModalBody flexDirection="column" alignItems="center">
@@ -67,7 +67,7 @@ const ConfirmExit: React.FC<{handleProcess: (process:string) => void;}> = ({hand
             </Heading>
             <WarningMessage flexDirection="column" alignItems="center">
                 <Text>
-                   In this step, you complete the transaction that withdraws your { RewardToken } and { StakingToken }
+                   In this step, you complete the transaction that withdraws your { RewardToken } and { StakingToken }.
                 </Text>
             </WarningMessage>
             <ModalActions flexDirection="column" alignItems="center">
@@ -87,7 +87,7 @@ const WarningProcess: React.FC<{handleProcess: (process:string) => void; onDismi
     return (
         <ModalBody flexDirection="column" alignItems="center">
             <Heading>
-                Unstake your SRK
+                Unstake your SRKb
             </Heading>
             <WarningMessage flexDirection="column" alignItems="center">
                 <Text>Warning:</Text>
