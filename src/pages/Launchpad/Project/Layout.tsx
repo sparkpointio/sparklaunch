@@ -36,8 +36,9 @@ const Layout: React.FC <RouteComponentProps<{ProjectAddress?: string}>> = ({ mat
                     <Text>SparkLaunch</Text>
                     <Text>On Going</Text>
                     <Text>{project?.symbol}</Text>
+                    
                 </Breadcrumbs>
-                </Flex>
+                </Flex>                            
                 <ProjectComponent />
             </Container>
         </Page>

@@ -25,14 +25,14 @@ const LaunchCard: React.FC<IProjects> = ({
     const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
     return (
         <Card style={{ padding: '5px' }}>
-            <StyledCardHeader>
+            <StyledCardHeader src={srcsBg}>
                 <StyledImage src={srcs} alt="token-logo" />
                 <StyledHeading bold>
                     {title}
                 </StyledHeading>
             </StyledCardHeader>
             <StyledCardBody>
-                <Options>
+                <Options> 
                     <SocmedGroup>
                         <Anchor href={socMeds?.[0]}>
                             <Globe size="24px" />
@@ -60,7 +60,14 @@ const LaunchCard: React.FC<IProjects> = ({
                         <Text>{desc}</Text>
                     </div>
                     <ProgressGroup>
+                    {status === 'completed' ? (
+                        <Text as="h1">Sale Completion</Text>
+                    ) : status === 'upcoming' ? (
                         <Text as="h1">Progress</Text>
+                    ) : (
+                        <Text as="h1">Progress</Text>
+                    )}
+                        
                         <Progress primaryStep={parseInt(percentage)} variant="flat" />
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">{percentage}%</Text>
@@ -98,7 +105,7 @@ const LaunchCard: React.FC<IProjects> = ({
                         <UnlockButton fullWidth />
                     ) : (
                         <StyledLink to={`/launch/projects/${address}`}>
-                            Participate
+                            <h1 style={{ color: 'white' }}>Participate</h1>
                         </StyledLink>
                     )}
                 </CardAction>

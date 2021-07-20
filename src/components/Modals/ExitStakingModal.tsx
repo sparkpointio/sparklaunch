@@ -81,13 +81,18 @@ const ConfirmExit: React.FC<{handleProcess: (process:string) => void;}> = ({hand
 const WarningProcess: React.FC<{handleProcess: (process:string) => void; onDismiss?: () => void}> = ({ handleProcess, onDismiss}) => {
     const Not:React.ReactElement = <span style={{fontWeight: 'bold'}}>NOT</span>
 
+    // Temp tokens for process confirmation
+    const RewardToken:React.ReactElement = <Bold>10, 433.552 <Icon src={`${process.env.PUBLIC_URL}/images/icons/srk.png`} size="20px"/> SRKb tokens</Bold> 
+    const StakingToken:React.ReactElement = <Bold>1110.407 <Icon src={`${process.env.PUBLIC_URL}/images/icons/ownly.png`} size="20px"/> OWNLY tokens</Bold> 
+
+    // Process confirmation  
     const confirmProcess = () => {
         handleProcess('second');
     }
     return (
         <ModalBody flexDirection="column" alignItems="center">
             <Heading>
-                Unstake your SRKb
+                Unstake your { StakingToken }
             </Heading>
             <WarningMessage flexDirection="column" alignItems="center">
                 <Text>Warning:</Text>
