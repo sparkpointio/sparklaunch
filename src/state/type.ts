@@ -44,3 +44,14 @@ export interface State {
     accounts: AccountState
     pools: PoolInformationState
   }
+
+export type SerializedBigNumber = string
+
+export type TranslatableText =
+  | string
+  | {
+      key: string
+      data?: {
+        [key: string]: string | number
+      }
+    }

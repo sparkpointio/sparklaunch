@@ -10,7 +10,7 @@ import { Input as NumericalInput } from '../NumericalInput'
 import { RowBetween } from '../Row'
 import CurrencyLogo from '../CurrencyLogo'
 
-// import { useActiveWeb3React } from '../../hooks'
+import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;

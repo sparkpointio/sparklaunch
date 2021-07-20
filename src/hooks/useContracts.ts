@@ -11,4 +11,4 @@ import { ChainId, WETH } from '@sparkpointio/sparkswap-sdk'
 export const useOwnlyLaunchpad = () => {
     const { library } = useActiveWeb3React()
     return useMemo(() => getOwnlyLaunchpadContract(library.getSigner()), [library])
-  }
+}
