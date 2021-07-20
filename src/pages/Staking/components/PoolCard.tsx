@@ -84,7 +84,7 @@ const RenderConnected: React.FC<{ pool: CardProps }> = ({ pool }) => {
                 {pool.status === 'live' &&
                     (!enable.srk ? (
                         <Button fullWidth onClick={() => setEnableStaking('srk')}>
-                            Enable SRK
+                            Enable SRKb
                         </Button>
                     ) : (
                         <ActionButton variant="secondary" onClick={() => randomizer('srk')}>

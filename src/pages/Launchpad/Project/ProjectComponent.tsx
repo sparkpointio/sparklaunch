@@ -26,7 +26,7 @@ import { SocmedGroup, ProgressGroup } from '../components/styled';
 import { ReactComponent as MediumIcon } from '../components/icons/MediumIcon.svg';
 import Anchor from '../components/StyledLink';
 import FooterDetails from './FooterDetails';
-import { CCont, CHeader, TokenImage, CBody, StyledButton, CustomDataGroup, CFooter, TextDescription } from './styled'
+import { CCont, CHeader, TokenImage, SmalltokenImage, CBody, StyledButton, CustomDataGroup, CFooter, TextDescription } from './styled'
 
 
 type AppProps = { 
@@ -41,7 +41,7 @@ const Allocations: React.FC<{tokenImage:string; symbol: string}> = ({tokenImage,
         <div style={{ marginTop: '20px' }}>
             <Text>My Allocations</Text>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <TokenImage src={srcs} alt="token-logo" />
+                <SmalltokenImage src={srcs} alt="token-logo" />
                 <Text bold>0.0 {symbol}</Text>
             </div>
         </div>
@@ -55,7 +55,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, buyi
     const [ onPurchaseModal ] = useModal(<PurchaseModal address={Paddress} />)
     
     const tokenReport = { 
-        title: `${project.progress} ${project.symbol} token`,
+        title: `${project.progress} ${project.symbol}`,
         progress: project.price * project.progress,
         percentage: parseInt((((project.progress * project.price) / project.totalRaise) * 100).toFixed()),
         standing: `${(project.progress * project.price)} / ${project.totalRaise} ${buyingToken?.symbol}`,
@@ -97,10 +97,10 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, buyi
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">My Allocation</Text>
-                    <Text>Nan OWNLY</Text>
+                    <Text>NaN OWNLY</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
-                    <Text color="primary">Max BNB Swap</Text>
+                    <Text color="primary">MAX BNB Swap</Text>
                     <Text>N/A BNB</Text>
                 </Flex>
             </CustomDataGroup>

@@ -1,13 +1,13 @@
 import React, { SVGAttributes, useContext } from "react";
 import { ThemeContext } from "styled-components";
 import { SvgProps } from 'components/SvgIcon/types';
-import { ReactComponent as CommunityIcon } from 'assets/About/Community.svg';
+import { ReactComponent as DecentralizedidoIcon } from 'assets/About/Decentralizedido.svg';
 import SvgIcon from "components/SvgIcon";
 
 const Icon: React.FC<SvgProps> = (props) => {
  
   return (
-    <SvgIcon width={100} Icon={CommunityIcon} />
+    <SvgIcon width={117} Icon={DecentralizedidoIcon} />
   )
 };
 

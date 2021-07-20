@@ -83,3 +83,11 @@ export const StyledImage = styled.img<{size?: string}>`
     margin-right: 15px;
     z-index: 2;
 `;
+
+export const SmallstyledImage = styled.img<{size?: string}>`
+    border-radius: 50%;
+    height: ${({ size }) => !size? '30px': size};
+    width: ${({ size }) => !size? '30px' : size};
+    margin-right: 15px;
+    z-index: 2;
+`;
