@@ -1,5 +1,6 @@
 import React, {useContext} from 'react'
 import styled, {ThemeContext} from 'styled-components'
+import { Link} from 'react-router-dom'
 import { Button, ButtonMenu, ButtonMenuItem, useModal } from '@sparkpointio/sparkswap-uikit'
 
 const StyledNav = styled.div`
@@ -31,10 +32,10 @@ const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => {
     return (
     <StyledNav>
       <StyledButtonMenu size="md" activeIndex={activeIndex}  variant='primary'>
-        <ButtonMenuItem fullWidth id="swap-nav-link" href="/launch/projects" as="a" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`}}} >
+        <ButtonMenuItem fullWidth id="swap-nav-link" to="/launch/projects" as={Link} style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`}}} >
           Projects
         </ButtonMenuItem>
-        <ButtonMenuItem fullWidth id="pool-nav-link" href="/launch/staking" as="a" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`} }}  >
+        <ButtonMenuItem fullWidth id="pool-nav-link" to="/launch/staking" as={Link} style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`} }}  >
           Staking
         </ButtonMenuItem>
       </StyledButtonMenu>
