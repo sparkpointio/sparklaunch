@@ -60,16 +60,8 @@ const LaunchCard: React.FC<IProjects> = ({
                         <Text>{desc}</Text>
                     </div>
                     <ProgressGroup>
-                        {status === 'completed' ? (
-                            <Text as="h1">Sale Completion</Text>
-                        ) : status === 'upcoming' ? (
-                            <Text as="h1">Progress</Text>
-                        ) : (
-                            status === 'active' && (
-                                <Text as="h1">Progress</Text>
-                            )
-                        )}
-                    <Progress primaryStep={parseInt(percentage)} variant="flat" />
+                        <Text as="h1">Progress</Text>
+                        <Progress primaryStep={parseInt(percentage)} variant="flat" />
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">{percentage}%</Text>
                             <Text color="textSubtle">
