@@ -12,7 +12,7 @@ const PoolComponent: React.FC = () => {
             title: 'Ownly Pool',
             address: '0x001',
             stakeToken: 'SRKb',
-            stakeToken2: 'sfuel',
+            stakeToken2: 'SFUEL',
             rewardToken: 'OWNLY',
             apy: '488.37%',
             status: 'live'
@@ -66,7 +66,7 @@ const PoolComponent: React.FC = () => {
             title: 'Test4 Pool',
             address: '0x007',
             stakeToken: 'SRKb',
-            stakeToken2: 'sfuel',
+            stakeToken2: 'SFUEL',
             rewardToken: 'OWNLY',
             apy: '488.37%',
             status: 'live'

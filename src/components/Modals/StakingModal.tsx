@@ -6,7 +6,6 @@ import { StyledImage } from 'pages/Launchpad/components/styled'
 import { ModalBody, ModalDescription, ModalAction, StakingInput } from './styleds';
 import WalletDetails from './WalletDetails';
 
-
 interface ModalProps { 
     onDismiss?: () => void;
     random?: boolean;
@@ -107,6 +106,7 @@ const RenderInsufficientBalance: React.FC<ModalProps> = ({onDismiss}) => {
             </ModalDescription>
             <ModalAction flexDirection="column" alignItems="center">
                 <Button fullWidth>Buy SRKb</Button>
+
                 <Button variant="text" fullWidth onClick={onDismiss}>Close Window</Button>
             </ModalAction>
         </ModalBody>        

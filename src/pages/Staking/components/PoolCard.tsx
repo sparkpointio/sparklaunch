@@ -128,10 +128,10 @@ const PoolCard: React.FC<{ pool: CardProps }> = ({ pool }) => {
     const theme = useContext(ThemeContext);
     const [show, setShow] = useState<boolean>(false);
     const { account } = useWeb3React();
-    const { title, address, stakeToken, rewardToken, apy, status } = pool;
+    const { title, address, stakeToken, stakeToken2, rewardToken, apy, status } = pool;
     const src = `${process.env.PUBLIC_URL}/images/pools/${address}.png`;
     const bgSrc = `${process.env.PUBLIC_URL}/images/pools/${address}BG.jpg`;
-    const description = `Stake ${stakeToken} earn ${rewardToken}`;
+    const description = `Stake ${stakeToken}/${stakeToken2}, earn ${rewardToken}`;
 
     return (
         <div>
