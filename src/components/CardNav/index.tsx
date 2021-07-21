@@ -32,11 +32,11 @@ const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => {
     return (
     <StyledNav>
       <StyledButtonMenu size="md" activeIndex={activeIndex}  variant='primary'>
-        <ButtonMenuItem fullWidth id="swap-nav-link" to="/launch/projects" as={Link} style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`}}} >
+        <ButtonMenuItem fullWidth id="swap-nav-link" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`}}} >
           Projects
         </ButtonMenuItem>
-        <ButtonMenuItem fullWidth id="pool-nav-link" to="/launch/staking" as={Link} style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`} }}  >
-          Staking
+        <ButtonMenuItem fullWidth id="pool-nav-link" href="https://app.srk.finance/#/" as="a" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`} }}  >
+          Participate
         </ButtonMenuItem>
       </StyledButtonMenu>
     </StyledNav>
