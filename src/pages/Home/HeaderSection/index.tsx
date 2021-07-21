@@ -18,7 +18,7 @@ const Section: React.FC = () => {
             <Divider />
             <StyledDiv style={{justifyContent: 'center', textAlign: 'center'}}>
                 <Text fontSize={isMobile?"17px":"21px"} color="textSubtle">
-                    A token launch platform for transformative crypto currency projects to distribute tokens and
+                    A token launch platform for transformative cryptocurrency projects to distribute tokens and
                     increase liquidity
                 </Text>
             </StyledDiv>
