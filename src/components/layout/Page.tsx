@@ -62,7 +62,7 @@ const PageFooter = () => {
             <Flex flexDirection="column" justifyContent="space-evenly" style={{ textAlign: 'left' }}>
                 <img src={Powered} alt="powered-logo" style={{ width: '60%', margin: '20px' }} />
                 <Flex justifyContent="space-evenly" style={{ width: '100%' }}>
-                <CustomLink href="#"><h5>Terms & Conditions</h5></CustomLink>
+                    <CustomLink href="#"><h5>Terms & Conditions</h5></CustomLink>
                     <StyledLink href="#">Privacy Policy</StyledLink>
                     <CustomLink href="https://srk.finance/#roadmap"><h5>Sitemap</h5></CustomLink>
                 </Flex>
