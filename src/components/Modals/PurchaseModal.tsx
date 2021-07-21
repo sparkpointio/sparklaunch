@@ -47,7 +47,8 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
   const contract = useOwnlyLaunchpad()
 
   const handleBuy = async() => {
-    const tx = await contract.finishSale()
+    const value = { value: "500000000000000000" }
+    const tx = await contract.buyTokens(value)
   }
     
     return (
