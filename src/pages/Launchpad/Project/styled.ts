@@ -16,7 +16,7 @@ export const CHeader = styled(CardHeader)<{ src?: string }>`
       background-image: url(${src});
       background-repeat: no-repeat;
       background-attachment: scroll;
-      background-position: center;
+      background-position: 95% 15%;
       background-size: cover;
     `}
 `;
