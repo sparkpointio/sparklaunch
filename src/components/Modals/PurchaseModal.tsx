@@ -159,6 +159,10 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
         console.log(`Buying successful ${tx}`)
     }
 
+    const calculateRemainingSupply = () => {
+        return new TokenAmount(ETH, expandValue(remainingPurchasable.multiply(tokenRate).toFixed(18), OWN))
+    }
+
     useEffect(() => {
         async function getRemainingTokens() {
             let totalTokens = await contract.getTotalToken();
@@ -210,7 +214,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                     currency={token}
                     showMaxButton
                     onMax={handleMaxInput}
-                    remainingSupply={new TokenAmount(ETH, expandValue(remainingPurchasable.multiply(tokenRate).toFixed(18), OWN)).toExact()}
+                    remainingSupply={calculateRemainingSupply().toExact()}
                 />
                 <CurrencyInputPanel
                     showMaxButton
