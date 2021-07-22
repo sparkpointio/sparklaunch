@@ -186,9 +186,9 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
 
         async function getRemainingPurchasable() {
             const details = await contract.getWhitelist(account);
-            const totalAllocation = new TokenAmount(OWN, details._maxPayableAmount)
-            const purchasableAmount = new TokenAmount(OWN, details._rewardedAmount)
-            return totalAllocation.subtract(purchasableAmount)
+            const maxPayableAmount = new TokenAmount(OWN, details._maxPayableAmount)
+            const rewardedAmount = new TokenAmount(OWN, details._rewardedAmount)
+            return maxPayableAmount.subtract(rewardedAmount)
         }
 
 
