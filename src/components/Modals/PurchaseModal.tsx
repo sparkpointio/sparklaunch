@@ -132,7 +132,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * Sets and checks the max input
      */
     const handleMaxInput = () => {
-        let maxInput = new TokenAmount(ETH, expandValue(remainingPurchasable.multiply(tokenRate).toFixed(18), OWN));
+        let maxInput = accountDetails.balance;
 
         maxInput = validateInput(maxInput);
 
