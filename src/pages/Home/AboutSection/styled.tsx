@@ -21,6 +21,7 @@ export const StyledHeading = styled(Heading)`
         padding-top: 20px;
         border-bottom: 3px solid ${({theme}) => theme.colors.primary}; 
     }
+    
 `;
 
 export const Image = styled.img`
@@ -29,6 +30,7 @@ export const Image = styled.img`
     height: 150px;
     border: 2px solid ${({theme}) => theme.colors.primary};
     margin: 10px;
+    
 `
 
 export const Box = styled.div`
@@ -39,6 +41,7 @@ export const Box = styled.div`
         cursor: pointer;
         transform: scale(1.1);
     }
+    
 `
 
 export const BoxHeading = styled(Heading)`

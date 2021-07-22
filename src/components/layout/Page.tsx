@@ -35,6 +35,7 @@ const StyledFooter = styled.footer`
 const CustomLink = styled.a`
     color: ${({ theme }) => theme.colors.text};
     margin: 5px;
+    
 `;
 const StyledLink = styled(CustomLink)`
     color: white;
@@ -47,6 +48,10 @@ const StyledLink = styled(CustomLink)`
         content: '';
         border-left: 2px solid ${({ theme }) => theme.colors.primary};
         padding-left: 15px;
+    }
+    @media (max-width: 770px ) {
+        width: 30%;
+        height: 8vh;
     }
 `;
 
