@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import {useWeb3React} from "@web3-react/core";
 import {TokenAmount} from "@sparkpointio/sparkswap-sdk";
 import {parseUnits} from "@ethersproject/units";
@@ -48,7 +48,8 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
     })
 
     const [tokenRate, setTokenRate] = useState(new TokenAmount(OWN, BigInt(0)))
-    const [remainingSupply, setRemainingSupply] = useState(new TokenAmount(OWN, BigInt(0)))
+    const [remainingExpendable, setRemainingExpendable] = useState(new TokenAmount(OWN, BigInt(0)))
+    const [remainingPurchasable, setRemainingPurchasable] = useState(new TokenAmount(OWN, BigInt(0)))
 
     /**
      * Sets the input amount and calculates the output
@@ -99,13 +100,10 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * Validates if the input does not exceed maxPayable and equivalent output does not exceed remainingSupply
      * @param tokenAmount
      */
-    const validateInput = (tokenAmount) => {
-        if (tokenAmount.greaterThan(accountDetails.maxPayableAmount)) {
-            tokenAmount = accountDetails.maxPayableAmount
-        }
+     const validateInput = (tokenAmount) => {
 
-        if (calculateOutput(tokenAmount).greaterThan(remainingSupply)) {
-            tokenAmount = calculateInput(remainingSupply)
+        if (calculateOutput(tokenAmount).greaterThan(remainingPurchasable)) {
+            tokenAmount = calculateInput(remainingPurchasable)
             calculateOutput(tokenAmount)
         }
 
@@ -119,7 +117,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
     const validateOutput = (tokenAmount) => {
         let equivalentInput = calculateInput(tokenAmount);
 
-        if (equivalentInput.greaterThan(accountDetails.balance)) {
+        if (equivalentInput.greaterThan(remainingExpendable)) {
             equivalentInput = validateInput(equivalentInput)
             tokenAmount = calculateOutput(equivalentInput)
         }
@@ -131,7 +129,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * Sets and checks the max input
      */
     const handleMaxInput = () => {
-        let maxInput = accountDetails.balance;
+        let maxInput = remainingExpendable;
 
         maxInput = validateInput(maxInput);
 
@@ -142,7 +140,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * Sets and checks the max output
      */
     const handleMaxOutput = () => {
-        let maxOutput = remainingSupply;
+        let maxOutput = remainingPurchasable;
 
         maxOutput = validateOutput(maxOutput);
 
@@ -156,6 +154,10 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
         const tx = await contract.buyTokens({value: expandValue(input, ETH)})
         console.log(tx);
         console.log(`Buying successful ${tx}`)
+    }
+
+    const calculateRemainingSupply = () => {
+        return new TokenAmount(ETH, expandValue(remainingPurchasable.multiply(tokenRate).toFixed(18), OWN))
     }
 
     useEffect(() => {
@@ -179,12 +181,25 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
             };
         }
 
+        async function getRemainingPurchasable() {
+            const details = await contract.getWhitelist(account);
+            const maxPayableAmount = new TokenAmount(OWN, details._maxPayableAmount)
+            const rewardedAmount = new TokenAmount(OWN, details._rewardedAmount)
+            return maxPayableAmount.subtract(rewardedAmount)
+        }
 
-        getRemainingTokens().then(r => setRemainingSupply(r))
+        const calculateMaxExpendable = (remainingP) => {
+            return new TokenAmount(ETH, expandValue(remainingP.multiply(tokenRate).toFixed(18), OWN));
+        }
+
+
         getAccountDetails().then(r => setAccountDetails(r))
         contract.tokenRate().then(r => setTokenRate(new TokenAmount(OWN, r)))
-    }, [account, contract, library, input, output]);
-
+        getRemainingPurchasable().then(r => {
+            setRemainingPurchasable(r)
+            setRemainingExpendable(calculateMaxExpendable(r))
+        })
+    }, [account, contract, library, input, output, tokenRate]);
 
     return (
         <Modal title="" onDismiss={onDismiss}>
@@ -201,6 +216,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                     currency={token}
                     showMaxButton
                     onMax={handleMaxInput}
+                    remainingSupply={calculateRemainingSupply().toExact()}
                 />
                 <CurrencyInputPanel
                     showMaxButton
@@ -210,7 +226,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                     value={output}
                     onUserInput={handleTypeOutput}
                     currency={project}
-                    remainingSupply={remainingSupply.toExact()}
+                    remainingSupply={remainingPurchasable.toExact()}
                 />
                 <ActionDiv>
                     <Button onClick={handleBuy} fullWidth>Swap</Button>
