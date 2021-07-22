@@ -103,10 +103,10 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      const validateInput = (tokenAmount) => {
         if (tokenAmount.greaterThan(accountDetails.maxPayableAmount)) {
             tokenAmount = accountDetails.maxPayableAmount
-        }
+        }   
 
-        if (calculateOutput(tokenAmount).greaterThan(remainingSupply)) {
-            tokenAmount = calculateInput(remainingSupply)
+        if (calculateOutput(tokenAmount).greaterThan(remainingPurchasable)) {
+            tokenAmount = calculateInput(remainingPurchasable)
             calculateOutput(tokenAmount)
         }
 
