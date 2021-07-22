@@ -8,7 +8,7 @@ import history from './routerHistory'
 const Home = lazy(() => import('./pages/Home'));
 const Project = lazy(() => import('./pages/Launchpad/Project/Layout'));
 const LaunchPad = lazy(() => import('./pages/Launchpad'));
-const Staking = lazy(() => import('./pages/Staking'))
+// const Staking = lazy(() => import('./pages/Staking'))
 
 const App: React.FC = () => {
   return (
@@ -22,14 +22,16 @@ const App: React.FC = () => {
             <Route path="/launch/projects" exact>
               <LaunchPad />
             </Route>
-            <Route path="/launch/staking" exact>
-              <Staking />
-            </Route>
             <Route path="/launch/projects/:ProjectAddress" component={Project} />
+
+            {/* <Route path="/launch/staking" exact>
+              <Staking />
+            </Route> */}
             {/* Redirects */}
             <Route path="/" exact>
                 <Redirect to="/launch" />
             </Route>
+            <Route><Redirect to="/launch" /></Route>
           </Switch>
         </SuspenseWithChunkError>
     </Menu>
