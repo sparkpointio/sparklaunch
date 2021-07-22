@@ -64,4 +64,9 @@ export const StyledLink = styled(Link)`
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    
+    @media (max-width: 770px ) {
+        width: 100%;
+        height: 6.5vh;
+    }
 `
