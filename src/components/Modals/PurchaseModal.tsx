@@ -49,6 +49,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
 
     const [tokenRate, setTokenRate] = useState(new TokenAmount(OWN, BigInt(0)))
     const [remainingSupply, setRemainingSupply] = useState(new TokenAmount(OWN, BigInt(0)))
+    const [remainingPurchasable, setRemainingPurchasable] = useState(new TokenAmount(OWN, BigInt(0)))
 
     /**
      * Sets the input amount and calculates the output
@@ -99,7 +100,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * Validates if the input does not exceed maxPayable and equivalent output does not exceed remainingSupply
      * @param tokenAmount
      */
-    const validateInput = (tokenAmount) => {
+     const validateInput = (tokenAmount) => {
         if (tokenAmount.greaterThan(accountDetails.maxPayableAmount)) {
             tokenAmount = accountDetails.maxPayableAmount
         }
@@ -179,9 +180,18 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
             };
         }
 
+        async function getRemainingPurchasable() {
+            let totalTokens = await contract.getTotalToken();
+            const details = await contract.getWhitelist(account);
+            totalTokens = new TokenAmount(OWN, totalTokens)
+            const purchasableAmount = new TokenAmount(OWN, details._rewardedAmount)
+            return totalTokens.subtract(purchasableAmount)
+        }
+
 
         getRemainingTokens().then(r => setRemainingSupply(r))
         getAccountDetails().then(r => setAccountDetails(r))
+        getRemainingPurchasable().then(r => setRemainingPurchasable(r))
         contract.tokenRate().then(r => setTokenRate(new TokenAmount(OWN, r)))
     }, [account, contract, library, input, output]);
 
