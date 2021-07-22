@@ -33,8 +33,6 @@ export const calculateLaunchpadStats = async (contract, project) => {
     const expectedSales = tokenRate.multiply(totalForSaleTokens);
     const percentage = totalSales.divide(expectedSales).multiply(BigInt(100));
 
-    const allocation = '';
-
     return {
         totalForSaleTokens: totalForSaleTokens.toExact(),
         totalSoldTokens: totalSoldTokens.toExact(),
