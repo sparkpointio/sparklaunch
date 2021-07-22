@@ -210,6 +210,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                     currency={token}
                     showMaxButton
                     onMax={handleMaxInput}
+                    remainingSupply={new TokenAmount(ETH, expandValue(remainingPurchasable.multiply(tokenRate).toFixed(18), OWN)).toExact()}
                 />
                 <CurrencyInputPanel
                     showMaxButton
@@ -219,7 +220,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                     value={output}
                     onUserInput={handleTypeOutput}
                     currency={project}
-                    remainingSupply={remainingSupply.toExact()}
+                    remainingSupply={remainingPurchasable.toExact()}
                 />
                 <ActionDiv>
                     <Button onClick={handleBuy} fullWidth>Swap</Button>
