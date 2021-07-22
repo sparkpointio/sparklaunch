@@ -36,8 +36,8 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
     const project = useFindProjectByAddress(address);
     const token = useSelectToken(project.buyingCoin);
 
-    const [input, setInput] = useState(new TokenAmount(ETH, BigInt(0)))
-    const [output, setOutput] = useState(new TokenAmount(ETH, BigInt(0)))
+    const [input, setInput] = useState('')
+    const [output, setOutput] = useState('')
     const [accountDetails, setAccountDetails] = useState({
         balance: new TokenAmount(ETH, BigInt(0)),
         amount: new TokenAmount(OWN, BigInt(0)),
@@ -55,8 +55,9 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * @param value
      */
     const handleTypeInput = (value: string) => {
-        const tokenAmount = new TokenAmount(ETH, expandValue(value, ETH));
-        setInput(tokenAmount)
+        setInput(value)
+        let tokenAmount = new TokenAmount(ETH, expandValue(value, ETH));
+        tokenAmount = validateInput(tokenAmount)
         calculateOutput(tokenAmount);
     }
 
@@ -65,8 +66,9 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * @param value
      */
     const handleTypeOutput = (value: string) => {
-        const tokenAmount = new TokenAmount(OWN, expandValue(value, OWN));
-        setOutput(tokenAmount)
+        setOutput(value)
+        let tokenAmount = new TokenAmount(OWN, expandValue(value, OWN));
+        tokenAmount = validateOutput(tokenAmount)
         calculateInput(tokenAmount)
 
     }
@@ -77,7 +79,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      */
     const calculateInput = (tokenAmount) => {
         const calculatedInput = new TokenAmount(ETH, expandValue(tokenAmount.multiply(tokenRate).toFixed(18), ETH));
-        setInput(calculatedInput);
+        setInput(calculatedInput.toExact());
 
         return calculatedInput;
     }
@@ -88,22 +90,38 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      */
     const calculateOutput = (tokenAmount) => {
         const calculatedOutput = new TokenAmount(ETH, expandValue(tokenAmount.divide(tokenRate).toFixed(18), OWN));
-        setOutput(calculatedOutput);
+        setOutput(calculatedOutput.toExact());
 
         return calculatedOutput;
     }
 
     /**
-     * Validates if the max input does not exceed maxPayable and equivalent output does not exceed remainingSupply
+     * Validates if the input does not exceed maxPayable and equivalent output does not exceed remainingSupply
      * @param tokenAmount
      */
-    const validateMaxInput = (tokenAmount) => {
+    const validateInput = (tokenAmount) => {
         if (tokenAmount.greaterThan(accountDetails.maxPayableAmount)) {
             tokenAmount = accountDetails.maxPayableAmount
         }
 
         if (calculateOutput(tokenAmount).greaterThan(remainingSupply)) {
             tokenAmount = calculateInput(remainingSupply)
+            calculateOutput(tokenAmount)
+        }
+
+        return tokenAmount;
+    }
+
+    /**
+     * Validates if the output does not exceed maxPayable and equivalent output does not exceed remainingSupply
+     * @param tokenAmount
+     */
+    const validateOutput = (tokenAmount) => {
+        let equivalentInput = calculateInput(tokenAmount);
+
+        if (equivalentInput.greaterThan(accountDetails.balance)) {
+            equivalentInput = validateInput(equivalentInput)
+            tokenAmount = calculateOutput(equivalentInput)
         }
 
         return tokenAmount;
@@ -115,14 +133,9 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
     const handleMaxInput = () => {
         let maxInput = accountDetails.balance;
 
-        maxInput = validateMaxInput(maxInput);
+        maxInput = validateInput(maxInput);
 
-
-        if (calculateOutput(maxInput).greaterThan(remainingSupply)) {
-            maxInput = calculateInput(remainingSupply)
-        }
-
-        setInput(maxInput);
+        setInput(maxInput.toExact());
     }
 
     /**
@@ -130,20 +143,17 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      */
     const handleMaxOutput = () => {
         let maxOutput = remainingSupply;
-        let equivalentInput = calculateInput(remainingSupply);
 
-        if (equivalentInput.greaterThan(accountDetails.balance)) {
-            equivalentInput = validateMaxInput(equivalentInput)
-            maxOutput = calculateOutput(equivalentInput)
-        }
-        setOutput(maxOutput);
+        maxOutput = validateOutput(maxOutput);
+
+        setOutput(maxOutput.toExact());
     }
 
     /**
      * Initiates buy token
      */
     const handleBuy = async () => {
-        const tx = await contract.buyTokens({value: input.raw.toString()})
+        const tx = await contract.buyTokens({value: expandValue(input, ETH)})
         console.log(tx);
         console.log(`Buying successful ${tx}`)
     }
@@ -173,7 +183,6 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
         getRemainingTokens().then(r => setRemainingSupply(r))
         getAccountDetails().then(r => setAccountDetails(r))
         contract.tokenRate().then(r => setTokenRate(new TokenAmount(OWN, r)))
-        console.log(output.toExact())
     }, [account, contract, library, input, output]);
 
 
@@ -187,7 +196,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                 <CurrencyInputPanel
                     label="From"
                     id="swap-input"
-                    value={input.toExact()}
+                    value={input}
                     onUserInput={handleTypeInput}
                     currency={token}
                     showMaxButton
@@ -198,7 +207,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                     onMax={handleMaxOutput}
                     label="To"
                     id="swap-input"
-                    value={output.toExact()}
+                    value={output}
                     onUserInput={handleTypeOutput}
                     currency={project}
                     remainingSupply={remainingSupply.toExact()}
