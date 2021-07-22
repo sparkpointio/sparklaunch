@@ -49,10 +49,6 @@ const StyledLink = styled(CustomLink)`
         border-left: 2px solid ${({ theme }) => theme.colors.primary};
         padding-left: 15px;
     }
-    @media (max-width: 770px ) {
-        width: 30%;
-        height: 8vh;
-    }
 `;
 
 
