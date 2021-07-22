@@ -211,7 +211,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                     currency={token}
                     showMaxButton
                     onMax={handleMaxInput}
-                    remainingSupply={remainingExpendable}
+                    remainingSupply={remainingExpendable.toExact()}
                 />
                 <CurrencyInputPanel
                     showMaxButton
