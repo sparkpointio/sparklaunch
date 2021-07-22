@@ -14,6 +14,9 @@ const AccountList: IAccountType[] = [
             },
             {
                 address: '0xcE84500ad8411b14e5DA048adCdF46284660a0AA'
+            },
+            {
+                address: '0x10efd615825F77aa715D2C7EA4c02280d9dd76fe'
             }
         ],
     },
