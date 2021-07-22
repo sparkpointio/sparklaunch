@@ -100,10 +100,6 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
         return new TokenAmount(ETH, expandValue(accountDetails.maxPayableAmount.multiply(tokenRate).toFixed(18), OWN));
     }
 
-    const calculateRemainingPurchasableETH = () => {
-        return new TokenAmount(ETH, expandValue(remainingPurchasable.multiply(tokenRate).toFixed(18), OWN));
-    }
-
     /**
      * Validates if the input does not exceed maxPayable and equivalent output does not exceed remainingSupply
      * @param tokenAmount
@@ -113,8 +109,8 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
             tokenAmount = calculateMaxPayableETH()
         }   
 
-        if (calculateOutput(tokenAmount).greaterThan(calculateRemainingPurchasableETH())) {
-            tokenAmount = calculateInput(calculateRemainingPurchasableETH())
+        if (calculateOutput(tokenAmount).greaterThan(remainingPurchasable)) {
+            tokenAmount = calculateInput(remainingPurchasable)
             calculateOutput(tokenAmount)
         }
 
