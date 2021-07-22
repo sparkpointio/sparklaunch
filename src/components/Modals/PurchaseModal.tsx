@@ -132,7 +132,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * Sets and checks the max input
      */
     const handleMaxInput = () => {
-        let maxInput = accountDetails.balance;
+        let maxInput = new TokenAmount(ETH, expandValue(remainingPurchasable.multiply(tokenRate).toFixed(18), OWN));
 
         maxInput = validateInput(maxInput);
 
@@ -143,7 +143,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * Sets and checks the max output
      */
     const handleMaxOutput = () => {
-        let maxOutput = remainingSupply;
+        let maxOutput = remainingPurchasable;
 
         maxOutput = validateOutput(maxOutput);
 
@@ -181,11 +181,10 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
         }
 
         async function getRemainingPurchasable() {
-            let totalTokens = await contract.getTotalToken();
             const details = await contract.getWhitelist(account);
-            totalTokens = new TokenAmount(OWN, totalTokens)
+            const totalAllocation = new TokenAmount(OWN, details._maxPayableAmount)
             const purchasableAmount = new TokenAmount(OWN, details._rewardedAmount)
-            return totalTokens.subtract(purchasableAmount)
+            return totalAllocation.subtract(purchasableAmount)
         }
 
 
