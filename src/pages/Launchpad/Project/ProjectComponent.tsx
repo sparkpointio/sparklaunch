@@ -131,7 +131,6 @@ const ProjectComponent: React.FC = () => {
     const { title, image, longDesc, longDesc2, buyingCoin, socMeds, wallpaperBg, status } = project;
     const token = useSelectToken(buyingCoin)
 
-
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     useEffect(() => {
         if (acc[0][0]) {
@@ -140,9 +139,10 @@ const ProjectComponent: React.FC = () => {
     }, [acc]);
 
     const theme = useContext(ThemeContext);
+    const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
     return (
         <CCont>
-            <CHeader>
+            <CHeader src={srcsBg}>
                 <TokenImage src={srcs} alt="token-image" />
                 <Heading bold fontSize="24px">
                     {title}

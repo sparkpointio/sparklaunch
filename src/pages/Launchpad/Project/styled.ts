@@ -5,13 +5,22 @@ import { SocmedGroup, ProgressGroup, DataGroup } from '../components/styled';
 export const CCont = styled(Card)`
     width: 100%;
 `;
-export const CHeader = styled(CardHeader)`
+export const CHeader = styled(CardHeader)<{ src?: string }>`
+    
     display: flex;
     align-items: center;
     height: auto;
     min-height: 10vh;
     max-height: 15vh;
+    ${({ src }) => src &&`
+      background-image: url(${src});
+      background-repeat: no-repeat;
+      background-attachment: scroll;
+      background-position: center;
+      background-size: cover;
+    `}
 `;
+
 export const TokenImage = styled.img`
     border-radius: 50%;
     width: 60px;
@@ -57,7 +66,6 @@ export const CFooter = styled(Flex)`
     height: auto;
     padding: 25px;
 `;
-
 
 const TableDiv = styled(Flex)`
     width: 100%;
