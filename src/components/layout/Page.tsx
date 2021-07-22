@@ -35,6 +35,7 @@ const StyledFooter = styled.footer`
 const CustomLink = styled.a`
     color: ${({ theme }) => theme.colors.text};
     margin: 5px;
+    
 `;
 const StyledLink = styled(CustomLink)`
     color: white;
