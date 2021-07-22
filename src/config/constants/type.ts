@@ -1,3 +1,5 @@
+import {Token} from "@sparkpointio/sparkswap-sdk";
+
 export interface ITokens {
     name: string;
     symbol: string;
@@ -8,8 +10,10 @@ export interface ITokens {
 }
 
 export interface IProjects {
+    category?: string;
     address?: string;
-    buyingCoin: string;
+    buyingCoin: Token;
+    sellingCoin: Token;
     title: string;
     symbol: string;
     image: string;
@@ -17,7 +21,7 @@ export interface IProjects {
     desc: string;
     longDesc: string;
     longDesc2?: string | null
-    longDesc3?: string | null 
+    longDesc3?: string | null
     price: number;
     progress: number;
     totalRaise: number;
@@ -49,7 +53,7 @@ export interface IAccountType {
     whiteList: ListType[]
 }
 
-export interface ITransactionDetails { 
+export interface ITransactionDetails {
     hash: string
     approval?: { tokenAddress: string; spender: string };
     summary?: string;
@@ -65,4 +69,3 @@ export type PageMeta = {
     image?: string
   }
 
-  

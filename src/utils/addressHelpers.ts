@@ -10,3 +10,7 @@ export const getAddress = (address: Address): string => {
 export const ownlyLaunchPad = () => {
     return getAddress(addresses.ownlyLaunchPad)
 }
+
+export const getLaunchPadAddress = (category) => {
+    return getAddress(addresses[category])
+}

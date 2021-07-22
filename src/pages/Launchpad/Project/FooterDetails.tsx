@@ -57,7 +57,7 @@ const AllocationSection = () => {
     )
 }
 
-const FooterDetails: React.FC<AppProps> = ({pool, project, buyingToken}) => {
+const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
     const theme = useContext(ThemeContext);
     const { account } = useWeb3React();
     const customTheme = useContext(CustomThemeContext);
@@ -66,7 +66,7 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, buyingToken}) => {
     const handleClick = useCallback((i) => {
         setActive(i)
     }, [])
-    
+
 
     return (
         <Container
@@ -91,7 +91,7 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, buyingToken}) => {
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Cap</Text>
-                        <Text color="textSubtle">{cap} {buyingToken?.symbol}</Text>
+                        <Text color="textSubtle">{cap} {project.buyingCoin.symbol}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Users Participated</Text>
@@ -99,12 +99,12 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, buyingToken}) => {
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Funds Swapped</Text>
-                        <Text color="textSubtle">{totalFundsSwapped} {buyingToken?.symbol}</Text>
+                        <Text color="textSubtle">{totalFundsSwapped} {project.buyingCoin.symbol}</Text>
                     </Flex>
                 </Flex>
                 <Flex flex="1" marginLeft="10px" flexDirection="column">
                     <Heading margin="10px 0px 30px 0px" bold>
-                        
+
                         Token Information
                     </Heading>
                     <Flex justifyContent="space-between">
