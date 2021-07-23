@@ -1,6 +1,7 @@
 import React, { Children, useContext } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { Text, Flex } from '@sparkpointio/sparkswap-uikit';
+import useMedia from 'use-media';
 import { Facebook, Twitter, Mail, Send } from 'react-feather';
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router';
@@ -23,13 +24,14 @@ const StyledPage = styled.div`
     }
 `;
 
-const StyledFooter = styled.footer`
+const StyledFooter = styled.div`
     height: auto;
-    max-height: 20vh;
+    min-height: 20vh;
     background-color: #111122;
     display: flex;
     justify-content: space-around;
-    padding: 30px 0px;
+    padding: 20px 0px;
+    width: 100%;
 `;
 
 const CustomLink = styled.a`
@@ -39,18 +41,21 @@ const CustomLink = styled.a`
 `;
 const StyledLink = styled(CustomLink)`
     color: white;
-    &:after {
-        content: '';
-        border-right: 2px solid ${({ theme }) => theme.colors.primary};
-        padding-right: 15px;
+    @media (min-width: 500px) {
+        &:after {
+            content: '';
+            border-right: 2px solid ${({ theme }) => theme.colors.primary};
+            padding-right: 15px;
+        }
+        &:before {
+            content: '';
+            border-left: 2px solid ${({ theme }) => theme.colors.primary};
+            padding-left: 15px;
+        }
     }
-    &:before {
-        content: '';
-        border-left: 2px solid ${({ theme }) => theme.colors.primary};
-        padding-left: 15px;
-    }
-`;
 
+`;
+ 
 
 const SocLink = ({socLink, children}) => (
     <a href={socLink}>{children}</a>
@@ -58,11 +63,13 @@ const SocLink = ({socLink, children}) => (
 
 const PageFooter = () => {
     const theme = useContext(ThemeContext);
+    const isMobile = useMedia({maxWidth: 500});
+
     return (
         <StyledFooter>
             <Flex flexDirection="column" justifyContent="space-evenly" style={{ textAlign: 'left' }}>
-                <img src={Powered} alt="powered-logo" style={{ width: '60%', margin: '20px' }} />
-                <Flex justifyContent="space-evenly" style={{ width: '100%' }}>
+                <img src={Powered} alt="powered-logo" style={{ width: '60%', margin: '20px 0px' }} />
+                <Flex flexDirection={isMobile? "column" : "row"} justifyContent="space-evenly" style={{ width: '100%' }}>
                     <CustomLink href="https://sparkpointio.github.io/terms_and_conditions/sparkdefi-launchpad/"><h5>Terms & Conditions</h5></CustomLink>
                     <StyledLink href="https://sparkpointio.github.io/privacy_policies/sparkdefi-launchpad/">Privacy Policy</StyledLink>
                     <CustomLink href="https://srk.finance/#roadmap"><h5>Sitemap</h5></CustomLink>
