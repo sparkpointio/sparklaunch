@@ -101,7 +101,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         >
             <ProgressGroup>
                 <Text bold as="h1" fontSize="24px">
-                    {tokenReport.title} Sold
+                    {stats.totalSoldTokens} {project.sellingCoin.name} Sold
                 </Text>
                 <Progress primaryStep={parseInt(stats.percentage)} variant="flat" />
                 <Flex justifyContent="space-between">
@@ -126,7 +126,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">My Allocation</Text>
-                    <Text>{accountDetails.amount.toExact()} {project.sellingCoin.symbol}</Text>
+                    <Text>{accountDetails.maxPayableAmount.toExact()} {project.sellingCoin.symbol}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">Max BNB</Text>
@@ -138,10 +138,10 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                     <UnlockButton fullWidth />
                 </div>
             ) : !whiteListed ? (
-                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.amount.toExact()}/>
+                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.maxPayableAmount.toExact()}/>
             ) : (
                 <>
-                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.amount.toExact()} />
+                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.maxPayableAmount.toExact()} />
                 <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}}>Purchase {project.symbol}</Button>
                 </>
             )}
