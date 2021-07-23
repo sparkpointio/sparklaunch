@@ -37,6 +37,7 @@ export const StyledDiv = styled.div`
         justify-content: center;
         align-items: center;
         margin: 75px;
+        width: 90%;
     }
 `;
 export const ActionsDiv = styled(StyledDiv)`
