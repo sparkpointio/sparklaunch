@@ -10,7 +10,7 @@ import { Input as NumericalInput } from '../NumericalInput'
 import { RowBetween } from '../Row'
 import CurrencyLogo from '../CurrencyLogo'
 
-// import { useActiveWeb3React } from '../../hooks'
+import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 
 const InputRow = styled.div<{ selected: boolean }>`
   display: flex;
@@ -81,8 +81,9 @@ interface CurrencyInputPanelProps {
   label?: string
   currency?: Currency | null
   disableCurrencySelect?: boolean
-  hideBalance?: boolean
   hideInput?: boolean
+  hideBalance?: boolean
+  remainingSupply?: string
   id: string
   showCommonBases?: boolean
 }
@@ -95,6 +96,7 @@ export default function CurrencyInputPanel({
     label,
     currency,
     disableCurrencySelect = false,
+    remainingSupply = '',
     hideBalance = false,
     hideInput = false,
     id,
@@ -108,7 +110,7 @@ export default function CurrencyInputPanel({
     const handleDismissSearch = useCallback(() => {
       setModalOpen(false)
     }, [setModalOpen])
-  
+
     return (
       <InputPanel id={id}>
         <Text fontSize="14px">{label}</Text>
@@ -132,11 +134,9 @@ export default function CurrencyInputPanel({
                 <NumericalInput
                   className="token-amount-input"
                   value={value}
-                  onUserInput={(val) => {
-                    onUserInput(val)
-                  }}
+                  onUserInput={onUserInput}
                 />
-                {account && currency && showMaxButton && label !== 'To' && (
+                {account && currency && showMaxButton && (
                   <Button onClick={onMax} size="sm" variant="primary" style={{maxWidth: '50px', width: '20%', fontSize: '14px'}}>
                     MAX
                   </Button>
@@ -146,18 +146,18 @@ export default function CurrencyInputPanel({
           </InputRow>
         </Container>
         {!hideInput && (
-         
+
           <RowBetween>
               {account && (
                 <Text onClick={onMax} fontSize="14px" style={{ display: 'inline', cursor: 'pointer' }}>
-                  {!hideBalance && !!currency 
-                    ? `Remaining: ${currency.symbol}`
+                  {!hideBalance && !!currency
+                    ? `Remaining:${remainingSupply} ${currency.symbol}`
                     : ' -'}
 
                 </Text>
-              )}  
+              )}
           </RowBetween>
-         
+
         )}
       </InputPanel>
     )
