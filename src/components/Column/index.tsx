@@ -14,6 +14,10 @@ text-align: center;
 justify-content: center;
 column-gap: 20px;
 row-gap: 20px;
+@media (max-width: 600px){
+  grid-template-columns: repeat(1, 1fr);
+  width: 80%;
+}
 `
 
 export const ColumnCenter = styled(Column)`
