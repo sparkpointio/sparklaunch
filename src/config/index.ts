@@ -16,13 +16,14 @@ export const BUSD = new Token(ChainId.MAINNET, '0xe9e7cea3dedca5984780bafc599bd6
 export const USDT = new Token(ChainId.MAINNET, '0x55d398326f99059ff775485246999027b3197955', 18, 'USDT', 'Tether USD')
 export const EOS = new Token(ChainId.MAINNET, '0x56b6fb708fc5732dec1afc8d8556423a2edccbd6', 18, 'EOS', 'EOS Token')
 export const DOT = new Token(ChainId.MAINNET, '0x7083609fce4d1d8dc0c979aab8c869ea2c873402', 18, 'DOT', 'Polkadot Token')
-export const ETH = new Token(ChainId.MAINNET, '0x2170ed0880ac9a755fd29b2688956bd959f933f8', 18, 'ETH', 'Ethereum Token')
+export const ETH = new Token(ChainId.MAINNET, '0x1e33833a035069f42d68D1F53b341643De1C018D', 18, 'ETH', 'Ethereum Token')
+export const BNB = new Token(ChainId.MAINNET, '0x1e33833a035069f42d68D1F53b341643De1C018D', 18, 'BNB', 'Binance token')
+export const OWN = new Token(ChainId.MAINNET, '0x2170ed0880ac9a755fd29b2688956bd959f933f8', 18, 'OWN', 'Ownly Token') // to update
 
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
   [ChainId.BSCTESTNET]: [WETH[ChainId.BSCTESTNET]]
 }
-
 // used to construct intermediary pairs for trading
 export const BASES_TO_CHECK_TRADES_AGAINST: ChainTokenList = {
   ...WETH_ONLY,
