@@ -74,6 +74,12 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
                 onUserInput={handleTypeOutput}
                 currency={project}
             />
+
+            {/* Price per BNB */}
+            <div style={{ width: '400px', padding: '10px 24px 20px 0px', color: '#FFFFFF'}}>
+            Price: 0.000000909090909090909 OWN per BNB
+            </div>
+           
             <ActionDiv>
             <Button fullWidth>Swap</Button>
             </ActionDiv>
