@@ -157,7 +157,7 @@ const ProjectComponent: React.FC = () => {
     const project = useFindProjectByAddress(Paddress);
     const acc = useAccountWhiteList(account);
     const pool = useGetPoolsByAddress(Paddress);
-    const { title, image, longDesc, longDesc2, buyingCoin, socMeds, wallpaperBg, status } = project;
+    const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
 
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     useEffect(() => {
@@ -208,6 +208,9 @@ const ProjectComponent: React.FC = () => {
                         </TextDescription>
                         <TextDescription color="textSubtle" as="p">
                             {longDesc2}
+                        </TextDescription>
+                        <TextDescription color="textSubtle" as="p">
+                            {longDesc3}
                         </TextDescription>
                         </Flex>
                     </Flex>
