@@ -36,6 +36,8 @@ export const StyledDiv = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
+        margin: 75px;
+        width: 90%;
     }
 `;
 export const ActionsDiv = styled(StyledDiv)`
@@ -67,6 +69,15 @@ export const StyledLink = styled(Link)`
     
     @media (max-width: 770px ) {
         width: 100%;
-        height: 6.5vh;
+        height: 6.8vh;
     }
+    @media (max-width: 375px) {
+        width: 100%;
+        height: 7.2vh;
+    }
+    @media (max-width: 320px ) {
+        width: 100%;
+        height: 8.1vh;
+    }
+    
 `

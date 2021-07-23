@@ -13,6 +13,12 @@ export const CardGroup = styled(Column)`
     row-gap: 35px;
     column-gap: 35px;
     margin-top: 20px;
+    @media (max-width: 1000px) {
+        grid-template-columns: repeat(2, 2fr);
+      }
+    @media (max-width: 500px) {
+        grid-template-columns: repeat(1, 1fr);
+      }
 `
 
 export const Container = styled(Flex)`

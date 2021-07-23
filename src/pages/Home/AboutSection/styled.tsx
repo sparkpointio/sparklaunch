@@ -21,6 +21,10 @@ export const StyledHeading = styled(Heading)`
         padding-top: 20px;
         border-bottom: 3px solid ${({theme}) => theme.colors.primary}; 
     }
+    @media (max-width: 768px) {
+        text-align: center;
+    }
+    
     
 `;
 

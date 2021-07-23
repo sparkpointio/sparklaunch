@@ -30,7 +30,7 @@ const StyledFooter = styled.div`
     background-color: #111122;
     display: flex;
     justify-content: space-around;
-    padding: 20px 0px;
+    padding: 10px 10px 40px 35px;
     width: 100%;
 `;
 
