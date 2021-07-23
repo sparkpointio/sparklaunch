@@ -9,7 +9,7 @@ import {Button, Flex, Heading, Modal, Text} from "@sparkpointio/sparkswap-uikit"
 import styled from "styled-components";
 import {SmallstyledImage} from 'pages/Launchpad/components/styled';
 import {useOwnlyLaunchpad} from '../../hooks/useContracts'
-import {ETH, OWN} from "../../config";
+import {BNB, OWN} from "../../config";
 import useActiveWeb3React from "../../hooks/useActiveWeb3React";
 import {expandValue} from "../../utils";
 
@@ -34,12 +34,12 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
     const contract = useOwnlyLaunchpad()
 
     const project = useFindProjectByAddress(address);
-    const token = useSelectToken(project.buyingCoin);
+    const token = useSelectToken(project.buyingCoin.address);
 
     const [input, setInput] = useState('')
     const [output, setOutput] = useState('')
     const [accountDetails, setAccountDetails] = useState({
-        balance: new TokenAmount(ETH, BigInt(0)),
+        balance: new TokenAmount(BNB, BigInt(0)),
         amount: new TokenAmount(OWN, BigInt(0)),
         maxPayableAmount: new TokenAmount(OWN, BigInt(0)),
         rewardedAmount: new TokenAmount(OWN, BigInt(0)),
@@ -57,7 +57,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      */
     const handleTypeInput = (value: string) => {
         setInput(value)
-        let tokenAmount = new TokenAmount(ETH, expandValue(value, ETH));
+        let tokenAmount = new TokenAmount(BNB, expandValue(value, BNB));
         tokenAmount = validateInput(tokenAmount)
         calculateOutput(tokenAmount);
     }
@@ -79,7 +79,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * @param tokenAmount
      */
     const calculateInput = (tokenAmount) => {
-        const calculatedInput = new TokenAmount(ETH, expandValue(tokenAmount.multiply(tokenRate).toFixed(18), ETH));
+        const calculatedInput = new TokenAmount(BNB, expandValue(tokenAmount.multiply(tokenRate).toFixed(18), BNB));
         setInput(calculatedInput.toExact());
 
         return calculatedInput;
@@ -90,7 +90,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * @param tokenAmount
      */
     const calculateOutput = (tokenAmount) => {
-        const calculatedOutput = new TokenAmount(ETH, expandValue(tokenAmount.divide(tokenRate).toFixed(18), OWN));
+        const calculatedOutput = new TokenAmount(BNB, expandValue(tokenAmount.divide(tokenRate).toFixed(18), OWN));
         setOutput(calculatedOutput.toExact());
 
         return calculatedOutput;
@@ -151,7 +151,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
      * Initiates buy token
      */
     const handleBuy = async () => {
-        const tx = await contract.buyTokens({value: expandValue(input, ETH)})
+        const tx = await contract.buyTokens({value: expandValue(input, BNB)})
         console.log(tx);
         console.log(`Buying successful ${tx}`)
     }
@@ -168,7 +168,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
         async function getAccountDetails() {
             const details = await contract.getWhitelist(account)
             return {
-                balance: new TokenAmount(ETH, (await library.getBalance(account)).toBigInt()),
+                balance: new TokenAmount(BNB, (await library.getBalance(account)).toBigInt()),
                 amount: new TokenAmount(OWN, details._amount),
                 maxPayableAmount: new TokenAmount(OWN, details._maxPayableAmount),
                 rewardedAmount: new TokenAmount(OWN, details._rewardedAmount),
@@ -185,7 +185,7 @@ const PurchaseModal: React.FC<AppProps> = ({onDismiss, address}) => {
         }
 
         const calculateMaxExpendable = (remainingP) => {
-            return new TokenAmount(ETH, expandValue(remainingP.multiply(tokenRate).toFixed(18), OWN));
+            return new TokenAmount(BNB, expandValue(remainingP.multiply(tokenRate).toFixed(18), OWN));
         }
 
 
