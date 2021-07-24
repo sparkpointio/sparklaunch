@@ -11,7 +11,7 @@ const Section: React.FC = () => {
         <StyledContainer>
             <StyledHeader>
                 <Heading as="h1" size={isMobile? "xl":"xxl"} bold>
-                Ignite your token on SparkLaunch!
+                    Ignite your token on SparkLaunch!
                 </Heading>
             </StyledHeader>
             <Divider />
@@ -24,8 +24,8 @@ const Section: React.FC = () => {
             <StyledDiv style={{justifyContent: 'center', textAlign: 'center'}}>
                 <h5>Exclusively on <img src={exclusive_binance} alt="ex-binance" width="20vw" height="20vh" style={{verticalAlign: 'middle'}} /> Binance Smart Chain</h5>
             </StyledDiv>
-            
-            
+
+
             <ActionsDiv>
                 <Button as="a" href="https://sparkswap.finance/#/swap" style={{width: '100%'}}>
                     Buy on SparkSwap
