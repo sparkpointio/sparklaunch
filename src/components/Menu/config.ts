@@ -24,7 +24,7 @@ const config: MenuEntry[] = [
   {
     label: "Launch",
     icon: "LaunchIcon",
-    href: "/launch"
+    href: "/"
   },
   {
     label: "Info",
