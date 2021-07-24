@@ -12,11 +12,11 @@ import CurrencyLogo from '../CurrencyLogo'
 
 import useActiveWeb3React from '../../hooks/useActiveWeb3React'
 
-const InputRow = styled.div<{ selected: boolean }>`
+const InputRow = styled.div`
   display: flex;
   flex-flow: row nowrap;
   align-items: center;
-  padding: ${({ selected }) => (selected ? '0.75rem 0.5rem 0.75rem 1rem' : '0.75rem 0.75rem 0.75rem 1rem')};
+  padding: 0.75rem 0.75rem 0.75rem 1rem;
 `
 const CurrencySelect = styled.button<{ selected: boolean }>`
   align-items: center;
@@ -80,7 +80,6 @@ interface CurrencyInputPanelProps {
   showMaxButton: boolean
   label?: string
   currency?: Currency | null
-  disableCurrencySelect?: boolean
   hideInput?: boolean
   hideBalance?: boolean
   remainingSupply?: string
@@ -95,7 +94,6 @@ export default function CurrencyInputPanel({
     showMaxButton,
     label,
     currency,
-    disableCurrencySelect = false,
     remainingSupply = '',
     hideBalance = false,
     hideInput = false,
@@ -115,7 +113,7 @@ export default function CurrencyInputPanel({
       <InputPanel id={id}>
         <Text fontSize="14px">{label}</Text>
         <Container hideInput={hideInput}>
-          <InputRow style={hideInput ? { padding: '0', borderRadius: '8px' } : {}} selected={disableCurrencySelect}>
+          <InputRow style={hideInput ? { padding: '0', borderRadius: '8px' } : {}} >
           <Aligner>
                 {/* <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} /> */}
                 <StyledImage src={`${process.env.PUBLIC_URL}/images/icons/${currency?.symbol}.png`} size="24px" />
