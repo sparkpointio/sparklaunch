@@ -138,7 +138,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                     {!account ? (
                         <UnlockButton fullWidth/>
                     ) : (
-                        <StyledLink to={`/launch/projects/${address}`}>
+                        <StyledLink to={`/projects/${address}`}>
                             <h1 style={{color: 'white'}}>Participate</h1>
                         </StyledLink>
                     )}
