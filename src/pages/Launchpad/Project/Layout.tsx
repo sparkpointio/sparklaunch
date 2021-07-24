@@ -18,13 +18,13 @@ const Container = styled(Flex)`
 const BackButton = styled(Link)`
     display: flex;
     align-items: center;
-    color: ${({theme}) => theme.colors.text}; 
+    color: ${({theme}) => theme.colors.text};
 `
 
 const Layout: React.FC <RouteComponentProps<{ProjectAddress?: string}>> = ({ match: {params: { ProjectAddress }}})  => {
     const data = setProject(ProjectAddress)
     const project = useAppSelector((state) => state.projects.data.find(p => p.address === data));
-    
+
 
     return (
         <Page>
@@ -38,10 +38,10 @@ const Layout: React.FC <RouteComponentProps<{ProjectAddress?: string}>> = ({ mat
                     <Text>On Going</Text>
                     <Text>{project?.symbol}</Text>
                 </Breadcrumbs>
-                    <BackButton to="/launch/projects"><ChevronLeft /> PROJECTS </BackButton>
+                    <BackButton to="/projects"><ChevronLeft /> PROJECTS </BackButton>
                 </Flex>
-               
-                </Flex>                            
+
+                </Flex>
                 <ProjectComponent />
             </Container>
         </Page>

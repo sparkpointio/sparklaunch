@@ -2,7 +2,7 @@ import React from 'react';
 import { Text, Button, Heading } from '@sparkpointio/sparkswap-uikit';
 import useMedia from 'use-media';
 import Divider from 'components/Divider';
-import { StyledContainer, StyledHeader, StyledDiv, ActionsDiv, StyledLink } from './styled'; 
+import { StyledContainer, StyledHeader, StyledDiv, ActionsDiv, StyledLink } from './styled';
 
 
 const Section: React.FC = () => {
@@ -31,10 +31,10 @@ const Section: React.FC = () => {
                 <Button as="a" href="https://sparkswap.finance/#/swap" style={{width: '100%'}}>
                     Buy on SparkSwap
                 </Button>
-                <StyledLink to="/launch/projects" ><h1 style={{ color: 'white' }}>Enter SparkLaunch</h1></StyledLink>
+                <StyledLink to="/projects" ><h1 style={{ color: 'white' }}>Enter SparkLaunch</h1></StyledLink>
                 <Button fullWidth style={{backgroundColor: '#7a1ba3'}} >Apply for IDO</Button>
             </ActionsDiv>
-        
+
         </StyledContainer>
     );
 };

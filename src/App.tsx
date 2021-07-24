@@ -16,22 +16,22 @@ const App: React.FC = () => {
     <Menu>
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
-            <Route path="/launch" exact>
+            <Route path="/" exact>
                 <Home />
             </Route>
-            <Route path="/launch/projects" exact>
+            <Route path="/projects" exact>
               <LaunchPad />
             </Route>
-            <Route path="/launch/projects/:ProjectAddress" component={Project} />
+            <Route path="/projects/:ProjectAddress" component={Project} />
 
-            {/* <Route path="/launch/staking" exact>
+            {/* <Route path="/staking" exact>
               <Staking />
             </Route> */}
             {/* Redirects */}
             <Route path="/" exact>
-                <Redirect to="/launch" />
+                <Redirect to="/" />
             </Route>
-            <Route><Redirect to="/launch" /></Route>
+            <Route><Redirect to="/" /></Route>
           </Switch>
         </SuspenseWithChunkError>
     </Menu>

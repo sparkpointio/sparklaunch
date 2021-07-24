@@ -14,10 +14,10 @@ export const customMeta: { [key: string]: PageMeta } = {
   '/launch': {
     title: 'Launch | SparkDeFi'
   },
-  '/launch/projects': {
+  '/projects': {
     title: 'Projects | SparkDeFi',
   },
-  '/launch/staking': {
+  '/staking': {
     title: 'Staking | SparkDeFi',
   },
 }
