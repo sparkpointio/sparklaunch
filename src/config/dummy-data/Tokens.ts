@@ -2,7 +2,7 @@ import { ITokens } from "config/constants/type"
 
 const TokenList:ITokens[] = [
     {
-        name: "WBNB Token",
+        name: "BNB Token",
         symbol: "BNB",
         address: "0x1e33833a035069f42d68D1F53b341643De1C018D",
         chainId: 97,
