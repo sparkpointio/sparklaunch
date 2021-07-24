@@ -82,7 +82,7 @@ const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }
                 </div>
             </TierDetails>
             <TierFooter>
-                <Button fullWidth>Learn More</Button>
+            <Button as="a" href="https://medium.com/p/140532e2d1e/" fullWidth>Learn More</Button>
             </TierFooter>
         </Box>
     );
