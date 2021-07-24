@@ -11,7 +11,7 @@ const Section: React.FC = () => {
         <StyledContainer>
             <StyledHeader>
                 <Heading as="h1" size={isMobile? "xl":"xxl"} bold>
-                Ignite your token on SparkLaunch!
+                    Ignite your token on SparkLaunch!
                 </Heading>
             </StyledHeader>
             <Divider />

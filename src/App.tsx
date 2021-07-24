@@ -1,5 +1,5 @@
 import React, {lazy} from 'react';
-import { Router, Redirect, Route, Switch } from 'react-router-dom'
+import { Router, Redirect, Route, Switch, BrowserRouter, HashRouter } from 'react-router-dom';
 import SuspenseWithChunkError from 'components/SuspenseWithChunkError'
 import PageLoader from 'components/PageLoader'
 import Menu from 'components/Menu'
@@ -12,30 +12,30 @@ const LaunchPad = lazy(() => import('./pages/Launchpad'));
 
 const App: React.FC = () => {
   return (
-   <Router history={history}>
+   <HashRouter  basename={process.env.PUBLIC_URL}>
     <Menu>
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
-            <Route path="/" exact>
+            <Route path='/' exact>
                 <Home />
             </Route>
-            <Route path="/projects" exact>
+            <Route path='/projects' exact>
               <LaunchPad />
             </Route>
-            <Route path="/projects/:ProjectAddress" component={Project} />
+            <Route path='/projects/:ProjectAddress' component={Project} />
 
             {/* <Route path="/staking" exact>
               <Staking />
             </Route> */}
             {/* Redirects */}
-            <Route path="/" exact>
-                <Redirect to="/" />
-            </Route>
-            <Route><Redirect to="/" /></Route>
+            {/* <Route path="/" exact> */}
+            {/*    <Redirect to="/" /> */}
+            {/* </Route> */}
+            {/* <Route><Redirect to="/" /></Route> */}
           </Switch>
         </SuspenseWithChunkError>
     </Menu>
-   </Router>
+   </HashRouter>
   );
 }
 
