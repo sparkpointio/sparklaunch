@@ -7,7 +7,7 @@ import './App.css';
 
 const Section: React.FC = () => {
     const isMobile = useMedia({maxWidth: 500})
-    const exclusive_binance = `${process.env.PUBLIC_URL}/images/icons/exclusive_binance.png`;
+    const exclusive_binance = `${process.env.PUBLIC_URL}/images/icons/exclusive_binance.PNG`;
     return (
         <StyledContainer>
             <StyledHeader>
