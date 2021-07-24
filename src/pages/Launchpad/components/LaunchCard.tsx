@@ -113,7 +113,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                     </ProgressGroup>
                     <DataGroup flexDirection="column">
                         <Flex justifyContent="space-between">
-                            <Text color="textSubtle">Total Raise</Text>
+                            <Text color="textSubtle">Total Raised</Text>
                             <Text>
                                 {stats.totalSales} {buyingCoin.symbol}
                             </Text>
