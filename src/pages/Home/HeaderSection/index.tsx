@@ -3,7 +3,6 @@ import { Text, Button, Heading } from '@sparkpointio/sparkswap-uikit';
 import useMedia from 'use-media';
 import Divider from 'components/Divider';
 import { StyledContainer, StyledHeader, StyledDiv, ActionsDiv, StyledLink } from './styled';
-import './App.css';
 
 const Section: React.FC = () => {
     const isMobile = useMedia({maxWidth: 500})
