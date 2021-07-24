@@ -12,7 +12,7 @@ const LaunchPad = lazy(() => import('./pages/Launchpad'));
 
 const App: React.FC = () => {
   return (
-   <HashRouter  >
+   <HashRouter  basename={process.env.PUBLIC_URL}>
     <Menu>
         <SuspenseWithChunkError fallback={<PageLoader />}>
           <Switch>
