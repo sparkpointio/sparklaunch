@@ -36,7 +36,7 @@ const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => {
           Projects
         </ButtonMenuItem>
         <ButtonMenuItem fullWidth id="pool-nav-link" href="https://app.srk.finance/#/pool" as="a" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`} }}  >
-          Participate
+          Staking
         </ButtonMenuItem>
       </StyledButtonMenu>
     </StyledNav>
