@@ -23,8 +23,10 @@ const Section: React.FC = () => {
                 </Text>
             </StyledDiv>
             <StyledDiv style={{justifyContent: 'center', textAlign: 'center'}}>
-                <img src={exclusive_binance} alt="ex-binance" />
+                <Text>Exclusively on <img src={exclusive_binance} alt="ex-binance" width="20" height="20" /> Binance Smart Chain</Text>
             </StyledDiv>
+            
+            
             <ActionsDiv>
                 <Button as="a" href="https://sparkswap.finance/#/swap" style={{width: '100%'}}>
                     Buy on SparkSwap
