@@ -31,7 +31,7 @@ const Section: React.FC = () => {
                     Buy on SparkSwap
                 </Button>
                 <StyledLink to="/projects" ><h1 style={{ color: 'white' }}>Enter SparkLaunch</h1></StyledLink>
-                <Button fullWidth style={{backgroundColor: '#7a1ba3'}} >Apply for IDO</Button>
+                <Button as="a" href="https://forms.gle/hXZPr93vC8TEmsoh8" fullWidth style={{backgroundColor: '#7a1ba3'}} >Apply for IDO</Button>
             </ActionsDiv>
 
         </StyledContainer>
