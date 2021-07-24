@@ -50,6 +50,7 @@ export const Box = styled.div`
 
 export const BoxHeading = styled(Heading)`
     margin: 15px 0px;
+    text-align: center;
 `
 
 export const TierTitle = styled(BoxHeading)`
