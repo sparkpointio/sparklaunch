@@ -36,8 +36,17 @@ export const StyledDiv = styled.div`
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        margin: 75px;
+        margin: 24px;
         width: 90%;
+    }
+    @media (max-width: 414px) {
+        margin: 37px;
+    }
+    @media (max-width: 375px) {
+        margin: 21px;
+    }
+    @media (max-width: 320px) {
+        margin: 45px;
     }
 `;
 export const ActionsDiv = styled(StyledDiv)`
@@ -73,11 +82,11 @@ export const StyledLink = styled(Link)`
     }
     @media (max-width: 375px) {
         width: 100%;
-        height: 7.2vh;
+        height: 7.6vh;
     }
     @media (max-width: 320px ) {
         width: 100%;
-        height: 8.1vh;
+        height: 8.6vh;
     }
     
 `
