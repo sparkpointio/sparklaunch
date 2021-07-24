@@ -23,7 +23,7 @@ const Section: React.FC = () => {
                 </Text>
             </StyledDiv>
             <StyledDiv style={{justifyContent: 'center', textAlign: 'center'}}>
-                <Text>Exclusively on <img src={exclusive_binance} alt="ex-binance" width="20" height="20" /> Binance Smart Chain</Text>
+                <Text>Exclusively on <img src={exclusive_binance} alt="ex-binance" width="20vw" height="20vh" /> Binance Smart Chain</Text>
             </StyledDiv>
             
             
