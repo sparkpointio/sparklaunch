@@ -1,0 +1,10 @@
+/* static text styling*/
+
+h5 {
+    color: white;
+    font-weight: normal;
+  }
+
+  vertical {
+    vertical-align: middle;
+  }
