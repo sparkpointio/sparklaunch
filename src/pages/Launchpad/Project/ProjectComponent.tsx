@@ -121,7 +121,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                     <Text>{stats.totalSoldTokens}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">Total Raised</Text>
+                    <Text color="textSubtle">Total Raise</Text>
                     <Text>{stats.totalSales} {project.buyingCoin.symbol}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
