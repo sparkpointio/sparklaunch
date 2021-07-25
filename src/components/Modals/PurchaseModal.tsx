@@ -14,6 +14,7 @@ import { useOwnlyLaunchpad } from '../../hooks/useContracts';
 import { BNB, OWN } from '../../config';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { expandValue } from '../../utils';
+import { getAccountDetailsLaunchPad } from '../../utils/contractHelpers';
 
 
 interface AppProps {
@@ -49,6 +50,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
         amount: new TokenAmount(OWN, BigInt(0)),
         maxPayableAmount: new TokenAmount(OWN, BigInt(0)),
         rewardedAmount: new TokenAmount(OWN, BigInt(0)),
+        allocations: new TokenAmount(OWN, BigInt(0)),
         redeemed: false,
         whitelist: false,
     });
@@ -176,7 +178,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                 hideProgressBar: false,
                 closeOnClick: true,
                 pauseOnHover: true,
-                draggable: true, 
+                draggable: true,
             })
         }
         catch(e) {
@@ -196,26 +198,6 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
     };
 
     useEffect(() => {
-        async function getRemainingTokens() {
-            let totalTokens = await contract.getTotalToken();
-            let soldAmount = await contract.soldAmount();
-            totalTokens = new TokenAmount(OWN, totalTokens);
-            soldAmount = new TokenAmount(OWN, soldAmount);
-            return totalTokens.subtract(soldAmount);
-        }
-
-        async function getAccountDetails() {
-            const details = await contract.getWhitelist(account);
-            return {
-                balance: new TokenAmount(BNB, (await library.getBalance(account)).toBigInt()),
-                amount: new TokenAmount(OWN, details._amount),
-                maxPayableAmount: new TokenAmount(OWN, details._maxPayableAmount),
-                rewardedAmount: new TokenAmount(OWN, details._rewardedAmount),
-                redeemed: details._redeemed,
-                whitelist: details._whitelist,
-            };
-        }
-
         async function getRemainingPurchasable() {
             const details = await contract.getWhitelist(account);
             const maxPayableAmount = new TokenAmount(OWN, details._maxPayableAmount);
@@ -227,13 +209,13 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
             return new TokenAmount(BNB, expandValue(remainingP.multiply(tokenRate).toFixed(18), OWN));
         };
 
-        getAccountDetails().then((r) => setAccountDetails(r));
+        getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
         contract.tokenRate().then((r) => setTokenRate(new TokenAmount(OWN, r)));
         getRemainingPurchasable().then((r) => {
             setRemainingPurchasable(r);
             setRemainingExpendable(calculateMaxExpendable(r));
         });
-    }, [account, contract, library, input, output, tokenRate]);
+    }, [account, contract, library, input, output, tokenRate, project]);
 
     return (
         <Modal title="" onDismiss={onDismiss}>
@@ -273,7 +255,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                     <Text>My Allocations</Text>
                     <Flex alignItems="center" marginTop="12px">
                         <SmallstyledImage src={`${process.env.PUBLIC_URL}/images/icons/${project?.symbol}.png`} />
-                        <Text color="textSubtle">{`${parseInt(accountDetails.maxPayableAmount.toExact()) - parseInt(remainingPurchasable.toExact()) } ${project.symbol}`}</Text>
+                        <Text color="textSubtle">{`${parseInt(accountDetails.allocations.toExact()) - parseInt(remainingPurchasable.toExact()) } ${project.symbol}`}</Text>
                     </Flex>
                 </ActionDiv>
             </div>

@@ -18421,8 +18421,8 @@ react-table@^7.7.0:
 
 react-toastify@^7.0.4:
   version "7.0.4"
-  resolved "https://registry.nlark.com/react-toastify/download/react-toastify-7.0.4.tgz#7d0b743f2b96f65754264ca6eae31911a82378db"
-  integrity sha1-fQt0PyuW9ldUJkym6uMZEagjeNs=
+  resolved "https://registry.yarnpkg.com/react-toastify/-/react-toastify-7.0.4.tgz#7d0b743f2b96f65754264ca6eae31911a82378db"
+  integrity sha512-Rol7+Cn39hZp5hQ/k6CbMNE2CKYV9E5OQdC/hBLtIQU2xz7DdAm7xil4NITQTHR6zEbE5RVFbpgSwTD7xRGLeQ==
   dependencies:
     clsx "^1.1.1"
 
