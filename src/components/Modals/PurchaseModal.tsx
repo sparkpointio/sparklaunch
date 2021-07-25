@@ -254,7 +254,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                 <ActionDiv>
                     <Text>My Allocations</Text>
                     <Flex alignItems="center" marginTop="12px">
-                        <SmallstyledImage src={`${process.env.PUBLIC_URL}/images/icons/${project?.symbol}.png`} />
+                        <SmallstyledImage src={`${process.env.PUBLIC_URL}/images/icons/${project?.symbol?.toLowerCase()}.png`} />
                         <Text color="textSubtle">{`${accountDetails.rewardedAmount.toExact()} ${project.symbol}`}</Text>
                     </Flex>
                 </ActionDiv>
