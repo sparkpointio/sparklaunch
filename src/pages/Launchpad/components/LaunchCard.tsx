@@ -6,6 +6,7 @@ import {ThemeContext} from 'styled-components';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
 import {StatusColor} from 'pages/styled';
+import Timer from 'pages/Home/HeaderSection/timer';
 import {IProjects} from '../../../config/constants/type';
 import {ReactComponent as MediumIcon} from './icons/MediumIcon.svg';
 import {
@@ -66,6 +67,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 </StyledHeading>
             </StyledCardHeader>
             <StyledCardBody>
+            
                 <Options>
                     <SocmedGroup>
                         <Anchor href={socMeds?.[0]}>
@@ -81,6 +83,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <SvgIcon width={24} Icon={MediumIcon}/>
                         </Anchor>
                     </SocmedGroup>
+        
                     {status === 'active' ? (
                         <StyledButton style={{backgroundColor: StatusColor.live}}>LIVE NOW</StyledButton>
                     ) : status === 'upcoming' ? (
@@ -89,8 +92,9 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <StyledButton style={{backgroundColor: StatusColor.completed}}>COMPLETED</StyledButton>
                     )}
                 </Options>
+                <StyledButton style={{width: '51vh', height: '7vh', backgroundColor: 'green', display: 'inline-flex'}}>OWN Going Live in:&nbsp; <Timer/></StyledButton>
                 <Details>
-                    <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px'}}>
+                    <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px', marginTop: '10px'}}>
                         <Text>{desc}</Text>
                     </div>
                     <ProgressGroup>
