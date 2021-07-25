@@ -155,7 +155,7 @@ const ProjectComponent: React.FC = () => {
     const [whiteListed, setWhiteList] = useState(false);
     const Paddress = useFindProject();
     const project = useFindProjectByAddress(Paddress);
-    const acc = useAccountWhiteList(account);
+    const acc = useAccountWhiteList(account.toLowerCase());
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
 
