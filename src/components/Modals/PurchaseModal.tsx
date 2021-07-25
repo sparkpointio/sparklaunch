@@ -242,7 +242,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                     <Heading bold fontSize="21px">
                         Swap Coins
                     </Heading>
-                    <StyledHeading>Max. Allocation is {project.symbol}</StyledHeading>
+                    <StyledHeading>{`Max. Allocation is ${accountDetails.maxPayableAmount.toExact()} ${project.symbol}`}</StyledHeading>
                 </div>
                 <CurrencyInputPanel
                     label="From"
@@ -273,7 +273,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                     <Text>My Allocations</Text>
                     <Flex alignItems="center" marginTop="12px">
                         <SmallstyledImage src={`${process.env.PUBLIC_URL}/images/icons/${project?.symbol}.png`} />
-                        <Text color="textSubtle">{`${remainingPurchasable.toExact()} ${project.symbol}`}</Text>
+                        <Text color="textSubtle">{`${parseInt(accountDetails.maxPayableAmount.toExact()) - parseInt(remainingPurchasable.toExact()) } ${project.symbol}`}</Text>
                     </Flex>
                 </ActionDiv>
             </div>
