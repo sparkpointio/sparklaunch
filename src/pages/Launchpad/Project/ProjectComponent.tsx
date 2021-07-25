@@ -3,7 +3,6 @@ import { useWeb3React } from '@web3-react/core';
 import {TokenAmount} from "@sparkpointio/sparkswap-sdk";
 import styled, { ThemeContext } from 'styled-components';
 import { Globe, Twitter, Send } from 'react-feather';
-import { Redirect, useHistory } from 'react-router-dom';
 import {
     Card,
     Flex,
@@ -18,7 +17,6 @@ import {
 } from '@sparkpointio/sparkswap-uikit';
 import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject } from 'state/hooks';
 import { IProjects, ITokens, STATE } from 'config/constants/type';
-import { useSelectToken } from 'state/tokens/hooks';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
 import { StyledHr2 as Divider } from 'components/Divider';
@@ -161,13 +159,7 @@ const ProjectComponent: React.FC = () => {
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
-    
-    const history = useHistory();
-    useEffect(() => {
-        if (!account) {
-            history.push('/projects');
-        }
-    }, [account, history])
+
 
     useEffect(() => {
         if (acc[0][0]) {
