@@ -92,7 +92,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <StyledButton style={{backgroundColor: StatusColor.completed}}>COMPLETED</StyledButton>
                     )}
                 </Options>
-                <StyledButton style={{width: '51vh', height: '7vh', backgroundColor: 'green'}}>Ownly IDO Launchpad going live in {Timer}</StyledButton>
+                <StyledButton style={{width: '51vh', height: '10vh', backgroundColor: 'green'}}>Ownly IDO Launchpad going live in<Timer/></StyledButton>
                 <Details>
                     <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px', marginTop: '10px'}}>
                         <Text>{desc}</Text>
