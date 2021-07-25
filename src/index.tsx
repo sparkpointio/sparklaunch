@@ -9,6 +9,7 @@ import Providers from './Providers'
 import 'inter-ui'
 
 
+
 if ('ethereum' in window) {
   (window.ethereum as any).autoRefreshOnNetworkChange = false
 }
