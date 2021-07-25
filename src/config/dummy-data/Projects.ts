@@ -21,7 +21,7 @@ const ProjectList: Array<IProjects> = [
         ownSale: 2666666667,
         wallpaperBg: 'ownlyBG.jpg',
         status: "upcoming",
-        socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
+        socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
     // {
     //     category: 'ownlyLaunchPad',
