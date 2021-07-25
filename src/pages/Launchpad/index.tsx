@@ -22,14 +22,17 @@ const LaunchpadHome: React.FC = () => {
                     <SectionTitle>Ongoing Launches</SectionTitle>
                     <CardContainer ProjectList={ActiveProjects} />
                 </Section>
+                {/*
                 <Section>
                     <SectionTitle>Upcoming Launches</SectionTitle>
                     <CardContainer ProjectList={UpcomingProjects} />
                 </Section>
+                 
                 <Section>
                     <SectionTitle>Completed Launches</SectionTitle>
                     <CardContainer ProjectList={CompletedProjects} />
                 </Section>
+                */}
             </Container>
         </Page>
     );

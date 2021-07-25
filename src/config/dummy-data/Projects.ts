@@ -23,6 +23,7 @@ const ProjectList: Array<IProjects> = [
         status: "active",
         socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
     },
+    /* 
     {
         category: 'ownlyLaunchPad',
         address: '0x002',
@@ -96,6 +97,7 @@ const ProjectList: Array<IProjects> = [
         status: "upcoming",
         socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
     },
+    */
 ]
 
 export default ProjectList;
