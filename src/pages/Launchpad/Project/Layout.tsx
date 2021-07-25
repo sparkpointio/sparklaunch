@@ -38,7 +38,7 @@ const Layout: React.FC <RouteComponentProps<{ProjectAddress?: string}>> = ({ mat
                     <Text>On Going</Text>
                     <Text>{project?.symbol}</Text>
                 </Breadcrumbs>
-                    <BackButton to="/projects"><ChevronLeft /> PROJECTS </BackButton>
+                    <BackButton to='/projects'><ChevronLeft /> PROJECTS </BackButton>
                 </Flex>
 
                 </Flex>

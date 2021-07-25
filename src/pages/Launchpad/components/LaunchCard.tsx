@@ -49,7 +49,6 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     })
     const {account} = useWeb3React();
     const contract = useLaunchpadContract(category)
-
     const theme = useContext(ThemeContext);
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
