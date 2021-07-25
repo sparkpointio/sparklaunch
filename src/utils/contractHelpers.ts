@@ -61,11 +61,9 @@ export const getAccountDetailsLaunchPad = async (contract, project, library, acc
     const maxExpendable = new TokenAmount(project.buyingCoin, expandValue(
         (dets.maxPayableAmount.subtract(dets.rewardedAmount)).multiply(tokenRate).toFixed(18), project.buyingCoin)
     )
-    const allocations = new TokenAmount(project.sellingCoin, expandValue(dets.amount.multiply(tokenRate), project.sellingCoin))
     return {
         ... dets,
         'maxExpendable': maxExpendable,
-        'allocations': allocations
     };
 }
 

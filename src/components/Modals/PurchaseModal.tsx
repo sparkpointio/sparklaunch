@@ -50,9 +50,8 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
         amount: new TokenAmount(OWN, BigInt(0)),
         maxPayableAmount: new TokenAmount(OWN, BigInt(0)),
         rewardedAmount: new TokenAmount(OWN, BigInt(0)),
-        allocations: new TokenAmount(OWN, BigInt(0)),
         redeemed: false,
-        whitelist: false,
+        whitelist: false
     });
 
     const [tokenRate, setTokenRate] = useState(new TokenAmount(OWN, BigInt(0)));
@@ -180,6 +179,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                 pauseOnHover: true,
                 draggable: true,
             })
+            getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
         }
         catch(e) {
             const code = e.code;
@@ -255,7 +255,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                     <Text>My Allocations</Text>
                     <Flex alignItems="center" marginTop="12px">
                         <SmallstyledImage src={`${process.env.PUBLIC_URL}/images/icons/${project?.symbol}.png`} />
-                        <Text color="textSubtle">{`${parseInt(accountDetails.allocations.toExact()) - parseInt(remainingPurchasable.toExact()) } ${project.symbol}`}</Text>
+                        <Text color="textSubtle">{`${accountDetails.rewardedAmount.toExact()} ${project.symbol}`}</Text>
                     </Flex>
                 </ActionDiv>
             </div>
