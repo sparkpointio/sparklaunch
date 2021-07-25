@@ -3,6 +3,7 @@ import { useWeb3React } from '@web3-react/core';
 import {TokenAmount} from "@sparkpointio/sparkswap-sdk";
 import styled, { ThemeContext } from 'styled-components';
 import { Globe, Twitter, Send } from 'react-feather';
+import { Redirect, useHistory } from 'react-router-dom';
 import {
     Card,
     Flex,
@@ -31,8 +32,8 @@ import { CCont, CHeader, TokenImage, SmalltokenImage, CBody, StyledButton, Custo
 import {calculateLaunchpadStats, getAccountDetailsLaunchPad} from "../../../utils/contractHelpers";
 import {useLaunchpadContract} from "../../../hooks/useContracts";
 import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
-
 import {BNB, OWN} from "../../../config";
+
 
 
 type AppProps = {
@@ -155,11 +156,19 @@ const ProjectComponent: React.FC = () => {
     const [whiteListed, setWhiteList] = useState(false);
     const Paddress = useFindProject();
     const project = useFindProjectByAddress(Paddress);
-    const acc = useAccountWhiteList(account.toLowerCase());
+    const userAddress = account? account.toLowerCase() : '';
+    const acc = useAccountWhiteList(userAddress);
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
-
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
+    
+    const history = useHistory();
+    useEffect(() => {
+        if (!account) {
+            history.push('/projects');
+        }
+    }, [account, history])
+
     useEffect(() => {
         if (acc[0][0]) {
             setWhiteList(true);

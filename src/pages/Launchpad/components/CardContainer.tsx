@@ -13,6 +13,7 @@ const CardContainer: React.FC<Props> = (props) => {
     const pages = ProjectList?.map((item) => {
         return (
             <Card
+            key={item.address}
                 {... item}
             />
         );
