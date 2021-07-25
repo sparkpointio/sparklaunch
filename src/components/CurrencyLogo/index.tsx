@@ -30,23 +30,23 @@ const getTokenLogoURL = (address: string) =>
     size = '24px',
     style
   }: {
-    currency?: Currency | null 
+    currency?: Currency | null
     size?: string
     style?: React.CSSProperties
   }) {
     // const uriLocations = useHttpLocations(currency instanceof WrappedTokenInfo ? currency.logoURI : undefined)
     const srcs: string[] = useMemo(() => {
       // if (currency === ETHER) return []
-  
+
       // if (currency instanceof Token) {
         // if (currency instanceof WrappedTokenInfo) {
         //   return [...uriLocations, `${process.env.PUBLIC_URL}/images/coins/${currency?.symbol ?? 'default'}.png`, getTokenLogoURL(currency.address)]
         // }
-        return [`${process.env.PUBLIC_URL}/images/coins/${currency?.symbol ?? 'default'}.png`]
+        return [`${process.env.PUBLIC_URL}/images/coins/${(currency?.symbol?.toLowerCase()) ?? 'default'}.png`]
       // }
       // return []
     }, [currency])
-    console.log(`${process.env.PUBLIC_URL}/images/coins/${currency?.symbol}`)
+    console.log(`${process.env.PUBLIC_URL}/images/coins/${currency?.symbol?.toLowerCase()}`)
     if (currency === ETHER) {
       return <StyledEthereumLogo src={EthereumLogo} size={size} style={style} />
     }

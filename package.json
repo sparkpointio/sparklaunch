@@ -2,7 +2,6 @@
   "name": "sparklaunch",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sparkpointio.github.io/sparklaunch/",
   "dependencies": {
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
@@ -66,6 +65,7 @@
     "react-scripts": "^4.0.3",
     "react-spring": "^8.0.27",
     "react-table": "^7.7.0",
+    "react-toastify": "^7.0.4",
     "react-tooltip": "^4.2.18",
     "react-virtualized-auto-sizer": "^1.0.2",
     "react-window": "^1.8.5",

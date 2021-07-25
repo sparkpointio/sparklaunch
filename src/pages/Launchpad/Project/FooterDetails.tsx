@@ -30,8 +30,8 @@ const FooterNav = ({ activeIndex = 0, handleClick}: { activeIndex?: number; hand
     return (
         <Flex alignItems="center" style={{ margin: '10px 10px 0px 10px', padding: '20px 20px 0px 20px' }}>
             <NavOptions activeIndex={activeIndex === 0} onClick={() => handleClick(0)}>Project Details</NavOptions>
-            <NavOptions activeIndex={activeIndex === 1} onClick={() => handleClick(1)}>Schedule</NavOptions>
-            <NavOptions activeIndex={activeIndex === 2} onClick={() => handleClick(2)}>Your Allocation</NavOptions>
+            {/* <NavOptions activeIndex={activeIndex === 1} onClick={() => handleClick(1)}>Schedule</NavOptions>
+            <NavOptions activeIndex={activeIndex === 2} onClick={() => handleClick(2)}>Your Allocation</NavOptions> */}
         </Flex>
     );
 };

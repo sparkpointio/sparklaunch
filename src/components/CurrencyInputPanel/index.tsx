@@ -116,7 +116,7 @@ export default function CurrencyInputPanel({
           <InputRow style={hideInput ? { padding: '0', borderRadius: '8px' } : {}} >
           <Aligner>
                 {/* <CurrencyLogo currency={currency} size="24px" style={{ marginRight: '8px' }} /> */}
-                <StyledImage src={`${process.env.PUBLIC_URL}/images/icons/${currency?.symbol}.png`} size="24px" />
+                <StyledImage src={`${process.env.PUBLIC_URL}/images/icons/${currency?.symbol?.toLowerCase()}.png`} size="24px" />
                 <Text>
                 {(currency && currency.symbol && currency.symbol.length > 20
                     ? `${currency.symbol.slice(0, 4)}...${currency.symbol.slice(

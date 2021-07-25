@@ -63,7 +63,7 @@ export const getAccountDetailsLaunchPad = async (contract, project, library, acc
     )
     return {
         ... dets,
-        'maxExpendable': maxExpendable
+        'maxExpendable': maxExpendable,
     };
 }
 
