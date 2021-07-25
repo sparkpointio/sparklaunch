@@ -6,13 +6,15 @@ function Timer() {
     const difference = +new Date(`${year}-07-27 17:00:00`) - +new Date();
     // const difference = new Date("Jul 27, 2021 17:00:00").getTime();
     let timeLeft = {};
+    
 
     if (difference > 0) {
       timeLeft = {
-        days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-        hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-        minutes: Math.floor((difference / 1000 / 60) % 60),
-        seconds: Math.floor((difference / 1000) % 60),
+        d: Math.floor(difference / (1000 * 60 * 60 * 24)),
+        h: Math.floor((difference / (1000 * 60 * 60)) % 24),
+        m: Math.floor((difference / 1000 / 60) % 60),
+        s: Math.floor((difference / 1000) % 60),
+
       };
     }
 
@@ -36,8 +38,8 @@ function Timer() {
     }
 
     timerComponents.push(
-        <span style={{color: 'white'}}>
-        {timeLeft[interval]} {interval}{" : "}
+        <span style={{color: '#FFFFFF'}}>
+        {timeLeft[interval]}{interval}{" "}
       </span>
     );
   });
