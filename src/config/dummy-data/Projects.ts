@@ -21,7 +21,7 @@ const ProjectList: Array<IProjects> = [
         ownSale: 165000000.0,
         wallpaperBg: 'ownlyBg.jpg',
         status: "active",
-        socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
+        socMeds: ['https://ownly.io', 'https://twitter.com/ownlyio', 'https://t.me/ownlyio', 'https://medium.com/ownlyio'],
     },
     /* 
     {
