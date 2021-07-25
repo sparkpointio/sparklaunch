@@ -16,7 +16,7 @@ import {
     useModal,
 } from '@sparkpointio/sparkswap-uikit';
 import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject } from 'state/hooks';
-import { IProjects, ITokens } from 'config/constants/type';
+import { IProjects, ITokens, STATE } from 'config/constants/type';
 import { useSelectToken } from 'state/tokens/hooks';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
@@ -194,9 +194,9 @@ const ProjectComponent: React.FC = () => {
                                     <SvgIcon width={24} Icon={MediumIcon} />
                                 </Anchor>
                             </SocmedGroup>
-                            {status === 'active' ? (
+                            {status === STATE.active ? (
                                 <StyledButton style={{ backgroundColor: '#32a31b' }}>LIVE NOW</StyledButton>
-                            ) : status === 'upcoming' ? (
+                            ) : status === STATE.upcoming ? (
                                 <StyledButton style={{ backgroundColor: '#7a1ba3' }}>UPCOMING</StyledButton>
                             ) : (
                                 <StyledButton style={{ backgroundColor: '#8e98a5' }}>COMPLETED</StyledButton>
