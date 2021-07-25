@@ -24,7 +24,7 @@ const Section: React.FC = () => {
                 </Text>
             </StyledDiv>
             <StyledDiv style={{justifyContent: 'center', textAlign: 'center'}}>
-                <h5>Exclusively on <img src={exclusive_binance} alt="ex-binance" width="20vw" height="20vh" style={{verticalAlign: 'middle'}} /> Binance Smart Chain</h5>
+                <Text>Exclusively on <img src={exclusive_binance} alt="ex-binance" width="20vw" height="20vh" style={{verticalAlign: 'middle'}} /> Binance Smart Chain</Text>
             </StyledDiv>
             
             <ActionsDiv>
