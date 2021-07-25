@@ -46,6 +46,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
     }, [contract, project]);
 
+    const numberWithCommas = (x) => {
+        return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
+    }
+    
+
     return (
         <Card style={{ padding: '5px' }}>
             <StyledCardHeader src={srcsBg}>
@@ -133,25 +138,19 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             </Flex>
                         )}
 
+                        <Flex justifyContent="space-between">
                         {status === STATE.upcoming ? (
-                            <Flex justifyContent="space-between">
-                                {status === STATE.upcoming ? (
-                                    <Text color="textSubtle">Coming Soon For Sale </Text>
-                                ) : (
-                                    <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
-                                )}
-                                <Text>{ownSale}</Text>
-                            </Flex>
+                            <Text color="textSubtle">Coming Soon For Sale</Text>
                         ) : (
-                            <Flex justifyContent="space-between">
-                                {status === STATE.upcoming ? (
-                                    <Text color="textSubtle">Coming Soon For Sale </Text>
-                                ) : (
-                                    <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
-                                )}
-                                <Text>{stats.remainingForSale === '0' ? '-' : stats.remainingForSale}</Text>
-                            </Flex>
+                            <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
                         )}
+
+                        {status === STATE.upcoming ? (
+                            <Text>{numberWithCommas(ownSale)} {sellingCoin.symbol}</Text>
+                        ) : (
+                            <Text>{stats.remainingForSale === '0' ? '-' : stats.remainingForSale}</Text>
+                        )}
+                        </Flex>
                         
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">Buying Coin</Text>
