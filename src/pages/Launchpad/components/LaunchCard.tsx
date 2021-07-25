@@ -9,8 +9,8 @@ import { StatusColor } from 'pages/styled';
 import { IProjects, STATE } from 'config/constants/type';
 import { useLaunchpadContract } from 'hooks/useContracts';
 import { calculateLaunchpadStats } from 'utils/contractHelpers';
-import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
 import Timer from 'pages/Home/HeaderSection/timer';
+import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
 import {
     CardAction,
     DataGroup,
@@ -27,7 +27,7 @@ import {
 import Anchor, { StyledLink } from './StyledLink';
 
 const LaunchCard: React.FC<IProjects> = (project) => {
-    const { category, address, buyingCoin, title, image, wallpaperBg, desc, ownSale, status, socMeds } = project;
+    const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, status, socMeds } = project;
 
     const [stats, setStats] = useState({
         totalForSaleTokens: '-',
@@ -76,7 +76,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <StyledButton style={{ backgroundColor: StatusColor.completed }}>COMPLETED</StyledButton>
                     )}
                 </Options>
-                <StyledButton style={{width: '51vh', height: '7vh', backgroundColor: 'green', display: 'inline-flex'}}>OWN Going Live in:&nbsp; <Timer/></StyledButton>
+                <StyledButton style={{width: '51vh', height: '7vh', backgroundColor: 'green', display: 'inline-flex'}}>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></StyledButton>
                 <Details>
                     <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px', marginTop: '10px'}}>
                         <Text>{desc}</Text>
@@ -109,9 +109,9 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             {status === STATE.upcoming ? (
                                 <Text color="textSubtle">Coming Soon For Sale </Text>
                             ) : (
-                                <Text color="textSubtle">OWN For Sale</Text>
+                                <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
                             )}
-                            <Text>{ownSale === 0 ? '-' : stats.remainingForSale}</Text>
+                            <Text>{stats.remainingForSale === '0' ? '-' : stats.remainingForSale}</Text>
                         </Flex>
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">Buying Coin</Text>
