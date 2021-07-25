@@ -2,7 +2,7 @@
   "name": "sparklaunch",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://sparkpointio.github.io/sparklaunch/",
+  "homepage": "launch.sparkswap.finance",
   "dependencies": {
     "@crowdin/crowdin-api-client": "^1.8.16",
     "@ethersproject/experimental": "^5.0.1",
