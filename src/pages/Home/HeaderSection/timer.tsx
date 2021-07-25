@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 
 function Timer() {
   const calculateTimeLeft = () => {
-    let year = new Date().getFullYear();
+    const year = new Date().getFullYear();
     const difference = +new Date(`${year}-07-27`) - +new Date();
     // let difference = new Date("Jul 27, 2021 17:00:00").getTime();
     let timeLeft = {};
@@ -37,7 +37,7 @@ function Timer() {
 
     timerComponents.push(
       <span>
-        {timeLeft[interval]} {interval}{" "}
+        {timeLeft[interval]} {interval}{" : "}
       </span>
     );
   });
