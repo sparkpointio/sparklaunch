@@ -13,7 +13,7 @@ const LaunchPad = lazy(() => import('./pages/Launchpad'));
 
 const App: React.FC = () => {
     return (
-        <HashRouter basename={process.env.PUBLIC_URL}>
+        <HashRouter>
             <Menu>
                 <SuspenseWithChunkError fallback={<PageLoader />}>
                     <ToastContainer
@@ -34,7 +34,7 @@ const App: React.FC = () => {
                         <Route path='/projects' exact>
                             <LaunchPad />
                         </Route>
-                        <Route path='/projects/:ProjectAddress' component={Project} />
+                        <Route path='/projects/:ProjectAddress' component={Project} exact/>
 
                         {/* <Route path="/staking" exact>
                           <Staking />
