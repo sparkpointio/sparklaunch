@@ -20,7 +20,7 @@ const ProjectList: Array<IProjects> = [
         totalRaise: 150,
         ownSale: 165000000.0,
         wallpaperBg: 'ownlyBG.jpg',
-        status: "active",
+        status: "upcoming",
         socMeds: ['facebook.com', 'twitter.com', 'telegram.org', 'medium.com'],
     },
     // {
