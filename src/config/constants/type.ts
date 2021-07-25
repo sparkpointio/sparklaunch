@@ -1,5 +1,14 @@
 import {Token} from "@sparkpointio/sparkswap-sdk";
 
+
+export type Status = 'active' | 'upcoming' | 'completed' | null;
+
+export const STATE:{active: Status; upcoming: Status; completed: Status} = {
+    active: 'active',
+    upcoming: 'upcoming',
+    completed: 'completed'
+}
+
 export interface ITokens {
     name: string;
     symbol: string;
@@ -26,7 +35,7 @@ export interface IProjects {
     progress: number;
     totalRaise: number;
     ownSale: number;
-    status?: string;
+    status?: Status;
     socMeds?: string[]
 }
 

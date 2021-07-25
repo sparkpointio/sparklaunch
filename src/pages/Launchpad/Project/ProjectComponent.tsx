@@ -16,8 +16,7 @@ import {
     useModal,
 } from '@sparkpointio/sparkswap-uikit';
 import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject } from 'state/hooks';
-import { IProjects, ITokens } from 'config/constants/type';
-import { useSelectToken } from 'state/tokens/hooks';
+import { IProjects, ITokens, STATE } from 'config/constants/type';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
 import { StyledHr2 as Divider } from 'components/Divider';
@@ -31,8 +30,8 @@ import { CCont, CHeader, TokenImage, SmalltokenImage, CBody, StyledButton, Custo
 import {calculateLaunchpadStats, getAccountDetailsLaunchPad} from "../../../utils/contractHelpers";
 import {useLaunchpadContract} from "../../../hooks/useContracts";
 import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
-
 import {BNB, OWN} from "../../../config";
+
 
 
 type AppProps = {
@@ -114,18 +113,18 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
             <CustomDataGroup flexDirection="column">
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">OWNLY Price</Text>
-                    <Text>{stats.tokenRate}</Text>
+                    <Text>{stats.tokenRate} {project.buyingCoin.symbol}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">OWNLY Sold</Text>
-                    <Text>{stats.totalSoldTokens}</Text>
+                    <Text>{stats.totalSoldTokens} {project.sellingCoin.symbol}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">Total Raised</Text>
                     <Text>{stats.totalSales} {project.buyingCoin.symbol}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
-                    <Text color="primary">My Allocation</Text>
+                    <Text color="primary">Max Allocation</Text>
                     <Text>{accountDetails.maxPayableAmount.toExact()} {project.sellingCoin.symbol}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
@@ -138,10 +137,10 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                     <UnlockButton fullWidth />
                 </div>
             ) : !whiteListed ? (
-                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.maxPayableAmount.toExact()}/>
+                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()}/>
             ) : (
                 <>
-                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.maxPayableAmount.toExact()} />
+                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
                 <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}}>Purchase {project.symbol}</Button>
                 </>
             )}
@@ -155,11 +154,13 @@ const ProjectComponent: React.FC = () => {
     const [whiteListed, setWhiteList] = useState(false);
     const Paddress = useFindProject();
     const project = useFindProjectByAddress(Paddress);
-    const acc = useAccountWhiteList(account);
+    const userAddress = account? account.toLowerCase() : '';
+    const acc = useAccountWhiteList(userAddress);
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
-
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
+
+
     useEffect(() => {
         if (acc[0][0]) {
             setWhiteList(true);
@@ -194,9 +195,9 @@ const ProjectComponent: React.FC = () => {
                                     <SvgIcon width={24} Icon={MediumIcon} />
                                 </Anchor>
                             </SocmedGroup>
-                            {status === 'active' ? (
+                            {status === STATE.active ? (
                                 <StyledButton style={{ backgroundColor: '#32a31b' }}>LIVE NOW</StyledButton>
-                            ) : status === 'upcoming' ? (
+                            ) : status === STATE.upcoming ? (
                                 <StyledButton style={{ backgroundColor: '#7a1ba3' }}>UPCOMING</StyledButton>
                             ) : (
                                 <StyledButton style={{ backgroundColor: '#8e98a5' }}>COMPLETED</StyledButton>
