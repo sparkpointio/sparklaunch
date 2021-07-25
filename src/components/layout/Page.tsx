@@ -84,7 +84,7 @@ const PageFooter = () => {
                     <SocLink socLink="https://www.facebook.com/sparkpointio/"><Facebook size="30" color="#FFFFFF" /></SocLink>
                     <SocLink socLink="https://twitter.com/sparkpointio"><Twitter size="30" color="#FFFFFF" />  </SocLink>
                     <SocLink socLink="https://t.me/SparkPointOfficial"><Send size="30" color="#FFFFFF" /></SocLink>
-                    <SocLink socLink="https://www.gmail.com"><Mail size="30" color="#FFFFFF" /></SocLink>
+                    <SocLink socLink="mailto: support@sparkpoint.io"><Mail size="30" color="#FFFFFF" /></SocLink>
                 </Flex>
                 <h5>© SparkLaunch 2021</h5>
             </Flex>
