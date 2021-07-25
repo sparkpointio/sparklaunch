@@ -1,5 +1,7 @@
 import React, {lazy} from 'react';
 import { Router, Redirect, Route, Switch } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 import SuspenseWithChunkError from 'components/SuspenseWithChunkError'
 import PageLoader from 'components/PageLoader'
 import Menu from 'components/Menu'
@@ -15,6 +17,17 @@ const App: React.FC = () => {
    <Router history={history}>
     <Menu>
         <SuspenseWithChunkError fallback={<PageLoader />}>
+          <ToastContainer
+           position="top-right"
+           autoClose={5000}
+           hideProgressBar={false}
+           newestOnTop
+           closeOnClick
+           rtl={false}
+           pauseOnFocusLoss
+           draggable
+           pauseOnHover
+          />
           <Switch>
             <Route path="/" exact>
                 <Home />
