@@ -10,6 +10,7 @@ import { IProjects, STATE } from 'config/constants/type';
 import { useLaunchpadContract } from 'hooks/useContracts';
 import { calculateLaunchpadStats } from 'utils/contractHelpers';
 import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
+import Timer from 'pages/Home/HeaderSection/timer';
 import {
     CardAction,
     DataGroup,
@@ -37,7 +38,6 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     });
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
-
     const theme = useContext(ThemeContext);
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
@@ -76,8 +76,9 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <StyledButton style={{ backgroundColor: StatusColor.completed }}>COMPLETED</StyledButton>
                     )}
                 </Options>
+                <StyledButton style={{width: '51vh', height: '7vh', backgroundColor: 'green', display: 'inline-flex'}}>OWN Going Live in:&nbsp; <Timer/></StyledButton>
                 <Details>
-                    <div style={{ height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px' }}>
+                    <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px', marginTop: '10px'}}>
                         <Text>{desc}</Text>
                     </div>
                     <ProgressGroup>

@@ -18,7 +18,7 @@ const ApplySection: React.FC = () => {
              <Text>Apply for an IDO on SparkLaunch, submit your project and get a response within 24 hours.</Text>
              <Actions>
                  <Button as="a" href="https://forms.gle/hXZPr93vC8TEmsoh8" fullWidth margin="10px">Apply Now</Button>
-                 <Button fullWidth margin="10px" style={{backgroundColor: '#7a1ba3'}}>Contact Us</Button>
+                 <Button as="a" href= "mailto: support@sparkpoint.io" fullWidth margin="10px" style={{backgroundColor: '#7a1ba3'}}>Contact Us</Button>
              </Actions>
         </StyledContainer>
        
