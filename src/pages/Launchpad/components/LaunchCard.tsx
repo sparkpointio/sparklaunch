@@ -27,7 +27,7 @@ import {
 import Anchor, { StyledLink } from './StyledLink';
 
 const LaunchCard: React.FC<IProjects> = (project) => {
-    const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, status, socMeds } = project;
+    const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds } = project;
 
     const [stats, setStats] = useState({
         totalForSaleTokens: '-',
@@ -92,29 +92,67 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Text as="h1">Progress</Text>
                         )}
 
-                        <Progress primaryStep={parseInt(stats.percentage)} variant="flat" />
-                        <Flex justifyContent="space-between">
-                            <Text color="textSubtle">{stats.percentage}%</Text>
-                            <Text color="textSubtle">
-                                {stats.totalSales} / {stats.expectedSales} {buyingCoin.symbol}
-                            </Text>
-                        </Flex>
+                        {status === STATE.upcoming ? (
+                            <Progress primaryStep={0} variant="flat" />
+                        ) : (
+                            <Progress primaryStep={parseInt(stats.percentage)} variant="flat" />
+                        )}
+
+                        {status === STATE.upcoming ? (
+                            <Flex justifyContent="space-between">
+                                <Text color="textSubtle">{0}%</Text>
+                                <Text color="textSubtle">
+                                    {0} / {totalRaise} {buyingCoin.symbol}
+                                </Text>
+                            </Flex>
+                        ) : (
+                            <Flex justifyContent="space-between">
+                                <Text color="textSubtle">{stats.percentage}%</Text>
+                                <Text color="textSubtle">
+                                    {stats.totalSales} / {stats.expectedSales} {buyingCoin.symbol}
+                                </Text>
+                            </Flex>
+                        )}          
+
                     </ProgressGroup>
                     <DataGroup flexDirection="column">
-                        <Flex justifyContent="space-between">
-                            <Text color="textSubtle">Total Raised</Text>
-                            <Text>
-                                {stats.totalSales} {buyingCoin.symbol}
-                            </Text>
-                        </Flex>
-                        <Flex justifyContent="space-between">
-                            {status === STATE.upcoming ? (
-                                <Text color="textSubtle">Coming Soon For Sale </Text>
-                            ) : (
-                                <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
-                            )}
-                            <Text>{stats.remainingForSale === '0' ? '-' : stats.remainingForSale}</Text>
-                        </Flex>
+
+                        {status === STATE.upcoming ? (
+                            <Flex justifyContent="space-between">
+                                <Text color="textSubtle">Total Raised</Text>
+                                <Text>
+                                    {0} {buyingCoin.symbol}
+                                </Text>
+                            </Flex>
+                        ) : (
+                            <Flex justifyContent="space-between">
+                                <Text color="textSubtle">Total Raised</Text>
+                                <Text>
+                                    {stats.totalSales} {buyingCoin.symbol}
+                                </Text>
+                            </Flex>
+                        )}
+
+                        {status === STATE.upcoming ? (
+                            <Flex justifyContent="space-between">
+                                {status === STATE.upcoming ? (
+                                    <Text color="textSubtle">Coming Soon For Sale </Text>
+                                ) : (
+                                    <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
+                                )}
+                                <Text>{ownSale}</Text>
+                            </Flex>
+                        ) : (
+                            <Flex justifyContent="space-between">
+                                {status === STATE.upcoming ? (
+                                    <Text color="textSubtle">Coming Soon For Sale </Text>
+                                ) : (
+                                    <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
+                                )}
+                                <Text>{stats.remainingForSale === '0' ? '-' : stats.remainingForSale}</Text>
+                            </Flex>
+                        )}
+                        
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">Buying Coin</Text>
                             <Text>{buyingCoin.symbol}</Text>
