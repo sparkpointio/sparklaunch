@@ -4,7 +4,7 @@ const config: MenuEntry[] = [
   {
     label: "Swap",
     icon: "TradeIcon",
-    href: "/swap",
+    href: "https://sparkswap.finance/#/swap",
   },
   {
     label: "Farm",
