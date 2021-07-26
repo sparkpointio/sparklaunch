@@ -82,13 +82,29 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <StyledButton style={{ backgroundColor: StatusColor.completed }}>COMPLETED</StyledButton>
                     )}
                 </Options>
-                <ProgressGroup>
-                    <TimerButton>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></TimerButton>
-                </ProgressGroup>
+                    {status === STATE.upcoming ? (
+                        <ProgressGroup>
+                            <TimerButton>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></TimerButton>
+                        </ProgressGroup>    
+                    ) : status === STATE.active ? (
+                        <ProgressGroup/>
+                    ) : (
+                        <ProgressGroup/>
+                    )}
                 <Details>
-                    <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px', marginTop: '10px'}}>
-                        <Text>{desc}</Text>
-                    </div>
+                    {status === STATE.active ? (
+                        <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '30px', marginTop: '-25px'}}>
+                            <Text>{desc}</Text>
+                        </div>
+                    ) : status === STATE.upcoming ? (
+                        <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px', marginTop: '10px'}}>
+                            <Text>{desc}</Text>
+                        </div>
+                        ) : (
+                        <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '30px', marginTop: '-25px'}}>
+                            <Text>{desc}</Text>
+                        </div>
+                    )}
                     <ProgressGroup>
                         {status === STATE.completed ? (
                             <Text as="h1">Sale Completion</Text>
