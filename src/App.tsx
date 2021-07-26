@@ -1,5 +1,5 @@
 import React, { lazy } from 'react';
-import { HashRouter, Route, Switch } from 'react-router-dom';
+import { HashRouter, Route, Switch, Redirect } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import SuspenseWithChunkError from 'components/SuspenseWithChunkError';
@@ -43,7 +43,7 @@ const App: React.FC = () => {
                         {/* <Route path="/" exact> */}
                         {/*    <Redirect to="/" /> */}
                         {/* </Route> */}
-                        {/* <Route><Redirect to="/" /></Route> */}
+                        <Route><Redirect to="/" /></Route>
                     </Switch>
                 </SuspenseWithChunkError>
             </Menu>
