@@ -21,10 +21,11 @@ const LaunchpadHome: React.FC = () => {
         <Page>
             <Container>
                 <CardNav />
-                <Section>
+                {ActiveProjects.length !==0 && (<Section>
                     <SectionTitle>Ongoing Launches</SectionTitle>
                     <CardContainer ProjectList={ActiveProjects} />
                 </Section>
+                )}
                 {UpcomingProjects.length !== 0 && (
                     <Section>
                         <SectionTitle>Upcoming Launches</SectionTitle>
