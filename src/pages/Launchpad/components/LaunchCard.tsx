@@ -23,6 +23,7 @@ import {
     StyledCardHeader,
     StyledHeading,
     StyledImage,
+    TimerButton,
 } from './styled';
 import Anchor, { StyledLink } from './StyledLink';
 
@@ -82,7 +83,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                     )}
                 </Options>
                 <ProgressGroup>
-                    <StyledButton style={{ backgroundColor: 'green', display: 'inline-flex'}}>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></StyledButton>
+                    <TimerButton>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></TimerButton>
                 </ProgressGroup>
                 <Details>
                     <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px', marginTop: '10px'}}>

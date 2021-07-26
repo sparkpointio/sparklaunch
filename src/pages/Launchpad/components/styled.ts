@@ -76,6 +76,23 @@ export const StyledButton = styled(Button)`
     border-radius: 5px;
 `;
 
+export const TimerButton = styled(Button)`
+    cursor: context-menu;
+    height: 35px;
+    border-radius: 5px;
+    background-color: green;
+    display: inline-flex;
+    width: 100%;
+    height: 7vh;
+    text-align:center;
+    overflow: hidden;
+    @media (max-width: 382px) {
+        text-align:center;
+        font-size: 94%;
+        height: 6vh;
+      }
+`;
+
 export const StyledImage = styled.img<{size?: string}>`
     border-radius: 50%;
     height: ${({ size }) => !size? '60px': size};
