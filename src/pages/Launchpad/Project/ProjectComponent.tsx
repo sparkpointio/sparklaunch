@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import {TokenAmount} from "@sparkpointio/sparkswap-sdk";
 import styled, { ThemeContext } from 'styled-components';
+import { useHistory } from 'react-router-dom';
 import { Globe, Twitter, Send } from 'react-feather';
 import {
     Card,
@@ -31,6 +32,7 @@ import {calculateLaunchpadStats, getAccountDetailsLaunchPad} from "../../../util
 import {useLaunchpadContract} from "../../../hooks/useContracts";
 import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
 import {BNB, OWN} from "../../../config";
+
 
 
 
@@ -159,7 +161,12 @@ const ProjectComponent: React.FC = () => {
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
-
+    const history = useHistory()
+    useEffect(() => {
+        if (status !== STATE.active) {
+            history.push('/projects')
+        }
+    }, [status, history])
 
     useEffect(() => {
         if (acc[0][0]) {
