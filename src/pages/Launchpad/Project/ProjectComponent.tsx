@@ -18,6 +18,7 @@ import {
 } from '@sparkpointio/sparkswap-uikit';
 import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject } from 'state/hooks';
 import { IProjects, ITokens, STATE } from 'config/constants/type';
+import Developers from 'config/dummy-data/Testers';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
 import { StyledHr2 as Divider } from 'components/Divider';
@@ -161,12 +162,13 @@ const ProjectComponent: React.FC = () => {
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
+    const developer = Developers ? Developers.find(dev => dev.address === account) : undefined;
     const history = useHistory()
     useEffect(() => {
-        if (status !== STATE.active) {
+        if ((status !== STATE.active) && (!developer)) {
             history.push('/projects')
         }
-    }, [status, history])
+    }, [status, history, developer])
 
     useEffect(() => {
         if (acc[0][0]) {

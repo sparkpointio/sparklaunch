@@ -74,11 +74,13 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <SvgIcon width={24} Icon={MediumIcon} />
                         </Anchor>
                     </SocmedGroup>
-                    {status === STATE.active ? (
+                    {status === STATE.active? (
                         <StyledButton style={{ backgroundColor: StatusColor.live }}>LIVE NOW</StyledButton>
                     ) : status === STATE.upcoming ? (
                         <StyledButton style={{ backgroundColor: StatusColor.upcoming }}>UPCOMING</StyledButton>
-                    ) : (
+                    ) : status === STATE.developer? (
+                        <StyledButton style={{ backgroundColor: StatusColor.completed }}>DEVELOPER MODE</StyledButton>
+                    ) :(
                         <StyledButton style={{ backgroundColor: StatusColor.completed }}>COMPLETED</StyledButton>
                     )}
                 </Options>
@@ -160,7 +162,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                     </DataGroup>
                 </Details>
             </StyledCardBody>
-            {status === 'active' && (
+            {status === STATE.active || status === STATE.developer && (
                 <CardAction>
                     {!account ? (
                         <UnlockButton fullWidth />
