@@ -84,7 +84,13 @@ export const TimerButton = styled(Button)`
     display: inline-flex;
     width: 100%;
     height: 7vh;
+    text-align:center;
     overflow: hidden;
+    @media (max-width: 382px) {
+        text-align:center;
+        font-size: 94%;
+        height: 6vh;
+      }
 `;
 
 export const StyledImage = styled.img<{size?: string}>`
