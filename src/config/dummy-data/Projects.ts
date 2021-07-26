@@ -1,13 +1,13 @@
 import { IProjects } from "config/constants/type";
-import {BNB, OWN} from "../index";
+import {BNB, TBNB, OWN , TOWN} from "../index";
 
 
 const ProjectList: Array<IProjects> = [
     {
         category: 'ownlyLaunchPad',
         address: '0x001',
-        sellingCoin: OWN,
-        buyingCoin: BNB,
+        sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : TOWN ),
+        buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : TBNB ) ,
         title: 'Ownly',
         symbol: 'OWNLY',
         image: 'ownly.png',
@@ -20,7 +20,7 @@ const ProjectList: Array<IProjects> = [
         totalRaise: 253.46,
         ownSale: 2666666667,
         wallpaperBg: 'ownlyBG.jpg',
-        status: "upcoming",
+        status: "active",
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
     // {

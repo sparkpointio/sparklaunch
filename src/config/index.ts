@@ -17,8 +17,10 @@ export const USDT = new Token(ChainId.MAINNET, '0x55d398326f99059ff7754852469990
 export const EOS = new Token(ChainId.MAINNET, '0x56b6fb708fc5732dec1afc8d8556423a2edccbd6', 18, 'EOS', 'EOS Token')
 export const DOT = new Token(ChainId.MAINNET, '0x7083609fce4d1d8dc0c979aab8c869ea2c873402', 18, 'DOT', 'Polkadot Token')
 export const ETH = new Token(ChainId.MAINNET, '0x1e33833a035069f42d68D1F53b341643De1C018D', 18, 'ETH', 'Ethereum Token')
-export const BNB = new Token(ChainId.MAINNET, '0x1e33833a035069f42d68D1F53b341643De1C018D', 18, 'BNB', 'Binance token')
-export const OWN = new Token(ChainId.MAINNET, '0x2170ed0880ac9a755fd29b2688956bd959f933f8', 18, 'OWN', 'Ownly Token') // to update
+export const BNB = new Token(ChainId.MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'BNB', 'Binance token')
+export const TBNB = new Token(ChainId.BSCTESTNET, '0xae13d989dac2f0debff460ac112a837c89baa7cd', 18, 'WBNB', 'Binance token') 
+export const OWN = new Token(ChainId.MAINNET, '0xe09B8661D80CF24dB230A167969d18B94a5a3266', 18, 'NWO', 'YLNWO Token') // to update
+export const TOWN = new Token(ChainId.BSCTESTNET, '0x446494947a1865d872ab43d383b8e264b4cf1bf0', 18, 'NWO', 'YLNWO Token') 
 
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],
