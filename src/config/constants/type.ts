@@ -1,12 +1,13 @@
 import {Token} from "@sparkpointio/sparkswap-sdk";
 
 
-export type Status = 'active' | 'upcoming' | 'completed' | null;
+export type Status = 'active' | 'upcoming' | 'completed' | 'developer' | null;
 
-export const STATE:{active: Status; upcoming: Status; completed: Status} = {
+export const STATE:{active: Status; upcoming: Status; completed: Status; developer: Status} = {
     active: 'active',
     upcoming: 'upcoming',
-    completed: 'completed'
+    completed: 'completed',
+    developer: 'developer'
 }
 
 export interface ITokens {
