@@ -54,6 +54,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
     const remainingForSale = parseFloat(stats.remainingForSale).toFixed(4)
+    const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
     return (
         <Card style={{ padding: '5px' }}>
             <StyledCardHeader src={srcsBg}>
@@ -133,7 +134,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">{percentage}%</Text>
                                 <Text color="textSubtle">
-                                    {totalSales} / {stats.expectedSales} {buyingCoin.symbol}
+                                    {totalSales} / {expectedSales} {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         )}          
