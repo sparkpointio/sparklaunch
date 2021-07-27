@@ -148,7 +148,7 @@ const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Supply</Text>
-                        <Text color="textSubtle">{project.ownSale}</Text>
+                        <Text color="textSubtle">{project.ownSale.toLocaleString()}</Text>
                     </Flex>
                 </Flex>
             </Flex>
