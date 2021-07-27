@@ -9,7 +9,7 @@ const ProjectList: Array<IProjects> = [
         sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : TOWN ),
         buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : TBNB ) ,
         title: 'Ownly',
-        symbol: 'OWNLY',
+        symbol: 'OWN',
         image: 'ownly.png',
         desc: 'OWN Token is the native utility token of Ownly, users are able to buy, own, collect, and trade 1 of 1 edition crypto artworks by talented artists.',
         longDesc: 'Backed with over 2+ years of experience in the NFT and blockchain industry, Ownly is a governance token-based NFT-focused marketplace, curator, and a blockchain platform with an existing basket portfolio of NFT artworks that enable creators and collectors to optimize the authentic value of NFT assets.',
