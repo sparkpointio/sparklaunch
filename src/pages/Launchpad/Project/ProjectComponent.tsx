@@ -159,8 +159,7 @@ const ProjectComponent: React.FC = () => {
     const [whiteListed, setWhiteList] = useState(false);
     const Paddress = useFindProject();
     const project = useFindProjectByAddress(Paddress);
-    const userAddress = account? account.toLowerCase() : '';
-    const acc = useAccountWhiteList(userAddress);
+    const acc = useAccountWhiteList(account);
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
