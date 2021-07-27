@@ -1,10 +1,14 @@
 import { Flex, Button, Heading, Text } from '@sparkpointio/sparkswap-uikit';
 import { useWeb3React } from '@web3-react/core';
 import { IPoolInformation, IProjects, ITokens } from 'config/constants/type';
-import React, { useContext, useState, useCallback } from 'react';
+import React, { useContext, useState, useCallback, useEffect } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { CustomThemeContext } from 'ThemeContext';
+import useActiveWeb3React from "hooks/useActiveWeb3React";
+import {useLaunchpadContract} from "hooks/useContracts";
+import {calculateLaunchpadStats, getAccountDetailsLaunchPad} from "utils/contractHelpers";
 import { TBHeader, TBBody } from './styled';
+
 
 const Container = styled(Flex)`
     margin: 10px;
@@ -17,6 +21,17 @@ const NavOptions = styled(Button)<{ activeIndex: boolean }>`
     color: ${({ theme, activeIndex }) => (activeIndex ? theme.colors.text : theme.colors.textSubtle)};
     border-bottom: ${({ theme, activeIndex }) => activeIndex && `3px solid ${theme.colors.primary}`};
 `;
+
+interface Stats { 
+    totalForSaleTokens: string;
+    totalSoldTokens: string;
+    remainingForSale: string;
+    totalSales: string;
+    expectedSales: string;
+    percentage: string;
+    tokenRate: string;
+    totalParticipants: string;
+}
 
 type AppProps = {
     pool: IPoolInformation;
@@ -67,7 +82,24 @@ const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
         setActive(i)
     }, [])
 
+    const {library} = useActiveWeb3React();
+    const contract = useLaunchpadContract(project.category)
+    const [stats, setStats] = useState({
+        totalForSaleTokens: '-',
+        totalSoldTokens: '-',
+        remainingForSale: '-',
+        totalSales: '-',
+        expectedSales: '-',
+        percentage: '00.00',
+        tokenRate: '-',
+        totalParticipants: '-'
+    })
 
+    useEffect(() => {
+        calculateLaunchpadStats(contract, project).then(r => setStats(r));
+        // getAccountDetailsLaunchPad(contract, project, library, account).then(r => setAccountDetails(r)).catch(console.log)
+    }, [contract, project, account, library])
+    const totalSales = parseFloat(stats.totalSales).toFixed(4)
     return (
         <Container
             style={{ backgroundColor: theme.isDark ? customTheme.customColors?.BG1 : customTheme.customColors?.BG2 }}
@@ -95,16 +127,15 @@ const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Users Participated</Text>
-                        <Text color="textSubtle">{totalUserParticipated}</Text>
+                        <Text color="textSubtle">{stats.totalParticipants}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Funds Swapped</Text>
-                        <Text color="textSubtle">{totalFundsSwapped} {project.buyingCoin.symbol}</Text>
+                        <Text color="textSubtle">{totalSales} {project.buyingCoin.symbol}</Text>
                     </Flex>
                 </Flex>
                 <Flex flex="1" marginLeft="10px" flexDirection="column">
                     <Heading margin="10px 0px 30px 0px" bold>
-
                         Token Information
                     </Heading>
                     <Flex justifyContent="space-between">
