@@ -35,8 +35,8 @@ export const useAccount = () => {
 export const useAccountWhiteList = (acc?: string | null) => {
     const account = useAppSelector((state) =>
         state.accounts.data.map((acs) => {
-            return acs.whiteList.filter((ls) => ls.address === acc);
-        }),
+            return acs.whiteList.filter((ls) => ls.address === acc?.toLowerCase());
+        }), 
     );
     return account;
 };

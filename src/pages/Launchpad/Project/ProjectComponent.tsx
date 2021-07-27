@@ -3,6 +3,7 @@ import { useWeb3React } from '@web3-react/core';
 import {TokenAmount} from "@sparkpointio/sparkswap-sdk";
 import styled, { ThemeContext } from 'styled-components';
 import { Globe, Twitter, Send } from 'react-feather';
+import { useHistory } from 'react-router-dom';
 import {
     Card,
     Flex,
@@ -31,6 +32,7 @@ import {calculateLaunchpadStats, getAccountDetailsLaunchPad} from "../../../util
 import {useLaunchpadContract} from "../../../hooks/useContracts";
 import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
 import {BNB, OWN} from "../../../config";
+
 
 
 
@@ -63,8 +65,9 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         remainingForSale: '-',
         totalSales: '-',
         expectedSales: '-',
-        percentage: '-',
-        tokenRate: '-'
+        percentage: '00.00',
+        tokenRate: '-',
+        totalParticipants: '-'
     })
     const [accountDetails, setAccountDetails] = useState({
         balance: new TokenAmount(project.buyingCoin, BigInt(0)),
@@ -78,7 +81,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
     const {library} = useActiveWeb3React();
 
     const contract = useLaunchpadContract(project.category)
-
+    
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then(r => setStats(r));
         getAccountDetailsLaunchPad(contract, project, library, account).then(r => setAccountDetails(r)).catch(console.log)
@@ -87,7 +90,10 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
     const tokenReport = {
         title: `${project.progress} ${project.symbol}`,
     }
-
+    const percentage = parseFloat(stats.percentage).toFixed(4)
+    const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4)
+    const totalSales = parseFloat(stats.totalSales).toFixed(4)
+    const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
     return (
         <CardBody
             style={{
@@ -100,13 +106,13 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         >
             <ProgressGroup>
                 <Text bold as="h1" fontSize="24px">
-                    {stats.totalSoldTokens} {project.sellingCoin.name} Sold
+                    {totalSoldTokens} <span style={{color: theme.colors.textSubtle}}>{project.sellingCoin.name} Sold</span>
                 </Text>
-                <Progress primaryStep={parseInt(stats.percentage)} variant="flat" />
+                <Progress primaryStep={parseFloat(percentage)} variant="flat" />
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">{stats.percentage}%</Text>
+                    <Text color="textSubtle">{percentage}%</Text>
                     <Text color="textSubtle">
-                        {stats.totalSales} / {stats.expectedSales} {project.buyingCoin.symbol}
+                        {totalSales} / {expectedSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
             </ProgressGroup>
@@ -154,12 +160,17 @@ const ProjectComponent: React.FC = () => {
     const [whiteListed, setWhiteList] = useState(false);
     const Paddress = useFindProject();
     const project = useFindProjectByAddress(Paddress);
-    const userAddress = account? account.toLowerCase() : '';
-    const acc = useAccountWhiteList(userAddress);
+    const acc = useAccountWhiteList(account);
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
+    const history = useHistory();
 
+    useEffect(() => {
+        if (status !== STATE.active){
+            history.push('/projects');
+        }
+    }, [history, status])
 
     useEffect(() => {
         if (acc[0][0]) {
@@ -220,6 +231,7 @@ const ProjectComponent: React.FC = () => {
                         account={account}
                         whiteListed={whiteListed}
                         project={project}
+                        
                         />
                     </Flex>
                 </Flex>

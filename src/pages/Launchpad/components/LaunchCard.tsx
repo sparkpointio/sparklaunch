@@ -31,11 +31,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds } = project;
 
     const [stats, setStats] = useState({
-        totalForSaleTokens: '-',
-        remainingForSale: '-',
-        totalSales: '-',
-        expectedSales: '-',
-        percentage: '-',
+        totalForSaleTokens: '00.00',
+        remainingForSale: '00.00',
+        totalSales: '00.00',
+        expectedSales: '00.00',
+        percentage: '00.00',
     });
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
@@ -50,8 +50,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
-    
-
+   
+    const percentage = parseFloat(stats.percentage).toFixed(4)
+    const totalSales = parseFloat(stats.totalSales).toFixed(4)
+    const remainingForSale = parseFloat(stats.remainingForSale).toFixed(4)
+    const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
     return (
         <Card style={{ padding: '5px' }}>
             <StyledCardHeader src={srcsBg}>
@@ -117,7 +120,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         {status === STATE.upcoming ? (
                             <Progress primaryStep={0} variant="flat" />
                         ) : (
-                            <Progress primaryStep={parseInt(stats.percentage)} variant="flat" />
+                            <Progress primaryStep={parseFloat(percentage)} variant="flat" />
                         )}
 
                         {status === STATE.upcoming ? (
@@ -129,9 +132,9 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             </Flex>
                         ) : (
                             <Flex justifyContent="space-between">
-                                <Text color="textSubtle">{stats.percentage}%</Text>
+                                <Text color="textSubtle">{percentage}%</Text>
                                 <Text color="textSubtle">
-                                    {stats.totalSales} / {stats.expectedSales} {buyingCoin.symbol}
+                                    {totalSales} / {expectedSales} {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         )}          
@@ -150,7 +153,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">Total Raised</Text>
                                 <Text>
-                                    {stats.totalSales} {buyingCoin.symbol}
+                                    {totalSales} {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         )}
@@ -165,7 +168,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         {status === STATE.upcoming ? (
                             <Text>{numberWithCommas(ownSale)} {sellingCoin.symbol}</Text>
                         ) : (
-                            <Text>{stats.remainingForSale === '0' ? '-' : stats.remainingForSale}</Text>
+                            <Text>{stats.remainingForSale === '0' ? '-' : remainingForSale}</Text>
                         )}
                         </Flex>
                         
