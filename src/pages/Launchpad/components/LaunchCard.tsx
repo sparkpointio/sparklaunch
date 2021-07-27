@@ -35,7 +35,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         remainingForSale: '-',
         totalSales: '-',
         expectedSales: '-',
-        percentage: '-',
+        percentage: '00.00',
     });
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
@@ -50,7 +50,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
-    
+    console.log(stats.percentage)
+    const percentage = parseFloat(stats.percentage).toFixed(2)
 
     return (
         <Card style={{ padding: '5px' }}>
@@ -129,7 +130,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             </Flex>
                         ) : (
                             <Flex justifyContent="space-between">
-                                <Text color="textSubtle">{stats.percentage}%</Text>
+                                <Text color="textSubtle">{percentage}%</Text>
                                 <Text color="textSubtle">
                                     {stats.totalSales} / {stats.expectedSales} {buyingCoin.symbol}
                                 </Text>
