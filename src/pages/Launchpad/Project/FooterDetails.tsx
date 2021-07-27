@@ -123,7 +123,7 @@ const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Cap</Text>
-                        <Text color="textSubtle">{cap} {project.buyingCoin.symbol}</Text>
+                        <Text color="textSubtle">{stats.expectedSales} {project.buyingCoin.symbol}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Users Participated</Text>
