@@ -216,7 +216,6 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
         
 
         const calculateMaxExpendable = (remainingP) => {
-            console.log(calc(remainingP.multiply(tokenRate).toFixed(19)))
             return new TokenAmount(BNB, expandValue( calc(remainingP.multiply(tokenRate).toFixed(19)), OWN));
         };
 
