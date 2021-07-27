@@ -106,28 +106,30 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
     };
 
     /**
-     * Validates if the input does not exceed maxPayable and equivalent output does not exceed remainingSupply
+     * Validates if the input does not exceed remainingExpandable and equivalent output does not exceed remainingPurchasable
      * @param tokenAmount
      */
     const validateInput = (tokenAmount) => {
-        if (calculateOutput(tokenAmount).greaterThan(remainingPurchasable)) {
+        const equivalentOutput = calculateOutput(tokenAmount);
+
+        if (equivalentOutput.greaterThan(remainingPurchasable)) {
             tokenAmount = calculateInput(remainingPurchasable);
-            calculateOutput(tokenAmount);
+            calculateOutput(tokenAmount)
         }
 
         return tokenAmount;
     };
 
     /**
-     * Validates if the output does not exceed maxPayable and equivalent output does not exceed remainingSupply
+     * Validates if the output does not exceed remainingPurchasable and equivalent input does not exceed remainingExpandable
      * @param tokenAmount
      */
     const validateOutput = (tokenAmount) => {
-        let equivalentInput = calculateInput(tokenAmount);
+        const equivalentInput = calculateInput(tokenAmount);
 
         if (equivalentInput.greaterThan(remainingExpendable)) {
-            equivalentInput = validateInput(equivalentInput);
-            tokenAmount = calculateOutput(equivalentInput);
+            tokenAmount = calculateOutput(remainingExpendable);
+            calculateInput(tokenAmount);
         }
 
         return tokenAmount;
