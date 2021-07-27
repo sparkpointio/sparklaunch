@@ -156,13 +156,13 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
      * Initiates buy token
      */
 
-    const SuccessMessage = ({tx}) => {
+    const SuccessMessage = ({tx, value, symbol}) => {
         const theme = useContext(ThemeContext);
         const { hash } = tx
         const link = `https://testnet.bscscan.com/tx/${hash}`
         return (
             <Flex alignItems="center" flexDirection="column">
-                <ToastTitle>Successfully bought ~ tokens!</ToastTitle>
+                <ToastTitle>{`Successfully bought ~ ${value} ${symbol} tokens!`}</ToastTitle>
                 <a href={link} style={{fontSize:'12px', textDecoration: 'underline', color: theme.colors.primary}}>View on BscScan <ExternalLink size="12px"/></a>
             </Flex>
         )
@@ -171,8 +171,8 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
     const handleBuy = async() => {
         try {
             const tx = await contract.buyTokens({value: expandValue(input, BNB)})
-            console.log(tx)
-            toast.success(<SuccessMessage tx={tx} />, {
+            
+            toast.success(<SuccessMessage tx={tx} value={input} symbol={project.symbol}/>, {
                 autoClose: 5000,
                 hideProgressBar: false,
                 closeOnClick: true,

@@ -65,7 +65,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         remainingForSale: '-',
         totalSales: '-',
         expectedSales: '-',
-        percentage: '-',
+        percentage: '00.00',
         tokenRate: '-'
     })
     const [accountDetails, setAccountDetails] = useState({
@@ -89,6 +89,9 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
     const tokenReport = {
         title: `${project.progress} ${project.symbol}`,
     }
+    const percentage = parseFloat(stats.percentage).toFixed(4)
+    const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4)
+    const totalSales = parseFloat(stats.totalSales).toFixed(4)
 
     return (
         <CardBody
@@ -102,13 +105,13 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         >
             <ProgressGroup>
                 <Text bold as="h1" fontSize="24px">
-                    {stats.totalSoldTokens} {project.sellingCoin.name} Sold
+                    {totalSoldTokens} <span style={{color: theme.colors.textSubtle}}>{project.sellingCoin.name} Sold</span>
                 </Text>
-                <Progress primaryStep={parseInt(stats.percentage)} variant="flat" />
+                <Progress primaryStep={parseInt(percentage)} variant="flat" />
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">{stats.percentage}%</Text>
+                    <Text color="textSubtle">{percentage}%</Text>
                     <Text color="textSubtle">
-                        {stats.totalSales} / {stats.expectedSales} {project.buyingCoin.symbol}
+                        {totalSales} / {stats.expectedSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
             </ProgressGroup>
@@ -156,8 +159,7 @@ const ProjectComponent: React.FC = () => {
     const [whiteListed, setWhiteList] = useState(false);
     const Paddress = useFindProject();
     const project = useFindProjectByAddress(Paddress);
-    const userAddress = account? account.toLowerCase() : '';
-    const acc = useAccountWhiteList(userAddress);
+    const acc = useAccountWhiteList(account);
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
