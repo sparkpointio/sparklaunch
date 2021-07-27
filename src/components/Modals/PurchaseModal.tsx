@@ -10,12 +10,13 @@ import CurrencyInputPanel from 'components/CurrencyInputPanel';
 import { Button, Flex, Heading, Modal, Text } from '@sparkpointio/sparkswap-uikit';
 import styled, { ThemeContext } from 'styled-components';
 import { SmallstyledImage } from 'pages/Launchpad/components/styled';
-import fetchData from 'hooks/Priceperbnb';
+import Priceperbnb from 'hooks/Priceperbnb';
 import { useOwnlyLaunchpad } from '../../hooks/useContracts';
 import { BNB, OWN } from '../../config';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { expandValue } from '../../utils';
 import { getAccountDetailsLaunchPad } from '../../utils/contractHelpers';
+
 
 
 
@@ -250,7 +251,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                 />
                 {/* <Text>Price per BNB: {pricePerBnb}</Text> */}
                 {/* {fetchData.} */}
-                <Text>Price per BNB: {fetchData}</Text>
+                <Text>Price per BNB: <Priceperbnb/></Text>
 
                 <ActionDiv>
                     <Button onClick={handleBuy} fullWidth>

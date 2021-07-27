@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 
-export default function PricePerBnb() {
+export default function Priceperbnb() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
