@@ -251,7 +251,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                 />
                 {/* <Text>Price per BNB: {pricePerBnb}</Text> */}
                 {/* {fetchData.} */}
-                <Text>Price per BNB: <Priceperbnb/></Text>
+                <Text>Price per BNB: <Priceperbnb/> USD</Text>
 
                 <ActionDiv>
                     <Button onClick={handleBuy} fullWidth>
