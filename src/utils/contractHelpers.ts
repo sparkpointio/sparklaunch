@@ -27,13 +27,14 @@ export const calculateLaunchpadStats = async (contract, project) => {
     const totalForSaleTokens = new TokenAmount(project.sellingCoin, await contract.totalRewardTokens());
     const totalSoldTokens = new TokenAmount(project.sellingCoin, await contract.soldAmount());
     const remainingForSaleTokens = totalForSaleTokens.subtract(totalSoldTokens);
-
+    const totalParticipants = await contract.totalParticipant();
     const tokenRate = new TokenAmount(project.buyingCoin, await contract.tokenRate())
     const totalSales = new TokenAmount(project.buyingCoin, await contract.totalRaise());
     const expectedSales = tokenRate.multiply(totalForSaleTokens);
     const percentage = totalSales.divide(expectedSales).multiply(BigInt(100));
 
     return {
+        totalParticipants: totalParticipants.toString(),
         totalForSaleTokens: totalForSaleTokens.toExact(),
         totalSoldTokens: totalSoldTokens.toExact(),
         remainingForSale: remainingForSaleTokens.toExact(),

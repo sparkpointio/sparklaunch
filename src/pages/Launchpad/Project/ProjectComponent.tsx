@@ -66,7 +66,8 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         totalSales: '-',
         expectedSales: '-',
         percentage: '00.00',
-        tokenRate: '-'
+        tokenRate: '-',
+        totalParticipants: '-'
     })
     const [accountDetails, setAccountDetails] = useState({
         balance: new TokenAmount(project.buyingCoin, BigInt(0)),
@@ -80,7 +81,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
     const {library} = useActiveWeb3React();
 
     const contract = useLaunchpadContract(project.category)
-
+    
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then(r => setStats(r));
         getAccountDetailsLaunchPad(contract, project, library, account).then(r => setAccountDetails(r)).catch(console.log)
@@ -230,6 +231,7 @@ const ProjectComponent: React.FC = () => {
                         account={account}
                         whiteListed={whiteListed}
                         project={project}
+                        
                         />
                     </Flex>
                 </Flex>
