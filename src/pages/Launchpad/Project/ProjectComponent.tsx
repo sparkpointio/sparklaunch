@@ -93,7 +93,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
-
+    const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
     return (
         <CardBody
             style={{
@@ -112,7 +112,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">{percentage}%</Text>
                     <Text color="textSubtle">
-                        {totalSales} / {stats.expectedSales} {project.buyingCoin.symbol}
+                        {totalSales} / {expectedSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
             </ProgressGroup>
