@@ -122,8 +122,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
 
                         {status === STATE.upcoming ? (
                             <Flex justifyContent="space-between">
-                                <Text color="textSubtle">{0}%</Text>
-                                <Text color="textSubtle">
+                                <Text color="textSubtle" fontSize="90%">{0}%</Text>
+                                <Text color="textSubtle" fontSize="90%">
                                     {0} / {totalRaise} {buyingCoin.symbol}
                                 </Text>
                             </Flex>
