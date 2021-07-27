@@ -107,7 +107,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                 <Text bold as="h1" fontSize="24px">
                     {totalSoldTokens} <span style={{color: theme.colors.textSubtle}}>{project.sellingCoin.name} Sold</span>
                 </Text>
-                <Progress primaryStep={parseInt(percentage)} variant="flat" />
+                <Progress primaryStep={parseFloat(percentage)} variant="flat" />
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">{percentage}%</Text>
                     <Text color="textSubtle">
