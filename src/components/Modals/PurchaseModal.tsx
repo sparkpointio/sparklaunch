@@ -208,8 +208,14 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
             return maxPayableAmount.subtract(rewardedAmount);
         }
 
+        const calc = (num) => {
+            return num.match(/^-?\d+(?:\.\d{0,18})?/)[0]
+        }
+        
+
         const calculateMaxExpendable = (remainingP) => {
-            return new TokenAmount(BNB, expandValue(remainingP.multiply(tokenRate).toFixed(18), OWN));
+            console.log(calc(remainingP.multiply(tokenRate).toFixed(19)))
+            return new TokenAmount(BNB, expandValue( calc(remainingP.multiply(tokenRate).toFixed(19)), OWN));
         };
 
         getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
