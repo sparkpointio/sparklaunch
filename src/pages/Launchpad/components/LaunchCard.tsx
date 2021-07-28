@@ -1,5 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { Card, Flex, Progress, Text } from '@sparkpointio/sparkswap-uikit';
+import { Card, Flex, Progress, Text, Button} from '@sparkpointio/sparkswap-uikit';
 import { useWeb3React } from '@web3-react/core';
 import { Globe, Send, Twitter } from 'react-feather';
 import { ThemeContext } from 'styled-components';
@@ -179,7 +179,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                     </DataGroup>
                 </Details>
             </StyledCardBody>
-            {status === 'active' && (
+            {status === STATE.active? (
                 <CardAction>
                     {!account ? (
                         <UnlockButton fullWidth />
@@ -188,6 +188,10 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <h1 style={{ color: 'white' }}>Participate</h1>
                         </StyledLink>
                     )}
+                </CardAction>
+            ): status === STATE.completed && (
+                <CardAction>
+                    <Button fullWidth>CLAIM</Button>
                 </CardAction>
             )}
         </Card>
