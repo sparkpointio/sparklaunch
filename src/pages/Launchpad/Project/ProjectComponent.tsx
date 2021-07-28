@@ -16,7 +16,7 @@ import {
     CardFooter,
     useModal,
 } from '@sparkpointio/sparkswap-uikit';
-import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject } from 'state/hooks';
+import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject as getFindProject } from 'state/hooks';
 import { IProjects, ITokens, STATE } from 'config/constants/type';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
@@ -57,8 +57,7 @@ const Allocations: React.FC<{tokenImage:string; symbol: string; allocation:strin
 const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
-    const Paddress = useFindProject();
-    const [ onPurchaseModal ] = useModal(<PurchaseModal address={Paddress} />)
+    const Paddress = getFindProject()
     const [stats, setStats] = useState({
         totalForSaleTokens: '-',
         totalSoldTokens: '-',
@@ -87,9 +86,11 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         getAccountDetailsLaunchPad(contract, project, library, account).then(r => setAccountDetails(r)).catch(console.log)
     }, [contract, project, account, library])
 
+    const [ onPurchaseModal ] = useModal(<PurchaseModal address={Paddress} stats={stats} />)
     const tokenReport = {
         title: `${project.progress} ${project.symbol}`,
     }
+    
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
@@ -131,7 +132,8 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">Your Max Allocation</Text>
-                    <Text>{accountDetails.maxPayableAmount.toExact()} {project.sellingCoin.symbol}</Text>
+                    {/* <Text>{accountDetails.maxPayableAmount.toExact()} {project.sellingCoin.symbol}</Text> */}
+                    <Text>No Limit</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">Your Max BNB</Text>
@@ -158,7 +160,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
 const ProjectComponent: React.FC = () => {
     const { account } = useWeb3React();
     const [whiteListed, setWhiteList] = useState(false);
-    const Paddress = useFindProject();
+    const Paddress = getFindProject();
     const project = useFindProjectByAddress(Paddress);
     const acc = useAccountWhiteList(account);
     const pool = useGetPoolsByAddress(Paddress);
