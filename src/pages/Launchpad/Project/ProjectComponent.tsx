@@ -149,7 +149,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
             ) : (
                 <>
                 <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
-                <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}}>Purchase {project.symbol}</Button>
+                <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
                 </>
             )}
         </CardBody>
