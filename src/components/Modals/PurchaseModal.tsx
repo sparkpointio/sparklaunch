@@ -258,7 +258,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                 />
 
                 {/* <Text>Price per BNB: <Priceperbnb/> USD</Text> */}
-                <Text color="#FFFFFF">{`Price of ${project.symbol} per BNB: ${tokenRate.toExact()}`}</Text>
+                <Text color="#FFFFFF">{`Price: ${tokenRate.toExact()} ${project.symbol} per BNB `}</Text>
 
                 <ActionDiv>
                     <Button onClick={handleBuy} fullWidth>
