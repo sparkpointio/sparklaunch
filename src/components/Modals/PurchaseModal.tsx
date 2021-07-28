@@ -244,7 +244,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
                     <Heading bold fontSize="21px">
                         Swap Coins
                     </Heading>
-                    <StyledHeading>{`Remaining ${stats?.remainingForSale} ${project.symbol}`}</StyledHeading>
+                    <StyledHeading>{`Remaining: ${stats?.remainingForSale} ${project.symbol}`}</StyledHeading>
                 </div>
                 <CurrencyInputPanel
                     label="From"
