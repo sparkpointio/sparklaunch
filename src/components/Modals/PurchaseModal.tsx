@@ -229,11 +229,18 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
             return new TokenAmount(BNB, expandValue( calc(remainingP.multiply(tokenRate).toFixed(19)), OWN));
         };
 
+        const calculateMaxPurchasable = (remainingP) => {
+            return new TokenAmount(BNB, expandValue( calc(remainingP.divide(tokenRate).toFixed(19)), OWN));
+        };
+
         getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
         contract.tokenRate().then((r) => setTokenRate(new TokenAmount(OWN, r)));
         getRemainingPurchasable().then((r) => {
-            setRemainingPurchasable(r);
-            setRemainingExpendable(calculateMaxExpendable(r));
+            library.getBalance(account).then((b) => {
+                const _balance = new TokenAmount(BNB, (b.toBigInt()))
+                setRemainingPurchasable(calculateMaxPurchasable(_balance))
+                setRemainingExpendable(_balance);
+            })
         });
     }, [account, contract, library, input, output, tokenRate, project]);
 
