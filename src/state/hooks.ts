@@ -11,7 +11,10 @@ export const useProject = () => {
     return projects;
 };
 
-export const useFindProject = () => useAppSelector((state) => state.projects.selectedProject); 
+export const useFindProject = () => {
+    const data = useAppSelector((state) => state.projects.selectedProject)
+    return data;
+}; 
 
 export const useSetProject = (address?: string | null) => {
     const dispatch = useAppDispatch();
