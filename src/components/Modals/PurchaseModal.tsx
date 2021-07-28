@@ -94,11 +94,6 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
         return calculatedInput;
     };
 
-    const priceBnb = () => {
-        const pricedBnb = tokenRate; 
-        return pricedBnb;
-    };
-
     /**
      * Calculates the output based on the input
      * @param tokenAmount
@@ -261,7 +256,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                     currency={project}
                     remainingSupply={remainingPurchasable.toExact()}
                 />
-                
+
                 {/* <Text>Price per BNB: <Priceperbnb/> USD</Text> */}
                 <Text color="#FFFFFF">{`Price of ${project.symbol} per BNB: ${tokenRate.toExact()}`}</Text>
 
