@@ -53,7 +53,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
    
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
-    const remainingForSale = parseFloat(stats.remainingForSale).toFixed(4)
+    const remainingForSale = parseFloat(stats.remainingForSale).toFixed(4).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
     const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
     return (
         <Card style={{ padding: '5px' }}>
