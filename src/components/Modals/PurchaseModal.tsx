@@ -256,9 +256,9 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                     currency={project}
                     remainingSupply={remainingPurchasable.toExact()}
                 />
-                {/* <Text>Price per BNB: {pricePerBnb}</Text> */}
-                {/* {fetchData.} */}
-                <Text>Price per BNB: <Priceperbnb/> USD</Text>
+
+                {/* <Text>Price per BNB: <Priceperbnb/> USD</Text> */}
+                <Text color="#FFFFFF">{`Price: ${tokenRate.toExact()} ${project.symbol} per BNB `}</Text>
 
                 <ActionDiv>
                     <Button onClick={handleBuy} fullWidth>
