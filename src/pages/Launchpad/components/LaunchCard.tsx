@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Card, Flex, Progress, Text, Button, useModal} from '@sparkpointio/sparkswap-uikit';
+import { TokenAmount } from '@sparkpointio/sparkswap-sdk';
 import { useWeb3React } from '@web3-react/core';
 import { Globe, Send, Twitter } from 'react-feather';
-
+import { BNB, OWN } from 'config';
 import { ThemeContext } from 'styled-components';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
@@ -55,9 +56,6 @@ const LaunchCard: React.FC<IProjects> = (project) => {
 
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
-        
-        getRedeem(contract, account).then((r) => setRedeemable(r.redeemable) )
-        getRedeem(contract1, account).then((r) => setRedeemable1(r.redeemable) )
     }, [contract, contract1, project, account]);
 
     const numberWithCommas = (x) => {
@@ -88,7 +86,31 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 amount: '10000'
             }
         })
-    }, [])
+
+        const calc = (num) => {
+            return num.match(/^-?\d+(?:\.\d{0,18})?/)[0]
+        }
+        
+
+                
+        getRedeem(contract, account).then((r) => {
+            setRedeemable(r.redeemable) 
+            getRedeem(contract1, account).then((r1) => {
+                setRedeemable1(r1.redeemable)
+                setAccountDetails({
+                    r1: {
+                        token: 'OWN',
+                        amount: new TokenAmount(OWN, r.amount).toExact()
+                    },
+                    r2: {
+                        token: 'OWN',
+                        amount: new TokenAmount(OWN, r1.amount).toExact()
+                    }
+                })
+            })
+        })
+        
+    }, [contract, contract1, project, account])
 
     
     const [ onClaimR1Modal ] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract} />)

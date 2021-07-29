@@ -76,6 +76,7 @@ export const getRedeem = async (contract, account) => {
     const details = await contract.getWhitelist(account);
 
     return {
-        redeemable: (!details._redeemed && details._whitelist )
+        redeemable: (!details._redeemed && details._whitelist ),
+        amount: details._rewardedAmount
     }
 }
