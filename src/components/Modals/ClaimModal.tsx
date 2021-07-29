@@ -22,10 +22,12 @@ const TokenIcon = styled(StyledImage)`
 `
 const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract }) => {
     const [confirmed, setConfirm] = useState(false);
+    const [hash, setHash] = useState("https://bscscan.com/tx/");
     const handleConfirm = async () => {
 
         try {
             const tx = await contract.redeemTokens()
+            setHash(`https://bscscan.com/tx/ ${tx.hash}`)
             setConfirm(true);
         }
         catch(e) {
@@ -40,6 +42,7 @@ const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract 
                 draggable: true,
             });
         }
+
     }
     const TokenReward:React.ReactElement = <span style={{fontWeight: 'bold',}}> {rewards.amount} <TokenIcon src={`${process.env.PUBLIC_URL}/images/icons/ownly.png`} size="18px" />{rewards.token} tokens</span>
     
@@ -66,7 +69,7 @@ const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract 
                         <Flex style={{ margin: '15px', textAlign: 'center' }}>
                             <Text>You have claimed your {TokenReward}. If desired, you may check Binance Smart Chain to confirm the transaction</Text>
                         </Flex>
-                        <a href="https://bscscan.com/"><Text color="textSubtle">View on BscScan <ExternalLink /></Text></a>
+                        <a href={hash}><Text color="textSubtle">View on BscScan <ExternalLink /></Text></a>
                         <Flex style={{ width: '100%', padding: '24px' }}>
                             <Button fullWidth onClick={onDismiss}>Close</Button>
                         </Flex>
