@@ -100,11 +100,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 setAccountDetails({
                     r1: {
                         token: 'OWN',
-                        amount: new TokenAmount(OWN, r.amount).toExact()
+                        amount: new TokenAmount(OWN, r1.amount).toExact()
                     },
                     r2: {
                         token: 'OWN',
-                        amount: new TokenAmount(OWN, r1.amount).toExact()
+                        amount: new TokenAmount(OWN, r.amount).toExact()
                     }
                 })
             })
@@ -113,8 +113,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     }, [contract, contract1, project, account])
 
     
-    const [ onClaimR1Modal ] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract} />)
-    const [ onClaimR2Modal ] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract1} />)
+    const [ onClaimR1Modal ] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract1} />)
+    const [ onClaimR2Modal ] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract} />)
     
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
@@ -261,10 +261,10 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 </CardAction>
             ): status === STATE.completed && (
                 <CardAction flexDirection="column">
-                    {redeemable ? (
+                    {redeemable1 ? (
                         <Button fullWidth onClick={onClaimR1Modal}>Claim R1 Allocations</Button>
                     ) : (<Button fullWidth>No available R1 claims</Button>) }
-                    {redeemable1 ? (
+                    {redeemable ? (
                         <Button fullWidth onClick={onClaimR2Modal}>Claim R2 Allocations</Button>
                     ) : (<Button fullWidth>No available R2 claims</Button>) }
                     
