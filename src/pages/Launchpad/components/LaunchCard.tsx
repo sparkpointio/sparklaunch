@@ -94,9 +94,9 @@ const LaunchCard: React.FC<IProjects> = (project) => {
 
                 
         getRedeem(contract, account).then((r) => {
-            setRedeemable(r.redeemable) 
+            setRedeemable(parseInt(r.amount) === 0 ? false : r.redeemable) 
             getRedeem(contract1, account).then((r1) => {
-                setRedeemable1(r1.redeemable)
+                setRedeemable1(parseInt(r1.amount) === 0 ? false : r1.redeemable)
                 setAccountDetails({
                     r1: {
                         token: 'OWN',
@@ -107,6 +107,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         amount: new TokenAmount(OWN, r.amount).toExact()
                     }
                 })
+                console.log(r1.amount === 0)
             })
         })
         
