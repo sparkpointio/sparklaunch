@@ -14,15 +14,35 @@ interface ModalProps {
     title?: string;
     onDismiss?: () => void;
     rewards: Rewards;
+    contract: any
 }
 
 const TokenIcon = styled(StyledImage)`
     margin: 0px 4px 0px 4px;
 `
-const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards }) => {
+const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract }) => {
     const [confirmed, setConfirm] = useState(false);
-    const handleConfirm = () => {
-        setConfirm(true);
+    const [hash, setHash] = useState("https://bscscan.com/tx/");
+    const handleConfirm = async () => {
+
+        try {
+            const tx = await contract.redeemTokens()
+            setHash(`https://bscscan.com/tx/${tx.hash}`)
+            setConfirm(true);
+        }
+        catch(e) {
+            const code = e.code;
+            const message = e.data ? e.data.message : e.message;
+            toast.error(`${code} ${message}`, {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+        }
+
     }
     const TokenReward:React.ReactElement = <span style={{fontWeight: 'bold',}}> {rewards.amount} <TokenIcon src={`${process.env.PUBLIC_URL}/images/icons/ownly.png`} size="18px" />{rewards.token} tokens</span>
     
@@ -49,7 +69,7 @@ const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards }) => {
                         <Flex style={{ margin: '15px', textAlign: 'center' }}>
                             <Text>You have claimed your {TokenReward}. If desired, you may check Binance Smart Chain to confirm the transaction.</Text>
                         </Flex>
-                        <a href="https://bscscan.com/"><Text color="textSubtle">View on BscScan <ExternalLink /></Text></a>
+                        <a href={hash}><Text color="textSubtle">View on BscScan <ExternalLink /></Text></a>
                         <Flex style={{ width: '100%', padding: '24px' }}>
                             <Button fullWidth onClick={onDismiss}>Close</Button>
                         </Flex>

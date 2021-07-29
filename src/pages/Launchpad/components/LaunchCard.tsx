@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useMemo, useState } from 'react';
 import { Card, Flex, Progress, Text, Button, useModal} from '@sparkpointio/sparkswap-uikit';
+import { TokenAmount } from '@sparkpointio/sparkswap-sdk';
 import { useWeb3React } from '@web3-react/core';
 import { Globe, Send, Twitter } from 'react-feather';
-
+import { BNB, OWN } from 'config';
 import { ThemeContext } from 'styled-components';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
@@ -10,7 +11,7 @@ import ClaimModal from 'components/Modals/ClaimModal';
 import { StatusColor } from 'pages/styled';
 import { IProjects, STATE } from 'config/constants/type';
 import { useLaunchpadContract } from 'hooks/useContracts';
-import { calculateLaunchpadStats } from 'utils/contractHelpers';
+import { calculateLaunchpadStats, getRedeem } from 'utils/contractHelpers';
 import Timer from 'pages/Home/HeaderSection/timer';
 import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
 import {
@@ -42,15 +43,20 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         percentage: '00.00',
         totalSoldTokens: '00.00'
     });
+
+    const [redeemable, setRedeemable] = useState(false)
+    const [redeemable1, setRedeemable1] = useState(false)
+
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
+    const contract1 = useLaunchpadContract("ownlyLaunchPad1");
     const theme = useContext(ThemeContext);
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
 
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
-    }, [contract, project]);
+    }, [contract, contract1, project, account]);
 
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
@@ -80,11 +86,36 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 amount: '10000'
             }
         })
-    }, [])
+
+        const calc = (num) => {
+            return num.match(/^-?\d+(?:\.\d{0,18})?/)[0]
+        }
+        
+
+                
+        getRedeem(contract, account).then((r) => {
+            setRedeemable(parseInt(r.amount) === 0 ? false : r.redeemable) 
+            getRedeem(contract1, account).then((r1) => {
+                setRedeemable1(parseInt(r1.amount) === 0 ? false : r1.redeemable)
+                setAccountDetails({
+                    r1: {
+                        token: 'OWN',
+                        amount: new TokenAmount(OWN, r1.amount).toExact()
+                    },
+                    r2: {
+                        token: 'OWN',
+                        amount: new TokenAmount(OWN, r.amount).toExact()
+                    }
+                })
+                console.log(r1.amount === 0)
+            })
+        })
+        
+    }, [contract, contract1, project, account])
 
     
-    const [ onClaimR1Modal ] = useModal(<ClaimModal rewards={accountDetails.r1} />)
-    const [ onClaimR2Modal ] = useModal(<ClaimModal rewards={accountDetails.r2} />)
+    const [ onClaimR1Modal ] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract1} />)
+    const [ onClaimR2Modal ] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract} />)
     
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
@@ -231,8 +262,13 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 </CardAction>
             ): status === STATE.completed && (
                 <CardAction flexDirection="column">
-                    <Button fullWidth onClick={onClaimR1Modal}>Claim R1 Allocations</Button>
-                    <Button fullWidth onClick={onClaimR2Modal}>Claim R2 Allocations</Button>
+                    {redeemable1 ? (
+                        <Button fullWidth onClick={onClaimR1Modal}>Claim R1 Allocations</Button>
+                    ) : (<Button fullWidth>No available R1 claims</Button>) }
+                    {redeemable ? (
+                        <Button fullWidth onClick={onClaimR2Modal}>Claim R2 Allocations</Button>
+                    ) : (<Button fullWidth>No available R2 claims</Button>) }
+                    
                 </CardAction>
             )}
         </Card>
