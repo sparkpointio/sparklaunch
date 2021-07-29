@@ -39,6 +39,9 @@ export const StyledCardBody = styled(CardBody)`
 
 export const CardAction = styled(Flex)`
     padding: 25px 15px;
+    & > * {
+        margin-bottom: 5px;
+    }
 `;
 
 export const Options = styled(Flex)`
