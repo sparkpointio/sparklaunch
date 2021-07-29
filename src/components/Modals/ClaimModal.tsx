@@ -47,7 +47,7 @@ const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards }) => {
                             Claimed Succesfully
                         </Text>
                         <Flex style={{ margin: '15px', textAlign: 'center' }}>
-                            <Text>You have claimed your {TokenReward}. If desired, you may check Binance Smart Chain to confirm the transaction</Text>
+                            <Text>You have claimed your {TokenReward}. If desired, you may check Binance Smart Chain to confirm the transaction.</Text>
                         </Flex>
                         <a href="https://bscscan.com/"><Text color="textSubtle">View on BscScan <ExternalLink /></Text></a>
                         <Flex style={{ width: '100%', padding: '24px' }}>
