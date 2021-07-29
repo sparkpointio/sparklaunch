@@ -201,7 +201,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">{percentage}%</Text>
                                 <Text color="textSubtle">
-                                    {totalSales} / {expectedSales} {buyingCoin.symbol}
+                                   {/* {totalSales} / {expectedSales} {buyingCoin.symbol} */}
+                                    261.33 / 261.33 {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         )}          
