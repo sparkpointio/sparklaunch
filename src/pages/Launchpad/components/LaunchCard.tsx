@@ -1,11 +1,12 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { Card, Flex, Progress, Text, Button} from '@sparkpointio/sparkswap-uikit';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
+import { Card, Flex, Progress, Text, Button, useModal} from '@sparkpointio/sparkswap-uikit';
 import { useWeb3React } from '@web3-react/core';
 import { Globe, Send, Twitter } from 'react-feather';
-import { toast } from 'react-toastify';
+
 import { ThemeContext } from 'styled-components';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
+import ClaimModal from 'components/Modals/ClaimModal';
 import { StatusColor } from 'pages/styled';
 import { IProjects, STATE } from 'config/constants/type';
 import { useLaunchpadContract } from 'hooks/useContracts';
@@ -27,6 +28,7 @@ import {
     TimerButton,
 } from './styled';
 import Anchor, { StyledLink } from './StyledLink';
+
 
 
 const LaunchCard: React.FC<IProjects> = (project) => {
@@ -54,23 +56,35 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
 
-    const handleR1Claim = () => {
-        try {
-            // Tx = 
-            toast.success('Success');
-        } catch (e){
-            toast.warning(e);
+    // Pass the value to the modal here 
+    // Todo: change to actual value and add token name for the image
+    const [accountDetails, setAccountDetails] = useState({
+        r1: {
+            token: '',
+            amount: '',
+        },
+        r2: {
+            token: '',
+            amount: ''
         }
-    }
-    const handleR2Claim = () => {
-        try {
-            // Tx = 
-            toast.success('Success');
-        } catch (e){
-            toast.warning(e);
-        }
-    }
+    });
 
+    useEffect(() => {
+        setAccountDetails({
+            r1: {
+                token: 'OWN',
+                amount: '5000'
+            },
+            r2: {
+                token: 'NWO',
+                amount: '10000'
+            }
+        })
+    }, [])
+
+    
+    const [ onClaimR1Modal ] = useModal(<ClaimModal rewards={accountDetails.r1} />)
+    const [ onClaimR2Modal ] = useModal(<ClaimModal rewards={accountDetails.r2} />)
     
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
@@ -217,8 +231,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 </CardAction>
             ): status === STATE.completed && (
                 <CardAction flexDirection="column">
-                    <Button fullWidth onClick={handleR1Claim}>Claim R1 Allocations</Button>
-                    <Button fullWidth onClick={handleR2Claim}>Claim R2 Allocations</Button>
+                    <Button fullWidth onClick={onClaimR1Modal}>Claim R1 Allocations</Button>
+                    <Button fullWidth onClick={onClaimR2Modal}>Claim R2 Allocations</Button>
                 </CardAction>
             )}
         </Card>
