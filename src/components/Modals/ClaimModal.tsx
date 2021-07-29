@@ -51,7 +51,7 @@ const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards }) => {
                         </Flex>
                         <a href="https://bscscan.com/"><Text color="textSubtle">View on BscScan <ExternalLink /></Text></a>
                         <Flex style={{ width: '100%', padding: '24px' }}>
-                            <Button fullWidth onClick={handleConfirm}>Close</Button>
+                            <Button fullWidth onClick={onDismiss}>Close</Button>
                         </Flex>
                     </>
                 )}
