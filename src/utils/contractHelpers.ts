@@ -68,3 +68,14 @@ export const getAccountDetailsLaunchPad = async (contract, project, library, acc
     };
 }
 
+export const getRedeem = async (contract, account) => {
+    if (!account) {
+        throw Error;
+    }
+
+    const details = await contract.getWhitelist(account);
+
+    return {
+        redeemable: (!details._redeemed && details._whitelist )
+    }
+}

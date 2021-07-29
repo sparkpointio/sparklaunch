@@ -14,15 +14,32 @@ interface ModalProps {
     title?: string;
     onDismiss?: () => void;
     rewards: Rewards;
+    contract: any
 }
 
 const TokenIcon = styled(StyledImage)`
     margin: 0px 4px 0px 4px;
 `
-const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards }) => {
+const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract }) => {
     const [confirmed, setConfirm] = useState(false);
-    const handleConfirm = () => {
-        setConfirm(true);
+    const handleConfirm = async () => {
+
+        try {
+            const tx = await contract.redeemTokens()
+            setConfirm(true);
+        }
+        catch(e) {
+            const code = e.code;
+            const message = e.data ? e.data.message : e.message;
+            toast.error(`${code} ${message}`, {
+                position: 'top-right',
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+            });
+        }
     }
     const TokenReward:React.ReactElement = <span style={{fontWeight: 'bold',}}> {rewards.amount} <TokenIcon src={`${process.env.PUBLIC_URL}/images/icons/ownly.png`} size="18px" />{rewards.token} tokens</span>
     
