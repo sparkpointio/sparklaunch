@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Card, Flex, Progress, Text, Button} from '@sparkpointio/sparkswap-uikit';
 import { useWeb3React } from '@web3-react/core';
 import { Globe, Send, Twitter } from 'react-feather';
+import { toast } from 'react-toastify';
 import { ThemeContext } from 'styled-components';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
@@ -27,6 +28,7 @@ import {
 } from './styled';
 import Anchor, { StyledLink } from './StyledLink';
 
+
 const LaunchCard: React.FC<IProjects> = (project) => {
     const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds } = project;
 
@@ -51,7 +53,25 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
-   
+
+    const handleR1Claim = () => {
+        try {
+            // Tx = 
+            toast.success('Success');
+        } catch (e){
+            toast.warning(e);
+        }
+    }
+    const handleR2Claim = () => {
+        try {
+            // Tx = 
+            toast.success('Success');
+        } catch (e){
+            toast.warning(e);
+        }
+    }
+
+    
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
@@ -196,8 +216,9 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                     )}
                 </CardAction>
             ): status === STATE.completed && (
-                <CardAction>
-                    <Button fullWidth>CLAIM</Button>
+                <CardAction flexDirection="column">
+                    <Button fullWidth onClick={handleR1Claim}>Claim R1 Allocations</Button>
+                    <Button fullWidth onClick={handleR2Claim}>Claim R2 Allocations</Button>
                 </CardAction>
             )}
         </Card>
