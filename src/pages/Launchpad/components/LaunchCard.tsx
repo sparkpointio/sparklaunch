@@ -221,7 +221,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">Total Raised</Text>
                                 <Text>
-                                    {totalSales} {buyingCoin.symbol}
+                                    261.33 {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         )}
