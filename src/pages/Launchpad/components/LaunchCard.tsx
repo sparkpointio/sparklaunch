@@ -201,7 +201,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">{percentage}%</Text>
                                 <Text color="textSubtle">
-                                    {totalSales} / {expectedSales} {buyingCoin.symbol}
+                                   {/* {totalSales} / {expectedSales} {buyingCoin.symbol} */}
+                                    261.33 / 261.33 {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         )}          
@@ -264,10 +265,10 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 <CardAction flexDirection="column">
                     {redeemable1 ? (
                         <Button fullWidth onClick={onClaimR1Modal}>Claim R1 Allocations</Button>
-                    ) : (<Button fullWidth>No available R1 claims</Button>) }
+                    ) : (<Button disabled fullWidth>No available R1 claims</Button>) }
                     {redeemable ? (
                         <Button fullWidth onClick={onClaimR2Modal}>Claim R2 Allocations</Button>
-                    ) : (<Button fullWidth>No available R2 claims</Button>) }
+                    ) : (<Button disabled fullWidth>No available R2 claims</Button>) }
                     
                 </CardAction>
             )}
