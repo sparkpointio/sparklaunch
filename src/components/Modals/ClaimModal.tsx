@@ -27,7 +27,7 @@ const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract 
 
         try {
             const tx = await contract.redeemTokens()
-            setHash(`https://bscscan.com/tx/ ${tx.hash}`)
+            setHash(`https://bscscan.com/tx/${tx.hash}`)
             setConfirm(true);
         }
         catch(e) {
