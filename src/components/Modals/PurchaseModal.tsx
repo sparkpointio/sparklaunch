@@ -19,10 +19,21 @@ import { getAccountDetailsLaunchPad } from '../../utils/contractHelpers';
 
 
 
+interface Stats {
+    totalForSaleTokens: string; 
+    totalSoldTokens: string;
+    remainingForSale: string;
+    totalSales: string;
+    expectedSales: string;
+    percentage: string;
+    tokenRate: string;
+    totalParticipants: string;
+}
 
 interface AppProps {
     onDismiss?: () => void;
     address: string | null | undefined;
+    stats: Stats;
 }
 
 const ToastTitle = styled(Text)`
@@ -38,11 +49,10 @@ const ActionDiv = styled(Flex)`
     flex-direction: column;
 `;
 
-const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
+const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
     const { library } = useActiveWeb3React();
     const { account } = useWeb3React();
     const contract = useOwnlyLaunchpad();
-
     const project = useFindProjectByAddress(address);
     const token = useSelectToken(project.buyingCoin.address);
 
@@ -219,11 +229,18 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
             return new TokenAmount(BNB, expandValue( calc(remainingP.multiply(tokenRate).toFixed(19)), OWN));
         };
 
+        const calculateMaxPurchasable = (remainingP) => {
+            return new TokenAmount(BNB, expandValue( calc(remainingP.divide(tokenRate).toFixed(19)), OWN));
+        };
+
         getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
         contract.tokenRate().then((r) => setTokenRate(new TokenAmount(OWN, r)));
         getRemainingPurchasable().then((r) => {
-            setRemainingPurchasable(r);
-            setRemainingExpendable(calculateMaxExpendable(r));
+            library.getBalance(account).then((b) => {
+                const _balance = new TokenAmount(BNB, (b.toBigInt()))
+                setRemainingPurchasable(calculateMaxPurchasable(_balance))
+                setRemainingExpendable(_balance);
+            })
         });
     }, [account, contract, library, input, output, tokenRate, project]);
 
@@ -234,7 +251,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                     <Heading bold fontSize="21px">
                         Swap Coins
                     </Heading>
-                    <StyledHeading>{`Max. Allocation is ${accountDetails.maxPayableAmount.toExact()} ${project.symbol}`}</StyledHeading>
+                    <StyledHeading>{`Remaining: ${stats?.remainingForSale} ${project.symbol}`}</StyledHeading>
                 </div>
                 <CurrencyInputPanel
                     label="From"
@@ -254,9 +271,9 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address }) => {
                     value={output}
                     onUserInput={handleTypeOutput}
                     currency={project}
-                    remainingSupply={remainingPurchasable.toExact()}
+                    remainingSupply={stats.remainingForSale}
                 />
-
+            
                 {/* <Text>Price per BNB: <Priceperbnb/> USD</Text> */}
                 <Text color="#FFFFFF">{`Price: ${tokenRate.toExact()} ${project.symbol} per BNB `}</Text>
 

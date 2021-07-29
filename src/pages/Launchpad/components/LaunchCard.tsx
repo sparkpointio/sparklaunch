@@ -36,6 +36,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         totalSales: '00.00',
         expectedSales: '00.00',
         percentage: '00.00',
+        totalSoldTokens: '00.00'
     });
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
@@ -53,6 +54,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
    
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
+    const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
     const remainingForSale = parseFloat(stats.remainingForSale).toFixed(4).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
     const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
     return (
@@ -161,12 +163,16 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <Flex justifyContent="space-between">
                         {status === STATE.upcoming ? (
                             <Text color="textSubtle">Coming Soon For Sale</Text>
+                        ) : status === STATE.completed ? (
+                            <Text color="textSubtle">${sellingCoin.symbol} Sold</Text>
                         ) : (
                             <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
                         )}
 
                         {status === STATE.upcoming ? (
                             <Text>{numberWithCommas(ownSale)} {sellingCoin.symbol}</Text>
+                        ) : status === STATE.completed ? (
+                            <Text>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</Text>
                         ) : (
                             <Text>{stats.remainingForSale === '0' ? '-' : remainingForSale}</Text>
                         )}
