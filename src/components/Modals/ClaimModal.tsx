@@ -35,7 +35,7 @@ const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards }) => {
                             Confirm Claim
                         </Text>
                         <Flex style={{ margin: '15px', textAlign: 'center' }}>
-                            <Text>In this step, you complete the transaction that claims your {TokenReward}</Text>
+                            <Text>In this step, you complete the transaction that claims your {TokenReward}.</Text>
                         </Flex>
                         <Flex style={{ width: '100%', padding: '24px' }}>
                             <Button fullWidth onClick={handleConfirm}>Confirm</Button>
