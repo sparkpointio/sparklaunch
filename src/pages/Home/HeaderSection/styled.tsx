@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { Button } from '@sparkpointio/sparkswap-uikit';
+ import styled from 'styled-components'
+import { Button, CardHeader } from '@sparkpointio/sparkswap-uikit';
 import { Link } from 'react-router-dom';
 import Container from '../styled';
 
@@ -13,10 +13,12 @@ export const StyledContainer = styled(Container)`
     background: ${({theme}) => theme.isDark && "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(5,23,54,1) 50%, rgba(0,0,0,1) 100%)"}; 
     width: 100%;
     justify-content: space-evenly;
-
-    @media (min-width: 2560px ) {
-        min-height: 40vh;
+    @media (max-width: 414px) {
+        padding: 39px;
     }
+    @media (max-width: 375px) {
+        padding: 12px;
+    }    
 `;
 
 export const StyledHeader = styled.div`
@@ -26,6 +28,30 @@ export const StyledHeader = styled.div`
     text-align: center;
     word-spacing: 5px;
 `;
+
+export const HeroHeader = styled(CardHeader)<{ src?: string }>`
+    display: flex;
+    padding: 0px;
+    align-items: center;
+    position: relative;
+    ${({ src }) => src && `
+        &:before {
+            content: ' ';
+            display: block;
+            position: absolute;
+            opacity: 0.2;
+            width: 85%;
+            height: 85%;
+            z-index: 1;
+            background-image: url(${src});
+            background-repeat: no-repeat;
+            background-attachment: scroll;
+            background-position: left;
+            background-size: left;
+        }
+    `}  
+`;
+
 
 export const StyledDiv = styled.div`
     max-width: 768px;
@@ -39,17 +65,10 @@ export const StyledDiv = styled.div`
         margin: 24px;
         width: 90%;
     }
-    @media (max-width: 414px) {
-        margin: 37px;
-    }
-    @media (max-width: 375px) {
-        margin: 21px;
-    }
-    @media (max-width: 320px) {
-        margin: 45px;
-    }
+    
 `;
 export const ActionsDiv = styled(StyledDiv)`
+    z-index: 2;
     margin-bottom: 15px;
     > * {
         margin: 10px;
@@ -75,18 +94,25 @@ export const StyledLink = styled(Link)`
     align-items: center;
     justify-content: center;
     font-weight: bold;
+    z-index: 2;
     
     @media (max-width: 770px ) {
-        width: 100%;
-        height: 6.8vh;
+        height: 5.6vh;
+    }
+    @media (max-width: 746px ) {
+        height: 6vh;
+    }
+    @media (max-width: 560px ) {
+        height: 6.1vh;
+    }
+    @media (max-width: 414px ) {
+        height: 6.7vh;
     }
     @media (max-width: 375px) {
-        width: 100%;
-        height: 7.6vh;
+        height: 7.2vh;
     }
     @media (max-width: 320px ) {
-        width: 100%;
-        height: 8.6vh;
+        height: 7.8vh;
     }
     
 `
