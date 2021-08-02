@@ -8,12 +8,13 @@ import Timer from './timer';
 const Section: React.FC = () => {
     const isMobile = useMedia({maxWidth: 500})
     const exclusive_binance = `${process.env.PUBLIC_URL}/images/icons/exclusive_binance.png`;
+    const sparklaunch_icon = `${process.env.PUBLIC_URL}/images/icons/sparklaunch.svg`;
 
     return (
         <StyledContainer>
             <StyledHeader>
                 <Heading as="h1" size={isMobile? "xl":"xxl"} bold>
-                    Ignite your token on SparkLaunch!
+                    <img src={sparklaunch_icon} alt="spark_icon" width={isMobile? "55vw":"85vw"} height={isMobile? "55vw":"85vw"} style={{verticalAlign: 'middle'}} /> Ignite your token on SparkLaunch!
                 </Heading>
             </StyledHeader>
             <Divider />
