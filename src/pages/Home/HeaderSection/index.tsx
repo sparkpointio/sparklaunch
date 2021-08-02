@@ -12,7 +12,7 @@ const Section: React.FC = () => {
     return (
         <HeroHeader src={srcsBg}>
             <StyledContainer>
-            <StyledHeader>
+            <StyledHeader>    
                 <Heading as="h1" size={isMobile? "xl":"xxl"} bold>
                     Ignite your token on SparkLaunch!
                 </Heading>
@@ -35,7 +35,7 @@ const Section: React.FC = () => {
                 <Button as="a" href="https://forms.gle/hXZPr93vC8TEmsoh8" fullWidth style={{backgroundColor: '#7a1ba3'}} >Apply for IDO</Button>
             </ActionsDiv>
         </StyledContainer>
-        </HeroHeader>
+        </HeroHeader>        
     );
 };
 
