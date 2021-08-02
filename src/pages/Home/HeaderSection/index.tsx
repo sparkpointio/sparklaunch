@@ -3,8 +3,6 @@ import { Text, Button, Heading } from '@sparkpointio/sparkswap-uikit';
 import useMedia from 'use-media';
 import Divider from 'components/Divider';
 import { StyledContainer, StyledHeader, StyledDiv, ActionsDiv, StyledLink, HeroHeader } from './styled';
-// import LazyHero from 'react-lazy-hero';
-
 
 const Section: React.FC = () => {
     const isMobile = useMedia({maxWidth: 500})
@@ -15,9 +13,8 @@ const Section: React.FC = () => {
         <HeroHeader src={srcsBg}>
             <StyledContainer>
             <StyledHeader>
-            
                 <Heading as="h1" size={isMobile? "xl":"xxl"} bold>
-                     Ignite your token on SparkLaunch!
+                    Ignite your token on SparkLaunch!
                 </Heading>
             </StyledHeader>
             <Divider />
@@ -30,7 +27,6 @@ const Section: React.FC = () => {
             <StyledDiv style={{justifyContent: 'center', textAlign: 'center'}}>
                 <Text>Exclusively on <img src={exclusive_binance} alt="ex-binance" width="20vw" height="20vh" style={{verticalAlign: 'middle'}} /> Binance Smart Chain</Text>
             </StyledDiv>
-            
             <ActionsDiv>
                 <Button as="a" href="https://sparkswap.finance/#/swap" style={{width: '100%'}}>
                     Buy on SparkSwap
@@ -40,7 +36,6 @@ const Section: React.FC = () => {
             </ActionsDiv>
         </StyledContainer>
         </HeroHeader>
-        
     );
 };
 
