@@ -1,4 +1,4 @@
- import styled from 'styled-components'
+import styled from 'styled-components'
 import { Button, CardHeader } from '@sparkpointio/sparkswap-uikit';
 import { Link } from 'react-router-dom';
 import Container from '../styled';
