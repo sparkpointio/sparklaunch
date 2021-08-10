@@ -8,6 +8,7 @@ import { useLocation } from 'react-router';
 import { customMeta, DEFAULT_META } from 'config/constants/meta';
 import Powered from 'assets/icons/Powered.svg';
 import './App.css';
+import ScrollButton from 'pages/Home/ScrollButton';
 
 const StyledPage = styled.div`
     min-height: calc(100vh - 64px);
@@ -88,6 +89,8 @@ const PageFooter = () => {
                 </Flex>
                 <h5>© SparkLaunch 2021</h5>
             </Flex>
+            <ScrollButton/>
+           
         </StyledFooter>
     );
 };
