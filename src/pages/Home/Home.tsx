@@ -3,7 +3,6 @@ import Page from 'components/layout/Page'
 import HeaderSection from './HeaderSection'
 import AboutSection from './AboutSection';
 import ApplySection from './ApplySection';
-import ScrollButton from './ScrollButton';
 
 const Home: React.FC = () => {
     return (
@@ -13,7 +12,6 @@ const Home: React.FC = () => {
             <AboutSection />
             <ApplySection />
         </Page>
-        <ScrollButton />
         </>
         
     );
