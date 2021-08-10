@@ -95,7 +95,7 @@ const RenderRoundTwo = () => {
        return (
            <>
            <div>
-           <img src={srcsBg} alt="roundtwo" style={{position: 'relative', width:"95%", height:"95%", marginTop: "-5vh"}}/>
+           <img src={srcsBg} alt="roundtwo" style={{position: 'relative', width:"95%", height:"95%", marginTop: "-2vh"}}/>
             </div>
            <div className="row">
                   
