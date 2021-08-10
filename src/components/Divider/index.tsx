@@ -6,6 +6,14 @@ const StyledHr = styled.hr`
     border: none;
     width: 40%;
     margin: 15px;
+    @media (max-width: 1366px){
+        margin-top: 4vh;
+        margin-bottom: 4vh;
+      }
+      @media (max-width: 500px){
+        margin-top: 4vh;
+        margin-bottom: 10vh;
+      }
 `
 
 export const StyledHr2 = styled.hr`
