@@ -1,8 +1,8 @@
 import React from 'react';
 import { Text, Heading, Button } from '@sparkpointio/sparkswap-uikit';
-import { AboutColumn as Column } from 'components/Column';
+import { AboutColumn as Column, TwoColumn } from 'components/Column';
 import { SvgProps } from 'components/SvgIcon/types';
-import { StyledContainer, StyledHeading, Image, Box, BoxHeading, TierTitle, TierDetails, TierFooter } from './styled';
+import { StyledContainer, StyledHeading, StyledTitle, Image, Box, BoxHeading, TierTitle, TierDetails, TierFooter } from './styled';
 import DetailsList, { TierSystemList } from './config';
 import { Details, TierSystem } from './types';
 import * as IconModule from './icons';
@@ -88,8 +88,30 @@ const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }
     );
 };
 
+const RenderRoundTwo = () => {
+    // return TierSystemList.map((item) => {
+       // const { image, title, requirement, poolWeight, guaranteedAllocation } = item;
+       const srcsBg = `${process.env.PUBLIC_URL}/images/icons/round2.png`;
+       return (
+           <>
+           <div>
+           <img src={srcsBg} alt="roundtwo" style={{position: 'relative', width:"95%", height:"95%", marginTop: "-5vh"}}/>
+            </div>
+           <div className="row">
+                  
+             <Text> All unsold tokens from the first round will be sold to all Tiered participants, and there will be NO LIMIT on how much a tiered participant can buy! </Text> &nbsp;  
+             <Text> Tiered participants will be able to buy the remaining tokens on the same page where the first round was conducted, and at the same time regardless of the tier. </Text> &nbsp; 
+             <Text> This round will remain open until all tokens are sold. Once all tokens are sold, that signals the end of the IDO sale.</Text> &nbsp; 
+             </div>
+
+             
+              </>
+       )
+};
+
 
 const Section: React.FC = () => {
+    
     return (
         <StyledContainer>
             <StyledHeading size="lg" as="h2">
@@ -99,7 +121,12 @@ const Section: React.FC = () => {
             <StyledHeading size="lg" as="h2">
                 SparkLaunch Tiered System
             </StyledHeading>
+            <StyledTitle>ROUND 1 - ALLOCATION ROUND</StyledTitle>
             <Column>{RenderTierSystem()}</Column>
+            &nbsp;
+            <StyledTitle>ROUND 2 - FCFS ROUND</StyledTitle>
+            &nbsp;
+            <TwoColumn>{RenderRoundTwo()}</TwoColumn>
         </StyledContainer>
     );
 };
