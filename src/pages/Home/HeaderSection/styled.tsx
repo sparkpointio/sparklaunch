@@ -13,12 +13,12 @@ export const StyledContainer = styled(Container)`
     width: 100%;
     justify-content: space-evenly;
     @media (max-width: 1920px) {
-        padding-bottom: 16vh;
-    padding-top: 18vh;
+        padding-bottom: 17vh;
+    padding-top: 17vh;
     }
     @media (max-width: 1366px) {
-        padding-bottom: 16vh;
-    padding-top: 16vh;
+        padding-bottom: 15vh;
+    padding-top: 15vh;
      
     justify-content: space-around;
     }
