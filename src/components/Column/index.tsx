@@ -19,6 +19,45 @@ row-gap: 20px;
   width: 80%;
 }
 `
+export const TwoColumn = styled(Column)`
+grid-template-columns: repeat(2, 2fr);
+grid-template-rows: 1;
+width: 100%;
+max-width: 1200px;
+height: auto;
+text-align: left;
+justify-content: center;
+column-gap: 20px;
+row-gap: 20px;
+@media (max-width: 600px){
+  grid-template-columns: repeat(1, 1fr);
+  width: 80%;
+}
+`
+
+export const TwoColumnHeader = styled(Column)`
+// grid-template-columns: repeat(2, 2fr);
+grid-template-columns: 1fr auto;
+grid-template-rows: 1;
+width: 100%;
+// max-width: 2000px;
+height: auto;
+text-align: center;
+justify-content: center;
+column-gap: 0px;
+row-gap: 0px;
+@media (max-width: 1100px){
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
+  margin-left: auto;
+    margin-right: auto;
+}
+@media (max-width: 600px){
+  grid-template-columns: repeat(1, 1fr);
+  width: 100%;
+}
+`
+
 
 export const ColumnCenter = styled(Column)`
   width: 100%;

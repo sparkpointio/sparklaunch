@@ -23,9 +23,21 @@ export const StyledHeading = styled(Heading)`
     }
     @media (max-width: 768px) {
         text-align: center;
+    }   
+`;
+
+export const StyledTitle = styled(Heading)`
+    margin: 5px 15px;
+    &:after {
+        content: ""; 
+        display: block; 
+        margin: 0 auto; 
+        width: 80%; 
+        padding-top: 20px;
     }
-    
-    
+    @media (max-width: 768px) {
+        text-align: center;
+    }  
 `;
 
 export const Image = styled.img`
@@ -46,6 +58,13 @@ export const Box = styled.div`
         transform: scale(1.1);
     }
     
+`
+
+export const Text = styled.div`
+display: flex;
+  height: 7vh;
+  width: 100%;
+  margin-top: 15px;
 `
 
 export const BoxHeading = styled(Heading)`
