@@ -91,7 +91,7 @@ const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }
 const RenderRoundTwo = () => {
     // return TierSystemList.map((item) => {
        // const { image, title, requirement, poolWeight, guaranteedAllocation } = item;
-       const srcsBg = `${process.env.PUBLIC_URL}/images/icons/round2.png`;
+       const srcsBg = `${process.env.PUBLIC_URL}/images/icons/roundtwo.png`;
        return (
            <>
            <div>
