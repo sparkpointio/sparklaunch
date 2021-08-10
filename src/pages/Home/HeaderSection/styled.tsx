@@ -7,17 +7,39 @@ import Container from '../styled';
 export const StyledContainer = styled(Container)`
     height: auto;
     min-height: 65vh;
-    padding: 20px;
-    line-height: 3px;
+    display: run-in; 
     // background: rgb(2, 0, 36);
     background: ${({theme}) => theme.isDark && "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(5,23,54,1) 50%, rgba(0,0,0,1) 100%)"}; 
     width: 100%;
     justify-content: space-evenly;
+    @media (max-width: 1920px) {
+        padding-bottom: 16vh;
+    padding-top: 18vh;
+    }
+    @media (max-width: 1366px) {
+        padding-bottom: 16vh;
+    padding-top: 16vh;
+     
+    justify-content: space-around;
+    }
     @media (max-width: 414px) {
         padding: 39px;
     }
     @media (max-width: 375px) {
         padding: 12px;
+    }    
+`;
+
+export const AnimContainer = styled(Container)`
+    margin-top: -5vh;
+    margin-bottom: -5vh;
+    width: 70vh;
+    height: 70vh;
+    @media (max-width: 500px) {
+        width: 40vh;
+        height: 40vh;
+        margin-top: 1vh;
+        margin-bottom: 5vh;
     }    
 `;
 
@@ -54,10 +76,12 @@ export const HeroHeader = styled(CardHeader)<{ src?: string }>`
 
 
 export const StyledDiv = styled.div`
-    max-width: 768px;
+    max-width: 1920px;
     width: 100%;
     display: flex;
-    margin: 10px;
+    align-item: center;
+    width: 90%;
+    justify-content: center;
     @media (max-width: 768px) {
         flex-direction: column;
         justify-content: center;
