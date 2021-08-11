@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {useContext} from 'react';
 import { Text, Heading, Button } from '@sparkpointio/sparkswap-uikit';
 import { AboutColumn as Column, TwoColumn } from 'components/Column';
 import { SvgProps } from 'components/SvgIcon/types';
+import { ThemeContext } from "styled-components";
 import { StyledContainer, StyledHeading, StyledTitle, Image, Box, BoxHeading, TierTitle, TierDetails, TierFooter } from './styled';
 import DetailsList, { TierSystemList } from './config';
 import { Details, TierSystem } from './types';
@@ -89,23 +90,21 @@ const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }
 };
 
 const RenderRoundTwo = () => {
-    // return TierSystemList.map((item) => {
-       // const { image, title, requirement, poolWeight, guaranteedAllocation } = item;
-       const srcsBg = `${process.env.PUBLIC_URL}/images/icons/roundtwo.png`;
+       const round2Icon = `${process.env.PUBLIC_URL}/images/icons/2FCFS.png`;
+       const round2Icon_light = `${process.env.PUBLIC_URL}/images/icons/2FCFS_light.png`;
+       const theme = useContext(ThemeContext);
+
        return (
            <>
-           <div>
-           <img src={srcsBg} alt="roundtwo" style={{position: 'relative', width:"95%", height:"95%", marginTop: "-2vh"}}/>
-            </div>
-           <div className="row">
-                  
-             <Text> All unsold tokens from the first round will be sold to all Tiered participants, and there will be NO LIMIT on how much a tiered participant can buy! </Text> &nbsp;  
-             <Text> Tiered participants will be able to buy the remaining tokens on the same page where the first round was conducted, and at the same time regardless of the tier. </Text> &nbsp; 
-             <Text> This round will remain open until all tokens are sold. Once all tokens are sold, that signals the end of the IDO sale.</Text> &nbsp; 
-             </div>
-
-             
-              </>
+                <div>
+                    <img src={theme.isDark? round2Icon : round2Icon_light } alt="roundtwo" style={{position: 'relative', width:"94%", height:"94%", marginTop: "-2vh"}}/>
+                </div>
+                <div className="row">
+                    <Text> All unsold tokens from the first round will be sold to all Tiered participants, and there will be NO LIMIT on how much a tiered participant can buy! </Text> &nbsp;  
+                    <Text> Tiered participants will be able to buy the remaining tokens on the same page where the first round was conducted, and at the same time regardless of the tier. </Text> &nbsp; 
+                    <Text> This round will remain open until all tokens are sold. Once all tokens are sold, that signals the end of the IDO sale.</Text> &nbsp; 
+                </div>
+            </>
        )
 };
 
