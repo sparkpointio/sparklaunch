@@ -1,6 +1,8 @@
 import styled from 'styled-components';
 import { Heading } from '@sparkpointio/sparkswap-uikit';
+import { Link } from 'react-router-dom';
 import Container from '../styled';
+
 
 export const StyledContainer = styled(Container)`
     min-height: 100vh;
@@ -92,3 +94,11 @@ export const TierDetails = styled.div`
 export const TierFooter = styled.div`
     padding: 25px;
 `
+
+export const StyledLink = styled.a`
+    text-decoration: none;
+
+    &:focus, &:hover, &:visited, &:link, &:active {
+        text-decoration: none;
+    }
+`;
