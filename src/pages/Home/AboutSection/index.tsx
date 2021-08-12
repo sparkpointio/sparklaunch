@@ -97,12 +97,13 @@ const RenderRoundTwo = () => {
        return (
            <>
                 <div>
-                    <img src={theme.isDark? round2Icon : round2Icon_light } alt="roundtwo" style={{position: 'relative', width:"94%", height:"94%", marginTop: "-2vh"}}/>
+                    <img src={theme.isDark? round2Icon : round2Icon_light } alt="roundtwo" style={{position: 'relative', width:"102%", height:"102%", marginTop: "-2vh"}}/>
                 </div>
                 <div className="row">
                     <Text> All unsold tokens from the first round will be sold to all Tiered participants, and there will be NO LIMIT on how much a tiered participant can buy! </Text> &nbsp;  
                     <Text> Tiered participants will be able to buy the remaining tokens on the same page where the first round was conducted, and at the same time regardless of the tier. </Text> &nbsp; 
                     <Text> This round will remain open until all tokens are sold. Once all tokens are sold, that signals the end of the IDO sale.</Text> &nbsp; 
+                    <Text> Once the IDO sale has been concluded, the platform will prepare the tokens for release. Once the necessary preparations are done, participants can now proceed with claiming. Just click the Claim buttons designated for the first and second rounds of the sale found on the same page where the sale was conducted. Participants may choose to participate in the Liquidity Staking options that will be launched after the sale to earn extra token rewards. </Text>
                 </div>
             </>
        )
