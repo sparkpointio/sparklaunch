@@ -29,8 +29,6 @@ const DetailBox = ({ image, title, description }: Details) => {
     );
 };
 
-
-
 const RenderDetails = () => {
     return DetailsList.map((item) => {
         return <DetailBox  key={item.title} image={item.image} title={item.title} description={item.description}/>;
@@ -56,7 +54,7 @@ const RenderTierSystem = () => {
 const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }: TierSystem) => {
     const Tier = Tiers[image];
     const tierElement:React.ReactElement = <Tier width="24px" mr="8px" height="24"/>   
-    
+
     console.log(tierElement)
     return (
         <Box>
@@ -103,12 +101,15 @@ const RenderRoundTwo = () => {
                     <Text> All unsold tokens from the first round will be sold to all Tiered participants, and there will be NO LIMIT on how much a tiered participant can buy! </Text> &nbsp;  
                     <Text> Tiered participants will be able to buy the remaining tokens on the same page where the first round was conducted, and at the same time regardless of the tier. </Text> &nbsp; 
                     <Text> This round will remain open until all tokens are sold. Once all tokens are sold, that signals the end of the IDO sale.</Text> &nbsp; 
-                    <Text> Once the IDO sale has been concluded, the platform will prepare the tokens for release. Once the necessary preparations are done, participants can now proceed with claiming. Just click the Claim buttons designated for the first and second rounds of the sale found on the same page where the sale was conducted. Participants may choose to participate in the <StyledLink href="https://app.srk.finance/#/">Liquidity Staking</StyledLink> options that will be launched after the sale to earn extra token rewards. </Text> &nbsp; 
+                    <Text> Once the IDO sale has been concluded, the platform will prepare the tokens for release. Once the necessary preparations are done, participants can now proceed with claiming. 
+                        Just click the Claim buttons designated for the first and second rounds of the sale found on the same page where the sale was conducted. Participants may choose to participate in the 
+                        <StyledLink href="https://app.srk.finance/#/"> Liquidity Staking </StyledLink> 
+                        options that will be launched after the sale to earn extra token rewards. 
+                    </Text> &nbsp; 
                 </div>
             </>
        )
 };
-
 
 const Section: React.FC = () => {
     
