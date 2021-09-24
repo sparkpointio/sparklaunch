@@ -9,13 +9,13 @@ export const DEFAULT_META: PageMeta = {
 
 export const customMeta: { [key: string]: PageMeta } = {
   '/': {
-    title: 'Home | SparkLaunch',
+    title: 'Home | SparkLaunch - Ignite your token on SparkLaunch',
   },
   '/launch': {
     title: 'Launch | SparkDeFi'
   },
   '/projects': {
-    title: 'Projects | SparkLaunch',
+    title: 'Projects | SparkLaunch - Ignite your token on SparkLaunch!',
   },
   '/staking': {
     title: 'Staking | SparkDeFi',
