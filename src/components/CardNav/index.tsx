@@ -35,7 +35,7 @@ const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => {
         <ButtonMenuItem fullWidth id="swap-nav-link" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`}}} >
           Projects
         </ButtonMenuItem>
-        <ButtonMenuItem fullWidth id="pool-nav-link" href="https://app.srk.finance/#/pool" as="a" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`} }}  >
+        <ButtonMenuItem fullWidth id="pool-nav-link" href="https://stake.sparkswap.finance/#" as="a" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`} }}  >
           Staking
         </ButtonMenuItem>
       </StyledButtonMenu>
