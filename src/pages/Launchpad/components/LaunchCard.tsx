@@ -33,7 +33,7 @@ import Anchor, { StyledLink } from './StyledLink';
 
 
 const LaunchCard: React.FC<IProjects> = (project) => {
-    const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds } = project;
+    const { category2, category, address, buyingCoin, sellingCoin, token, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds, symbol } = project;
 
     const [stats, setStats] = useState({
         totalForSaleTokens: '00.00',
@@ -49,7 +49,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
 
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
-    const contract1 = useLaunchpadContract("ownlyLaunchPad1");
+    const contract1 = useLaunchpadContract(category2);
     const theme = useContext(ThemeContext);
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
@@ -57,7 +57,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
     }, [contract, contract1, project, account]);
-
+    console.log(stats)
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
@@ -78,11 +78,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     useEffect(() => {
         setAccountDetails({
             r1: {
-                token: 'OWN',
+                token: symbol,
                 amount: '5000'
             },
             r2: {
-                token: 'NWO',
+                token: symbol,
                 amount: '10000'
             }
         })
@@ -92,26 +92,25 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         }
         
 
-                
         getRedeem(contract, account).then((r) => {
             setRedeemable(parseInt(r.amount) === 0 ? false : r.redeemable) 
             getRedeem(contract1, account).then((r1) => {
                 setRedeemable1(parseInt(r1.amount) === 0 ? false : r1.redeemable)
                 setAccountDetails({
                     r1: {
-                        token: 'OWN',
-                        amount: new TokenAmount(OWN, r1.amount).toExact()
+                        token: symbol,
+                        amount: new TokenAmount(token, r1.amount).toExact()
                     },
                     r2: {
-                        token: 'OWN',
-                        amount: new TokenAmount(OWN, r.amount).toExact()
+                        token: symbol,
+                        amount: new TokenAmount(token, r.amount).toExact()
                     }
                 })
                 console.log(r1.amount === 0)
             })
         })
         
-    }, [contract, contract1, project, account])
+    }, [contract, contract1, project, account, symbol, token])
 
     
     const [ onClaimR1Modal ] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract1} />)

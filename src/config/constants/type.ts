@@ -19,11 +19,13 @@ export interface ITokens {
 }
 
 export interface IProjects {
+    category2?: string;
     category?: string;
     address?: string;
     buyingCoin: Token;
     sellingCoin: Token;
     title: string;
+    token?: Token;
     symbol: string;
     image: string;
     wallpaperBg?: string;

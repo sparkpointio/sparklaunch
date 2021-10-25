@@ -1,14 +1,16 @@
 import { IProjects } from "config/constants/type";
-import {BNB, TBNB, OWN , TOWN} from "../index";
+import {BNB, TBNB, OWN , TOWN, SRK} from "../index";
 
 
 const ProjectList: Array<IProjects> = [
     {
         category: 'ownlyLaunchPad',
+        category2: 'ownlyLaunchPad1',
         address: '0x001',
         sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : TOWN ),
         buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : TBNB ) ,
         title: 'Ownly',
+        token: (process.env.REACT_APP_CHAIN_ID === "56" ? OWN : OWN ), 
         symbol: 'OWN',
         image: 'ownly.png',
         desc: 'OWN Token is the native utility token of Ownly, users are able to buy, own, collect, and trade 1 of 1 edition crypto artworks by talented artists.',
@@ -23,6 +25,49 @@ const ProjectList: Array<IProjects> = [
         status: "completed",
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
+    {
+        category: 'testLaunchPad',
+        // category2: 'ownlyLaunchPad1',
+        address: '0x001',
+        sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : SRK ),
+        buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ) ,
+        title: 'Test',
+        token: (process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ),
+        symbol: 'TST',
+        image: 'ownly.png',
+        desc: 'This is just a test contract',
+        longDesc: 'This is just a test contract',
+        longDesc2: 'This is just a test contract',
+        longDesc3: 'This is just a test contract',
+        price: 1,
+        progress: 0,
+        totalRaise: 253.46,
+        ownSale: 2666666667,
+        wallpaperBg: '',
+        status: "completed",
+        socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
+    },
+    // {
+    //     category: 'testLaunchPad',
+    //     category2: 'testLaunchPad1',
+    //     address: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+    //     sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : TOWN ),
+    //     buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : TBNB ) ,
+    //     title: 'Ownly',
+    //     symbol: 'OWN',
+    //     image: 'ownly.png',
+    //     desc: 'OWN Token is the native utility token of Ownly, users are able to buy, own, collect, and trade 1 of 1 edition crypto artworks by talented artists.',
+    //     longDesc: 'Backed with over 2+ years of experience in the NFT and blockchain industry, Ownly is a governance token-based NFT-focused marketplace, curator, and a blockchain platform with an existing basket portfolio of NFT artworks that enable creators and collectors to optimize the authentic value of NFT assets.',
+    //     longDesc2: '$OWN Token is the native utility token of Ownly, users are able to buy, own, collect, and trade 1 of 1 edition crypto artworks by talented artists. Own the only true copy and there\'s nothing else like that in the world -- as if it\'s made just for you. ',
+    //     longDesc3: 'Ownly is created to be a meeting place of artworks and collectors in the crypto space. It offers a Decentralized NFT Marketplace, Staking, NFT launching & curation, and NFT-focused & energy-efficient blockchain platform in a seamless, transparent, secure, inclusive, and interoperable approach.',
+    //     price: 1,
+    //     progress: 0,
+    //     totalRaise: 253.46,
+    //     ownSale: 2666666667,
+    //     wallpaperBg: 'ownlyBG.jpg',
+    //     status: "completed",
+    //     socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio']
+    // },
     // {
     //     category: 'ownlyLaunchPad',
     //     address: '0x004',
