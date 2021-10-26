@@ -57,7 +57,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
     }, [contract, contract1, project, account]);
-    console.log(stats)
+   
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",")
     }
@@ -106,7 +106,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         amount: new TokenAmount(token, r.amount).toExact()
                     }
                 })
-                console.log(r1.amount === 0)
+                
             })
         })
         
@@ -200,8 +200,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">{percentage}%</Text>
                                 <Text color="textSubtle">
-                                   {/* {totalSales} / {expectedSales} {buyingCoin.symbol} */}
-                                    261.33 / 261.33 {buyingCoin.symbol}
+                                   {totalSales} / {expectedSales} {buyingCoin.symbol}
+                                    {/* 261.33 / 261.33 {buyingCoin.symbol} */}
                                 </Text>
                             </Flex>
                         )}          
@@ -220,7 +220,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">Total Raised</Text>
                                 <Text>
-                                    261.33 {buyingCoin.symbol}
+                                    {totalSales} {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         )}

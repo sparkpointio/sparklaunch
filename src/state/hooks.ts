@@ -35,12 +35,15 @@ export const useAccount = () => {
     return accounts;
 };
 
-export const useAccountWhiteList = (acc?: string | null) => {
-    const account = useAppSelector((state) =>
-        state.accounts.data.map((acs) => {
-            return acs.whiteList.filter((ls) => ls.address === acc?.toLowerCase());
-        }), 
-    );
+export const useAccountWhiteList = (acc: string | null, project: string | null) => {
+    const account = useAppSelector((state) => {
+        const data = state.accounts.data.find((prj) => {
+            console.log(prj.project === project)
+            return prj.project === project; 
+        })
+
+        return data.whiteList.find((ls) => ls.address === acc);
+    });
     return account;
 };
 

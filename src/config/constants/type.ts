@@ -61,7 +61,8 @@ interface ListType {
 }
 
 export interface IAccountType {
-    whiteList: ListType[]
+    project: string;
+    whiteList: ListType[];
 }
 
 export interface ITransactionDetails {

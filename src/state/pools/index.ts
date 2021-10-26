@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
-import PoolList from 'config/dummy-data/Pool';
+import PoolList from 'config/data/Pool';
 import { PoolInformationState } from 'state/type';
 
 

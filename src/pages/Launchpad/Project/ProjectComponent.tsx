@@ -171,7 +171,8 @@ const ProjectComponent: React.FC = () => {
     const [whiteListed, setWhiteList] = useState(false);
     const Paddress = getFindProject();
     const project = useFindProjectByAddress(Paddress);
-    const acc = useAccountWhiteList(account);
+    const acc = useAccountWhiteList(account, project.address);
+    console.log(acc)
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
@@ -184,7 +185,7 @@ const ProjectComponent: React.FC = () => {
     }, [history, status])
 
     useEffect(() => {
-        if (acc[0][0]) {
+        if (acc) {
             setWhiteList(true);
         } else setWhiteList(false);
     }, [acc]);
