@@ -253,8 +253,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">Buying Coin</Text>
-                            {/* <Text>{buyingCoin.symbol}</Text> */}
-                            <Text>-</Text>
+                            {status === STATE.upcoming ? <Text>-</Text> : <Text>{buyingCoin.symbol}</Text>}
                         </Flex>
                     </DataGroup>
                 </Details>
