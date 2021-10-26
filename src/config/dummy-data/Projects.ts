@@ -42,7 +42,7 @@ const ProjectList: Array<IProjects> = [
         ownSale: 165000000.0,
         wallpaperBg: 'flashtokenBG.png',
         status: "upcoming",
-        socMeds: ['https://flashloans.com', 'https://twitter.com/ComFlashloans', 'https://t.me/joinchat/HCAFABqRGjY77vIdI2nV9g', 'https://medium.com/@flashloans'],
+        socMeds: ['flashloans.com', 'twitter.com/ComFlashloans', 't.me/joinchat/HCAFABqRGjY77vIdI2nV9g', 'medium.com/@flashloans'],
     },
     {
         category: 'ownlyLaunchPad',
@@ -61,7 +61,7 @@ const ProjectList: Array<IProjects> = [
         ownSale: 165000000.0,
         wallpaperBg: 'oreBG.PNG',
         status: "upcoming",
-        socMeds: ['https://outrace.game', 'https://twitter.com/outrace_ore', 'https://t.me/Outrace', 'medium.com'],
+        socMeds: ['outrace.game', 'twitter.com/outrace_ore', 't.me/Outrace', 'medium.com'],
     },
 ]
 
