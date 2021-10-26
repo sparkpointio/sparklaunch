@@ -32,6 +32,38 @@ const TokenList:ITokens[] = [
         chainId: 56,
         decimals: 18,
         logoURI: "/images/icons/own.png"
+    },
+    {
+        name: "OUTRACE",
+        symbol: "ORE",
+        address: "0xb901929C52475DA728d15bc25cfA6a37182c3268",
+        chainId: 97,
+        decimals: 18,
+        logoURI: "/images/icons/ore.png"
+    },
+    {
+        name: "OUTRACE",
+        symbol: "ORE",
+        address: "0xb901929C52475DA728d15bc25cfA6a37182c3268",
+        chainId: 56,
+        decimals: 18,
+        logoURI: "/images/icons/ore.png"
+    },
+    {
+        name: "FLASH",
+        symbol: "FLASH",
+        address: "0xc7b62f59d9561d2338fcd0647969a9934e16f01d",
+        chainId: 97,
+        decimals: 18,
+        logoURI: "/images/icons/flash.png"
+    },
+    {
+        name: "FLASH",
+        symbol: "FLASH",
+        address: "0xc7b62f59d9561d2338fcd0647969a9934e16f01d",
+        chainId: 56,
+        decimals: 18,
+        logoURI: "/images/icons/flash.png"
     }
 ]
 
