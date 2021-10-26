@@ -199,7 +199,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle" fontSize="90%">{0}%</Text>
                                 <Text color="textSubtle" fontSize="90%">
-                                    {0} / {totalRaise} {buyingCoin.symbol}
+                                    {/* {0} / {totalRaise} {buyingCoin.symbol} */}
+                                    {0} / 0 {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         ) : (
@@ -253,7 +254,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">Buying Coin</Text>
-                            {status === STATE.upcoming ? <Text>-</Text> : <Text>{buyingCoin.symbol}</Text>}
+                            {status === STATE.upcoming ? <Text>{buyingCoin.symbol}</Text> : <Text>{buyingCoin.symbol}</Text>}
                         </Flex>
                     </DataGroup>
                 </Details>
