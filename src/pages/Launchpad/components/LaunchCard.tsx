@@ -33,6 +33,7 @@ import Anchor, { StyledLink } from './StyledLink';
 
 
 const LaunchCard: React.FC<IProjects> = (project) => {
+    // const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds } = project;
     const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds } = project;
 
     const [stats, setStats] = useState({
@@ -154,7 +155,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 </Options>
                     {status === STATE.upcoming ? (
                         <ProgressGroup>
-                            <TimerButton>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></TimerButton>
+                            {/* <TimerButton>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></TimerButton> */}
+                            {address === "0x005"? 
+                            <TimerButton> Going Live Soon! </TimerButton> :
+                            <TimerButton> Going Live in:&nbsp; <Timer/></TimerButton>
+                            }
                         </ProgressGroup>    
                     ) : status === STATE.active ? (
                         <ProgressGroup/>
@@ -194,7 +199,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle" fontSize="90%">{0}%</Text>
                                 <Text color="textSubtle" fontSize="90%">
-                                    {0} / {totalRaise} {buyingCoin.symbol}
+                                    {/* {0} / {totalRaise} {buyingCoin.symbol} */}
+                                    {0} / 0 {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         ) : (
@@ -214,7 +220,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">Total Raised</Text>
                                 <Text>
-                                    {0} {buyingCoin.symbol}
+                                    {/* {0} {buyingCoin.symbol} */}
+                                    -
                                 </Text>
                             </Flex>
                         ) : (
@@ -236,7 +243,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         )}
 
                         {status === STATE.upcoming ? (
-                            <Text>{numberWithCommas(ownSale)} {sellingCoin.symbol}</Text>
+                            // <Text>{numberWithCommas(ownSale)} {sellingCoin.symbol}</Text>
+                            <Text> - </Text>
                         ) : status === STATE.completed ? (
                             <Text>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</Text>
                         ) : (
@@ -246,7 +254,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">Buying Coin</Text>
-                            <Text>{buyingCoin.symbol}</Text>
+                            {status === STATE.upcoming ? <Text>{buyingCoin.symbol}</Text> : <Text>{buyingCoin.symbol}</Text>}
                         </Flex>
                     </DataGroup>
                 </Details>
