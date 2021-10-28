@@ -30,7 +30,7 @@ const Section: React.FC = () => {
                     increase liquidity
                 </Text>
             </StyledDiv>
-            <StyledDiv style={isDesktop? {justifyContent: 'center', textAlign: 'center'}:{justifyContent: 'center', textAlign: 'center', marginTop: '-5vh', marginBottom: '-5vh'}}>
+            <StyledDiv style={isDesktop? {justifyContent: 'center', textAlign: 'center', marginBottom: '10px'}:{justifyContent: 'center', textAlign: 'center', marginTop: '-5vh', marginBottom: '-5vh'}}>
                 <Text>Exclusively on <img src={exclusive_binance} alt="ex-binance" width="20vw" height="20vh" style={{verticalAlign: 'middle'}} /> Binance Smart Chain</Text>
             </StyledDiv>            
             <ActionsDiv>

@@ -36,6 +36,7 @@ export interface IProjects {
     price: number;
     progress: number;
     totalRaise: number;
+    endDate?: string;
     ownSale: number;
     status?: Status;
     socMeds?: string[]

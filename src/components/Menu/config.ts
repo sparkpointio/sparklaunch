@@ -7,14 +7,22 @@ const config: MenuEntry[] = [
     href: "https://sparkswap.finance/#/swap",
   },
   {
-    label: "Farm",
+    label: "Staking",
     icon: "FarmIcon",
-    href: "https://app.srk.finance/#/stake",
-  },
-  {
-    label: "Pool",
-    icon: "PoolIcon",
-    href: "https://app.srk.finance/#/pool",
+    items: [
+      {
+        label: "Farms",
+        href: "https://stake.sparkswap.finance/#/farms",
+      },
+      {
+        label: "Pools",
+        href: "https://stake.sparkswap.finance/#/pools",
+      },
+      {
+        label: "Old Farms/Pools",
+        href: "https://app.srk.finance/#/stake",
+      },
+    ],
   },
   {
     label: "Bridge",
@@ -35,6 +43,11 @@ const config: MenuEntry[] = [
     label: "Airdrop",
     icon: "AirdropIcon",
     href: "https://app.srk.finance/#/airdrop"
+  },
+  {
+    label: "Teams",
+    icon: "GroupsIcon",
+    href: "https://srk.finance/team",
   },
   {
     label: "Help",

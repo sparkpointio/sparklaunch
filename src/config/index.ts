@@ -20,6 +20,8 @@ export const ETH = new Token(ChainId.MAINNET, '0x1e33833a035069f42d68D1F53b34164
 export const BNB = new Token(ChainId.MAINNET, '0xbb4CdB9CBd36B01bD1cBaEBF2De08d9173bc095c', 18, 'BNB', 'Binance token')
 export const TBNB = new Token(ChainId.BSCTESTNET, '0xae13d989dac2f0debff460ac112a837c89baa7cd', 18, 'WBNB', 'Binance token') 
 export const OWN = new Token(ChainId.MAINNET, '0xe09B8661D80CF24dB230A167969d18B94a5a3266', 18, 'OWN', 'OWNLY Token')
+export const ORE = new Token(ChainId.MAINNET, '0xb901929C52475DA728d15bc25cfA6a37182c3268', 18, 'ORE', 'OUTRACE Token') 
+export const FLASH = new Token(ChainId.MAINNET, '0xc7b62f59d9561d2338fcd0647969a9934e16f01d', 18, 'FLASH', 'FLASH Token') 
 export const TOWN = new Token(ChainId.BSCTESTNET, '0x446494947a1865d872ab43d383b8e264b4cf1bf0', 18, 'OWN', 'OWNLY Token') 
 export const SRK = new Token(ChainId.BSCTESTNET, '0xe09B8661D80CF24dB230A167969d18B94a5a3266', 18, 'SRK', 'SRK Token')
 

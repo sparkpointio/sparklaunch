@@ -69,7 +69,9 @@ const PageFooter = () => {
     return (
         <StyledFooter>
             <Flex flexDirection="column" justifyContent="space-evenly" style={{ textAlign: 'left' }}>
-                <img src={Powered} alt="powered-logo" style={{ width: '60%', margin: '20px 0px' }} />
+                <a href="https://sparkpoint.io/">
+                    <img src={Powered} alt="powered-logo" style={{ width: '60%', margin: '20px 0px' }} />
+                </a>
                 <Flex flexDirection={isMobile? "column" : "row"} justifyContent="space-evenly" style={{ width: '100%' }}>
                     <CustomLink href="https://sparkpointio.github.io/terms_and_conditions/sparkdefi-launchpad/"><h5>Terms & Conditions</h5></CustomLink>
                     <StyledLink href="https://sparkpointio.github.io/privacy_policies/sparkdefi-launchpad/">Privacy Policy</StyledLink>
