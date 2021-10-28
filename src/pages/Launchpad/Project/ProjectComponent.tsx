@@ -87,9 +87,9 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
     }, [contract, project, account, library])
 
     const [ onPurchaseModal ] = useModal(<PurchaseModal address={Paddress} stats={stats} />)
-    const tokenReport = {
-        title: `${project.progress} ${project.symbol}`,
-    }
+    // const tokenReport = {
+    //     title: `${project.progress} ${project.symbol}`,
+    // }
     
     const percentage = parseFloat(stats.percentage).toFixed(4)
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4)

@@ -33,7 +33,7 @@ import Anchor, { StyledLink } from './StyledLink';
 
 
 const LaunchCard: React.FC<IProjects> = (project) => {
-    const { category2, category, address, buyingCoin, sellingCoin, token, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds, symbol } = project;
+    const { category2, category, address, buyingCoin, sellingCoin, token, title, image, wallpaperBg, desc, ownSale, status, socMeds, symbol } = project;
 
     const [stats, setStats] = useState({
         totalForSaleTokens: '00.00',
@@ -117,10 +117,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const [ onClaimR2Modal ] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract} />)
     
     const percentage = parseFloat(stats.percentage).toFixed(4)
-    const totalSales = parseFloat(stats.totalSales).toFixed(4)
+    const totalSales = status !== STATE.upcoming? parseFloat(stats.totalSales).toFixed(4) : 0
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
     const remainingForSale = parseFloat(stats.remainingForSale).toFixed(4).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-    const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
+    const expectedSales = status !== STATE.upcoming ? parseFloat(stats.expectedSales).toFixed(2) : 0
+    console.log(stats)
     return (
         <Card style={{ padding: '5px' }}>
             <StyledCardHeader src={srcsBg}>
@@ -143,77 +144,33 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <SvgIcon width={24} Icon={MediumIcon} />
                         </Anchor>
                     </SocmedGroup>
-                    {status === STATE.active ? (
-                        <StyledButton style={{ backgroundColor: StatusColor.live }}>LIVE NOW</StyledButton>
-                    ) : status === STATE.upcoming ? (
-                        <StyledButton style={{ backgroundColor: StatusColor.upcoming }}>UPCOMING</StyledButton>
-                    ) : (
-                        <StyledButton style={{ backgroundColor: StatusColor.completed }}>COMPLETED</StyledButton>
-                    )}
+                    <StyledButton status={status}>{status.toUpperCase()}</StyledButton>
                 </Options>
-                    {status === STATE.upcoming ? (
+                        { status === STATE.upcoming ? (
                         <ProgressGroup>
                             {/* <TimerButton>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></TimerButton> */}
-                            {address === "0x005"? 
+                            {address === "0x005" ? 
                             <TimerButton> Going Live Soon! </TimerButton> :
                             <TimerButton> Going Live in:&nbsp; <Timer/></TimerButton>
                             }
-                        </ProgressGroup>    
-                    ) : status === STATE.active ? (
-                        <ProgressGroup/>
-                    ) : (
-                        <ProgressGroup/>
-                    )}
+                        </ProgressGroup>
+                        ) : <br />} 
                 <Details>
-                    {status === STATE.active ? (
-                        <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '30px', marginTop: '-25px'}}>
-                            <Text>{desc}</Text>
-                        </div>
-                    ) : status === STATE.upcoming ? (
-                        <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '10px', marginTop: '10px'}}>
-                            <Text>{desc}</Text>
-                        </div>
-                        ) : (
-                        <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: '30px', marginTop: '-25px'}}>
-                            <Text>{desc}</Text>
-                        </div>
-                    )}
+                    <div style={{height: '70px', maxHeight: '80px', minHeight: '70px', marginBottom: `${status === STATE.upcoming? '10px':'30px'}`, marginTop: `${status === STATE.upcoming? '10px': '-25px'}`}}>
+                        <Text>{desc}</Text>
+                    </div>
                     <ProgressGroup>
-                        {status === STATE.completed ? (
-                            <Text as="h1">Sale Completion</Text>
-                        ) : status === STATE.upcoming ? (
-                            <Text as="h1">Progress</Text>
-                        ) : (
-                            <Text as="h1">Progress</Text>
-                        )}
-
-                        {status === STATE.upcoming ? (
-                            <Progress primaryStep={0} variant="flat" />
-                        ) : (
-                            <Progress primaryStep={parseFloat(percentage)} variant="flat" />
-                        )}
-
-                        {status === STATE.upcoming ? (
-                            <Flex justifyContent="space-between">
-                                <Text color="textSubtle" fontSize="90%">{0}%</Text>
-                                <Text color="textSubtle" fontSize="90%">
-                                    {/* {0} / {totalRaise} {buyingCoin.symbol} */}
-                                    {0} / 0 {buyingCoin.symbol}
-                                </Text>
-                            </Flex>
-                        ) : (
+                        <Text as="h1">{status === STATE.completed? 'Sale Completion':'Progress'}</Text>
+                        <Progress primaryStep={parseFloat(percentage)} variant="flat" />
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">{percentage}%</Text>
                                 <Text color="textSubtle">
                                    {totalSales} / {expectedSales} {buyingCoin.symbol}
                                     {/* 261.33 / 261.33 {buyingCoin.symbol} */}
                                 </Text>
-                            </Flex>
-                        )}          
-
+                            </Flex>    
                     </ProgressGroup>
                     <DataGroup flexDirection="column">
-
                         {status === STATE.upcoming ? (
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">Total Raised</Text>

@@ -33,9 +33,6 @@ export interface IProjects {
     longDesc?: string;
     longDesc2?: string | null
     longDesc3?: string | null
-    price: number;
-    progress: number;
-    totalRaise: number;
     endDate?: string;
     ownSale: number;
     status?: Status;
