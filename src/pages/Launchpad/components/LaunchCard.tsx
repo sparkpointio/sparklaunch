@@ -34,7 +34,7 @@ import Anchor, { StyledLink } from './StyledLink';
 
 const LaunchCard: React.FC<IProjects> = (project) => {
     // const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds } = project;
-    const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, totalRaise, ownSale, status, socMeds } = project;
+    const { category, address, buyingCoin, sellingCoin, title, image, wallpaperBg, desc, totalRaise, ownSale, status, claimable, socMeds } = project;
 
     const [stats, setStats] = useState({
         totalForSaleTokens: '00.00',
@@ -123,6 +123,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
     const remainingForSale = parseFloat(stats.remainingForSale).toFixed(4).replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
     const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
+
     return (
         <Card style={{ padding: '5px' }}>
             <StyledCardHeader src={srcsBg}>
@@ -269,17 +270,28 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         </StyledLink>
                     )}
                 </CardAction>
-            ): status === STATE.completed && (
-                <CardAction flexDirection="column">
-                    {redeemable1 ? (
-                        <Button fullWidth onClick={onClaimR1Modal}>Claim R1 Allocations</Button>
-                    ) : (<Button disabled fullWidth>No available R1 claims</Button>) }
-                    {redeemable ? (
-                        <Button fullWidth onClick={onClaimR2Modal}>Claim R2 Allocations</Button>
-                    ) : (<Button disabled fullWidth>No available R2 claims</Button>) }
-                    
-                </CardAction>
-            )}
+            ) : status === STATE.completed && claimable ?
+                (
+                    <CardAction flexDirection="column">
+                        <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
+                        <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
+                            {redeemable1 ?
+                                <Button onClick={onClaimR1Modal}>Claim R1</Button>
+                                : <Button fullWidth disabled>Claim R1</Button>}
+                            {redeemable ?
+                                <Button onClick={onClaimR2Modal}>Claim R2</Button>
+                                : <Button fullWidth disabled>Claim R2</Button>}
+                        </Flex>
+                    </CardAction>
+                    ) : status === STATE.completed && !claimable &&
+                    <CardAction flexDirection="column">
+                        <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
+                        {/* Function to check if user has participated */}
+                        <Text style={{ marginTop: '15px' }}>
+                            Thank you for participating in the IDO sale! Your ${sellingCoin.symbol} tokens will be sent shortly to your wallet address
+                        </Text>
+                    </CardAction>
+            }
         </Card>
     );
 };
