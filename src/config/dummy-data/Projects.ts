@@ -22,6 +22,7 @@ const ProjectList: Array<IProjects> = [
         ownSale: 2666666667,
         wallpaperBg: 'ownlyBG.jpg',
         status: "completed",
+        claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
     {
@@ -38,10 +39,11 @@ const ProjectList: Array<IProjects> = [
         price: 0.0000909,
         progress: 75,
         totalRaise: 150,
-        endDate: '11-01 12:00:00',
+        endDate: '11-01 21:00:00',
         ownSale: 165000000.0,
         wallpaperBg: 'flashtokenBG.png',
         status: "upcoming",
+        claimable: false,
         socMeds: ['flashloans.com', 'twitter.com/ComFlashloans', 't.me/joinchat/HCAFABqRGjY77vIdI2nV9g', 'medium.com/@flashloans'],
     },
     {
@@ -61,6 +63,7 @@ const ProjectList: Array<IProjects> = [
         ownSale: 165000000.0,
         wallpaperBg: 'oreBG.png',
         status: "upcoming",
+        claimable: true,
         socMeds: ['outrace.game', 'twitter.com/outrace_ore', 't.me/Outrace', 'medium.com'],
     },
 ]
