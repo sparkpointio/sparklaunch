@@ -5,7 +5,7 @@ import {BNB, TBNB, OWN , TOWN, SRK} from "../index";
 const ProjectList: Array<IProjects> = [
     {
         category: 'ownlyLaunchPad',
-        category2: 'ownlyLaunchPad1',
+        // category2: 'ownlyLaunchPad1',
         address: '0x001',
         sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : TOWN ),
         buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : TBNB ) ,

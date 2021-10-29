@@ -28,7 +28,7 @@ import { ReactComponent as MediumIcon } from '../components/icons/MediumIcon.svg
 import Anchor from '../components/StyledLink';
 import FooterDetails from './FooterDetails';
 import { CCont, CHeader, TokenImage, SmalltokenImage, CBody, StyledButton, CustomDataGroup, CFooter, TextDescription } from './styled'
-import {calculateLaunchpadStats, getAccountDetailsLaunchPad} from "../../../utils/contractHelpers";
+import {calculateLaunchpadStats, getAccountDetailsLaunchPad, getEndedStatus} from "../../../utils/contractHelpers";
 import {useLaunchpadContract} from "../../../hooks/useContracts";
 import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
 import {BNB, OWN} from "../../../config";
@@ -80,13 +80,15 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
     const {library} = useActiveWeb3React();
 
     const contract = useLaunchpadContract(project.category)
-    
+    const isEnded = getEndedStatus(contract);
+    const projCat = isEnded? project.category2 : project.category;
+    const purchaseCat = 
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then(r => setStats(r));
         getAccountDetailsLaunchPad(contract, project, library, account).then(r => setAccountDetails(r)).catch(console.log)
     }, [contract, project, account, library])
 
-    const [ onPurchaseModal ] = useModal(<PurchaseModal address={Paddress} stats={stats} />)
+    const [ onPurchaseModal ] = useModal(<PurchaseModal address={Paddress} stats={stats} category={projCat} />)
     // const tokenReport = {
     //     title: `${project.progress} ${project.symbol}`,
     // }
@@ -119,11 +121,11 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
             </ProgressGroup>
             <CustomDataGroup flexDirection="column">
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">OWNLY Price</Text>
+                    <Text color="textSubtle">{project.buyingCoin.symbol} Price</Text>
                     <Text>{stats.tokenRate} {project.buyingCoin.symbol}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">OWNLY Sold</Text>
+                    <Text color="textSubtle">{project.sellingCoin.symbol} Sold</Text>
                     <Text>{stats.totalSoldTokens} {project.sellingCoin.symbol}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
@@ -172,11 +174,11 @@ const ProjectComponent: React.FC = () => {
     const Paddress = getFindProject();
     const project = useFindProjectByAddress(Paddress);
     const acc = useAccountWhiteList(account, project.address);
-    console.log(acc)
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     const history = useHistory();
+    
 
     useEffect(() => {
         if (status !== STATE.active){
@@ -243,7 +245,6 @@ const ProjectComponent: React.FC = () => {
                         account={account}
                         whiteListed={whiteListed}
                         project={project}
-                        
                         />
                     </Flex>
                 </Flex>

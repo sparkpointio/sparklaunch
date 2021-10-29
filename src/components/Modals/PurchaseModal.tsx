@@ -11,7 +11,7 @@ import { Button, Flex, Heading, Modal, Text } from '@sparkpointio/sparkswap-uiki
 import styled, { ThemeContext } from 'styled-components';
 import { SmallstyledImage } from 'pages/Launchpad/components/styled';
 import Priceperbnb from 'hooks/Priceperbnb';
-import { useOwnlyLaunchpad } from '../../hooks/useContracts';
+import { useLaunchpadContract } from '../../hooks/useContracts';
 import { BNB, OWN } from '../../config';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { expandValue } from '../../utils';
@@ -34,6 +34,7 @@ interface AppProps {
     onDismiss?: () => void;
     address: string | null | undefined;
     stats: Stats;
+    category: string;
 }
 
 const ToastTitle = styled(Text)`
@@ -49,10 +50,10 @@ const ActionDiv = styled(Flex)`
     flex-direction: column;
 `;
 
-const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
+const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category }) => {
     const { library } = useActiveWeb3React();
     const { account } = useWeb3React();
-    const contract = useOwnlyLaunchpad();
+    const contract = useLaunchpadContract(category);
     const project = useFindProjectByAddress(address);
     const token = useSelectToken(project.buyingCoin.address);
 
