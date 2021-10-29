@@ -288,7 +288,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
                         {/* Function to check if user has participated */}
                         <Text style={{ marginTop: '15px' }}>
-                            Thank you for participating in the IDO sale! Your ${sellingCoin.symbol} tokens will be sent shortly to your wallet address
+                            Thank you for participating in the IDO sale! Your {sellingCoin.symbol} tokens will be sent shortly to your wallet address
                         </Text>
                     </CardAction>
             }
