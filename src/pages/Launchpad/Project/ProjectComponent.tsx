@@ -181,7 +181,7 @@ const ProjectComponent: React.FC = () => {
     
 
     useEffect(() => {
-        if (status !== STATE.active){
+        if (status === STATE.upcoming){
             history.push('/projects');
         }
     }, [history, status])

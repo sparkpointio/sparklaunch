@@ -46,6 +46,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         status,
         socMeds,
         symbol,
+        claimable,
     } = project;
 
     const [stats, setStats] = useState({
@@ -250,20 +251,28 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         </StyledLink>
                     )}
                 </CardAction>
-            ) : (
-                status === STATE.completed && (
+            ) : status === STATE.completed && claimable ?
+                (
                     <CardAction flexDirection="column">
-                        <Button fullWidth disabled={!redeemable1} onClick={onClaimR1Modal}>
-                            Claim R1 Allocations
-                        </Button>
-                        {redeemable && (
-                            <Button fullWidth onClick={onClaimR2Modal}>
-                                Claim R2 Allocations
-                            </Button>
-                        )}
+                        <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
+                        <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
+                            {redeemable1 ?
+                                <Button onClick={onClaimR1Modal}>Claim R1</Button>
+                                : <Button fullWidth disabled>Claim R1</Button>}
+                            {redeemable ?
+                                <Button onClick={onClaimR2Modal}>Claim R2</Button>
+                                : <Button fullWidth disabled>Claim R2</Button>}
+                        </Flex>
                     </CardAction>
-                )
-            )}
+                    ) : status === STATE.completed && !claimable &&
+                    <CardAction flexDirection="column">
+                        <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
+                        {/* Function to check if user has participated */}
+                        <Text style={{ marginTop: '15px' }}>
+                            Thank you for participating in the IDO sale! Your ${sellingCoin.symbol} tokens will be sent shortly to your wallet address
+                        </Text>
+                    </CardAction>
+            }
         </Card>
     );
 };
