@@ -81,8 +81,8 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
 
     const contract = useLaunchpadContract(project.category)
     const isEnded = getEndedStatus(contract);
-    const projCat = isEnded? project.category2 : project.category;
-    const purchaseCat = 
+    const projCat = isEnded && project.category2? project.category2 : project.category;
+
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then(r => setStats(r));
         getAccountDetailsLaunchPad(contract, project, library, account).then(r => setAccountDetails(r)).catch(console.log)

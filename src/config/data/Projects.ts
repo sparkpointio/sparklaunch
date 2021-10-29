@@ -28,7 +28,7 @@ const ProjectList: Array<IProjects> = [
         // category2: 'ownlyLaunchPad1',
         address: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
         sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : SRK ),
-        buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ) ,
+        buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : BNB ) ,
         title: 'Test',
         token: (process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ),
         symbol: 'TST',
