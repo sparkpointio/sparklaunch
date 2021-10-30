@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import TokenList from 'config/dummy-data/Tokens';
+import TokenList from 'config/data/Tokens';
 import { TokenState } from 'state/type';
 
 const initialState: TokenState = {

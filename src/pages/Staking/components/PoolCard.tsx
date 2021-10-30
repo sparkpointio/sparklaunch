@@ -141,10 +141,10 @@ const PoolCard: React.FC<{ pool: CardProps }> = ({ pool }) => {
                     <StyledHeading bold>{title}</StyledHeading>
                 </StyledCardHeader>
                 <StyledCardBody>
-                    <Options>
+                    {/* <Options>
                         <Text>{description}</Text>
                         {status === 'live' ? (
-                            <StyledButton style={{ backgroundColor: StatusColor.live }}>LIVE NOW</StyledButton>
+                            <StyledButton style={{ backgroundColor: StatusColor.active }}>LIVE NOW</StyledButton>
                         ) : status === 'upcoming' ? (
                             <StyledButton style={{ backgroundColor: StatusColor.upcoming }}>UPCOMING</StyledButton>
                         ) : (
@@ -154,7 +154,7 @@ const PoolCard: React.FC<{ pool: CardProps }> = ({ pool }) => {
                                 </StyledButton>
                             )
                         )}
-                    </Options>
+                    </Options> */}
                     <StyledActionsGroup flexDirection="column">
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">APY</Text>

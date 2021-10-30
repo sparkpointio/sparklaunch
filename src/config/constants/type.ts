@@ -19,22 +19,21 @@ export interface ITokens {
 }
 
 export interface IProjects {
+    category2?: string;
     category?: string;
     address?: string;
-    buyingCoin: Token;
-    sellingCoin: Token;
+    buyingCoin?: Token;
+    sellingCoin?:  Token;
     title: string;
+    token?: Token ;
     symbol: string;
     image: string;
     wallpaperBg?: string;
     desc: string;
-    longDesc: string;
+    longDesc?: string;
     longDesc2?: string | null
     longDesc3?: string | null
-    price: number;
-    progress: number;
-    totalRaise: number;
-    endDate: string;
+    endDate?: string;
     ownSale: number;
     status?: Status;
     claimable?: boolean;
@@ -61,7 +60,8 @@ interface ListType {
 }
 
 export interface IAccountType {
-    whiteList: ListType[]
+    project: string;
+    whiteList: ListType[];
 }
 
 export interface ITransactionDetails {

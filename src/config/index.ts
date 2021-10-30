@@ -23,6 +23,7 @@ export const OWN = new Token(ChainId.MAINNET, '0xe09B8661D80CF24dB230A167969d18B
 export const ORE = new Token(ChainId.MAINNET, '0xb901929C52475DA728d15bc25cfA6a37182c3268', 18, 'ORE', 'OUTRACE Token') 
 export const FLASH = new Token(ChainId.MAINNET, '0xc7b62f59d9561d2338fcd0647969a9934e16f01d', 18, 'FLASH', 'FLASH Token') 
 export const TOWN = new Token(ChainId.BSCTESTNET, '0x446494947a1865d872ab43d383b8e264b4cf1bf0', 18, 'OWN', 'OWNLY Token') 
+export const SRK = new Token(ChainId.BSCTESTNET, '0xe09B8661D80CF24dB230A167969d18B94a5a3266', 18, 'SRK', 'SRK Token')
 
 const WETH_ONLY: ChainTokenList = {
   [ChainId.MAINNET]: [WETH[ChainId.MAINNET]],

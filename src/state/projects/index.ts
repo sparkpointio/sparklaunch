@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { ProjectState, AppThunk } from 'state/type'
-import ProjectList  from 'config/dummy-data/Projects';
+import ProjectList  from 'config/data/Projects';
 
 
 const initialState: ProjectState = { 

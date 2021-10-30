@@ -11,7 +11,7 @@ import { Button, Flex, Heading, Modal, Text } from '@sparkpointio/sparkswap-uiki
 import styled, { ThemeContext } from 'styled-components';
 import { SmallstyledImage } from 'pages/Launchpad/components/styled';
 import Priceperbnb from 'hooks/Priceperbnb';
-import { useOwnlyLaunchpad } from '../../hooks/useContracts';
+import { useLaunchpadContract } from '../../hooks/useContracts';
 import { BNB, OWN } from '../../config';
 import useActiveWeb3React from '../../hooks/useActiveWeb3React';
 import { expandValue } from '../../utils';
@@ -34,6 +34,8 @@ interface AppProps {
     onDismiss?: () => void;
     address: string | null | undefined;
     stats: Stats;
+    category: string;
+    setLoadingFn?: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
 const ToastTitle = styled(Text)`
@@ -49,35 +51,33 @@ const ActionDiv = styled(Flex)`
     flex-direction: column;
 `;
 
-const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
+const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category, setLoadingFn}) => {
     const { library } = useActiveWeb3React();
     const { account } = useWeb3React();
-    const contract = useOwnlyLaunchpad();
+    const contract = useLaunchpadContract(category);
     const project = useFindProjectByAddress(address);
     const token = useSelectToken(project.buyingCoin.address);
-
     const [input, setInput] = useState('');
     const [output, setOutput] = useState('');
     const [accountDetails, setAccountDetails] = useState({
-        balance: new TokenAmount(BNB, BigInt(0)),
-        amount: new TokenAmount(OWN, BigInt(0)),
-        maxPayableAmount: new TokenAmount(OWN, BigInt(0)),
-        rewardedAmount: new TokenAmount(OWN, BigInt(0)),
+        balance: new TokenAmount(project.buyingCoin, BigInt(0)),
+        amount: new TokenAmount(project.sellingCoin, BigInt(0)),
+        maxPayableAmount: new TokenAmount(project.sellingCoin, BigInt(0)),
+        rewardedAmount: new TokenAmount(project.sellingCoin, BigInt(0)),
         redeemed: false,
         whitelist: false
     });
-
-    const [tokenRate, setTokenRate] = useState(new TokenAmount(OWN, BigInt(0)));
-    const [remainingExpendable, setRemainingExpendable] = useState(new TokenAmount(OWN, BigInt(0)));
-    const [remainingPurchasable, setRemainingPurchasable] = useState(new TokenAmount(OWN, BigInt(0)));
-
+    
+    const [tokenRate, setTokenRate] = useState(new TokenAmount(project.sellingCoin, BigInt(0)));
+    const [remainingExpendable, setRemainingExpendable] = useState(new TokenAmount(project.sellingCoin, BigInt(0)));
+    const [remainingPurchasable, setRemainingPurchasable] = useState(new TokenAmount(project.sellingCoin, BigInt(0)));
     /**
      * Sets the input amount and calculates the output
      * @param value
      */
     const handleTypeInput = (value: string) => {
         setInput(value);
-        let tokenAmount = new TokenAmount(BNB, expandValue(value, BNB));
+        let tokenAmount = new TokenAmount(project.buyingCoin, expandValue(value, project.buyingCoin));
         tokenAmount = validateInput(tokenAmount);
         calculateOutput(tokenAmount);
     };
@@ -88,7 +88,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
      */
     const handleTypeOutput = (value: string) => {
         setOutput(value);
-        let tokenAmount = new TokenAmount(OWN, expandValue(value, OWN));
+        let tokenAmount = new TokenAmount(project.sellingCoin, expandValue(value, project.sellingCoin));
         tokenAmount = validateOutput(tokenAmount);
         calculateInput(tokenAmount);
     };
@@ -98,7 +98,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
      * @param tokenAmount
      */
     const calculateInput = (tokenAmount) => {
-        const calculatedInput = new TokenAmount(BNB, expandValue(tokenAmount.multiply(tokenRate).toFixed(18), BNB));
+        const calculatedInput = new TokenAmount(project.buyingCoin, expandValue(tokenAmount.multiply(tokenRate).toFixed(18), project.buyingCoin));
         setInput(calculatedInput.toExact());
 
         return calculatedInput;
@@ -109,7 +109,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
      * @param tokenAmount
      */
     const calculateOutput = (tokenAmount) => {
-        const calculatedOutput = new TokenAmount(BNB, expandValue(tokenAmount.divide(tokenRate).toFixed(18), OWN));
+        const calculatedOutput = new TokenAmount(project.buyingCoin, expandValue(tokenAmount.divide(tokenRate).toFixed(18), project.buyingCoin));
         setOutput(calculatedOutput.toExact());
 
         return calculatedOutput;
@@ -186,7 +186,6 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
     const handleBuy = async() => {
         try {
             const tx = await contract.buyTokens({value: expandValue(input, BNB)})
-            
             toast.success(<SuccessMessage tx={tx} value={input} symbol={project.symbol}/>, {
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -194,7 +193,9 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
                 pauseOnHover: true,
                 draggable: true,
             })
-            getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
+            const res = await getAccountDetailsLaunchPad(contract, project, library, account);
+            setAccountDetails(res);
+            setLoadingFn(true);
         }
         catch(e) {
             const code = e.code;
@@ -215,8 +216,8 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
     useEffect(() => {
         async function getRemainingPurchasable() {
             const details = await contract.getWhitelist(account);
-            const maxPayableAmount = new TokenAmount(OWN, details._maxPayableAmount);
-            const rewardedAmount = new TokenAmount(OWN, details._rewardedAmount);
+            const maxPayableAmount = new TokenAmount(project.sellingCoin, details._maxPayableAmount);
+            const rewardedAmount = new TokenAmount(project.sellingCoin, details._rewardedAmount);
             return maxPayableAmount.subtract(rewardedAmount);
         }
 
@@ -226,23 +227,26 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats }) => {
         
 
         const calculateMaxExpendable = (remainingP) => {
-            return new TokenAmount(BNB, expandValue( calc(remainingP.multiply(tokenRate).toFixed(19)), OWN));
+            return new TokenAmount(project.buyingCoin, expandValue( calc(remainingP.multiply(tokenRate).toFixed(19)), project.sellingCoin));
         };
 
+            
         const calculateMaxPurchasable = (remainingP) => {
-            return new TokenAmount(BNB, expandValue( calc(remainingP.divide(tokenRate).toFixed(19)), OWN));
+            const tokenAmount = new TokenAmount(project.buyingCoin, expandValue( calc(remainingP.divide(tokenRate).toFixed(19)), project.sellingCoin));
+            return tokenAmount;
         };
-
+        
         getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
-        contract.tokenRate().then((r) => setTokenRate(new TokenAmount(OWN, r)));
+        
+        contract.tokenRate().then((r) => setTokenRate(new TokenAmount(project.sellingCoin, r)));
         getRemainingPurchasable().then((r) => {
             library.getBalance(account).then((b) => {
-                const _balance = new TokenAmount(BNB, (b.toBigInt()))
+                const _balance = new TokenAmount(project.sellingCoin, (b.toBigInt()))
                 setRemainingPurchasable(calculateMaxPurchasable(_balance))
                 setRemainingExpendable(_balance);
-            })
-        });
-    }, [account, contract, library, input, output, tokenRate, project]);
+            }).catch(e => console.log(e))
+        }).catch(e => console.log(e));
+    }, [account, contract, library, input, output, tokenRate, project, setLoadingFn]);
 
     return (
         <Modal title="" onDismiss={onDismiss}>

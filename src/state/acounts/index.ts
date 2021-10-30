@@ -1,6 +1,6 @@
 
 import { createSlice } from '@reduxjs/toolkit';
-import AccountList from 'config/dummy-data/Accounts';
+import AccountList from 'config/data/Accounts';
 import { AccountState } from '../type';
 
 const initialState: AccountState = { 

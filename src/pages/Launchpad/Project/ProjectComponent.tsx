@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
-import {TokenAmount} from "@sparkpointio/sparkswap-sdk";
+import { TokenAmount } from '@sparkpointio/sparkswap-sdk';
 import styled, { ThemeContext } from 'styled-components';
 import { Globe, Twitter, Send } from 'react-feather';
 import { useHistory } from 'react-router-dom';
@@ -16,7 +16,12 @@ import {
     CardFooter,
     useModal,
 } from '@sparkpointio/sparkswap-uikit';
-import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject as getFindProject } from 'state/hooks';
+import {
+    useAccountWhiteList,
+    useFindProjectByAddress,
+    useGetPoolsByAddress,
+    useFindProject as getFindProject,
+} from 'state/hooks';
 import { IProjects, ITokens, STATE } from 'config/constants/type';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
@@ -27,21 +32,48 @@ import { SocmedGroup, ProgressGroup } from '../components/styled';
 import { ReactComponent as MediumIcon } from '../components/icons/MediumIcon.svg';
 import Anchor from '../components/StyledLink';
 import FooterDetails from './FooterDetails';
-import { CCont, CHeader, TokenImage, SmalltokenImage, CBody, StyledButton, CustomDataGroup, CFooter, TextDescription } from './styled'
-import {calculateLaunchpadStats, getAccountDetailsLaunchPad} from "../../../utils/contractHelpers";
-import {useLaunchpadContract} from "../../../hooks/useContracts";
-import useActiveWeb3React from "../../../hooks/useActiveWeb3React";
-import {BNB, OWN} from "../../../config";
-
-
-
+import {
+    CCont,
+    CHeader,
+    TokenImage,
+    SmalltokenImage,
+    CBody,
+    StyledButton,
+    CustomDataGroup,
+    CFooter,
+    TextDescription,
+} from './styled';
+import { calculateLaunchpadStats, getAccountDetailsLaunchPad, getEndedStatus } from '../../../utils/contractHelpers';
+import { useLaunchpadContract } from '../../../hooks/useContracts';
+import useActiveWeb3React from '../../../hooks/useActiveWeb3React';
+import { BNB, OWN } from '../../../config';
 
 type AppProps = {
-    project: IProjects
-}
-type ActionProps = AppProps & {account?: string | null; whiteListed?: boolean}
+    project: IProjects;
+};
+type ActionProps = AppProps & {
+    account?: string | null;
+    whiteListed?: boolean;
+};
 
-const Allocations: React.FC<{tokenImage:string; symbol: string; allocation:string}> = ({tokenImage, symbol, allocation}) => {
+   // Hook
+   function usePrevious(value) {
+    // The ref object is a generic container whose current property is mutable ...
+    // ... and can hold any value, similar to an instance property on a class
+    const ref = React.useRef();
+    // Store current value in ref
+    useEffect(() => {
+        ref.current = value;
+    }, [value]); // Only re-run if value changes
+    // Return previous value (happens before update in useEffect above)
+    return ref.current;
+}
+
+const Allocations: React.FC<{ tokenImage: string; symbol: string; allocation: string }> = ({
+    tokenImage,
+    symbol,
+    allocation,
+}) => {
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${tokenImage}`;
     return (
         <div style={{ marginTop: '20px' }}>
@@ -49,16 +81,20 @@ const Allocations: React.FC<{tokenImage:string; symbol: string; allocation:strin
             <Text>My Allocations</Text>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <SmalltokenImage src={srcs} alt="token-logo" />
-                <Text bold>{allocation} {symbol}</Text>
+                <Text bold>
+                    {allocation} {symbol}
+                </Text>
             </div>
         </div>
     );
 };
 
-const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => {
+const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
-    const Paddress = getFindProject()
+    const Paddress = getFindProject();
+    const [loading, setLoading] = useState(false);
+
     const [stats, setStats] = useState({
         totalForSaleTokens: '-',
         totalSoldTokens: '-',
@@ -67,8 +103,8 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         expectedSales: '-',
         percentage: '00.00',
         tokenRate: '-',
-        totalParticipants: '-'
-    })
+        totalParticipants: '-',
+    });
     const [accountDetails, setAccountDetails] = useState({
         balance: new TokenAmount(project.buyingCoin, BigInt(0)),
         amount: new TokenAmount(project.sellingCoin, BigInt(0)),
@@ -77,27 +113,45 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         rewardedAmount: new TokenAmount(project.sellingCoin, BigInt(0)),
         redeemed: false,
         whitelist: false,
-    })
-    const {library} = useActiveWeb3React();
+    });
 
-    const contract = useLaunchpadContract(project.category)
-    
+    const prevDeets = usePrevious(accountDetails)
+ 
+    const { library } = useActiveWeb3React();
+
+    const contract = useLaunchpadContract(project.category);
+    const isEnded = getEndedStatus(contract);
+    const projCat = isEnded && project.category2 ? project.category2 : project.category;
+
     useEffect(() => {
-        calculateLaunchpadStats(contract, project).then(r => setStats(r));
-        getAccountDetailsLaunchPad(contract, project, library, account).then(r => setAccountDetails(r)).catch(console.log)
-    }, [contract, project, account, library])
+        setLoading(true);
+        calculateLaunchpadStats(contract, project).then((r) => setStats(r));
+        getAccountDetailsLaunchPad(contract, project, library, account)
+            .then((r) => setAccountDetails(r))
+            .catch(console.log);
+       
+    }, [contract, project, account, library, loading]);
 
-    const [ onPurchaseModal ] = useModal(<PurchaseModal address={Paddress} stats={stats} />)
-    const tokenReport = {
-        title: `${project.progress} ${project.symbol}`,
-    }
+    useEffect(() => {
     
-    const percentage = parseFloat(stats.percentage).toFixed(4)
-    const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4)
-    const totalSales = parseFloat(stats.totalSales).toFixed(4)
-    const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
-    const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
-    return (
+            if (accountDetails !== prevDeets) {
+                setLoading(false);
+            }
+      
+    }, [ setLoading, accountDetails, prevDeets]);
+    const [onPurchaseModal] = useModal(
+        <PurchaseModal address={Paddress} stats={stats} category={projCat} setLoadingFn={setLoading} />,
+    );
+    // const tokenReport = {
+    //     title: `${project.progress} ${project.symbol}`,
+    // }
+
+    const percentage = parseFloat(stats.percentage).toFixed(4);
+    const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4);
+    const totalSales = parseFloat(stats.totalSales).toFixed(4);
+    const expectedSales = parseFloat(stats.expectedSales).toFixed(2);
+    const { status } = project;
+    return !loading ? (
         <CardBody
             style={{
                 width: '100%',
@@ -109,7 +163,8 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
         >
             <ProgressGroup>
                 <Text bold as="h1" fontSize="24px">
-                    {totalSoldTokens} <span style={{color: theme.colors.textSubtle}}>{project.sellingCoin.name} Sold</span>
+                    {totalSoldTokens}{' '}
+                    <span style={{ color: theme.colors.textSubtle }}>{project.sellingCoin.name} Sold</span>
                 </Text>
                 <Progress primaryStep={parseFloat(percentage)} variant="flat" />
                 <Flex justifyContent="space-between">
@@ -121,34 +176,33 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
             </ProgressGroup>
             <CustomDataGroup flexDirection="column">
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">OWNLY Price</Text>
-                    <Text>{stats.tokenRate} {project.buyingCoin.symbol}</Text>
+                    <Text color="textSubtle">{project.buyingCoin.symbol} Price</Text>
+                    <Text>
+                        {stats.tokenRate} {project.buyingCoin.symbol}
+                    </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">OWNLY Sold</Text>
-                    <Text>{stats.totalSoldTokens} {project.sellingCoin.symbol}</Text>
+                    <Text color="textSubtle">{project.sellingCoin.symbol} Sold</Text>
+                    <Text>
+                        {stats.totalSoldTokens} {project.sellingCoin.symbol}
+                    </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">Total Raised</Text>
-                    <Text>{stats.totalSales} {project.buyingCoin.symbol}</Text>
+                    <Text>
+                        {stats.totalSales} {project.buyingCoin.symbol}
+                    </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">Your Max Allocation</Text>
-                    {/* <Text>{accountDetails.maxPayableAmount.toExact()} {project.sellingCoin.symbol}</Text> */}
-                    {!whiteListed ? (
-                        <Text>0 {project.sellingCoin.symbol}</Text>
-                    ) : (
-                        <Text>No Limit</Text>
-                    )}
+                    <Text>
+                        {accountDetails.maxPayableAmount.toExact()} {project.sellingCoin.symbol}
+                    </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">Your Max BNB</Text>
                     {/* <Text>{accountDetails.maxExpendable.toExact()} BNB</Text> */}
-                    {!whiteListed ? (
-                        <Text>0 BNB</Text>
-                    ) : (
-                        <Text>{accountDetails.balance.toExact()} BNB</Text>
-                    )}
+                    {!whiteListed ? <Text>0 BNB</Text> : <Text>{accountDetails.balance.toExact()} BNB</Text>}
                 </Flex>
             </CustomDataGroup>
             {!account ? (
@@ -156,7 +210,11 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                     <UnlockButton fullWidth />
                 </div>
             ) : !whiteListed ? (
-                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()}/>
+                <Allocations
+                    tokenImage={project.image}
+                    symbol={project.symbol}
+                    allocation={accountDetails.rewardedAmount.toExact()}
+                />
             ) : (
                 <>
                 
@@ -186,29 +244,37 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                 </>
             )}
         </CardBody>
+    ) : (
+        <h1>Loading ....</h1>
     );
 };
-
 
 const ProjectComponent: React.FC = () => {
     const { account } = useWeb3React();
     const [whiteListed, setWhiteList] = useState(false);
     const Paddress = getFindProject();
     const project = useFindProjectByAddress(Paddress);
-    const acc = useAccountWhiteList(account);
+    const acc = useAccountWhiteList(account, project.address);
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     const history = useHistory();
 
+
     // useEffect(() => {
-    //     if (status !== STATE.completed){
+    //     if (loading) {
+    //         setLoading(false);
+    //     }
+    // }, [loading])
+
+    // useEffect(() => {
+    //     if (status === STATE.upcoming) {
     //         history.push('/projects');
     //     }
-    // }, [history, status])
+    // }, [history, status]);
 
     useEffect(() => {
-        if (acc[0][0]) {
+        if (acc) {
             setWhiteList(true);
         } else setWhiteList(false);
     }, [acc]);
@@ -226,7 +292,13 @@ const ProjectComponent: React.FC = () => {
             <CBody>
                 <Flex justifyContent="space-between">
                     <Flex flex="1" flexDirection="column" padding="10px">
-                        <Flex alignItems="center" justifyContent="space-between" marginTop="-20px" marginBottom="10px" padding="10px 0px">
+                        <Flex
+                            alignItems="center"
+                            justifyContent="space-between"
+                            marginTop="-20px"
+                            marginBottom="10px"
+                            padding="10px 0px"
+                        >
                             <SocmedGroup>
                                 <Anchor href={socMeds?.[0]}>
                                     <Globe />
@@ -250,24 +322,24 @@ const ProjectComponent: React.FC = () => {
                             )}
                         </Flex>
                         <Flex flexDirection="column" justifyContent="space-between">
-                        <TextDescription color="textSubtle" as="p">
-                            {longDesc}
-                        </TextDescription>
-                        <TextDescription color="textSubtle" as="p">
-                            {longDesc2}
-                        </TextDescription>
-                        <TextDescription color="textSubtle" as="p">
-                            {longDesc3}
-                        </TextDescription>
+                            <TextDescription color="textSubtle" as="p">
+                                {longDesc}
+                            </TextDescription>
+                            <TextDescription color="textSubtle" as="p">
+                                {longDesc2}
+                            </TextDescription>
+                            <TextDescription color="textSubtle" as="p">
+                                {longDesc3}
+                            </TextDescription>
                         </Flex>
                     </Flex>
                     <Flex flex="1">
                         <ActionCard
-                        account={account}
-                        whiteListed={whiteListed}
-                        project={project}
-                        
+                            account={account}
+                            whiteListed={whiteListed}
+                            project={project}
                         />
+                        
                     </Flex>
                 </Flex>
             </CBody>

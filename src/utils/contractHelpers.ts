@@ -23,6 +23,8 @@ export const getLaunchpadContract = (signer?: ethers.Signer | ethers.providers.P
     return getContract(launchpadABI, getLaunchPadAddress(category), signer)
 }
 
+
+
 export const calculateLaunchpadStats = async (contract, project) => {
     const totalForSaleTokens = new TokenAmount(project.sellingCoin, await contract.totalRewardTokens());
     const totalSoldTokens = new TokenAmount(project.sellingCoin, await contract.soldAmount());
@@ -43,6 +45,11 @@ export const calculateLaunchpadStats = async (contract, project) => {
         percentage: percentage.toSignificant(18),
         tokenRate: tokenRate.toExact()
     };
+}
+
+export const getEndedStatus = async (contract) => {
+    const isEnded = await contract.isFinished.call();
+    return isEnded;
 }
 
 export const getAccountDetailsLaunchPad = async (contract, project, library, account) => {

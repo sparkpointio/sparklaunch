@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { CardHeader, CardBody, Flex, Button, Heading } from '@sparkpointio/sparkswap-uikit'
+import { StatusColor } from 'pages/styled';
 
 export const StyledCardHeader = styled(CardHeader)<{ src?: string }>`
     display: flex;
@@ -73,10 +74,11 @@ export const DataGroup = styled(Flex)`
     }
 `;
 
-export const StyledButton = styled(Button)`
+export const StyledButton = styled(Button)<{status?: string}>`
     cursor: context-menu;
     height: 35px;
     border-radius: 5px;
+    background-color: ${({status, theme}) => status? StatusColor[status] : theme.colors.primary };
 `;
 
 export const TimerButton = styled(Button)`

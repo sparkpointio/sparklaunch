@@ -15,7 +15,7 @@ export const useOwnlyLaunchpad = () => {
     return useMemo(() => getOwnlyLaunchpadContract(library.getSigner()), [library])
 }
 
-export const useLaunchpadContract = (category='ownlyLaunchPad') => {
+export const useLaunchpadContract = (category) => {
     const { library } = useActiveWeb3React()
     return useMemo(() => getLaunchpadContract(library.getSigner(), category), [library, category])
 }
