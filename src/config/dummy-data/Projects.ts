@@ -1,5 +1,5 @@
 import { IProjects } from "config/constants/type";
-import {BNB, TBNB, OWN , TOWN} from "../index";
+import {BNB, TBNB, OWN , TOWN, FLASH} from "../index";
 
 
 const ProjectList: Array<IProjects> = [
@@ -28,7 +28,7 @@ const ProjectList: Array<IProjects> = [
     {
         category: 'ownlyLaunchPad',
         address: '0x004',
-        sellingCoin: OWN,
+        sellingCoin: FLASH,
         buyingCoin: BNB,
         title: 'FlashLoans',
         symbol: 'FLASH',
