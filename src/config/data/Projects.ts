@@ -8,7 +8,7 @@ const ProjectList: Array<IProjects> = [
         // category2: 'ownlyLaunchPad1',
         address: '0x001',
         sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : TOWN ),
-        buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : TBNB ) ,
+        buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : BNB ) ,
         title: 'Ownly',
         token: (process.env.REACT_APP_CHAIN_ID === "56" ? OWN : OWN ), 
         symbol: 'OWN',
