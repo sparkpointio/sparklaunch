@@ -159,6 +159,17 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
             ) : (
                 <>
                 <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
+                {/* {!project.claimable ?
+                <div> 
+                    {stats.remainingForSale === '-' ? <Button fullWidth disabled style={{marginTop: '10px', marginBottom: '10px'}}>Processing </Button> :
+                    <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px', marginBottom: '10px'}} >Purchase {project.symbol}</Button>
+                    }
+
+                <Text>Thank you for participating, allocations will be sent shortly through a Multisender App.</Text>
+                </div> :
+                <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
+                } */}
+
                 {status === STATE.active ? (
                              <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>    
                             ) : status === STATE.upcoming ? (
