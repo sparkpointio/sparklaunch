@@ -45,6 +45,7 @@ const Allocations: React.FC<{tokenImage:string; symbol: string; allocation:strin
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${tokenImage}`;
     return (
         <div style={{ marginTop: '20px' }}>
+            {}
             <Text>My Allocations</Text>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <SmalltokenImage src={srcs} alt="token-logo" />
@@ -158,7 +159,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                 <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()}/>
             ) : (
                 <>
-                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
+                
                 {/* {!project.claimable ?
                 <div> 
                     {stats.remainingForSale === '-' ? <Button fullWidth disabled style={{marginTop: '10px', marginBottom: '10px'}}>Processing </Button> :
@@ -170,12 +171,16 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
                 <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
                 } */}
 
-                {status === STATE.active ? (
-                             <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>    
+                            {status === STATE.active ? (
+                                <>
+                                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
+                                
+                                <Button onClick={onPurchaseModal} fullWidth style={{ marginTop: '10px' }} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
+                                </>
                             ) : status === STATE.upcoming ? (
                                 null
                             ) : (
-                                null
+                                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
                             )}
                 {/* <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button> */}
                 </>
