@@ -15,7 +15,6 @@ import {
     Progress,
     CardFooter,
     useModal,
-    Spinner
 } from '@sparkpointio/sparkswap-uikit';
 import { useAccountWhiteList, useFindProjectByAddress, useGetPoolsByAddress, useFindProject as getFindProject } from 'state/hooks';
 import { IProjects, ITokens, STATE } from 'config/constants/type';
@@ -96,6 +95,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4)
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
     const expectedSales = parseFloat(stats.expectedSales).toFixed(2)
+    const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     return (
         <CardBody
             style={{
@@ -159,17 +159,14 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project}) => 
             ) : (
                 <>
                 <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
-                {!project.claimable ?
-                <div> 
-                    {stats.remainingForSale === '-' ? <Button fullWidth disabled style={{marginTop: '10px', marginBottom: '10px'}}>Processing </Button> :
-                    <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px', marginBottom: '10px'}} >Purchase {project.symbol}</Button>
-                    }
-                    
-                <Text>Thank you for participating, allocations will be sent shortly through a Multisender App.</Text>
-                </div> :
-                <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
-                }
-                
+                {status === STATE.active ? (
+                             <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>    
+                            ) : status === STATE.upcoming ? (
+                                null
+                            ) : (
+                                null
+                            )}
+                {/* <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button> */}
                 </>
             )}
         </CardBody>
@@ -188,11 +185,11 @@ const ProjectComponent: React.FC = () => {
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
     const history = useHistory();
 
-    useEffect(() => {
-        if (status !== STATE.active){
-            history.push('/projects');
-        }
-    }, [history, status])
+    // useEffect(() => {
+    //     if (status !== STATE.completed){
+    //         history.push('/projects');
+    //     }
+    // }, [history, status])
 
     useEffect(() => {
         if (acc[0][0]) {
