@@ -38,7 +38,6 @@ export const useAccount = () => {
 export const useAccountWhiteList = (acc: string | null, project: string | null) => {
     const account = useAppSelector((state) => {
         const data = state.accounts.data.find((prj) => {
-            console.log(prj.project === project)
             return prj.project === project; 
         })
 

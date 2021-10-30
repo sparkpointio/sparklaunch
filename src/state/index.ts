@@ -1,13 +1,15 @@
   
-import { configureStore } from '@reduxjs/toolkit'
+import { configureStore  } from '@reduxjs/toolkit'
 import projectReducer from './projects';
 import accountReducer from './acounts';
 import poolReducer from './pools';
 import swapReducer from './swap';
 import tokenReducer from './tokens';
 
+
 const store = configureStore({
     devTools: process.env.NODE_ENV !== 'production',
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware({ serializableCheck: false }),
     reducer: {
         projects: projectReducer,
         accounts: accountReducer,
