@@ -267,11 +267,11 @@ const ProjectComponent: React.FC = () => {
     //     }
     // }, [loading])
 
-    useEffect(() => {
-        if (status === STATE.upcoming) {
-            history.push('/projects');
-        }
-    }, [history, status]);
+    // useEffect(() => {
+    //     if (status === STATE.upcoming) {
+    //         history.push('/projects');
+    //     }
+    // }, [history, status]);
 
     useEffect(() => {
         if (acc) {

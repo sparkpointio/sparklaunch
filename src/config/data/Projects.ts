@@ -66,7 +66,7 @@ const ProjectList: Array<IProjects> = [
     {
         category: 'testLaunchPad',
         // category2: 'ownlyLaunchPad1',
-        address: '0x003',
+        address: '0x004',
         sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : SRK ),
         buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : BNB ) ,
         title: 'Outrace',
