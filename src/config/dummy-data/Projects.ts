@@ -55,7 +55,9 @@ const ProjectList: Array<IProjects> = [
         symbol: 'ORE',
         image: 'ore.png',
         desc: 'Outrace is a one-of-a-kind play-to-earn NFT racing game showcasing its strategic concept and mechanics. ',
-        longDesc: 'The overall objective of the game is to win the race using the array of cars that can be purchased and customized using ORE token. ORE can be earned by racing in conqueror mode or in PVP ‘s sprint races. What makes this game so interesting is that it offers the player not only excitement and entertainment but enables them to earn crypto and earn prizes for their activity.',
+        longDesc: 'Outrace is a one-of-a-kind play-to-earn NFT racing game showcasing its strategic concept and mechanics. These includes card management; dice roll management and stats management. ',
+        longDesc2: 'The overall objective of the game is to win the race using the array of cars that can be purchased and customized using ORE token. ORE can be earned by racing in conqueror mode or in PVP ‘s sprint races. ',
+        longDesc3: 'What makes this game so interesting is that it offers the player not only excitement and entertainment but enables them to earn crypto and earn prizes for their activity.',
         price: 0.0000909,
         progress: 75,
         totalRaise: 150,
@@ -64,7 +66,7 @@ const ProjectList: Array<IProjects> = [
         wallpaperBg: 'oreBG.png',
         status: "upcoming",
         claimable: true,
-        socMeds: ['outrace.game', 'twitter.com/outrace_ore', 't.me/Outrace', 'medium.com'],
+        socMeds: ['outrace.game', 'twitter.com/outrace_ore', 't.me/Outrace', 'medium.com/@OutraceOfficial'],
     },
 ]
 
