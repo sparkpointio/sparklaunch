@@ -77,6 +77,7 @@ const Allocations: React.FC<{ tokenImage: string; symbol: string; allocation: st
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${tokenImage}`;
     return (
         <div style={{ marginTop: '20px' }}>
+            {}
             <Text>My Allocations</Text>
             <div style={{ display: 'flex', alignItems: 'center' }}>
                 <SmalltokenImage src={srcs} alt="token-logo" />
@@ -149,6 +150,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4);
     const totalSales = parseFloat(stats.totalSales).toFixed(4);
     const expectedSales = parseFloat(stats.expectedSales).toFixed(2);
+    const { status } = project;
     return !loading ? (
         <CardBody
             style={{
@@ -215,19 +217,30 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 />
             ) : (
                 <>
-                    <Allocations
-                        tokenImage={project.image}
-                        symbol={project.symbol}
-                        allocation={accountDetails.rewardedAmount.toExact()}
-                    />
-                    <Button
-                        onClick={onPurchaseModal}
-                        fullWidth
-                        style={{ marginTop: '10px' }}
-                        disabled={stats.remainingForSale === '-'}
-                    >
-                        Purchase {project.symbol}
-                    </Button>
+                
+                {/* {!project.claimable ?
+                <div> 
+                    {stats.remainingForSale === '-' ? <Button fullWidth disabled style={{marginTop: '10px', marginBottom: '10px'}}>Processing </Button> :
+                    <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px', marginBottom: '10px'}} >Purchase {project.symbol}</Button>
+                    }
+
+                <Text>Thank you for participating, allocations will be sent shortly through a Multisender App.</Text>
+                </div> :
+                <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
+                } */}
+
+                            {status === STATE.active ? (
+                                <>
+                                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
+                                
+                                <Button onClick={onPurchaseModal} fullWidth style={{ marginTop: '10px' }} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
+                                </>
+                            ) : status === STATE.upcoming ? (
+                                null
+                            ) : (
+                                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
+                            )}
+                {/* <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button> */}
                 </>
             )}
         </CardBody>

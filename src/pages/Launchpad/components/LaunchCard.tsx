@@ -264,12 +264,18 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                                 : <Button fullWidth disabled>Claim R2</Button>}
                         </Flex>
                     </CardAction>
+                ) : status === STATE.upcoming && claimable ?
+                    (
+                        <CardAction flexDirection="column">
+                            <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
+
+                        </CardAction>
                     ) : status === STATE.completed && !claimable &&
                     <CardAction flexDirection="column">
                         <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
                         {/* Function to check if user has participated */}
                         <Text style={{ marginTop: '15px' }}>
-                            Thank you for participating in the IDO sale! Your ${sellingCoin.symbol} tokens will be sent shortly to your wallet address
+                            Thank you for participating in the IDO sale! Your {sellingCoin.symbol} tokens will be sent shortly to your wallet address
                         </Text>
                     </CardAction>
             }
