@@ -1,5 +1,5 @@
 import { IProjects } from "config/constants/type";
-import {BNB, TBNB, OWN , TOWN, SRK} from "../index";
+import {BNB, TBNB, OWN , TOWN, SRK, FLASH} from "../index";
 
 
 const ProjectList: Array<IProjects> = [
@@ -44,10 +44,10 @@ const ProjectList: Array<IProjects> = [
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
     {
-        category: 'testLaunchPad',
+        category: 'flashLoansIDO',
         // category2: 'ownlyLaunchPad1',
-        address: '0x002',
-        sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : SRK ),
+        address: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1',
+        sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ) ,
         buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : BNB ) ,
         title: 'FlashLoans',
         token: (process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ),
@@ -59,7 +59,7 @@ const ProjectList: Array<IProjects> = [
         // longDesc3: 'This is just a test contract',
         ownSale: 0,
         wallpaperBg: 'flashtokenBG.png',
-        status: "upcoming",
+        status: "active",
         claimable: false,
         socMeds: ['flashloans.com', 'twitter.com/ComFlashloans', 't.me/joinchat/HCAFABqRGjY77vIdI2nV9g', 'medium.com/@flashloans'],
     },

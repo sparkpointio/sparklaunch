@@ -23,9 +23,9 @@ export interface IProjects {
     category?: string;
     address?: string;
     buyingCoin?: Token;
-    sellingCoin?: Token;
+    sellingCoin?:  Token;
     title: string;
-    token?: Token;
+    token?: Token ;
     symbol: string;
     image: string;
     wallpaperBg?: string;

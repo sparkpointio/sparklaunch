@@ -35,6 +35,7 @@ interface AppProps {
     address: string | null | undefined;
     stats: Stats;
     category: string;
+    setLoadingFn?: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
 const ToastTitle = styled(Text)`
@@ -50,7 +51,7 @@ const ActionDiv = styled(Flex)`
     flex-direction: column;
 `;
 
-const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category }) => {
+const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category, setLoadingFn}) => {
     const { library } = useActiveWeb3React();
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
@@ -185,7 +186,6 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category
     const handleBuy = async() => {
         try {
             const tx = await contract.buyTokens({value: expandValue(input, BNB)})
-            
             toast.success(<SuccessMessage tx={tx} value={input} symbol={project.symbol}/>, {
                 autoClose: 5000,
                 hideProgressBar: false,
@@ -193,7 +193,9 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category
                 pauseOnHover: true,
                 draggable: true,
             })
-            getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
+            const res = await getAccountDetailsLaunchPad(contract, project, library, account);
+            setAccountDetails(res);
+            setLoadingFn(true);
         }
         catch(e) {
             const code = e.code;
@@ -235,6 +237,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category
         };
         
         getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
+        
         contract.tokenRate().then((r) => setTokenRate(new TokenAmount(project.sellingCoin, r)));
         getRemainingPurchasable().then((r) => {
             library.getBalance(account).then((b) => {
@@ -243,7 +246,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category
                 setRemainingExpendable(_balance);
             }).catch(e => console.log(e))
         }).catch(e => console.log(e));
-    }, [account, contract, library, input, output, tokenRate, project]);
+    }, [account, contract, library, input, output, tokenRate, project, setLoadingFn]);
 
     return (
         <Modal title="" onDismiss={onDismiss}>

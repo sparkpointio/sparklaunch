@@ -4,7 +4,7 @@ import { setProject } from './actions';
 import { AppDispatch, AppState } from './index';
 
 export const useAppSelector: TypedUseSelectorHook<AppState> = useSelector;
-export const useAppDispatch = () => useDispatch<AppDispatch>()
+export const useAppDispatch = () => useDispatch<AppDispatch>();
 
 export const useProject = () => {
     const projects = useAppSelector((state) => state.projects);
@@ -12,23 +12,23 @@ export const useProject = () => {
 };
 
 export const useFindProject = () => {
-    const data = useAppSelector((state) => state.projects.selectedProject)
+    const data = useAppSelector((state) => state.projects.selectedProject);
     return data;
-}; 
+};
 
 export const useSetProject = (address?: string | null) => {
     const dispatch = useAppDispatch();
     if (!address) {
-        return ''
+        return '';
     }
-    dispatch(setProject(address))
+    dispatch(setProject(address));
     return address;
 };
 
 export const useFindProjectByAddress = (address?: string | null) => {
-    const project = useAppSelector((state) => state.projects.data.filter(p => p.address === address));
-    return project[0]
-}
+    const project = useAppSelector((state) => state.projects.data.filter((p) => p.address === address));
+    return project[0];
+};
 
 export const useAccount = () => {
     const accounts = useAppSelector((state) => state.accounts.data);
@@ -36,14 +36,17 @@ export const useAccount = () => {
 };
 
 export const useAccountWhiteList = (acc: string | null, project: string | null) => {
-    const account = useAppSelector((state) => {
-        const data = state.accounts.data.find((prj) => {
-            return prj.project === project; 
-        })
-
-        return data.whiteList.find((ls) => ls.address === acc);
-    });
-    return account;
+        const account = useAppSelector((state) => {
+            
+            const data = state.accounts.data.find((prj) => {
+                return prj.project === project;
+            });
+            if (!data) {
+                throw new Error('Error');
+            }
+            return data.whiteList.find((ls) => ls.address === acc);
+        });
+        return account;
 };
 
 export const usePools = () => {
@@ -54,6 +57,6 @@ export const usePools = () => {
 export const useGetPoolsByAddress = (address?: string | null) => {
     const pool = useAppSelector((state) => {
         return state.pools.data.filter((pl) => pl.projectAddress === address);
-    })
+    });
     return pool[0];
-}
+};
