@@ -64,7 +64,7 @@ const ProjectList: Array<IProjects> = [
         wallpaperBg: 'oreBG.png',
         status: "upcoming",
         claimable: true,
-        socMeds: ['outrace.game', 'twitter.com/outrace_ore', 't.me/Outrace', 'medium.com'],
+        socMeds: ['outrace.game', 'twitter.com/outrace_ore', 't.me/Outrace', 'medium.com/@OutraceOfficial'],
     },
 ]
 
