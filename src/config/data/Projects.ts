@@ -62,7 +62,7 @@ const ProjectList: Array<IProjects> = [
         // longDesc3: 'This is just a test contract',
         ownSale: 0,
         wallpaperBg: 'flashtokenBG2.png',
-        status: "upcoming",
+        status: "active",
         startDateinEpoch: 1635771600,
         claimable: false,
         socMeds: ['flashloans.com', 'twitter.com/ComFlashloans', 't.me/joinchat/HCAFABqRGjY77vIdI2nV9g', 'medium.com/@flashloans'],
