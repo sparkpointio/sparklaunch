@@ -13,6 +13,10 @@ export default {
         97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
     },
     */
+    outRaceIDO: {
+        56: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+        97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+    },
     flashLoansIDO: {
         56: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1',
         97: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1'
