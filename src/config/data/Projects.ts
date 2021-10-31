@@ -23,6 +23,7 @@ const ProjectList: Array<IProjects> = [
         claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
+    /*
     {
         category: 'testLaunchPad',
         // category2: 'ownlyLaunchPad1',
@@ -44,6 +45,7 @@ const ProjectList: Array<IProjects> = [
         claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
+    */
     {
         category: 'flashLoansIDO',
         // category2: 'ownlyLaunchPad1',
