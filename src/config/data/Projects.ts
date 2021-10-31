@@ -61,7 +61,7 @@ const ProjectList: Array<IProjects> = [
         longDesc2: 'Flashloans.com will also be adding an additional layer of functionality with Flash tokens, allowing users to access bespoke Flash loan analytics, as well as enjoying reduced platform fees.',
         // longDesc3: 'This is just a test contract',
         ownSale: 0,
-        wallpaperBg: 'flashtokenBG.png',
+        wallpaperBg: 'flashtokenBG2.png',
         status: "upcoming",
         startDateinEpoch: 1635771600,
         claimable: false,
