@@ -202,7 +202,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 <Flex justifyContent="space-between">
                     <Text color="primary">Your Max BNB</Text>
                     {/* <Text>{accountDetails.maxExpendable.toExact()} BNB</Text> */}
-                    {project.status === 'upcoming' && !whiteListed ? <Text>0 BNB</Text> : <Text>{ accountDetails.balance.toExact()} BNB</Text>}
+                    {project.status === 'upcoming' && !whiteListed ? <Text>0 BNB</Text> : <Text>{ accountDetails.maxExpendable.toExact()} BNB</Text>}
                 </Flex>
             </CustomDataGroup>
             {!account ? (
