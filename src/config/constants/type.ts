@@ -36,6 +36,7 @@ export interface IProjects {
     endDate?: string;
     ownSale: number;
     status?: Status;
+    startDateinEpoch?: number;
     claimable?: boolean;
     socMeds?: string[]
 }
