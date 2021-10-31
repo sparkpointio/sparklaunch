@@ -35,7 +35,6 @@ const Layout: React.FC <RouteComponentProps<{ProjectAddress?: string}>> = ({ mat
                 <Flex justifyContent="space-between" marginBottom="3px">
                 <Breadcrumbs>
                     <Text>SparkLaunch</Text>
-                    <Text>On Going</Text>
                     <Text>{project?.symbol}</Text>
                 </Breadcrumbs>
                     <BackButton to='/projects'><ChevronLeft /> PROJECTS </BackButton>
