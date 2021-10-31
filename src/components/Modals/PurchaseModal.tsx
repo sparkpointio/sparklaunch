@@ -240,14 +240,12 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category
         
         contract.tokenRate().then((r) => setTokenRate(new TokenAmount(project.sellingCoin, r)));
         getRemainingPurchasable().then((r) => {
-            library.getBalance(account).then((b) => {
-                const _balance = new TokenAmount(project.sellingCoin, (b.toBigInt()))
-                setRemainingPurchasable(calculateMaxPurchasable(_balance))
-                setRemainingExpendable(_balance);
-            }).catch(e => console.log(e))
+            const _balance = new TokenAmount(project.sellingCoin, (r.raw.toString()))
+            setRemainingPurchasable(_balance)
+            setRemainingExpendable(calculateMaxExpendable(_balance));
         }).catch(e => console.log(e));
     }, [account, contract, library, input, output, tokenRate, project, setLoadingFn]);
-
+    
     return (
         <Modal title="" onDismiss={onDismiss}>
             <div style={{ width: '400px', padding: '0px 24px 24px 24px' }}>
@@ -255,7 +253,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category
                     <Heading bold fontSize="21px">
                         Swap Coins
                     </Heading>
-                    <StyledHeading>{`Remaining: ${stats?.remainingForSale} ${project.symbol}`}</StyledHeading>
+                    <StyledHeading>{`Remaining: ${remainingPurchasable.toExact()} ${project.symbol}`}</StyledHeading>
                 </div>
                 <CurrencyInputPanel
                     label="From"
@@ -275,7 +273,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category
                     value={output}
                     onUserInput={handleTypeOutput}
                     currency={project}
-                    remainingSupply={stats.remainingForSale}
+                    remainingSupply={remainingPurchasable.toExact()}
                 />
             
                 {/* <Text>Price per BNB: <Priceperbnb/> USD</Text> */}
