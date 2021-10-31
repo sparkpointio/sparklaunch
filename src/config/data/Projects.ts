@@ -23,6 +23,7 @@ const ProjectList: Array<IProjects> = [
         claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
+    /*
     {
         category: 'testLaunchPad',
         // category2: 'ownlyLaunchPad1',
@@ -43,6 +44,7 @@ const ProjectList: Array<IProjects> = [
         claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
+    */
     {
         category: 'flashLoansIDO',
         // category2: 'ownlyLaunchPad1',
@@ -64,7 +66,7 @@ const ProjectList: Array<IProjects> = [
         socMeds: ['flashloans.com', 'twitter.com/ComFlashloans', 't.me/joinchat/HCAFABqRGjY77vIdI2nV9g', 'medium.com/@flashloans'],
     },
     {
-        category: 'testLaunchPad',
+        category: 'ownlyLaunchPad1',
         // category2: 'ownlyLaunchPad1',
         address: '0x004',
         sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : SRK ),
