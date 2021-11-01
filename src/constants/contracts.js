@@ -7,19 +7,18 @@ export default {
         56: '0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5',
         97: '0x6171ef8577601bfebc36db044f53a5d874536d0e',
     },
-    /*
-    testLaunchPad: {
-        56: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
-        97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
-    },
-    */
+    // testLaunchPad: {
+    //     56: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+    //     97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+    // },
     outRaceIDO: {
         56: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
         97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
     },
     flashLoansIDO: {
         56: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1',
-        97: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1'
+        97: '0xf004694B8EE3e2B1179a6fBC39a6048e74d88fdE'
+        // 97: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1'
         // 0xeC4Cdc696B1766B893f33a08a22C601bc6920f18
     }
 };
