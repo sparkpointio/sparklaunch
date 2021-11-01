@@ -3,6 +3,7 @@ import styled, { ThemeContext } from 'styled-components';
 import { Text, Flex } from '@sparkpointio/sparkswap-uikit';
 import useMedia from 'use-media';
 import { Facebook, Twitter, Mail, Send } from 'react-feather';
+import { SiDiscord } from 'react-icons/si'
 import { Helmet } from 'react-helmet-async';
 import { useLocation } from 'react-router';
 import { customMeta, DEFAULT_META } from 'config/constants/meta';
@@ -88,6 +89,7 @@ const PageFooter = () => {
                     <SocLink socLink="https://twitter.com/sparkpointio"><Twitter size="30" color="#FFFFFF" />  </SocLink>
                     <SocLink socLink="https://t.me/SparkPointOfficial"><Send size="30" color="#FFFFFF" /></SocLink>
                     <SocLink socLink="mailto: support@sparkpoint.io"><Mail size="30" color="#FFFFFF" /></SocLink>
+                    <SocLink socLink="https://discord.com/invite/Sgc6yDEAAe"><SiDiscord size="30" color="#FFFFFF" /></SocLink>
                 </Flex>
                 <h5>© SparkLaunch 2021</h5>
             </Flex>
