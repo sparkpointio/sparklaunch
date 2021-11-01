@@ -43,7 +43,7 @@ export const useAccountWhiteList = (acc: string | null, project: string | null) 
         if (!data) {
             throw new Error('Error');
         }
-        return data.whiteList.find((ls) => ls.address === acc.toLocaleLowerCase());
+        return data.whiteList.find((ls) => ls.address === acc.toLowerCase());
     });
     return account;
 };
