@@ -1,5 +1,4 @@
-import { Field } from 'state/swap/action';
-import { TypedUseSelectorHook, useSelector, useDispatch } from 'react-redux';
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux';
 import { setProject } from './actions';
 import { AppDispatch, AppState } from './index';
 
@@ -36,17 +35,17 @@ export const useAccount = () => {
 };
 
 export const useAccountWhiteList = (acc: string | null, project: string | null) => {
-        const account = useAppSelector((state) => {
-            
-            const data = state.accounts.data.find((prj) => {
-                return prj.project === project;
-            });
-            if (!data) {
-                throw new Error('Error');
-            }
-            return data.whiteList.find((ls) => ls.address === acc);
+    const account = useAppSelector((state) => {
+
+        const data = state.accounts.data.find((prj) => {
+            return prj.project === project;
         });
-        return account;
+        if (!data) {
+            throw new Error('Error');
+        }
+        return data.whiteList.find((ls) => ls.address === acc);
+    });
+    return account;
 };
 
 export const usePools = () => {

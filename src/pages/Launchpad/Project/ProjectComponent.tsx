@@ -256,7 +256,6 @@ const ProjectComponent: React.FC = () => {
     const tokenContract = useTokenContract(project.sellingCoin.address);
 
 
-
     // useEffect(() => {
     //     if (loading) {
     //         setLoading(false);
@@ -273,7 +272,7 @@ const ProjectComponent: React.FC = () => {
         // tokenContract.balanceOf(account).then(console.log)
         tokenContract.totalSupply().then(r => {
             setProjectTokenInfo({ totalSupply: (new TokenAmount(project.sellingCoin, r)).toExact({ groupSeparator : ','}).toString() });
-        });
+        }).catch(console.log);
 
         if (acc) {
             setWhiteList(true);
