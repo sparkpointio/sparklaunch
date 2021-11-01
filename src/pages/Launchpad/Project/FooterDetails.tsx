@@ -120,11 +120,11 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
                     </Heading>
                     <Flex justifyContent="space-between">
                         <Text>Opens</Text>
-                        <Text color="textSubtle">{project.startDate.toLocaleString()}</Text>
+                        <Text color="textSubtle">{project.startDate?.toLocaleString()}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Closes</Text>
-                        <Text color="textSubtle">{project.endDate.toLocaleString()}</Text>
+                        <Text color="textSubtle">{project.endDate?.toLocaleString()}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Cap</Text>
