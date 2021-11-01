@@ -188,9 +188,9 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                     </div>
                     <ProgressGroup>
                         <Text as="h1">{status === STATE.completed ? 'Sale Completion' : 'Progress'}</Text>
-                        <Progress primaryStep={parseFloat(!STATE.upcoming? percentage: '0' )} variant="flat" />
+                        <Progress primaryStep={parseFloat(status !== STATE.upcoming? percentage: '0' )} variant="flat" />
                         <Flex justifyContent="space-between">
-                            <Text color="textSubtle">{!STATE.upcoming? percentage: '0'}%</Text>
+                            <Text color="textSubtle">{status !== STATE.upcoming? percentage: '0'}%</Text>
                             <Text color="textSubtle">
                                 {totalSales} / {expectedSales} {buyingCoin.symbol}
                                 {/* 261.33 / 261.33 {buyingCoin.symbol} */}
