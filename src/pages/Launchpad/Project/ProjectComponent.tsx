@@ -133,12 +133,14 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
     }, [contract, project, account, library, loading]);
 
     useEffect(() => {
-
             if (accountDetails !== prevDeets) {
-                setLoading(false);
+                getAccountDetailsLaunchPad(contract, project, library, account)
+                .then((r) => setAccountDetails(r))
+                .catch(console.log);
+                setLoading(false)
             }
 
-    }, [ setLoading, accountDetails, prevDeets]);
+    }, [ setLoading, accountDetails, prevDeets, account, contract, library, project]);
     const [onPurchaseModal] = useModal(
         <PurchaseModal address={Paddress} stats={stats} category={projCat} setLoadingFn={setLoading} />,
     );
@@ -235,9 +237,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
 
                                 <Button onClick={onPurchaseModal} fullWidth style={{ marginTop: '10px' }} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
                                 </>
-                            ) : status === STATE.upcoming ? (
-                                null
-                            ) : (
+                            ) : status === STATE.upcoming && (
                                 <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
                             )}
                 {/* <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button> */}
