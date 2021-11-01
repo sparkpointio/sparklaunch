@@ -29,7 +29,9 @@ export const getTokenContract = (contractAddress, signer?: ethers.Signer | ether
 }
 
 export const calculateLaunchpadStats = async (contract, project) => {
-    const totalForSaleTokens = new TokenAmount(project.sellingCoin, await contract.totalRewardTokens());
+    const totalRewards = await contract.totalRewardTokens()
+    const totalForSaleTokens = new TokenAmount(project.sellingCoin, totalRewards);
+    console.log(totalForSaleTokens)
     const totalSoldTokens = new TokenAmount(project.sellingCoin, await contract.soldAmount());
     const remainingForSaleTokens = totalForSaleTokens.subtract(totalSoldTokens);
     const totalParticipants = await contract.totalParticipant();
