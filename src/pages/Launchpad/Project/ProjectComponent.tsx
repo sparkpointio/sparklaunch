@@ -205,7 +205,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                     {project.status === 'upcoming' && !whiteListed ? <Text>0 BNB</Text> : <Text>{ accountDetails.maxExpendable.toExact()} BNB</Text>}
                 </Flex>
             </CustomDataGroup>
-            {!account ? (
+            {!account && status===STATE.active || status===STATE.upcoming ? (
                 <div style={{ marginTop: '15px', padding: '10px 0px' }}>
                     <UnlockButton fullWidth />
                 </div>
