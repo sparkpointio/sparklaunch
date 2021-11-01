@@ -52,7 +52,7 @@ const TokenList:ITokens[] = [
     {
         name: "FLASH",
         symbol: "FLASH",
-        address: "0xc7b62f59d9561d2338fcd0647969a9934e16f01d",
+        address: "0xe09B8661D80CF24dB230A167969d18B94a5a3266", // srkb testnet
         chainId: 97,
         decimals: 18,
         logoURI: "/images/icons/flash.png"
@@ -60,7 +60,7 @@ const TokenList:ITokens[] = [
     {
         name: "FLASH",
         symbol: "FLASH",
-        address: "0xc7b62f59d9561d2338fcd0647969a9934e16f01d",
+        address: "0x5f0366c9962193fA774cdce9602195593B49f23C",
         chainId: 56,
         decimals: 18,
         logoURI: "/images/icons/flash.png"
