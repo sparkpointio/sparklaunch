@@ -93,7 +93,6 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
     const Paddress = getFindProject();
-    const [loading, setLoading] = useState(false);
 
     const [stats, setStats] = useState({
         totalForSaleTokens: '-',
@@ -124,36 +123,36 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
     const projCat = isEnded && project.category2 ? project.category2 : project.category;
 
     useEffect(() => {
-        setLoading(true);
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
         getAccountDetailsLaunchPad(contract, project, library, account)
             .then((r) => setAccountDetails(r))
             .catch(console.log);
+        return () => console.log('')
+    }, [contract, project, account, library]);
 
-    }, [contract, project, account, library, loading]);
+
 
     useEffect(() => {
             if (accountDetails !== prevDeets) {
                 getAccountDetailsLaunchPad(contract, project, library, account)
                 .then((r) => setAccountDetails(r))
-                .catch(console.log);
-                setLoading(false)
+                .catch(console.log);  
             }
-
-    }, [ setLoading, accountDetails, prevDeets, account, contract, library, project]);
-    const [onPurchaseModal] = useModal(
-        <PurchaseModal address={Paddress} stats={stats} category={projCat} setLoadingFn={setLoading} />,
-    );
+    }, [ accountDetails, prevDeets, account, contract, library, project]);
+    const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats} category={projCat} />, false);
     // const tokenReport = {
     //     title: `${project.progress} ${project.symbol}`,
     // }
+    
+
+    useEffect(() => () => console.log(''), [])
 
     const percentage = parseFloat(stats.percentage).toFixed(4);
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4);
     const totalSales = parseFloat(stats.totalSales).toFixed(4);
     const expectedSales = parseFloat(stats.expectedSales).toFixed(2);
     const { status } = project;
-    return !loading ? (
+    return (
         <CardBody
             style={{
                 width: '100%',
@@ -244,9 +243,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 </>
             )}
         </CardBody>
-    ) : (
-        <h1>Loading ....</h1>
-    );
+    )
 };
 
 const ProjectComponent: React.FC = () => {
@@ -254,12 +251,18 @@ const ProjectComponent: React.FC = () => {
     const [whiteListed, setWhiteList] = useState(false);
     const Paddress = getFindProject();
     const project = useFindProjectByAddress(Paddress);
+    const history = useHistory();
+
+    useEffect(() => {
+        if (!Paddress) {
+            history.push('/projects')
+        }
+    }, [history, Paddress])
     const acc = useAccountWhiteList(account, project.address);
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
-    const history = useHistory();
-
+   
 
     // useEffect(() => {
     //     if (loading) {
@@ -279,6 +282,9 @@ const ProjectComponent: React.FC = () => {
         } else setWhiteList(false);
     }, [acc]);
 
+    useEffect(() => {
+        return () => console.log('Cleanup')
+    }, []) 
     const theme = useContext(ThemeContext);
     const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
     return (

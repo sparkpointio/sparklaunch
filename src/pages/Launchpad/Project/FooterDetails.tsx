@@ -99,6 +99,10 @@ const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
         calculateLaunchpadStats(contract, project).then(r => setStats(r));
         // getAccountDetailsLaunchPad(contract, project, library, account).then(r => setAccountDetails(r)).catch(console.log)
     }, [contract, project, account, library])
+    useEffect(() => {
+        return () => console.log('Cleanup FooterDetails');
+    }, [])
+
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
     return (
         <Container
