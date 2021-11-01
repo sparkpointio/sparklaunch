@@ -23,7 +23,7 @@ const ProjectList: Array<IProjects> = [
         claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
-    /*
+    
     {
         category: 'testLaunchPad',
         // category2: 'ownlyLaunchPad1',
@@ -40,12 +40,12 @@ const ProjectList: Array<IProjects> = [
         longDesc3: 'This is just a test contract',
         ownSale: 2666666667,
         wallpaperBg: '',
-        status: "upcoming",
+        status: "active",
         startDateinEpoch: 1635771600,
         claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
-    */
+    
     {
         category: 'flashLoansIDO',
         // category2: 'ownlyLaunchPad1',
