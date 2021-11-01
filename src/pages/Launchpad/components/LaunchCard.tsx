@@ -233,7 +233,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             ) : status === STATE.completed ? (
                                 <Text>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</Text>
                             ) : (
-                                <Text>{stats.remainingForSale === '0' ? '-' : remainingForSale}</Text>
+                                <Text>{stats.remainingForSale === '0' ? '-' : stats.totalForSaleTokens}</Text>
                             )}
                         </Flex>
 
