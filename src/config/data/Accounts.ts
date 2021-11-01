@@ -10,7 +10,6 @@ const AccountList: IAccountType[] = [
             }
         ]
     },
-    /*
     {
         project: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
         whiteList: [
@@ -22,7 +21,6 @@ const AccountList: IAccountType[] = [
             }
         ]
     },
-    */
     {
         project: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1',
         whiteList: [
