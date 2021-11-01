@@ -26,7 +26,7 @@ const AccountList: IAccountType[] = [
         whiteList: [
             {
                 address: "0x847dfF6a30f4e69FF67E78aa37E4170EEae445a8",
-            }, 
+            },
             {
                 address: "0x7C11371ca161276DE5340A08B3f204F4c6c66e3a"
             },
@@ -44,6 +44,9 @@ const AccountList: IAccountType[] = [
             },
             {
                 address: "0xcE84500ad8411b14e5DA048adCdF46284660a0AA"
+            },
+            {
+                address: "0x10efd615825F77aa715D2C7EA4c02280d9dd76fe"
             }
         ]
     }, {
