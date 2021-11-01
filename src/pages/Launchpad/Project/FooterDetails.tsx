@@ -1,6 +1,6 @@
 import { Flex, Button, Heading, Text } from '@sparkpointio/sparkswap-uikit';
 import { useWeb3React } from '@web3-react/core';
-import { IPoolInformation, IProjects, ITokens } from 'config/constants/type';
+import { IPoolInformation, IProjects, ITokens, STATE } from 'config/constants/type';
 import React, { useContext, useState, useCallback, useEffect } from 'react';
 import styled, { ThemeContext } from 'styled-components';
 import { CustomThemeContext } from 'ThemeContext';
@@ -22,7 +22,7 @@ const NavOptions = styled(Button)<{ activeIndex: boolean }>`
     border-bottom: ${({ theme, activeIndex }) => activeIndex && `3px solid ${theme.colors.primary}`};
 `;
 
-interface Stats { 
+interface Stats {
     totalForSaleTokens: string;
     totalSoldTokens: string;
     remainingForSale: string;
@@ -37,6 +37,7 @@ type AppProps = {
     pool: IPoolInformation;
     project: IProjects;
     buyingToken?: ITokens;
+    projectTokenInfo?: any;
 }
 
 const FooterNav = ({ activeIndex = 0, handleClick}: { activeIndex?: number; handleClick: (i:number) => void }) => {
@@ -72,7 +73,7 @@ const AllocationSection = () => {
     )
 }
 
-const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
+const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) => {
     const theme = useContext(ThemeContext);
     const { account } = useWeb3React();
     const customTheme = useContext(CustomThemeContext);
@@ -123,15 +124,15 @@ const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Cap</Text>
-                        <Text color="textSubtle">{stats.expectedSales} {project.buyingCoin.symbol}</Text>
+                        <Text color="textSubtle">{project.status === STATE.upcoming ? '-' : stats.expectedSales} {project.buyingCoin.symbol}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Users Participated</Text>
-                        <Text color="textSubtle">{stats.totalParticipants}</Text>
+                        <Text color="textSubtle">{project.status === STATE.upcoming ? '-' : stats.totalParticipants}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Funds Swapped</Text>
-                        <Text color="textSubtle">{totalSales} {project.buyingCoin.symbol}</Text>
+                        <Text color="textSubtle">{project.status === STATE.upcoming ? '-' : totalSales} {project.buyingCoin.symbol}</Text>
                     </Flex>
                 </Flex>
                 <Flex flex="1" marginLeft="10px" flexDirection="column">
@@ -148,7 +149,7 @@ const FooterDetails: React.FC<AppProps> = ({pool, project}) => {
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Total Supply</Text>
-                        <Text color="textSubtle">{project.ownSale.toLocaleString()}</Text>
+                        <Text color="textSubtle">{projectTokenInfo.totalSupply}</Text>
                     </Flex>
                 </Flex>
             </Flex>

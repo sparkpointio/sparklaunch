@@ -1,13 +1,8 @@
-import { useMemo } from 'react'
-import useActiveWeb3React from 'hooks/useActiveWeb3React'
-import {
-    getLaunchpadContract,
-    getOwnlyLaunchpadContract,
-} from 'utils/contractHelpers'
+import { useMemo } from 'react';
+import useActiveWeb3React from 'hooks/useActiveWeb3React';
+import { getLaunchpadContract, getOwnlyLaunchpadContract, getTokenContract } from 'utils/contractHelpers';
 
 // Imports below migrated from Exchange useContract.ts
-import { Contract } from '@ethersproject/contracts'
-import { ChainId, WETH } from '@sparkpointio/sparkswap-sdk'
 
 
 export const useOwnlyLaunchpad = () => {
@@ -18,4 +13,9 @@ export const useOwnlyLaunchpad = () => {
 export const useLaunchpadContract = (category) => {
     const { library } = useActiveWeb3React()
     return useMemo(() => getLaunchpadContract(library.getSigner(), category), [library, category])
+}
+
+export const useTokenContract = (address) => {
+    const { library } = useActiveWeb3React()
+    return useMemo(() => getTokenContract(address, library.getSigner()), [address, library])
 }

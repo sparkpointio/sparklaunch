@@ -93,11 +93,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         setAccountDetails({
             r1: {
                 token: symbol,
-                amount: '5000',
+                amount: '0',
             },
             r2: {
                 token: symbol,
-                amount: '10000',
+                amount: '0',
             },
         });
 
