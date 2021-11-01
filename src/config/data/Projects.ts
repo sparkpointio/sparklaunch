@@ -82,7 +82,7 @@ const ProjectList: Array<IProjects> = [
         sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? FLASH : SRK ) ,
         buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : TBNB ) ,
         title: 'FlashLoans',
-        token: (process.env.REACT_APP_CHAIN_ID === "56" ? FLASH : SRK ),
+        token: (process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ),
         symbol: 'FLASH',
         image: 'flash.png',
         desc: 'Flashloans.com is a new DeFi tool that allows users to create and perform a flash loan backed trade from an easy to use UI.',
