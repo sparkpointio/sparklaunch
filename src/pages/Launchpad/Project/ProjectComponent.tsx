@@ -165,14 +165,14 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
         >
             <ProgressGroup>
                 <Text bold as="h1" fontSize="24px">
-                    {project.status === 'upcoming' ? '-' : totalSoldTokens}{' '}
+                    {project.status === STATE.upcoming ? '-' : totalSoldTokens}{' '}
                     <span style={{ color: theme.colors.textSubtle }}>{project.symbol} Token Sold</span>
                 </Text>
-                <Progress primaryStep={parseFloat(project.status === 'upcoming' ? '' : percentage)} variant="flat" />
+                <Progress primaryStep={parseFloat(project.status === STATE.upcoming ? '' : percentage)} variant="flat" />
                 <Flex justifyContent="space-between">
-                    <Text color="textSubtle">{project.status === 'upcoming' ? '-' :percentage}%</Text>
+                    <Text color="textSubtle">{project.status === STATE.upcoming ? '-' :percentage}%</Text>
                     <Text color="textSubtle">
-                        {project.status === 'upcoming' ? '-' : totalSales} / {project.status === 'upcoming' ? '-' :expectedSales} {project.symbol}
+                        {project.status === STATE.upcoming ? '-' : totalSales} / {project.status === STATE.upcoming ? '-' :expectedSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
             </ProgressGroup>
@@ -180,34 +180,34 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">{project.symbol} Price</Text>
                     <Text>
-                        {project.status === 'upcoming' ? '-' : stats.tokenRate} {project.symbol}
+                        {project.status === STATE.upcoming ? '-' : stats.tokenRate} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">{project.symbol} Sold</Text>
                     <Text>
-                        {project.status === 'upcoming' ? '-' : stats.totalSoldTokens} {project.symbol}
+                        {project.status === STATE.upcoming ? '-' : stats.totalSoldTokens} {project.symbol}
                     </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">Total Raised</Text>
                     <Text>
-                        {project.status === 'upcoming' ? '-' : stats.totalSales} {project.symbol}
+                        {project.status === STATE.upcoming ? '-' : stats.totalSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">Your Max Allocation</Text>
                     <Text>
-                        {project.status === 'upcoming' ? '-' : accountDetails.maxPayableAmount.toExact()} {project.symbol}
+                        {project.status === STATE.upcoming ? '-' : accountDetails.maxPayableAmount.toExact()} {project.symbol}
                     </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">Your Max BNB</Text>
                     {/* <Text>{accountDetails.maxExpendable.toExact()} BNB</Text> */}
-                    {project.status === 'upcoming' && !whiteListed ? <Text>0 BNB</Text> : <Text>{ accountDetails.balance.toExact()} BNB</Text>}
+                    {project.status === STATE.upcoming && !whiteListed ? <Text>0 BNB</Text> : <Text>{ accountDetails.maxExpendable.toExact()} BNB</Text>}
                 </Flex>
             </CustomDataGroup>
-            {!account ? (
+            {!account && status===STATE.active || status===STATE.upcoming ? (
                 <div style={{ marginTop: '15px', padding: '10px 0px' }}>
                     <UnlockButton fullWidth />
                 </div>
@@ -215,7 +215,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 <Allocations
                     tokenImage={project.image}
                     symbol={project.symbol}
-                    allocation={(project.status === 'upcoming' ? '0': accountDetails.rewardedAmount.toExact())}
+                    allocation={(project.status === STATE.upcoming ? '0': accountDetails.rewardedAmount.toExact())}
                 />
             ) : (
                 <>
