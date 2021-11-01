@@ -122,7 +122,12 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 });
             });
         });
+        return () => console.log('')
     }, [contract, contract1, project, account, symbol, token]);
+
+    useEffect(() => {
+        return () => console.log('');
+    }, [])
 
     const [onClaimR1Modal] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract1} />);
     const [onClaimR2Modal] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract} />);
@@ -280,7 +285,6 @@ const LaunchCard: React.FC<IProjects> = (project) => {
             {status === STATE.upcoming && (claimable || !claimable) &&
             <CardAction flexDirection='column'>
                 <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
-
             </CardAction>}
 
         </Card>
