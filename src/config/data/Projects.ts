@@ -1,5 +1,6 @@
 import { IProjects } from "config/constants/type";
 import {BNB, TBNB, OWN , TOWN, SRK, FLASH} from "../index";
+import { dateEnded, epochToDate } from '../../utils';
 
 
 const ProjectList: Array<IProjects> = [
@@ -18,12 +19,39 @@ const ProjectList: Array<IProjects> = [
         longDesc2: '$OWN Token is the native utility token of Ownly, users are able to buy, own, collect, and trade 1 of 1 edition crypto artworks by talented artists. Own the only true copy and there\'s nothing else like that in the world -- as if it\'s made just for you. ',
         longDesc3: 'Ownly is created to be a meeting place of artworks and collectors in the crypto space. It offers a Decentralized NFT Marketplace, Staking, NFT launching & curation, and NFT-focused & energy-efficient blockchain platform in a seamless, transparent, secure, inclusive, and interoperable approach.',
         ownSale: 2666666667,
+        startDate: epochToDate(1627455600),
+        endDate: epochToDate(1627628400),
+        hasDateEnded: dateEnded(1627628400),
         wallpaperBg: 'ownlyBG.jpg',
         status: "completed",
         claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
-    
+    //
+    // {
+    //     category: 'testLaunchPad',
+    //     // category2: 'ownlyLaunchPad1',
+    //     address: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+    //     sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : SRK ),
+    //     buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : BNB ) ,
+    //     title: 'Test',
+    //     token: (process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ),
+    //     symbol: 'TST',
+    //     image: 'ownly.png',
+    //     desc: 'This is just a test contract',
+    //     longDesc: 'This is just a test contract',
+    //     longDesc2: 'This is just a test contract',
+    //     longDesc3: 'This is just a test contract',
+    //     ownSale: 2666666667,
+    //     wallpaperBg: '',
+    //     status: "active",
+    //     startDateinEpoch: 1635771600,
+    //     endDateinEpoch: 1635771600,
+    //     claimable: true,
+    //     socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
+    // },
+
+
     // {
     //     category: 'testLaunchPad',
     //     // category2: 'ownlyLaunchPad1',
@@ -45,13 +73,13 @@ const ProjectList: Array<IProjects> = [
     //     claimable: true,
     //     socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     // },
-    
+
     {
         category: 'flashLoansIDO',
         // category2: 'ownlyLaunchPad1',
         address: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1',
         // sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ) ,
-        sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? FLASH : FLASH ) ,
+        sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? FLASH : SRK ) ,
         buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : BNB ) ,
         title: 'FlashLoans',
         token: (process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ),
@@ -63,9 +91,11 @@ const ProjectList: Array<IProjects> = [
         // longDesc3: 'This is just a test contract',
         ownSale: 0,
         wallpaperBg: 'flashtokenBG2.png',
-        status: "active",
-        startDateinEpoch: 1635771600,
-        claimable: false,
+        status: "upcoming",
+        startDate: epochToDate(1635764400),
+        endDate: epochToDate(1635944400),
+        hasDateEnded: dateEnded(1635944400),
+        claimable: true,
         socMeds: ['flashloans.com', 'twitter.com/ComFlashloans', 't.me/joinchat/HCAFABqRGjY77vIdI2nV9g', 'medium.com/@flashloans'],
     },
     {

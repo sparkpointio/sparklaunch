@@ -3,7 +3,7 @@ import { ProjectState, AppThunk } from 'state/type'
 import ProjectList  from 'config/data/Projects';
 
 
-const initialState: ProjectState = { 
+const initialState: ProjectState = {
     selectedProject: null,
     data: ProjectList,
 }
@@ -19,6 +19,7 @@ export const projectSlice = createSlice({
     reducers: {
         selectProject:  (state, action: PayloadAction<string>) => {
             state.selectedProject = action.payload
+            console.log(state.selectedProject)
         }
     }
 })

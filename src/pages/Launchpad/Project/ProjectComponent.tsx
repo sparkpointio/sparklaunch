@@ -1,52 +1,39 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useWeb3React } from '@web3-react/core';
 import { TokenAmount } from '@sparkpointio/sparkswap-sdk';
-import styled, { ThemeContext } from 'styled-components';
-import { Globe, Twitter, Send } from 'react-feather';
+import { ThemeContext } from 'styled-components';
+import { Globe, Send, Twitter } from 'react-feather';
 import { useHistory } from 'react-router-dom';
-import {
-    Card,
-    Flex,
-    Heading,
-    Button,
-    CardBody,
-    CardHeader,
-    Text,
-    Progress,
-    CardFooter,
-    useModal,
-} from '@sparkpointio/sparkswap-uikit';
+import { Button, CardBody, Flex, Heading, Progress, Text, useModal } from '@sparkpointio/sparkswap-uikit';
 import {
     useAccountWhiteList,
+    useFindProject as getFindProject,
     useFindProjectByAddress,
     useGetPoolsByAddress,
-    useFindProject as getFindProject,
 } from 'state/hooks';
-import { IProjects, ITokens, STATE } from 'config/constants/type';
+import { IProjects, STATE } from 'config/constants/type';
 import SvgIcon from 'components/SvgIcon';
 import UnlockButton from 'components/ConnectWalletButton';
-import { StyledHr2 as Divider } from 'components/Divider';
 import PurchaseModal from 'components/Modals/PurchaseModal';
 import { CustomThemeContext } from 'ThemeContext';
-import { SocmedGroup, ProgressGroup } from '../components/styled';
+import { ProgressGroup, SocmedGroup } from '../components/styled';
 import { ReactComponent as MediumIcon } from '../components/icons/MediumIcon.svg';
 import Anchor from '../components/StyledLink';
 import FooterDetails from './FooterDetails';
 import {
-    CCont,
-    CHeader,
-    TokenImage,
-    SmalltokenImage,
     CBody,
-    StyledButton,
-    CustomDataGroup,
+    CCont,
     CFooter,
+    CHeader,
+    CustomDataGroup,
+    SmalltokenImage,
+    StyledButton,
     TextDescription,
+    TokenImage,
 } from './styled';
 import { calculateLaunchpadStats, getAccountDetailsLaunchPad, getEndedStatus } from '../../../utils/contractHelpers';
-import { useLaunchpadContract } from '../../../hooks/useContracts';
+import { useLaunchpadContract, useTokenContract } from '../../../hooks/useContracts';
 import useActiveWeb3React from '../../../hooks/useActiveWeb3React';
-import { BNB, OWN } from '../../../config';
 
 type AppProps = {
     project: IProjects;
@@ -56,8 +43,8 @@ type ActionProps = AppProps & {
     whiteListed?: boolean;
 };
 
-   // Hook
-   function usePrevious(value) {
+// Hook
+function usePrevious(value) {
     // The ref object is a generic container whose current property is mutable ...
     // ... and can hold any value, similar to an instance property on a class
     const ref = React.useRef();
@@ -80,7 +67,7 @@ const Allocations: React.FC<{ tokenImage: string; symbol: string; allocation: st
             {}
             <Text>My Allocations</Text>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <SmalltokenImage src={srcs} alt="token-logo" />
+                <SmalltokenImage src={srcs} alt='token-logo' />
                 <Text bold>
                     {allocation} {symbol}
                 </Text>
@@ -89,7 +76,7 @@ const Allocations: React.FC<{ tokenImage: string; symbol: string; allocation: st
     );
 };
 
-const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) => {
+const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) => {
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
     const Paddress = getFindProject();
@@ -114,7 +101,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
         whitelist: false,
     });
 
-    const prevDeets = usePrevious(accountDetails)
+    const prevDeets = usePrevious(accountDetails);
 
     const { library } = useActiveWeb3React();
 
@@ -136,14 +123,14 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
             if (accountDetails !== prevDeets) {
                 getAccountDetailsLaunchPad(contract, project, library, account)
                 .then((r) => setAccountDetails(r))
-                .catch(console.log);  
+                .catch(console.log);
             }
     }, [ accountDetails, prevDeets, account, contract, library, project]);
     const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats} category={projCat} />, false);
     // const tokenReport = {
     //     title: `${project.progress} ${project.symbol}`,
     // }
-    
+
 
     useEffect(() => () => console.log(''), [])
 
@@ -163,47 +150,49 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
             }}
         >
             <ProgressGroup>
-                <Text bold as="h1" fontSize="24px">
+                <Text bold as='h1' fontSize='24px'>
                     {project.status === STATE.upcoming ? '-' : totalSoldTokens}{' '}
                     <span style={{ color: theme.colors.textSubtle }}>{project.symbol} Token Sold</span>
                 </Text>
-                <Progress primaryStep={parseFloat(project.status === STATE.upcoming ? '' : percentage)} variant="flat" />
-                <Flex justifyContent="space-between">
-                    <Text color="textSubtle">{project.status === STATE.upcoming ? '-' :percentage}%</Text>
-                    <Text color="textSubtle">
-                        {project.status === STATE.upcoming ? '-' : totalSales} / {project.status === STATE.upcoming ? '-' :expectedSales} {project.buyingCoin.symbol}
+                <Progress primaryStep={parseFloat(project.status === STATE.upcoming ? '' : percentage)}
+                          variant='flat' />
+                <Flex justifyContent='space-between'>
+                    <Text color='textSubtle'>{project.status === STATE.upcoming ? '-' : percentage}%</Text>
+                    <Text color='textSubtle'>
+                        {project.status === STATE.upcoming ? '-' : totalSales} / {project.status === STATE.upcoming ? '-' : expectedSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
             </ProgressGroup>
-            <CustomDataGroup flexDirection="column">
-                <Flex justifyContent="space-between">
-                    <Text color="textSubtle">{project.symbol} Price</Text>
+            <CustomDataGroup flexDirection='column'>
+                <Flex justifyContent='space-between'>
+                    <Text color='textSubtle'>{project.symbol} Price</Text>
                     <Text>
                         {project.status === STATE.upcoming ? '-' : stats.tokenRate} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
-                <Flex justifyContent="space-between">
-                    <Text color="textSubtle">{project.symbol} Sold</Text>
+                <Flex justifyContent='space-between'>
+                    <Text color='textSubtle'>{project.symbol} Sold</Text>
                     <Text>
                         {project.status === STATE.upcoming ? '-' : stats.totalSoldTokens} {project.symbol}
                     </Text>
                 </Flex>
-                <Flex justifyContent="space-between">
-                    <Text color="textSubtle">Total Raised</Text>
+                <Flex justifyContent='space-between'>
+                    <Text color='textSubtle'>Total Raised</Text>
                     <Text>
                         {project.status === STATE.upcoming ? '-' : stats.totalSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
-                <Flex justifyContent="space-between">
-                    <Text color="primary">Your Max Allocation</Text>
+                <Flex justifyContent='space-between'>
+                    <Text color='primary'>Your Max Allocation</Text>
                     <Text>
                         {project.status === STATE.upcoming ? '-' : accountDetails.maxPayableAmount.toExact()} {project.symbol}
                     </Text>
                 </Flex>
-                <Flex justifyContent="space-between">
-                    <Text color="primary">Your Max BNB</Text>
+                <Flex justifyContent='space-between'>
+                    <Text color='primary'>Your Max BNB</Text>
                     {/* <Text>{accountDetails.maxExpendable.toExact()} BNB</Text> */}
-                    {project.status === STATE.upcoming && !whiteListed ? <Text>0 BNB</Text> : <Text>{ accountDetails.maxExpendable.toExact()} BNB</Text>}
+                    {project.status === STATE.upcoming && !whiteListed ? <Text>0 BNB</Text> :
+                        <Text>{accountDetails.maxExpendable.toExact()} BNB</Text>}
                 </Flex>
             </CustomDataGroup>
             {!account && status===STATE.active ? (
@@ -214,12 +203,12 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 <Allocations
                     tokenImage={project.image}
                     symbol={project.symbol}
-                    allocation={(project.status === STATE.upcoming ? '0': accountDetails.rewardedAmount.toExact())}
+                    allocation={(project.status === STATE.upcoming ? '0' : accountDetails.rewardedAmount.toExact())}
                 />
             ) : (
                 <>
 
-                {/* {!project.claimable ?
+                    {/* {!project.claimable ?
                 <div>
                     {stats.remainingForSale === '-' ? <Button fullWidth disabled style={{marginTop: '10px', marginBottom: '10px'}}>Processing </Button> :
                     <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px', marginBottom: '10px'}} >Purchase {project.symbol}</Button>
@@ -230,9 +219,10 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
                 } */}
 
-                            {status === STATE.active ? (
-                                <>
-                                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
+                    {status === STATE.active ? (
+                        <>
+                            <Allocations tokenImage={project.image} symbol={project.symbol}
+                                         allocation={accountDetails.rewardedAmount.toExact()} />
 
                                 <Button onClick={onPurchaseModal} fullWidth style={{ marginTop: '10px' }} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
                                 </>
@@ -262,7 +252,12 @@ const ProjectComponent: React.FC = () => {
     const pool = useGetPoolsByAddress(Paddress);
     const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
-   
+
+    const [projectTokenInfo, setProjectTokenInfo] = useState({
+        totalSupply: '0',
+    });
+    const tokenContract = useTokenContract(project.sellingCoin.address);
+
 
     // useEffect(() => {
     //     if (loading) {
@@ -277,33 +272,38 @@ const ProjectComponent: React.FC = () => {
     // }, [history, status]);
 
     useEffect(() => {
+        // tokenContract.balanceOf(account).then(console.log)
+        tokenContract.totalSupply().then(r => {
+            setProjectTokenInfo({ totalSupply: (new TokenAmount(project.sellingCoin, r)).toExact({ groupSeparator : ','}).toString() });
+        }).catch(console.log);
+
         if (acc) {
             setWhiteList(true);
         } else setWhiteList(false);
-    }, [acc]);
+    }, [acc, tokenContract, project.sellingCoin]);
 
     useEffect(() => {
         return () => console.log('Cleanup')
-    }, []) 
+    }, [])
     const theme = useContext(ThemeContext);
     const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
     return (
         <CCont>
             <CHeader src={srcsBg}>
-                <TokenImage src={srcs} alt="token-image" />
-                <Heading bold fontSize="24px">
+                <TokenImage src={srcs} alt='token-image' />
+                <Heading bold fontSize='24px'>
                     {title}
                 </Heading>
             </CHeader>
             <CBody>
-                <Flex justifyContent="space-between">
-                    <Flex flex="1" flexDirection="column" padding="10px">
+                <Flex justifyContent='space-between'>
+                    <Flex flex='1' flexDirection='column' padding='10px'>
                         <Flex
-                            alignItems="center"
-                            justifyContent="space-between"
-                            marginTop="-20px"
-                            marginBottom="10px"
-                            padding="10px 0px"
+                            alignItems='center'
+                            justifyContent='space-between'
+                            marginTop='-20px'
+                            marginBottom='10px'
+                            padding='10px 0px'
                         >
                             <SocmedGroup>
                                 <Anchor href={socMeds?.[0]}>
@@ -327,19 +327,19 @@ const ProjectComponent: React.FC = () => {
                                 <StyledButton style={{ backgroundColor: '#8e98a5' }}>COMPLETED</StyledButton>
                             )}
                         </Flex>
-                        <Flex flexDirection="column" justifyContent="space-between">
-                            <TextDescription color="textSubtle" as="p">
+                        <Flex flexDirection='column' justifyContent='space-between'>
+                            <TextDescription color='textSubtle' as='p'>
                                 {longDesc}
                             </TextDescription>
-                            <TextDescription color="textSubtle" as="p">
+                            <TextDescription color='textSubtle' as='p'>
                                 {longDesc2}
                             </TextDescription>
-                            <TextDescription color="textSubtle" as="p">
+                            <TextDescription color='textSubtle' as='p'>
                                 {longDesc3}
                             </TextDescription>
                         </Flex>
                     </Flex>
-                    <Flex flex="1">
+                    <Flex flex='1'>
                         <ActionCard
                             account={account}
                             whiteListed={whiteListed}
@@ -350,7 +350,7 @@ const ProjectComponent: React.FC = () => {
                 </Flex>
             </CBody>
             <CFooter>
-                <FooterDetails pool={pool} project={project} />
+                <FooterDetails pool={pool} project={project} projectTokenInfo={projectTokenInfo} />
             </CFooter>
         </CCont>
     );

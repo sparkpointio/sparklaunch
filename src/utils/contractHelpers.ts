@@ -1,13 +1,14 @@
-import {ethers} from 'ethers'
-import {simpleRpcProvider} from 'utils/providers'
-import {TokenAmount} from "@sparkpointio/sparkswap-sdk";
+import { ethers } from 'ethers';
+import { simpleRpcProvider } from 'utils/providers';
+import { TokenAmount } from '@sparkpointio/sparkswap-sdk';
 
 // Addresses
-import {getLaunchPadAddress, ownlyLaunchPad} from 'utils/addressHelpers'
+import { getLaunchPadAddress, ownlyLaunchPad } from 'utils/addressHelpers';
 
-import launchpadABI from '../constants/abis/launchpad.json'
-import {BNB, OWN} from "../config";
-import {expandValue} from "./index";
+import launchpadABI from '../constants/abis/launchpad.json';
+import { BNB, OWN } from '../config';
+import { expandValue } from './index';
+import { ERC20_ABI } from '../constants/abis/erc20';
 
 const getContract = (abi: any, address: string, signer) => {
     const signerOrProvider = signer.provider.connection.url === 'metamask' ? signer : simpleRpcProvider
@@ -23,7 +24,9 @@ export const getLaunchpadContract = (signer?: ethers.Signer | ethers.providers.P
     return getContract(launchpadABI, getLaunchPadAddress(category), signer)
 }
 
-
+export const getTokenContract = (contractAddress, signer?: ethers.Signer | ethers.providers.Provider) => {
+    return getContract(ERC20_ABI, contractAddress, signer)
+}
 
 export const calculateLaunchpadStats = async (contract, project) => {
     const totalForSaleTokens = new TokenAmount(project.sellingCoin, await contract.totalRewardTokens());

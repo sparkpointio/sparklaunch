@@ -47,7 +47,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         socMeds,
         symbol,
         claimable,
-        startDateinEpoch
+        startDate,
+        endDate
     } = project;
 
     const [stats, setStats] = useState({
@@ -93,11 +94,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         setAccountDetails({
             r1: {
                 token: symbol,
-                amount: '5000',
+                amount: '0',
             },
             r2: {
                 token: symbol,
-                amount: '10000',
+                amount: '0',
             },
         });
 
@@ -167,12 +168,12 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 {status === STATE.upcoming ? (
                     <ProgressGroup>
                         {/* <TimerButton>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></TimerButton> */}
-                        {!startDateinEpoch ? (
+                        {!startDate ? (
                             <TimerButton> Going Live Soon! </TimerButton>
                         ) : (
                             <TimerButton>
                                 {' '}
-                                Going Live in:&nbsp; <Timer epochDeadlineTimestamp={startDateinEpoch} />
+                                <Timer startDate={startDate} endDate={endDate}/>
                             </TimerButton>
                         )}
                     </ProgressGroup>
@@ -276,7 +277,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
                 {/* Function to check if user has participated */}
                 <Text style={{ marginTop: '15px' }}>
-                    Thank you for participating in the IDO sale! Your {sellingCoin.symbol} tokens will be sent shortly
+                    Thank you for participating in the IDO sale! Your {symbol} tokens will be sent shortly
                     to your wallet address
                 </Text>
             </CardAction>}

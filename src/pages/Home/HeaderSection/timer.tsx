@@ -1,9 +1,14 @@
 import React from 'react';
 import { useTimer } from 'react-timer-hook';
 
-function Timer({ epochDeadlineTimestamp }) {
-    const expiryTimestamp = new Date(0); // The 0 there is the key, which sets the date to the epoch
-    expiryTimestamp.setUTCSeconds(epochDeadlineTimestamp);
+function Timer({ startDate, endDate }) {
+    const current = new Date()
+    let expiryTimestamp = startDate;
+    let timeStatus = 'Going Live in'
+    if (current.getTime() > startDate.getTime()) {
+        expiryTimestamp = endDate
+        timeStatus = 'Ends in'
+    }
     const {
         seconds,
         minutes,
@@ -14,6 +19,7 @@ function Timer({ epochDeadlineTimestamp }) {
 
     return (
         <>
+            {timeStatus}:&nbsp;
             {days ? `${days}d ` : ''}
             {hours ? `${hours}h ` : ''}
             {minutes ? `${minutes}m ` : ''}
