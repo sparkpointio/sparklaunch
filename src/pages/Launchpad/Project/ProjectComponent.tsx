@@ -57,10 +57,10 @@ function usePrevious(value) {
 }
 
 const Allocations: React.FC<{ tokenImage: string; symbol: string; allocation: string }> = ({
-                                                                                               tokenImage,
-                                                                                               symbol,
-                                                                                               allocation,
-                                                                                           }) => {
+    tokenImage,
+    symbol,
+    allocation,
+}) => {
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${tokenImage}`;
     return (
         <div style={{ marginTop: '20px' }}>
@@ -112,7 +112,6 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
 
     useEffect(() => {
         setLoading(true);
-
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
         getAccountDetailsLaunchPad(contract, project, library, account)
             .then((r) => setAccountDetails(r))
@@ -121,12 +120,14 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     }, [contract, project, account, library, loading]);
 
     useEffect(() => {
+            if (accountDetails !== prevDeets) {
+                getAccountDetailsLaunchPad(contract, project, library, account)
+                .then((r) => setAccountDetails(r))
+                .catch(console.log);
+                setLoading(false)
+            }
 
-        if (accountDetails !== prevDeets) {
-            setLoading(false);
-        }
-
-    }, [setLoading, accountDetails, prevDeets]);
+    }, [ setLoading, accountDetails, prevDeets, account, contract, library, project]);
     const [onPurchaseModal] = useModal(
         <PurchaseModal address={Paddress} stats={stats} category={projCat} setLoadingFn={setLoading} />,
     );
@@ -195,7 +196,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                         <Text>{accountDetails.maxExpendable.toExact()} BNB</Text>}
                 </Flex>
             </CustomDataGroup>
-            {!account ? (
+            {!account && status===STATE.active ? (
                 <div style={{ marginTop: '15px', padding: '10px 0px' }}>
                     <UnlockButton fullWidth />
                 </div>
@@ -224,16 +225,12 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                             <Allocations tokenImage={project.image} symbol={project.symbol}
                                          allocation={accountDetails.rewardedAmount.toExact()} />
 
-                            <Button onClick={onPurchaseModal} fullWidth style={{ marginTop: '10px' }}
-                                    disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
-                        </>
-                    ) : status === STATE.upcoming ? (
-                        null
-                    ) : (
-                        <Allocations tokenImage={project.image} symbol={project.symbol}
-                                     allocation={accountDetails.rewardedAmount.toExact()} />
-                    )}
-                    {/* <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button> */}
+                                <Button onClick={onPurchaseModal} fullWidth style={{ marginTop: '10px' }} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
+                                </>
+                            ) : status === STATE.upcoming && (
+                                <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
+                            )}
+                {/* <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button> */}
                 </>
             )}
         </CardBody>

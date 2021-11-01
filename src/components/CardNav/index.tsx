@@ -5,10 +5,10 @@ import { Button, ButtonMenu, ButtonMenuItem, useModal } from '@sparkpointio/spar
 
 const StyledNav = styled.div`
   display: flex;
-  height: 7vh;
+  height: 1vh;
   width: 100%;
-  margin-top: 15px;
-  border-bottom: 3px solid ${({theme}) => theme.colors.primary};
+  // margin-top: 15px;
+  // border-bottom: 3px solid ${({theme}) => theme.colors.primary};
 `
 
 const StyledButtonMenu = styled(ButtonMenu)`
@@ -31,14 +31,14 @@ const Nav = ({ activeIndex = 0 }: { activeIndex?: number }) => {
   
     return (
       <StyledNav>
-      <StyledButtonMenu size="md" activeIndex={activeIndex}  variant='primary'>
+      {/* <StyledButtonMenu size="md" activeIndex={activeIndex}  variant='primary'>
         <ButtonMenuItem fullWidth id="swap-nav-link" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`}}} >
           Projects
         </ButtonMenuItem>
         <ButtonMenuItem fullWidth id="pool-nav-link" href="https://stake.sparkswap.finance/#" as="a" style={{height: '7vh', ...theme.isDark && {color: `${theme.isDark && theme.colors.text}`} }}  >
           Staking
         </ButtonMenuItem>
-      </StyledButtonMenu>
+      </StyledButtonMenu> */}
     </StyledNav>
   )}
   

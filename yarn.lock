@@ -18273,10 +18273,10 @@ react-i18next@^10.7.0:
     "@babel/runtime" "^7.3.1"
     html-parse-stringify2 "2.0.1"
 
-react-icons@^4.2.0:
-  version "4.2.0"
-  resolved "https://registry.npm.taobao.org/react-icons/download/react-icons-4.2.0.tgz#6dda80c8a8f338ff96a1851424d63083282630d0"
-  integrity sha1-bdqAyKjzOP+WoYUUJNYwgygmMNA=
+react-icons@^4.3.1:
+  version "4.3.1"
+  resolved "https://registry.npmmirror.com/react-icons/download/react-icons-4.3.1.tgz#2fa92aebbbc71f43d2db2ed1aed07361124e91ca"
+  integrity sha1-L6kq67vHH0PS2y7RrtBzYRJOkco=
 
 react-is@^16.13.1, react-is@^16.6.0, react-is@^16.7.0, react-is@^16.8.1:
   version "16.13.1"

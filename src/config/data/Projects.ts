@@ -23,7 +23,7 @@ const ProjectList: Array<IProjects> = [
         claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
-    /*
+    
     {
         category: 'testLaunchPad',
         // category2: 'ownlyLaunchPad1',
@@ -40,17 +40,18 @@ const ProjectList: Array<IProjects> = [
         longDesc3: 'This is just a test contract',
         ownSale: 2666666667,
         wallpaperBg: '',
-        status: "upcoming",
+        status: "active",
         startDateinEpoch: 1635771600,
         claimable: true,
         socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     },
-    */
+    
     {
         category: 'flashLoansIDO',
         // category2: 'ownlyLaunchPad1',
         address: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1',
-        sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ) ,
+        // sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ) ,
+        sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? FLASH : FLASH ) ,
         buyingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : BNB ) ,
         title: 'FlashLoans',
         token: (process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ),
@@ -81,7 +82,7 @@ const ProjectList: Array<IProjects> = [
         longDesc: 'The overall objective of the game is to win the race using the array of cars that can be purchased and customized using ORE token. ORE can be earned by racing in conqueror mode or in PVP ‘s sprint races. What makes this game so interesting is that it offers the player not only excitement and entertainment but enables them to earn crypto and earn prizes for their activity.',
         // longDesc3: 'This is just a test contract',
         ownSale: 0,
-        wallpaperBg: 'oreBG2.png',
+        wallpaperBg: 'oreBG3.png',
         status: "upcoming",
         claimable: true,
         socMeds: ['outrace.game', 'twitter.com/outrace_ore', 't.me/Outrace', 'medium.com'],
