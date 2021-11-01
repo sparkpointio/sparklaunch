@@ -170,7 +170,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">{project.status === 'upcoming' ? '-' :percentage}%</Text>
                     <Text color="textSubtle">
-                        {project.status === 'upcoming' ? '-' : totalSales} / {project.status === 'upcoming' ? '-' :expectedSales} {project.symbol}
+                        {project.status === 'upcoming' ? '-' : totalSales} / {project.status === 'upcoming' ? '-' :expectedSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
             </ProgressGroup>
@@ -178,7 +178,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">{project.symbol} Price</Text>
                     <Text>
-                        {project.status === 'upcoming' ? '-' : stats.tokenRate} {project.symbol}
+                        {project.status === 'upcoming' ? '-' : stats.tokenRate} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
@@ -190,7 +190,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project, }) =
                 <Flex justifyContent="space-between">
                     <Text color="textSubtle">Total Raised</Text>
                     <Text>
-                        {project.status === 'upcoming' ? '-' : stats.totalSales} {project.symbol}
+                        {project.status === 'upcoming' ? '-' : stats.totalSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
                 <Flex justifyContent="space-between">
