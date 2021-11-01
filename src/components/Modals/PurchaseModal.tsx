@@ -35,7 +35,6 @@ interface AppProps {
     address: string | null | undefined;
     stats: Stats;
     category: string;
-    setLoadingFn?: (value: boolean | ((prevVar: boolean) => boolean)) => void;
 }
 
 const ToastTitle = styled(Text)`
@@ -51,7 +50,7 @@ const ActionDiv = styled(Flex)`
     flex-direction: column;
 `;
 
-const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category, setLoadingFn}) => {
+const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category}) => {
     const { library } = useActiveWeb3React();
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
@@ -195,7 +194,6 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category
             })
             const res = await getAccountDetailsLaunchPad(contract, project, library, account);
             setAccountDetails(res);
-            setLoadingFn(true);
         }
         catch(e) {
             const code = e.code;
@@ -244,8 +242,12 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, stats, category
             setRemainingPurchasable(_balance)
             setRemainingExpendable(calculateMaxExpendable(_balance));
         }).catch(e => console.log(e));
-    }, [account, contract, library, input, output, tokenRate, project, setLoadingFn]);
+
+        return () => console.log('')
+    }, [account, contract, library, input, output, tokenRate, project]);
     
+    useEffect(() => { return console.log('')}, [])
+
     return (
         <Modal title="" onDismiss={onDismiss}>
             <div style={{ width: '400px', padding: '0px 24px 24px 24px' }}>
