@@ -5,7 +5,7 @@ import { dateEnded, epochToDate } from '../../utils';
 
 const ProjectList: Array<IProjects> = [
     // {
-    //     category: 'ownlyLaunchPad',
+    //       category: 'ownlyLaunchPad',
     //     // category2: 'ownlyLaunchPad1',
     //     address: '0x001',
     //     sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? OWN : TOWN ),
@@ -73,7 +73,6 @@ const ProjectList: Array<IProjects> = [
     //     claimable: true,
     //     socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
     // },
-
     {
         category: 'flashLoansIDO',
         // category2: 'ownlyLaunchPad1',
