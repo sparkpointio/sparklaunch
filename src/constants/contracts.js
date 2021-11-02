@@ -1,25 +1,47 @@
-export default {
-    ownlyLaunchPad: {
-        56: '0x75f5696c02978fd345Ad81AE89F81402aFc7342F', // Round-one OWNLY token sale: 0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5
-        97: '0xe99646c31060991166c37220ce8ab5453e573dae',
-    },
-    ownlyLaunchPad1: {
-        56: '0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5',
-        97: '0x6171ef8577601bfebc36db044f53a5d874536d0e',
-    },
-    // testLaunchPad: {
-    //     56: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
-    //     97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
-    // },
-    outRaceIDO: {
+/*
+    ** Follow the naming conventions to identy the round of per contract
+    using Ownly contract as dummy for the IDOs that doesn't have contract yet ( Upcoming )
+    ROUND 1: 56: 0x75f5696c02978fd345Ad81AE89F81402aFc7342F
+    ROUND 2: 56: 0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5
+
+    Round-one OWNLY token sale: 0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5
+
+    Other contracts:
+     testLaunchPad: {
         56: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
         97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+     },
+*/
+
+export default {
+    ownlyLaunchPad$1: {
+        56: '0x75f5696c02978fd345Ad81AE89F81402aFc7342F',
+        97: '0xe99646c31060991166c37220ce8ab5453e573dae',
     },
-    flashLoansIDO: {
+    // ownlyLaunchPad$2: {
+    //     56: '0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5',
+    //     97: '0x6171ef8577601bfebc36db044f53a5d874536d0e',
+    // },
+    outRaceIDO$1: {
+        56: '0x75f5696c02978fd345Ad81AE89F81402aFc7342F',
+        97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+    },
+    flashLoansIDO$1: {
         56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
-        95: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1'
-        // 97: '0xf004694B8EE3e2B1179a6fBC39a6048e74d88fdE' second sale
-        // 97: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1'
-        // 0xeC4Cdc696B1766B893f33a08a22C601bc6920f18
+        97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+    },
+    flashLoansIDO$2: {
+        56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
+        97: '0xBEc964910ee4Bfc7Cf98E4010108Aeef0fc5D4B5',
+    },
+    /* Test Contracts */
+
+    testLaunchPad$1: {
+        56: '',
+        97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+    },
+    testLaunchPad$2: {
+        56: '',
+        97: '0xBEc964910ee4Bfc7Cf98E4010108Aeef0fc5D4B5'
     }
 };
