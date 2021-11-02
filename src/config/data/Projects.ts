@@ -93,7 +93,7 @@ const ProjectList: Array<IProjects> = [
         wallpaperBg: 'flashtokenBG2.png',
         status: "active",
         startDate: epochToDate(1635771600),
-        endDate: epochToDate(1635944400),
+        endDate: epochToDate(1635858000),
         hasDateEnded: dateEnded(1635944400),
         claimable: true,
         socMeds: ['flashloans.com', 'twitter.com/ComFlashloans', 't.me/joinchat/HCAFABqRGjY77vIdI2nV9g', 'medium.com/@flashloans'],
