@@ -90,7 +90,7 @@ const ProjectList: Array<IProjects> = [
         category2: 'testLaunchPad$2',
         address: 'tester',
         sellingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? OWN : SRK,
-        buyingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : TBNB,
+        buyingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : BNB,
         title: 'Test',
         token: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : SRK,
         symbol: 'TST',

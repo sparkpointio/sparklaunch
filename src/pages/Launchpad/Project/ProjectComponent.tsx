@@ -102,14 +102,35 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     });
 
     const prevDeets = usePrevious(accountDetails);
-    const [r2Category, setR2Category] = useState(project.category);
-
+    const [contract, setContract] = useState(useLaunchpadContract(project.category));
+    const [ category, setCategory] = useState('');
     const { library } = useActiveWeb3React();
 
-    const contract = useLaunchpadContract(project.category);
-    const isEnded = getEndedStatus(contract);
-    const projCat = isEnded && project.category2 ? project.category2 : project.category;
+    const contract1 = useLaunchpadContract(project.category);
+    const contract2 = useLaunchpadContract(project.category2);
+
+    useEffect(() => {
+        const checkEnded = async(cont) => {
+            const res = await getEndedStatus(cont);
+            return res;
+        }
+        checkEnded(contract1).then((res)=>{
+            if (!project.category2) {
+               setCategory(project.category);
+            }
+            if (res) {
+                setCategory(project.category2)
+            } else {
+                setCategory(project.category)
+            }
+
+            return res? setContract(contract2) : setContract(contract1);
+        })
+    }, [contract1, project.category2, project.category, contract2])
+        
+    // const contract = getLaunchpadContract(category);
     
+
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
         getAccountDetailsLaunchPad(contract, project, library, account)
@@ -127,7 +148,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                 .catch(console.log);
             }
     }, [ accountDetails, prevDeets, account, contract, library, project]);
-    const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats} category={projCat} />, false);
+    const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats} category={category} />, false);
     // const tokenReport = {
     //     title: `${project.progress} ${project.symbol}`,
     // }
@@ -140,6 +161,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     const totalSales = parseFloat(stats.totalSales).toFixed(4);
     const expectedSales = parseFloat(stats.expectedSales).toFixed(2);
     const { status } = project;
+
     return (
         <CardBody
             style={{
