@@ -193,6 +193,12 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 ) : (
                     <br />
                 )}
+
+                {status === STATE.active &&
+                <TimerButton>
+                    {' '}
+                    <Timer startDate={startDate} endDate={endDate}/>
+                </TimerButton> }
                 <Details>
                     <div
                         style={{
