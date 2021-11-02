@@ -19,7 +19,6 @@ export const projectSlice = createSlice({
     reducers: {
         selectProject:  (state, action: PayloadAction<string>) => {
             state.selectedProject = action.payload
-            console.log(state.selectedProject)
         }
     }
 })
