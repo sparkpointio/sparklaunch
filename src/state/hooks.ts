@@ -49,7 +49,7 @@ export const useAccountWhiteList = (acc: string | null, project: string | null) 
         }
         return res;
     });
-    console.log(account)
+    
     return account;
 };
 
