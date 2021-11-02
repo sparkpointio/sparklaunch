@@ -102,13 +102,14 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     });
 
     const prevDeets = usePrevious(accountDetails);
+    const [r2Category, setR2Category] = useState(project.category);
 
     const { library } = useActiveWeb3React();
 
     const contract = useLaunchpadContract(project.category);
     const isEnded = getEndedStatus(contract);
     const projCat = isEnded && project.category2 ? project.category2 : project.category;
-
+    
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
         getAccountDetailsLaunchPad(contract, project, library, account)
