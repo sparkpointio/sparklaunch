@@ -1974,6 +1974,9 @@ const Accounts = () => [
     {
         address: '0xfad172288283b26307e81bc1546911e452404d3c'
     },
+    {
+        address: '0x8A672715e042f6e9d9B25C2ce9F84210e8206EF1'
+    },
     ]
 
     export default Accounts();
