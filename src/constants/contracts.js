@@ -21,5 +21,5 @@ export default {
         // 97: '0xf004694B8EE3e2B1179a6fBC39a6048e74d88fdE' second sale
         // 97: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1'
         // 0xeC4Cdc696B1766B893f33a08a22C601bc6920f18
-    }
+    }, 
 };
