@@ -31,17 +31,17 @@ export default {
         97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
     },
     flashLoansIDO$2: {
-        56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
+        56: '0x3aacb04Df4B06264273e0B3f5a674e1ee761F47B',
         97: '0xBEc964910ee4Bfc7Cf98E4010108Aeef0fc5D4B5',
     },
     /* Test Contracts */
 
-    testLaunchPad$1: {
-        56: '',
-        97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
-    },
-    testLaunchPad$2: {
-        56: '',
-        97: '0xBEc964910ee4Bfc7Cf98E4010108Aeef0fc5D4B5'
-    }
+    // testLaunchPad$1: {
+    //     56: '',
+    //     97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+    // },
+    // testLaunchPad$2: {
+    //     56: '',
+    //     97: '0xBEc964910ee4Bfc7Cf98E4010108Aeef0fc5D4B5'
+    // }
 };
