@@ -1,5 +1,5 @@
 import { IProjects } from 'config/constants/type';
-import { BNB, TBNB, OWN, TOWN, SRK, FLASH } from '../index';
+import { BNB, FLASH, OWN, SRK, TOWN } from '../index';
 import { dateEnded, epochToDate } from '../../utils';
 
 const ProjectList: Array<IProjects> = [
@@ -17,7 +17,7 @@ const ProjectList: Array<IProjects> = [
         longDesc:
             'Backed with over 2+ years of experience in the NFT and blockchain industry, Ownly is a governance token-based NFT-focused marketplace, curator, and a blockchain platform with an existing basket portfolio of NFT artworks that enable creators and collectors to optimize the authentic value of NFT assets.',
         longDesc2:
-            "$OWN Token is the native utility token of Ownly, users are able to buy, own, collect, and trade 1 of 1 edition crypto artworks by talented artists. Own the only true copy and there's nothing else like that in the world -- as if it's made just for you. ",
+            '$OWN Token is the native utility token of Ownly, users are able to buy, own, collect, and trade 1 of 1 edition crypto artworks by talented artists. Own the only true copy and there\'s nothing else like that in the world -- as if it\'s made just for you. ',
         longDesc3:
             'Ownly is created to be a meeting place of artworks and collectors in the crypto space. It offers a Decentralized NFT Marketplace, Staking, NFT launching & curation, and NFT-focused & energy-efficient blockchain platform in a seamless, transparent, secure, inclusive, and interoperable approach.',
         ownSale: 2666666667,
@@ -31,11 +31,11 @@ const ProjectList: Array<IProjects> = [
     },
     {
         category: 'flashLoansIDO$1',
-        // category2: 'flashLoansIDO$2',
+        category2: 'flashLoansIDO$2',
         address: '0x002',
         // sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ) ,
         sellingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? FLASH : SRK,
-        buyingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : TBNB,
+        buyingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : BNB,
         title: 'FlashLoans',
         token: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : SRK,
         symbol: 'FLASH',
@@ -85,29 +85,29 @@ const ProjectList: Array<IProjects> = [
      ** Sample IDOs
      */
 
-    {
-        category: 'testLaunchPad$1',
-        category2: 'testLaunchPad$2',
-        address: 'tester',
-        sellingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? OWN : SRK,
-        buyingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : TBNB,
-        title: 'Test',
-        token: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : SRK,
-        symbol: 'TST',
-        image: 'ownly.png',
-        desc: 'This is just a test contract',
-        longDesc: 'This is just a test contract',
-        longDesc2: 'This is just a test contract',
-        longDesc3: 'This is just a test contract',
-        ownSale: 2666666667,
-        wallpaperBg: '',
-        status: 'active',
-        startDate: epochToDate(1635771600),
-        endDate: epochToDate(1635944400),
-        hasDateEnded: dateEnded(1635944400),
-        claimable: true,
-        socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
-    },
+    // {
+    //     category: 'testLaunchPad$1',
+    //     category2: 'testLaunchPad$2',
+    //     address: 'tester',
+    //     sellingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? OWN : SRK,
+    //     buyingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : TBNB,
+    //     title: 'Test',
+    //     token: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : SRK,
+    //     symbol: 'TST',
+    //     image: 'ownly.png',
+    //     desc: 'This is just a test contract',
+    //     longDesc: 'This is just a test contract',
+    //     longDesc2: 'This is just a test contract',
+    //     longDesc3: 'This is just a test contract',
+    //     ownSale: 2666666667,
+    //     wallpaperBg: '',
+    //     status: 'active',
+    //     startDate: epochToDate(1635771600),
+    //     endDate: epochToDate(1635944400),
+    //     hasDateEnded: dateEnded(1635944400),
+    //     claimable: true,
+    //     socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
+    // },
 ];
 
 export default ProjectList;

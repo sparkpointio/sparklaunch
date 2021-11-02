@@ -52,7 +52,8 @@ export const calculateLaunchpadStats = async (contract, project) => {
 }
 
 export const getEndedStatus = async (contract) => {
-    const isEnded = await contract.isFinished.call();
+    const isEnded = await contract?.isFinished.call();
+
     return isEnded;
 }
 

@@ -1,12 +1,12 @@
-/* 
+/*
     ** Follow the naming conventions to identy the round of per contract
     using Ownly contract as dummy for the IDOs that doesn't have contract yet ( Upcoming )
     ROUND 1: 56: 0x75f5696c02978fd345Ad81AE89F81402aFc7342F
     ROUND 2: 56: 0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5
 
     Round-one OWNLY token sale: 0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5
-    
-    Other contracts: 
+
+    Other contracts:
      testLaunchPad: {
         56: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
         97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
@@ -28,11 +28,11 @@ export default {
     },
     flashLoansIDO$1: {
         56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
-        97: '0x7ca05EEeB1D4998FF58e719e7E074816DfBd45c1',
+        97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
     },
     flashLoansIDO$2: {
         56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
-        97: '0xf004694B8EE3e2B1179a6fBC39a6048e74d88fdE',
+        97: '0xBEc964910ee4Bfc7Cf98E4010108Aeef0fc5D4B5',
     },
     /* Test Contracts */
 
