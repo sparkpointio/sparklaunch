@@ -20,7 +20,7 @@ export const getOwnlyLaunchpadContract = (signer?: ethers.Signer | ethers.provid
     return getContract(launchpadABI, ownlyLaunchPad(), signer)
 }
 
-export const getLaunchpadContract = (signer?: ethers.Signer | ethers.providers.Provider, category = 'ownlyLaunchPad') => {
+export const getLaunchpadContract = (signer?: ethers.Signer | ethers.providers.Provider, category?: string) => {
     return getContract(launchpadABI, getLaunchPadAddress(category), signer)
 }
 

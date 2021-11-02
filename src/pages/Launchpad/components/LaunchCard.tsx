@@ -14,6 +14,7 @@ import { useLaunchpadContract } from 'hooks/useContracts';
 import { calculateLaunchpadStats, getRedeem, getEndedStatus } from 'utils/contractHelpers';
 import Timer from 'pages/Home/HeaderSection/timer';
 import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
+import { usePrevious } from '../Project/ProjectComponent';
 import {
     CardAction,
     DataGroup,
@@ -50,6 +51,9 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         startDate,
         endDate
     } = project;
+    const theme = useContext(ThemeContext);
+    const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
+    const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
 
     const [stats, setStats] = useState({
         totalForSaleTokens: '00.00',
@@ -62,18 +66,38 @@ const LaunchCard: React.FC<IProjects> = (project) => {
 
     const [redeemable, setRedeemable] = useState(false);
     const [redeemable1, setRedeemable1] = useState(false);
-
+    const [r2Category, setR2Category] = useState(category);
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
-    const contract1 = useLaunchpadContract(category2);
-    const theme = useContext(ThemeContext);
-    const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
-    const srcsBg = `${process.env.PUBLIC_URL}/images/icons/${wallpaperBg}`;
+    useEffect(() => {
+        const checkEnded = async (cont) => {
+            const res = await getEndedStatus(cont)
+            return res;
+        }
+        checkEnded(contract).then((r) => {
+            if (category2 === undefined) {
+                return setR2Category(category);
+            }
+            if (r) {
+                return setR2Category(category2)
+            } 
+            return setR2Category(category2)
+        }).catch(e => console.log(e));
 
+        return () => console.log('clear')
+    }, [contract, category2, category])
+    const contract1 = useLaunchpadContract(r2Category);
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
     }, [contract, contract1, project, account]);
 
+    const prevStats = usePrevious(stats);
+
+    useEffect(() => {
+        if (stats !== prevStats) {
+            calculateLaunchpadStats(contract1, project).then((r) => setStats(r));
+        }
+    }, [contract, contract1, project, account, category2, prevStats, r2Category, stats])
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     };
@@ -109,7 +133,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         getRedeem(contract, account).then((r) => {
             setRedeemable(parseInt(r.amount) === 0 ? false : r.redeemable);
             getRedeem(contract1, account).then((r1) => {
-                setRedeemable1(parseInt(r1.amount) === 0 ? false : r1.redeemable);
+                setRedeemable1(parseInt(r1.amount) === 0 && !category2 ? false : r1.redeemable);
                 setAccountDetails({
                     r1: {
                         token: symbol,
@@ -123,14 +147,14 @@ const LaunchCard: React.FC<IProjects> = (project) => {
             });
         });
         return () => console.log('')
-    }, [contract, contract1, project, account, symbol, token]);
+    }, [contract, contract1, project, account, symbol, token, category2]);
 
     useEffect(() => {
         return () => console.log('');
     }, [])
 
-    const [onClaimR1Modal] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract1} />);
-    const [onClaimR2Modal] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract} />);
+    const [onClaimR1Modal] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract} />);
+    const [onClaimR2Modal] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract1} />);
 
     const percentage = parseFloat(stats.percentage).toFixed(4);
     const totalSales = status !== STATE.upcoming ? parseFloat(stats.totalSales).toFixed(4) : 0;
@@ -263,12 +287,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
             <CardAction flexDirection='column'>
                 <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
                 <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
-                    {redeemable1 ?
-                        <Button onClick={onClaimR1Modal}>Claim R1</Button>
-                        : <Button fullWidth disabled>Claim R1</Button>}
-                    {redeemable ?
-                        <Button onClick={onClaimR2Modal}>Claim R2</Button>
-                        : <Button fullWidth disabled>Claim R2</Button>}
+                        <Button disabled={!redeemable1} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
+                        <Button disabled={!redeemable} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
                 </Flex>
             </CardAction>}
 
