@@ -5,10 +5,10 @@ import { getLaunchpadContract, getOwnlyLaunchpadContract, getTokenContract } fro
 // Imports below migrated from Exchange useContract.ts
 
 
-export const useOwnlyLaunchpad = () => {
-    const { library } = useActiveWeb3React()
-    return useMemo(() => getOwnlyLaunchpadContract(library.getSigner()), [library])
-}
+// export const useOwnlyLaunchpad = () => {
+//     const { library } = useActiveWeb3React()
+//     return useMemo(() => getOwnlyLaunchpadContract(library.getSigner()), [library])
+// }
 
 export const useLaunchpadContract = (category) => {
     const { library } = useActiveWeb3React()

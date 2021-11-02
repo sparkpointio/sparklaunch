@@ -44,7 +44,7 @@ type ActionProps = AppProps & {
 };
 
 // Hook
-function usePrevious(value) {
+export function usePrevious(value) {
     // The ref object is a generic container whose current property is mutable ...
     // ... and can hold any value, similar to an instance property on a class
     const ref = React.useRef();
@@ -102,12 +102,35 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     });
 
     const prevDeets = usePrevious(accountDetails);
-
+    const [contract, setContract] = useState(useLaunchpadContract(project.category));
+    const [ category, setCategory] = useState('');
     const { library } = useActiveWeb3React();
 
-    const contract = useLaunchpadContract(project.category);
-    const isEnded = getEndedStatus(contract);
-    const projCat = isEnded && project.category2 ? project.category2 : project.category;
+    const contract1 = useLaunchpadContract(project.category);
+    const contract2 = useLaunchpadContract(project.category2? project.category2 : project.category);
+
+    useEffect(() => {
+        const checkEnded = async(cont) => {
+            const res = await getEndedStatus(cont);
+            return res;
+        }
+        checkEnded(contract1).then((res)=>{
+            if (!project.category2) {
+               setCategory(project.category);
+               setContract(contract1)
+            }
+            if (res) {
+                setCategory(project.category2)
+            } else {
+                setCategory(project.category)
+            }
+
+            return res? setContract(contract2) : setContract(contract1);
+        })
+    }, [contract1, project.category2, project.category, contract2])
+        
+    // const contract = getLaunchpadContract(category);
+    
 
     useEffect(() => {
         calculateLaunchpadStats(contract, project).then((r) => setStats(r));
@@ -126,7 +149,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                 .catch(console.log);
             }
     }, [ accountDetails, prevDeets, account, contract, library, project]);
-    const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats} category={projCat} />, false);
+    const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats} category={category} />, false);
     // const tokenReport = {
     //     title: `${project.progress} ${project.symbol}`,
     // }
@@ -139,6 +162,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     const totalSales = parseFloat(stats.totalSales).toFixed(4);
     const expectedSales = parseFloat(stats.expectedSales).toFixed(2);
     const { status } = project;
+
     return (
         <CardBody
             style={{
@@ -185,14 +209,14 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                 <Flex justifyContent='space-between'>
                     <Text color='primary'>Your Max Allocation</Text>
                     <Text>
-                        {project.status === STATE.upcoming ? '-' : accountDetails.maxPayableAmount.toExact()} {project.symbol}
+                        {project.status === STATE.upcoming ? '-' : category !== project.category2 || !project.category2? `${accountDetails.maxPayableAmount.toExact()} ${project.symbol}` : 'No limit'} 
                     </Text>
                 </Flex>
                 <Flex justifyContent='space-between'>
                     <Text color='primary'>Your Max BNB</Text>
                     {/* <Text>{accountDetails.maxExpendable.toExact()} BNB</Text> */}
                     {project.status === STATE.upcoming && !whiteListed ? <Text>0 BNB</Text> :
-                        <Text>{accountDetails.maxExpendable.toExact()} BNB</Text>}
+                        <Text>{category !== project.category2 || !project.category2? `${accountDetails.maxExpendable.toExact()} BNB` : 'No Limit'} </Text>}
                 </Flex>
             </CustomDataGroup>
             {!account && status===STATE.active ? (

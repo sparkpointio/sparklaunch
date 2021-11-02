@@ -20,7 +20,7 @@ export const getOwnlyLaunchpadContract = (signer?: ethers.Signer | ethers.provid
     return getContract(launchpadABI, ownlyLaunchPad(), signer)
 }
 
-export const getLaunchpadContract = (signer?: ethers.Signer | ethers.providers.Provider, category = 'ownlyLaunchPad') => {
+export const getLaunchpadContract = (signer?: ethers.Signer | ethers.providers.Provider, category?: string) => {
     return getContract(launchpadABI, getLaunchPadAddress(category), signer)
 }
 
@@ -31,7 +31,6 @@ export const getTokenContract = (contractAddress, signer?: ethers.Signer | ether
 export const calculateLaunchpadStats = async (contract, project) => {
     const totalRewards = await contract.totalRewardTokens()
     const totalForSaleTokens = new TokenAmount(project.sellingCoin, totalRewards);
-    console.log(totalForSaleTokens)
     const totalSoldTokens = new TokenAmount(project.sellingCoin, await contract.soldAmount());
     const remainingForSaleTokens = totalForSaleTokens.subtract(totalSoldTokens);
     const totalParticipants = await contract.totalParticipant();
@@ -53,7 +52,8 @@ export const calculateLaunchpadStats = async (contract, project) => {
 }
 
 export const getEndedStatus = async (contract) => {
-    const isEnded = await contract.isFinished.call();
+    const isEnded = await contract?.isFinished.call();
+
     return isEnded;
 }
 
