@@ -36,11 +36,11 @@ export default {
     },
     /* Test Contracts */
 
-    testLaunchPad$2: {
+    testLaunchPad$1: {
         56: '',
         97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
     },
-    testLaunchPad$1: {
+    testLaunchPad$2: {
         56: '',
         97: '0xBEc964910ee4Bfc7Cf98E4010108Aeef0fc5D4B5'
     }

@@ -78,11 +78,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
             if (category2 === undefined) {
                 return setR2Category(category);
             }
-            if (r) {
-                console.log(r)
-                return setR2Category(category2)
-            } 
-            return setR2Category(category2);
+            return r ? setR2Category(category2) : setR2Category(category);
         }).catch(e => console.log(e));
 
         return () => console.log('clear')
