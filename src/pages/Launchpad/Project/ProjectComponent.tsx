@@ -107,7 +107,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     const { library } = useActiveWeb3React();
 
     const contract1 = useLaunchpadContract(project.category);
-    const contract2 = useLaunchpadContract(project.category2);
+    const contract2 = useLaunchpadContract(project.category2? project.category2 : project.category);
 
     useEffect(() => {
         const checkEnded = async(cont) => {
@@ -117,6 +117,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
         checkEnded(contract1).then((res)=>{
             if (!project.category2) {
                setCategory(project.category);
+               setContract(contract1)
             }
             if (res) {
                 setCategory(project.category2)
@@ -208,14 +209,14 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                 <Flex justifyContent='space-between'>
                     <Text color='primary'>Your Max Allocation</Text>
                     <Text>
-                        {project.status === STATE.upcoming ? '-' : accountDetails.maxPayableAmount.toExact()} {project.symbol}
+                        {project.status === STATE.upcoming ? '-' : category !== project.category2 || !project.category2? `${accountDetails.maxPayableAmount.toExact()} ${project.symbol}` : 'No limit'} 
                     </Text>
                 </Flex>
                 <Flex justifyContent='space-between'>
                     <Text color='primary'>Your Max BNB</Text>
                     {/* <Text>{accountDetails.maxExpendable.toExact()} BNB</Text> */}
                     {project.status === STATE.upcoming && !whiteListed ? <Text>0 BNB</Text> :
-                        <Text>{accountDetails.maxExpendable.toExact()} BNB</Text>}
+                        <Text>{category !== project.category2 || !project.category2? `${accountDetails.maxExpendable.toExact()} BNB` : 'No Limit'} </Text>}
                 </Flex>
             </CustomDataGroup>
             {!account && status===STATE.active ? (
