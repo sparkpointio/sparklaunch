@@ -194,19 +194,6 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                     <br />
                 )}
 
-                {status === STATE.active &&
-                <ProgressGroup>
-                    {/* <TimerButton>${sellingCoin.symbol} Going Live in:&nbsp; <Timer/></TimerButton> */}
-                    {!startDate ? (
-                        <TimerButton> Going Live Soon! </TimerButton>
-                    ) : (
-                        <TimerButton>
-                            {' '}
-                            <Timer startDate={startDate} endDate={endDate}/>
-                        </TimerButton>
-                    )}
-                </ProgressGroup>
-                 }
                 <Details>
                     <div
                         style={{
