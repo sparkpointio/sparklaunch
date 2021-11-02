@@ -219,12 +219,15 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                 <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
                 } */}
 
-                    {status === STATE.active ? (
-                        <>
-                            <Allocations tokenImage={project.image} symbol={project.symbol}
-                                         allocation={accountDetails.rewardedAmount.toExact()} />
+                            {status === STATE.active ? (
+                                <>
+                                    <Allocations tokenImage={project.image} symbol={project.symbol}
+                                        allocation={accountDetails.rewardedAmount.toExact()} />
 
-                                <Button onClick={onPurchaseModal} fullWidth style={{ marginTop: '10px' }} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
+                                    {/* <Button onClick={onPurchaseModal} fullWidth style={{ marginTop: '10px' }} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button> */}
+                                    {stats.remainingForSale !== '-' ? <Button onClick={onPurchaseModal} fullWidth style={{ marginTop: '10px', marginBottom: '10px' }} >Purchase {project.symbol}</Button> :
+                                    <Button disabled fullWidth style={{ marginTop: '10px', marginBottom: '10px' }}> SOLD OUT </Button>
+                                    }
                                 </>
                             ) : status === STATE.upcoming && (
                                 <Allocations tokenImage={project.image} symbol={project.symbol} allocation={accountDetails.rewardedAmount.toExact()} />
