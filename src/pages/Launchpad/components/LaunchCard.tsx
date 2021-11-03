@@ -278,12 +278,10 @@ const LaunchCard: React.FC<IProjects> = (project) => {
             {status === STATE.completed && claimable &&
                 <CardAction flexDirection='column'>
                     <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
-                    {sellingCoin.symbol === "FLASH" ? <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
-                        <Text>The claim buttons for R1 and R2 will be activated soon. Thank you for participating!</Text>
-                    </Flex> : <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
+                    <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
                         <Button disabled={!redeemable1} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
                         <Button disabled={!redeemable} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
-                    </Flex>}
+                    </Flex>
 
                 </CardAction>}
 
