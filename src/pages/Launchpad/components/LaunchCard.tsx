@@ -126,11 +126,11 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 setAccountDetails({
                     r1: {
                         token: symbol,
-                        amount: new TokenAmount(token, r1.amount).toExact(),
+                        amount: new TokenAmount(token, r.amount).toExact(),
                     },
                     r2: {
                         token: symbol,
-                        amount: new TokenAmount(token, r.amount).toExact(),
+                        amount: new TokenAmount(token, r1.amount).toExact(),
                     },
                 });
             });
@@ -142,8 +142,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         return () => console.log('');
     }, [])
 
-    const [onClaimR1Modal] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract} />);
-    const [onClaimR2Modal] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract2} />);
+    const [onClaimR1Modal] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract} project={project} setRedeemable={setRedeemable} />);
+    const [onClaimR2Modal] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract2} project={project} setRedeemable={setRedeemable1} />);
 
     const percentage = sellingCoin.symbol === "FLASH" ? parseFloat("61.04").toFixed(4) : parseFloat(stats.percentage).toFixed(4);
     const totalSales = status !== STATE.upcoming ? parseFloat(stats.totalSales).toFixed(4) : 0;
@@ -279,8 +279,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 <CardAction flexDirection='column'>
                     <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
                     <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
-                        <Button disabled={!redeemable1} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
-                        <Button disabled={!redeemable} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
+                        <Button disabled={!redeemable} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
+                        <Button disabled={!redeemable1} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
                     </Flex>
 
                 </CardAction>}
