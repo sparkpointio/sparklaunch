@@ -28,7 +28,7 @@ export default {
     },
     flashLoansIDO$1: {
         56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
-        97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+        97: '0xac6E76F50Bb9F75d950772D5C75bd9E9AC8f840d',
     },
     flashLoansIDO$2: {
         56: '0x3aacb04Df4B06264273e0B3f5a674e1ee761F47B',

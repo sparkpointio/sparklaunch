@@ -72,7 +72,7 @@ export const getAccountDetailsLaunchPad = async (contract, project, library, acc
         whitelist: details._whitelist,
     }
     const maxExpendable = new TokenAmount(project.buyingCoin, expandValue(
-        (dets.maxPayableAmount.subtract(dets.rewardedAmount)).multiply(tokenRate).toFixed(18), project.buyingCoin)
+        (dets.maxPayableAmount).multiply(tokenRate).toFixed(18), project.buyingCoin)
     )
     return {
         ... dets,
