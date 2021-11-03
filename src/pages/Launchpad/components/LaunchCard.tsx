@@ -218,37 +218,35 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         </Flex>
                     </ProgressGroup>
                     <DataGroup flexDirection="column">
-                        {status === STATE.upcoming ? (
-                            <Flex justifyContent="space-between">
-                                <Text color="textSubtle">Total Raised</Text>
-                                <Text>{/* {0} {buyingCoin.symbol} */}-</Text>
-                            </Flex>
-                        ) : (
-                            <Flex justifyContent="space-between">
-                                <Text color="textSubtle">Total Raised</Text>
-                                <Text>
-                                    {totalSales} {buyingCoin.symbol}
-                                </Text>
-                            </Flex>
-                        )}
+                        {status === STATE.active && <Flex justifyContent='space-between'>
+                            <Text color='textSubtle'>Current Round</Text>
+                            <Text>{
+                                status === STATE.upcoming ?
+                                    '-' :
+                                    <>{category2 ? 'Round 2' : 'Round 1'}</>
+                            }</Text>
+                        </Flex>}
 
                         <Flex justifyContent="space-between">
-                            {status === STATE.upcoming ? (
-                                <Text color="textSubtle">Coming Soon For Sale</Text>
-                            ) : status === STATE.completed ? (
-                                <Text color="textSubtle">${sellingCoin.symbol} Sold</Text>
-                            ) : (
-                                <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
-                            )}
+                            <Text color="textSubtle">Total Raised</Text>
+                            <Text>{
+                                status === STATE.upcoming?
+                                    '-' :
+                                    <>{totalSales} {buyingCoin.symbol}</>
+                            }</Text>
+                        </Flex>
 
-                            {status === STATE.upcoming ? (
-                                // <Text>{numberWithCommas(ownSale)} {sellingCoin.symbol}</Text>
-                                <Text> - </Text>
-                            ) : status === STATE.completed ? (
-                                <Text>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</Text>
-                            ) : (
-                                <Text>{stats.remainingForSale === '0' ? '-' : stats.totalForSaleTokens}</Text>
-                            )}
+                        <Flex justifyContent="space-between">
+                            <Text color="textSubtle">
+                                { status === STATE.upcoming && 'Coming Soon For Sale'}
+                                { status === STATE.completed && <>${sellingCoin.symbol} Sold</>}
+                                { status === STATE.active && <>${sellingCoin.symbol} For Sale</>}
+                            </Text>
+                            <Text>
+                                { status === STATE.upcoming && '-'}
+                                { status === STATE.completed && <>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</>}
+                                { status === STATE.active && <>{stats.remainingForSale === '0' ? '-' : stats.totalForSaleTokens}</>}
+                            </Text>
                         </Flex>
 
                         <Flex justifyContent="space-between">

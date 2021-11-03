@@ -118,11 +118,10 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
                     <Heading margin="10px 0px 30px 0" bold>
                         Pool Information
                     </Heading>
-                    
-                    {/* Display Round Number for FLASH */}
-                    {project.symbol === "FLASH" && <Flex justifyContent="space-between">
+
+                    {project.status === STATE.active && <Flex justifyContent='space-between'>
                         <Text>Round Number</Text>
-                        <Text color="textSubtle">2</Text>
+                        <Text color='textSubtle'>{project.category2 ? '2' : '1'}</Text>
                     </Flex>}
 
                     <Flex justifyContent="space-between">
