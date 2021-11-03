@@ -44,7 +44,7 @@ const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract 
         }
 
     }
-    const TokenReward:React.ReactElement = <span style={{fontWeight: 'bold',}}> {rewards.amount} <TokenIcon src={`${process.env.PUBLIC_URL}/images/icons/ownly.png`} size="18px" />{rewards.token} tokens</span>
+    const TokenReward:React.ReactElement = <span style={{fontWeight: 'bold',}}> {rewards.amount} <TokenIcon src={`${process.env.PUBLIC_URL}/images/icons/${rewards.token}.png`} size="18px" />{rewards.token} tokens</span>
     
     return (
         <Modal title="" onDismiss={onDismiss}>
