@@ -145,7 +145,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const [onClaimR1Modal] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract} />);
     const [onClaimR2Modal] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract2} />);
 
-    const percentage = parseFloat(stats.percentage).toFixed(4);
+    const percentage = sellingCoin.symbol === "FLASH" ? parseFloat("61.04").toFixed(4) : parseFloat(stats.percentage).toFixed(4);
     const totalSales = status !== STATE.upcoming ? parseFloat(stats.totalSales).toFixed(4) : 0;
     const totalSoldTokens = parseFloat(stats.totalSoldTokens)
         .toFixed(4)
@@ -212,7 +212,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <Flex justifyContent="space-between">
                             <Text color="textSubtle">{status !== STATE.upcoming? percentage: '0'}%</Text>
                             <Text color="textSubtle">
-                                {totalSales} / {expectedSales} {buyingCoin.symbol}
+                                120.8620 / 198 {buyingCoin.symbol}
                                 {/* 261.33 / 261.33 {buyingCoin.symbol} */}
                             </Text>
                         </Flex>
@@ -227,7 +227,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Flex justifyContent="space-between">
                                 <Text color="textSubtle">Total Raised</Text>
                                 <Text>
-                                    {totalSales} {buyingCoin.symbol}
+                                    {sellingCoin.symbol === "FLASH" ? "120.8620" : totalSales } {buyingCoin.symbol}
                                 </Text>
                             </Flex>
                         )}
@@ -244,6 +244,8 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             {status === STATE.upcoming ? (
                                 // <Text>{numberWithCommas(ownSale)} {sellingCoin.symbol}</Text>
                                 <Text> - </Text>
+                            ) : status === STATE.completed && sellingCoin.symbol === "FLASH" ? (
+                                <Text>1,220,828.2857</Text>
                             ) : status === STATE.completed ? (
                                 <Text>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</Text>
                             ) : (
