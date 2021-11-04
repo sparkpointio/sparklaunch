@@ -14,21 +14,25 @@ interface ModalProps {
     title?: string;
     onDismiss?: () => void;
     rewards: Rewards;
-    contract: any
+    contract: any,
+    project: any,
+    setRedeemable: any,
 }
 
 const TokenIcon = styled(StyledImage)`
     margin: 0px 4px 0px 4px;
 `
-const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract }) => {
+const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract, project, setRedeemable }) => {
     const [confirmed, setConfirm] = useState(false);
     const [hash, setHash] = useState("https://bscscan.com/tx/");
+    const rewardAmount = rewards.amount;
     const handleConfirm = async () => {
 
         try {
             const tx = await contract.redeemTokens()
             setHash(`https://bscscan.com/tx/${tx.hash}`)
             setConfirm(true);
+            setRedeemable(false);
         }
         catch(e) {
             const code = e.code;
@@ -44,8 +48,8 @@ const ClaimModal: React.FC<ModalProps> = ({ title, onDismiss, rewards, contract 
         }
 
     }
-    const TokenReward:React.ReactElement = <span style={{fontWeight: 'bold',}}> {rewards.amount} <TokenIcon src={`${process.env.PUBLIC_URL}/images/icons/${rewards.token}.png`} size="18px" />{rewards.token} tokens</span>
-    
+    const TokenReward:React.ReactElement = <span style={{fontWeight: 'bold',}}> {rewardAmount} <TokenIcon src={`${process.env.PUBLIC_URL}/images/icons/${project.image}`} size="18px" />{rewards.token} tokens</span>
+
     return (
         <Modal title="" onDismiss={onDismiss}>
             <Flex flexDirection="column" alignItems="center" style={{ marginTop: '-40px', maxWidth: '500px' }}>
