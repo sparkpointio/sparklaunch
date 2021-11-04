@@ -260,13 +260,18 @@ const LaunchCard: React.FC<IProjects> = (project) => {
             </CardAction>}
 
             {status === STATE.completed && claimable &&
-            <CardAction flexDirection='column'>
-                <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
-                <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
-                    <Button disabled={!redeemable} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
-                    <Button disabled={!redeemable1} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
-                </Flex>
-            </CardAction>}
+                <CardAction flexDirection='column'>
+                    <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
+                    {!account ? (
+                        <UnlockButton fullWidth />
+                    ) : (
+                        <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
+                            <Button disabled={!redeemable} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
+                            <Button disabled={!redeemable1} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
+                        </Flex>
+                    )}
+                </CardAction>
+            }
 
             {status === STATE.completed && !claimable &&
             <CardAction flexDirection='column'>
