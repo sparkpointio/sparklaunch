@@ -5,7 +5,7 @@ import { dateEnded, epochToDate } from '../../utils';
 const ProjectList: Array<IProjects> = [
     {
         category: 'ownlyLaunchPad$1',
-        // category2: 'ownlyLaunchPad1',
+        category2: 'ownlyLaunchPad$2',
         address: '0x001',
         sellingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? OWN : TOWN,
         buyingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : BNB,

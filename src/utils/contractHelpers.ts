@@ -56,7 +56,7 @@ export const calculateLaunchpadStats = async (contract1, project, contract2 = nu
 
     let totalSales = c1Stats.totalSales;
     let totalParticipants = c1Stats.totalParticipants;
-    let expectedSales = c1Stats.expectedSales;
+    const expectedSales = c1Stats.expectedSales;
     let percentage = c1Stats.percentage;
     let totalSoldTokens = c1Stats.totalSoldTokens;
 
@@ -65,7 +65,6 @@ export const calculateLaunchpadStats = async (contract1, project, contract2 = nu
 
         totalSales = totalSales.add(c2Stats.totalSales);
         totalParticipants = totalParticipants.add(c2Stats.totalParticipants);
-        expectedSales = expectedSales.add(c2Stats.expectedSales);
         percentage = totalSales.divide(expectedSales).multiply(BigInt(100));
         totalSoldTokens = totalSoldTokens.add(c2Stats.totalSoldTokens);
     }
