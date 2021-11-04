@@ -15,24 +15,24 @@
 
 export default {
     ownlyLaunchPad$1: {
-        56: '0x75f5696c02978fd345Ad81AE89F81402aFc7342F',
+        56: '0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5', 
         97: '0xe99646c31060991166c37220ce8ab5453e573dae',
     },
-    // ownlyLaunchPad$2: {
-    //     56: '0xf5dC1243Fd734A4A4583a651c3100A2347e1A2d5',
-    //     97: '0x6171ef8577601bfebc36db044f53a5d874536d0e',
-    // },
+    ownlyLaunchPad$2: {
+        56: '0x75f5696c02978fd345Ad81AE89F81402aFc7342F',
+        97: '0x6171ef8577601bfebc36db044f53a5d874536d0e',
+    },
     outRaceIDO$1: {
         56: '0x75f5696c02978fd345Ad81AE89F81402aFc7342F',
         97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
     },
     flashLoansIDO$1: {
         56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
-        97: '0x66bC605D68b471A3Fd8724137439D5857c3B1Caa',
+        97: '0x43f9cf50e547fd377F6199226DaC567D60FBEac9',
     },
     flashLoansIDO$2: {
         56: '0x3aacb04Df4B06264273e0B3f5a674e1ee761F47B',
-        97: '0xBEc964910ee4Bfc7Cf98E4010108Aeef0fc5D4B5',
+        97: '0xfa5D938CE588dC3C295372246080747009C85DDB',
     },
     /* Test Contracts */
 

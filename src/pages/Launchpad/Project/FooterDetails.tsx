@@ -6,7 +6,7 @@ import styled, { ThemeContext } from 'styled-components';
 import { CustomThemeContext } from 'ThemeContext';
 import useActiveWeb3React from "hooks/useActiveWeb3React";
 import {useLaunchpadContract} from "hooks/useContracts";
-import {calculateLaunchpadStats, getAccountDetailsLaunchPad} from "utils/contractHelpers";
+import {calculateLaunchpadStats, checkEnded, getAccountDetailsLaunchPad} from "utils/contractHelpers";
 import { TBHeader, TBBody } from './styled';
 
 
@@ -84,7 +84,12 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
     }, [])
 
     const {library} = useActiveWeb3React();
-    const contract = useLaunchpadContract(project.category)
+
+    const contract = useLaunchpadContract(project.category);
+    const cat2 = project.category2 ?? project.category;
+    const contract2 = useLaunchpadContract(cat2);
+    const _cat2 = contract2 ?? contract;
+
     const [stats, setStats] = useState({
         totalForSaleTokens: '-',
         totalSoldTokens: '-',
@@ -97,12 +102,19 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
     })
 
     useEffect(() => {
-        calculateLaunchpadStats(contract, project).then(r => setStats(r));
+        checkEnded(contract, contract2).then((ended) => {
+            if (!ended.round1) {
+                calculateLaunchpadStats(contract, project).then((r) => setStats(r));
+            }
+            if (ended.round1 && project.category2 && !ended.round2) {
+                calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
+            }
+            if (ended.round1 && project.category2 && ended.round2){
+                calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
+            }
+        }).catch(e => console.log(e));
         // getAccountDetailsLaunchPad(contract, project, library, account).then(r => setAccountDetails(r)).catch(console.log)
-    }, [contract, project, account, library])
-    useEffect(() => {
-        return () => console.log('Cleanup FooterDetails');
-    }, [])
+    }, [contract, contract2, project, account, library])
 
     const totalSales = parseFloat(stats.totalSales).toFixed(4)
     return (
@@ -118,6 +130,12 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
                     <Heading margin="10px 0px 30px 0" bold>
                         Pool Information
                     </Heading>
+
+                    {project.status === STATE.active && <Flex justifyContent='space-between'>
+                        <Text>Round Number</Text>
+                        <Text color='textSubtle'>{project.category2 ? '2' : '1'}</Text>
+                    </Flex>}
+
                     <Flex justifyContent="space-between">
                         <Text>Opens</Text>
                         <Text color="textSubtle">{project.startDate?.toLocaleString()}</Text>
