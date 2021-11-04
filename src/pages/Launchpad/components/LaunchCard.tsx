@@ -117,7 +117,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         getRedeem(contract, account).then((r) => {
             setRedeemable(parseInt(r.amount) === 0 ? false : r.redeemable);
             getRedeem(contract2, account).then((r1) => {
-                setRedeemable1(parseInt(r1.amount) === 0 && !category2 ? false : r1.redeemable);
+                setRedeemable1(parseInt(r1.amount) === 0 || !category2 ? false : r1.redeemable);
                 setAccountDetails({
                     r1: {
                         token: symbol,
