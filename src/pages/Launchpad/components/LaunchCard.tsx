@@ -70,10 +70,15 @@ const LaunchCard: React.FC<IProjects> = (project) => {
 
     useEffect(() => {
         checkEnded(contract, contract2).then((ended) => {
-            if (ended.round1 && category2 && !ended.round2) {
+            if (!ended.round1) {
+                calculateLaunchpadStats(contract, project).then((r) => setStats(r));
+            }
+            if (ended.round1 && project.category2 && !ended.round2) {
                 calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
             }
-            calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
+            if (ended.round1 && project.category2 && ended.round2){
+                calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
+            }
         }).catch(e => console.log(e));
     }, [contract, category2, category, contract2, project]);
 
