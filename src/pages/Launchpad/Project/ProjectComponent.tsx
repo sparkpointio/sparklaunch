@@ -107,10 +107,11 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     const contract = useLaunchpadContract(project.category);
     const cat2 = project.category2 ?? project.category;
     const contract2 = useLaunchpadContract(cat2);
+    const _cat2 = contract2 ?? contract;
 
 
     useEffect(() => {
-        getAccountDetailsLaunchPad(contract, project, library, account)
+        getAccountDetailsLaunchPad(_cat2, project, library, account)
             .then((r) => setAccountDetails(r))
             .catch(console.log);
 
@@ -121,15 +122,20 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
             if (ended.round2 && project.category2) {
                 setPoolEnded(true);
             }
+            if (!ended.round1) {
+                calculateLaunchpadStats(contract, project).then((r) => setStats(r));
+            }
             if (ended.round1 && project.category2 && !ended.round2) {
                 calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
             }
-            calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
+            if (ended.round1 && project.category2 && ended.round2){
+                calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
+            }
         }).catch(e => console.log(e));
-    }, [account, library, contract, contract2, project]);
+    }, [account, library, contract, contract2, project, _cat2]);
 
     const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats}
-                                                      category={project.category} />, false);
+                                                      category={cat2} />, false);
     // const tokenReport = {
     //     title: `${project.progress} ${project.symbol}`,
     // }

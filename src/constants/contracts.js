@@ -28,11 +28,11 @@ export default {
     },
     flashLoansIDO$1: {
         56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
-        97: '0xac6E76F50Bb9F75d950772D5C75bd9E9AC8f840d',
+        97: '0x43f9cf50e547fd377F6199226DaC567D60FBEac9',
     },
     flashLoansIDO$2: {
         56: '0x3aacb04Df4B06264273e0B3f5a674e1ee761F47B',
-        97: '0xBEc964910ee4Bfc7Cf98E4010108Aeef0fc5D4B5',
+        97: '0xfa5D938CE588dC3C295372246080747009C85DDB',
     },
     /* Test Contracts */
 
