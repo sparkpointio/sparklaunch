@@ -307,7 +307,7 @@ const ProjectComponent: React.FC = () => {
     }, [history, Paddress]);
     const acc = useAccountWhiteList(account, project.address);
     const pool = useGetPoolsByAddress(Paddress);
-    const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status } = project;
+    const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status, category2 } = project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
 
     const [projectTokenInfo, setProjectTokenInfo] = useState({
@@ -381,7 +381,7 @@ const ProjectComponent: React.FC = () => {
                                 </Anchor>
                             </SocmedGroup>
                             {status === STATE.active ? (
-                                <StyledButton style={{ backgroundColor: '#32a31b' }}>LIVE NOW</StyledButton>
+                                <StyledButton style={{ backgroundColor: '#32a31b' }}>{category2 ? 'R2' : 'R1'} LIVE NOW</StyledButton>
                             ) : status === STATE.upcoming ? (
                                 <StyledButton style={{ backgroundColor: '#7a1ba3' }}>UPCOMING</StyledButton>
                             ) : (
