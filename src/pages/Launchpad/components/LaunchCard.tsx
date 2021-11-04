@@ -1,20 +1,17 @@
-import React, { useContext, useEffect, useMemo, useState } from 'react';
-import { Card, Flex, Progress, Text, Button, useModal } from '@sparkpointio/sparkswap-uikit';
+import React, { useContext, useEffect, useState } from 'react';
+import { Button, Card, Flex, Progress, Text, useModal } from '@sparkpointio/sparkswap-uikit';
 import { TokenAmount } from '@sparkpointio/sparkswap-sdk';
 import { useWeb3React } from '@web3-react/core';
 import { Globe, Send, Twitter } from 'react-feather';
-import { BNB, OWN } from 'config';
 import { ThemeContext } from 'styled-components';
 import UnlockButton from 'components/ConnectWalletButton';
 import SvgIcon from 'components/SvgIcon';
 import ClaimModal from 'components/Modals/ClaimModal';
-import { StatusColor } from 'pages/styled';
 import { IProjects, STATE } from 'config/constants/type';
 import { useLaunchpadContract } from 'hooks/useContracts';
-import { calculateLaunchpadStats, getRedeem, getEndedStatus } from 'utils/contractHelpers';
+import { calculateLaunchpadStats, checkEnded, getRedeem } from 'utils/contractHelpers';
 import Timer from 'pages/Home/HeaderSection/timer';
 import { ReactComponent as MediumIcon } from './icons/MediumIcon.svg';
-import { usePrevious } from '../Project/ProjectComponent';
 import {
     CardAction,
     DataGroup,
@@ -49,7 +46,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         symbol,
         claimable,
         startDate,
-        endDate
+        endDate,
     } = project;
     const theme = useContext(ThemeContext);
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
@@ -68,24 +65,17 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const [redeemable1, setRedeemable1] = useState(false);
     const { account } = useWeb3React();
     const contract = useLaunchpadContract(category);
-    const cat2 = category2 ?? category
+    const cat2 = category2 ?? category;
     const contract2 = useLaunchpadContract(cat2);
 
-    const checkEnded = async (cont) => {
-        const res = await getEndedStatus(cont)
-        return res;
-    }
-
     useEffect(() => {
-        checkEnded(contract).then((ended) => {
-            if (ended && category2) {
+        checkEnded(contract, contract2).then((ended) => {
+            if (ended.round1 && category2 && !ended.round2) {
                 calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
             }
-            calculateLaunchpadStats(contract, project).then((r) => setStats(r));
+            calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
         }).catch(e => console.log(e));
-
-        return () => console.log('clear')
-    }, [contract, category2, category, contract2, project])
+    }, [contract, category2, category, contract2, project]);
 
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -126,24 +116,21 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 setAccountDetails({
                     r1: {
                         token: symbol,
-                        amount: new TokenAmount(token, r1.amount).toExact(),
+                        amount: new TokenAmount(token, r.amount).toExact(),
                     },
                     r2: {
                         token: symbol,
-                        amount: new TokenAmount(token, r.amount).toExact(),
+                        amount: new TokenAmount(token, r1.amount).toExact(),
                     },
                 });
             });
         });
-        return () => console.log('')
     }, [contract, contract2, project, account, symbol, token, category2]);
 
-    useEffect(() => {
-        return () => console.log('');
-    }, [])
-
-    const [onClaimR1Modal] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract} />);
-    const [onClaimR2Modal] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract2} />);
+    const [onClaimR1Modal] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract} project={project}
+                                                  setRedeemable={setRedeemable} />);
+    const [onClaimR2Modal] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract2} project={project}
+                                                  setRedeemable={setRedeemable1} />);
 
     const percentage = parseFloat(stats.percentage).toFixed(4);
     const totalSales = status !== STATE.upcoming ? parseFloat(stats.totalSales).toFixed(4) : 0;
@@ -157,20 +144,20 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     return (
         <Card style={{ padding: '5px' }}>
             <StyledCardHeader src={srcsBg}>
-                <StyledImage src={srcs} alt="token-logo" />
+                <StyledImage src={srcs} alt='token-logo' />
                 <StyledHeading bold>{title}</StyledHeading>
             </StyledCardHeader>
             <StyledCardBody>
                 <Options>
                     <SocmedGroup>
                         <Anchor href={socMeds?.[0]}>
-                            <Globe size="24px" />
+                            <Globe size='24px' />
                         </Anchor>
                         <Anchor href={socMeds?.[1]}>
-                            <Twitter size="24px" fill={theme.colors.text} />
+                            <Twitter size='24px' fill={theme.colors.text} />
                         </Anchor>
                         <Anchor href={socMeds?.[2]}>
-                            <Send size="24px" fill={theme.colors.text} />
+                            <Send size='24px' fill={theme.colors.text} />
                         </Anchor>
                         <Anchor href={socMeds?.[3]}>
                             <SvgIcon width={24} Icon={MediumIcon} />
@@ -186,7 +173,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         ) : (
                             <TimerButton>
                                 {' '}
-                                <Timer startDate={startDate} endDate={endDate}/>
+                                <Timer startDate={startDate} endDate={endDate} />
                             </TimerButton>
                         )}
                     </ProgressGroup>
@@ -207,52 +194,51 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <Text>{desc}</Text>
                     </div>
                     <ProgressGroup>
-                        <Text as="h1">{status === STATE.completed ? 'Sale Completion' : 'Progress'}</Text>
-                        <Progress primaryStep={parseFloat(status !== STATE.upcoming? percentage: '0' )} variant="flat" />
-                        <Flex justifyContent="space-between">
-                            <Text color="textSubtle">{status !== STATE.upcoming? percentage: '0'}%</Text>
-                            <Text color="textSubtle">
+                        <Text as='h1'>{status === STATE.completed ? 'Sale Completion' : 'Progress'}</Text>
+                        <Progress primaryStep={parseFloat(status !== STATE.upcoming ? percentage : '0')}
+                                  variant='flat' />
+                        <Flex justifyContent='space-between'>
+                            <Text color='textSubtle'>{status !== STATE.upcoming ? percentage : '0'}%</Text>
+                            <Text color='textSubtle'>
                                 {totalSales} / {expectedSales} {buyingCoin.symbol}
                                 {/* 261.33 / 261.33 {buyingCoin.symbol} */}
                             </Text>
                         </Flex>
                     </ProgressGroup>
-                    <DataGroup flexDirection="column">
-                        {status === STATE.upcoming ? (
-                            <Flex justifyContent="space-between">
-                                <Text color="textSubtle">Total Raised</Text>
-                                <Text>{/* {0} {buyingCoin.symbol} */}-</Text>
-                            </Flex>
-                        ) : (
-                            <Flex justifyContent="space-between">
-                                <Text color="textSubtle">Total Raised</Text>
-                                <Text>
-                                    {totalSales} {buyingCoin.symbol}
-                                </Text>
-                            </Flex>
-                        )}
+                    <DataGroup flexDirection='column'>
+                        {status === STATE.active && <Flex justifyContent='space-between'>
+                            <Text color='textSubtle'>Current Round</Text>
+                            <Text>{
+                                status === STATE.upcoming ?
+                                    '-' :
+                                    <>{category2 ? 'Round 2' : 'Round 1'}</>
+                            }</Text>
+                        </Flex>}
 
-                        <Flex justifyContent="space-between">
-                            {status === STATE.upcoming ? (
-                                <Text color="textSubtle">Coming Soon For Sale</Text>
-                            ) : status === STATE.completed ? (
-                                <Text color="textSubtle">${sellingCoin.symbol} Sold</Text>
-                            ) : (
-                                <Text color="textSubtle">${sellingCoin.symbol} For Sale</Text>
-                            )}
-
-                            {status === STATE.upcoming ? (
-                                // <Text>{numberWithCommas(ownSale)} {sellingCoin.symbol}</Text>
-                                <Text> - </Text>
-                            ) : status === STATE.completed ? (
-                                <Text>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</Text>
-                            ) : (
-                                <Text>{stats.remainingForSale === '0' ? '-' : stats.totalForSaleTokens}</Text>
-                            )}
+                        <Flex justifyContent='space-between'>
+                            <Text color='textSubtle'>Total Raised</Text>
+                            <Text>{
+                                status === STATE.upcoming ?
+                                    '-' :
+                                    <>{totalSales} {buyingCoin.symbol}</>
+                            }</Text>
                         </Flex>
 
-                        <Flex justifyContent="space-between">
-                            <Text color="textSubtle">Buying Coin</Text>
+                        <Flex justifyContent='space-between'>
+                            <Text color='textSubtle'>
+                                {status === STATE.upcoming && 'Coming Soon For Sale'}
+                                {status === STATE.completed && <>${sellingCoin.symbol} Sold</>}
+                                {status === STATE.active && <>${sellingCoin.symbol} For Sale</>}
+                            </Text>
+                            <Text>
+                                {status === STATE.upcoming && '-'}
+                                {status === STATE.completed && <>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</>}
+                                {status === STATE.active && <>{stats.remainingForSale === '0' ? '-' : stats.totalForSaleTokens}</>}
+                            </Text>
+                        </Flex>
+
+                        <Flex justifyContent='space-between'>
+                            <Text color='textSubtle'>Buying Coin</Text>
                             {status === STATE.upcoming ? (
                                 <Text>{buyingCoin.symbol}</Text>
                             ) : (
@@ -274,13 +260,18 @@ const LaunchCard: React.FC<IProjects> = (project) => {
             </CardAction>}
 
             {status === STATE.completed && claimable &&
-            <CardAction flexDirection='column'>
-                <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
-                <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
-                        <Button disabled={!redeemable1} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
-                        <Button disabled={!redeemable} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
-                </Flex>
-            </CardAction>}
+                <CardAction flexDirection='column'>
+                    <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
+                    {!account ? (
+                        <UnlockButton fullWidth />
+                    ) : (
+                        <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
+                            <Button disabled={!redeemable} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
+                            <Button disabled={!redeemable1} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
+                        </Flex>
+                    )}
+                </CardAction>
+            }
 
             {status === STATE.completed && !claimable &&
             <CardAction flexDirection='column'>
