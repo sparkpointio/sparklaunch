@@ -14,8 +14,7 @@ const Tiers = (IconModule as unknown) as {[key: string]: React.FC<SvgProps>}
 
 const DetailBox = ({ image, title, description }: Details) => {
     const Icon = Icons[image];
-    const iconElement:React.ReactElement = <Icon width="24px" mr="8px" height="24"/> 
-    console.log(iconElement)
+    const iconElement:React.ReactElement = <Icon width="24px" mr="8px" height="24"/>
     return (
         <Box>
            {iconElement}
@@ -53,9 +52,8 @@ const RenderTierSystem = () => {
 
 const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }: TierSystem) => {
     const Tier = Tiers[image];
-    const tierElement:React.ReactElement = <Tier width="24px" mr="8px" height="24"/>   
+    const tierElement:React.ReactElement = <Tier width="24px" mr="8px" height="24"/>
 
-    console.log(tierElement)
     return (
         <Box>
             {tierElement}
@@ -98,21 +96,21 @@ const RenderRoundTwo = () => {
                     <img src={theme.isDark? round2Icon : round2Icon_light } alt="roundtwo" style={{position: 'relative', width:"102%", height:"102%", marginTop: "-2vh"}}/>
                 </div>
                 <div className="row">
-                    <Text> All unsold tokens from the first round will be sold to all Tiered participants, and there will be NO LIMIT on how much a tiered participant can buy! </Text> &nbsp;  
-                    <Text> Tiered participants will be able to buy the remaining tokens on the same page where the first round was conducted, and at the same time regardless of the tier. </Text> &nbsp; 
-                    <Text> This round will remain open until all tokens are sold. Once all tokens are sold, that signals the end of the IDO sale.</Text> &nbsp; 
-                    <Text> Once the IDO sale has been concluded, the platform will prepare the tokens for release. Once the necessary preparations are done, participants can now proceed with claiming. 
-                        Just click the Claim buttons designated for the first and second rounds of the sale found on the same page where the sale was conducted. Participants may choose to participate in the 
-                        <StyledLink href="https://app.srk.finance/#/"> Liquidity Staking </StyledLink> 
-                        options that will be launched after the sale to earn extra token rewards. 
-                    </Text> &nbsp; 
+                    <Text> All unsold tokens from the first round will be sold to all Tiered participants, and there will be NO LIMIT on how much a tiered participant can buy! </Text> &nbsp;
+                    <Text> Tiered participants will be able to buy the remaining tokens on the same page where the first round was conducted, and at the same time regardless of the tier. </Text> &nbsp;
+                    <Text> This round will remain open until all tokens are sold. Once all tokens are sold, that signals the end of the IDO sale.</Text> &nbsp;
+                    <Text> Once the IDO sale has been concluded, the platform will prepare the tokens for release. Once the necessary preparations are done, participants can now proceed with claiming.
+                        Just click the Claim buttons designated for the first and second rounds of the sale found on the same page where the sale was conducted. Participants may choose to participate in the
+                        <StyledLink href="https://app.srk.finance/#/"> Liquidity Staking </StyledLink>
+                        options that will be launched after the sale to earn extra token rewards.
+                    </Text> &nbsp;
                 </div>
             </>
        )
 };
 
 const Section: React.FC = () => {
-    
+
     return (
         <StyledContainer>
             <StyledHeading size="lg" as="h2">
