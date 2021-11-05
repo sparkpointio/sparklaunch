@@ -198,10 +198,12 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                     <Text color='primary'>Your Max Allocation</Text>
                     <Text>
                         {project.status === STATE.upcoming
-                            ? '-'
-                            : project.category !== project.category2 || !project.category2
-                                ? `${accountDetails.maxPayableAmount.toExact()} ${project.symbol}`
-                                : 'No limit'}
+                            ? '-' :
+                            project.status === STATE.completed
+                                ? `- ${project.symbol}` :
+                                project.category !== project.category2 || !project.category2
+                                    ? `${accountDetails.maxPayableAmount.toExact()} ${project.symbol}`
+                                    : 'No limit'}
                     </Text>
                 </Flex>
                 <Flex justifyContent='space-between'>
@@ -209,7 +211,10 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                     {/* <Text>{accountDetails.maxExpendable.toExact()} BNB</Text> */}
                     {project.status === STATE.upcoming && !whiteListed ? (
                         <Text>0 BNB</Text>
-                    ) : (
+                    ) : project.status === STATE.completed ?(
+                        <Text>- BNB</Text> 
+                    ) :
+                    (
                         <Text>
                             {project.category !== project.category2 || !project.category2
                                 ? `${accountDetails.maxExpendable.toExact()} BNB`
