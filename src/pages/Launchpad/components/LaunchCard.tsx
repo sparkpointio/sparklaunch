@@ -267,14 +267,19 @@ const LaunchCard: React.FC<IProjects> = (project) => {
             {status === STATE.completed && claimable &&
                 <CardAction flexDirection='column'>
                     <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
-                    {!account ? (
-                        <UnlockButton fullWidth />
-                    ) : (
-                        <Flex style={{ justifyContent: 'space-around', columnGap: '5px' }}>
+                {!account ? (
+                    <UnlockButton fullWidth />
+                ) : (
+                    <Flex flexDirection="column">
+                        <Flex flexDirection="row" style={{ justifyContent: 'space-around', columnGap: '5px' }}>
                             <Button disabled={!redeemable} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
                             <Button disabled={!redeemable1} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
                         </Flex>
-                    )}
+                        {symbol === 'FLASH' &&
+                            <Text style={{ color: 'red', fontSize: '14px', marginTop: '10px', marginBottom: '-18px' }}>Note: Claiming of FLASH tokens will only be available until November 11, 2021, 12:00 AM</Text>
+                        }
+                    </Flex>
+                )}
                 </CardAction>
             }
 
