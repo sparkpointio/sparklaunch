@@ -78,7 +78,7 @@ const ProjectList: Array<IProjects> = [
         wallpaperBg: 'oreBG4.png',
         status: 'upcoming',
         startDate: epochToDate(1637510400),
-        endDate: epochToDate(1637596800),
+        endDate: epochToDate(1637683200),
         hasDateEnded: dateEnded(1637596800),
         claimable: true,
         socMeds: [
