@@ -79,7 +79,7 @@ const ProjectList: Array<IProjects> = [
         status: 'upcoming',
         startDate: epochToDate(1637510400),
         endDate: epochToDate(1637683200),
-        hasDateEnded: dateEnded(1637596800),
+        // hasDateEnded: dateEnded(1637596800),
         claimable: true,
         socMeds: [
             'outrace.game',
