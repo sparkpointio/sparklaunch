@@ -31,7 +31,7 @@ const ProjectList: Array<IProjects> = [
     },
     {
         category: 'flashLoansIDO$1',
-        // category2: 'flashLoansIDO$2',
+        category2: 'flashLoansIDO$2',
         address: '0x002',
         // sellingCoin: ( process.env.REACT_APP_CHAIN_ID === "56" ? BNB : SRK ) ,
         sellingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? FLASH : SRK,
@@ -48,7 +48,7 @@ const ProjectList: Array<IProjects> = [
         // longDesc3: 'This is just a test contract',
         ownSale: 0,
         wallpaperBg: 'flashtokenBG2.png',
-        status: 'active',
+        status: 'completed',
         startDate: epochToDate(1635868200),
         endDate: epochToDate(1636473000),
         hasDateEnded: dateEnded(1636473000),
