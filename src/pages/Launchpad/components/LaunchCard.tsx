@@ -276,7 +276,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Button /* </Flex></Flex>disabled={!redeemable1} */ disabled fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
                         </Flex>
                         {symbol === 'FLASH' &&
-                            <Text style={{ color: 'red', fontSize: '14px', marginTop: '10px', marginBottom: '-18px' }}>Note: Claiming of FLASH tokens will only be available until November 11, 2021, 12:00 AM</Text>
+                            <Text style={{ color: 'red', fontSize: '14px', marginTop: '10px', marginBottom: '-18px' }}>Note: Claiming of FLASH tokens will only be available until November 11, 2021, 12:00 AM UTC</Text>
                         }
                     </Flex>
                 )}

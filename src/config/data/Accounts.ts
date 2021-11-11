@@ -12,7 +12,12 @@ const AccountList: IAccountType[] = [
     },
     {
         project: '0x002',
-        whiteList: FlashLoansAccountsWList,
+        // whiteList: FlashLoansAccountsWList,
+        whiteList: [
+            {
+                address: "0x847dfF6a30f4e69FF67E78aa37E4170EEae445a8"
+            }
+        ]
     },
     {
         project: '0x003',

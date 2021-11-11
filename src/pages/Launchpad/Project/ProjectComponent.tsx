@@ -57,17 +57,17 @@ export function usePrevious(value) {
 }
 
 const Allocations: React.FC<{ tokenImage: string; symbol: string; allocation: string }> = ({
-                                                                                               tokenImage,
-                                                                                               symbol,
-                                                                                               allocation,
-                                                                                           }) => {
+    tokenImage,
+    symbol,
+    allocation,
+}) => {
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${tokenImage}`;
     return (
         <div style={{ marginTop: '20px' }}>
             {}
             <Text>My Allocations</Text>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-                <SmalltokenImage src={srcs} alt='token-logo' />
+                <SmalltokenImage src={srcs} alt="token-logo" />
                 <Text bold>
                     {allocation} {symbol}
                 </Text>
@@ -109,33 +109,37 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     const contract2 = useLaunchpadContract(cat2);
     const _cat2 = contract2 ?? contract;
 
+    const prevAccountDetails = usePrevious(accountDetails);
 
     useEffect(() => {
-        getAccountDetailsLaunchPad(_cat2, project, library, account)
+        if (accountDetails !== prevAccountDetails) {
+            getAccountDetailsLaunchPad(_cat2, project, library, account)
             .then((r) => setAccountDetails(r))
             .catch(console.log);
 
-        checkEnded(contract, contract2).then((ended) => {
-            if (ended.round1 && !project.category2) {
-                setPoolEnded(true);
-            }
-            if (ended.round2 && project.category2) {
-                setPoolEnded(true);
-            }
-            if (!ended.round1) {
-                calculateLaunchpadStats(contract, project).then((r) => setStats(r));
-            }
-            if (ended.round1 && project.category2 && !ended.round2) {
-                calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
-            }
-            if (ended.round1 && project.category2 && ended.round2){
-                calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
-            }
-        }).catch(e => console.log(e));
-    }, [account, library, contract, contract2, project, _cat2]);
+        checkEnded(contract, contract2)
+            .then((ended) => {
+                if (ended.round1 && !project.category2) {
+                    setPoolEnded(true);
+                }
+                if (ended.round2 && project.category2) {
+                    setPoolEnded(true);
+                }
+                if (!ended.round1) {
+                    calculateLaunchpadStats(contract, project).then((r) => setStats(r));
+                }
+                if (ended.round1 && project.category2 && !ended.round2) {
+                    calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
+                }
+                if (ended.round1 && project.category2 && ended.round2) {
+                    calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
+                }
+            })
+            .catch((e) => console.log(e));
+        }
+    }, [account, library, contract, contract2, project, _cat2, accountDetails, prevAccountDetails]);
 
-    const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats}
-                                                      category={cat2} />, false);
+    const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats} category={cat2} />, false);
     // const tokenReport = {
     //     title: `${project.progress} ${project.symbol}`,
     // }
@@ -159,60 +163,59 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
             }}
         >
             <ProgressGroup>
-                <Text bold as='h1' fontSize='24px'>
+                <Text bold as="h1" fontSize="24px">
                     {project.status === STATE.upcoming ? '-' : totalSoldTokens}{' '}
                     <span style={{ color: theme.colors.textSubtle }}>{project.symbol} Token Sold</span>
                 </Text>
                 <Progress
                     primaryStep={parseFloat(project.status === STATE.upcoming ? '' : percentage)}
-                    variant='flat'
+                    variant="flat"
                 />
-                <Flex justifyContent='space-between'>
-                    <Text color='textSubtle'>{project.status === STATE.upcoming ? '-' : percentage}%</Text>
-                    <Text color='textSubtle'>
+                <Flex justifyContent="space-between">
+                    <Text color="textSubtle">{project.status === STATE.upcoming ? '-' : percentage}%</Text>
+                    <Text color="textSubtle">
                         {project.status === STATE.upcoming ? '-' : totalSales} /{' '}
                         {project.status === STATE.upcoming ? '-' : expectedSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
             </ProgressGroup>
-            <CustomDataGroup flexDirection='column'>
-                <Flex justifyContent='space-between'>
-                    <Text color='textSubtle'>{project.symbol} Price</Text>
+            <CustomDataGroup flexDirection="column">
+                <Flex justifyContent="space-between">
+                    <Text color="textSubtle">{project.symbol} Price</Text>
                     <Text>
                         {project.status === STATE.upcoming ? '-' : stats.tokenRate} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
-                <Flex justifyContent='space-between'>
-                    <Text color='textSubtle'>{project.symbol} Sold</Text>
+                <Flex justifyContent="space-between">
+                    <Text color="textSubtle">{project.symbol} Sold</Text>
                     <Text>
                         {project.status === STATE.upcoming ? '-' : stats.totalSoldTokens} {project.symbol}
                     </Text>
                 </Flex>
-                <Flex justifyContent='space-between'>
-                    <Text color='textSubtle'>Total Raised</Text>
+                <Flex justifyContent="space-between">
+                    <Text color="textSubtle">Total Raised</Text>
                     <Text>
                         {project.status === STATE.upcoming ? '-' : stats.totalSales} {project.buyingCoin.symbol}
                     </Text>
                 </Flex>
-                <Flex justifyContent='space-between'>
-                    <Text color='primary'>Your Max Allocation</Text>
+                <Flex justifyContent="space-between">
+                    <Text color="primary">Your Max Allocation</Text>
                     <Text>
                         {project.status === STATE.upcoming || project.status === STATE.completed
-                            ? `- ${project.symbol}` :
-                            project.category !== project.category2 || !project.category2
-                                ? `${accountDetails.maxPayableAmount.toExact()} ${project.symbol}`
-                                : 'No limit'}
+                            ? `- ${project.symbol}`
+                            : project.category !== project.category2 || !project.category2
+                            ? `${accountDetails.maxPayableAmount.toExact()} ${project.symbol}`
+                            : 'No limit'}
                     </Text>
                 </Flex>
-                <Flex justifyContent='space-between'>
-                    <Text color='primary'>Your Max BNB</Text>
+                <Flex justifyContent="space-between">
+                    <Text color="primary">Your Max BNB</Text>
                     {/* <Text>{accountDetails.maxExpendable.toExact()} BNB</Text> */}
                     {project.status === STATE.upcoming && !whiteListed ? (
                         <Text>0 BNB</Text>
-                    ) : project.status === STATE.completed ?(
-                        <Text>- BNB</Text> 
-                    ) :
-                    (
+                    ) : project.status === STATE.completed ? (
+                        <Text>- BNB</Text>
+                    ) : (
                         <Text>
                             {project.category !== project.category2 || !project.category2
                                 ? `${accountDetails.maxExpendable.toExact()} BNB`
@@ -252,24 +255,27 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                                 allocation={accountDetails.rewardedAmount.toExact()}
                             />
 
-                            {stats.remainingForSale && !poolEnded &&
-                            <Button
-                                onClick={onPurchaseModal}
-                                fullWidth
-                                style={{ marginTop: '10px', marginBottom: '10px' }}
-                            >
-                                Purchase {project.symbol}
-                            </Button>}
+                            {stats.remainingForSale && !poolEnded && (
+                                <Button
+                                    onClick={onPurchaseModal}
+                                    fullWidth
+                                    style={{ marginTop: '10px', marginBottom: '10px' }}
+                                >
+                                    Purchase {project.symbol}
+                                </Button>
+                            )}
 
-                            {!stats.remainingForSale &&
-                            <Button disabled fullWidth style={{ marginTop: '10px', marginBottom: '10px' }}>
-                                SOLD OUT
-                            </Button>}
+                            {!stats.remainingForSale && (
+                                <Button disabled fullWidth style={{ marginTop: '10px', marginBottom: '10px' }}>
+                                    SOLD OUT
+                                </Button>
+                            )}
 
-                            {stats.remainingForSale && poolEnded &&
-                            <Button disabled fullWidth style={{ marginTop: '10px', marginBottom: '10px' }}>
-                                ENDED
-                            </Button>}
+                            {stats.remainingForSale && poolEnded && (
+                                <Button disabled fullWidth style={{ marginTop: '10px', marginBottom: '10px' }}>
+                                    ENDED
+                                </Button>
+                            )}
                         </>
                     ) : (
                         status === STATE.upcoming && (
@@ -301,7 +307,8 @@ const ProjectComponent: React.FC = () => {
     }, [history, Paddress]);
     const acc = useAccountWhiteList(account, project.address);
     const pool = useGetPoolsByAddress(Paddress);
-    const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status, category2 } = project;
+    const { title, image, longDesc, longDesc2, longDesc3, buyingCoin, socMeds, wallpaperBg, status, category2 } =
+        project;
     const srcs = `${process.env.PUBLIC_URL}/images/icons/${image}`;
 
     const [projectTokenInfo, setProjectTokenInfo] = useState({
@@ -330,20 +337,20 @@ const ProjectComponent: React.FC = () => {
     return (
         <CCont>
             <CHeader src={srcsBg}>
-                <TokenImage src={srcs} alt='token-image' />
-                <Heading bold fontSize='24px'>
+                <TokenImage src={srcs} alt="token-image" />
+                <Heading bold fontSize="24px">
                     {title}
                 </Heading>
             </CHeader>
             <CBody>
-                <Flex justifyContent='space-between'>
-                    <Flex flex='1' flexDirection='column' padding='10px'>
+                <Flex justifyContent="space-between">
+                    <Flex flex="1" flexDirection="column" padding="10px">
                         <Flex
-                            alignItems='center'
-                            justifyContent='space-between'
-                            marginTop='-20px'
-                            marginBottom='10px'
-                            padding='10px 0px'
+                            alignItems="center"
+                            justifyContent="space-between"
+                            marginTop="-20px"
+                            marginBottom="10px"
+                            padding="10px 0px"
                         >
                             <SocmedGroup>
                                 <Anchor href={socMeds?.[0]}>
@@ -360,26 +367,29 @@ const ProjectComponent: React.FC = () => {
                                 </Anchor>
                             </SocmedGroup>
                             {status === STATE.active ? (
-                                <StyledButton style={{ backgroundColor: '#32a31b' }}> {category2 ? 'R2' : 'R1'} LIVE NOW</StyledButton>
+                                <StyledButton style={{ backgroundColor: '#32a31b' }}>
+                                    {' '}
+                                    {category2 ? 'R2' : 'R1'} LIVE NOW
+                                </StyledButton>
                             ) : status === STATE.upcoming ? (
                                 <StyledButton style={{ backgroundColor: '#7a1ba3' }}>UPCOMING</StyledButton>
                             ) : (
                                 <StyledButton style={{ backgroundColor: '#8e98a5' }}>COMPLETED</StyledButton>
                             )}
                         </Flex>
-                        <Flex flexDirection='column' justifyContent='space-between'>
-                            <TextDescription color='textSubtle' as='p'>
+                        <Flex flexDirection="column" justifyContent="space-between">
+                            <TextDescription color="textSubtle" as="p">
                                 {longDesc}
                             </TextDescription>
-                            <TextDescription color='textSubtle' as='p'>
+                            <TextDescription color="textSubtle" as="p">
                                 {longDesc2}
                             </TextDescription>
-                            <TextDescription color='textSubtle' as='p'>
+                            <TextDescription color="textSubtle" as="p">
                                 {longDesc3}
                             </TextDescription>
                         </Flex>
                     </Flex>
-                    <Flex flex='1'>
+                    <Flex flex="1">
                         <ActionCard account={account} whiteListed={whiteListed} project={project} />
                     </Flex>
                 </Flex>
