@@ -38,7 +38,7 @@ const TokenList:ITokens[] = [
         symbol: "ORE",
         address: "0xb901929C52475DA728d15bc25cfA6a37182c3268",
         chainId: 97,
-        decimals: 18,
+        decimals: 8,
         logoURI: "/images/icons/ore.png"
     },
     {
@@ -46,7 +46,7 @@ const TokenList:ITokens[] = [
         symbol: "ORE",
         address: "0xb901929C52475DA728d15bc25cfA6a37182c3268",
         chainId: 56,
-        decimals: 18,
+        decimals: 8,
         logoURI: "/images/icons/ore.png"
     },
     {
