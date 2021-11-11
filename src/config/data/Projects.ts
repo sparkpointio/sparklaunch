@@ -1,5 +1,5 @@
 import { IProjects } from 'config/constants/type';
-import { BNB, FLASH, OWN, SRK, TOWN } from '../index';
+import { BNB, FLASH, OWN, SRK, TOWN, ORE } from '../index';
 import { dateEnded, epochToDate } from '../../utils';
 
 const ProjectList: Array<IProjects> = [
@@ -64,10 +64,10 @@ const ProjectList: Array<IProjects> = [
         category: 'outRaceIDO$1',
         // category2: '',
         address: '0x003',
-        sellingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? OWN : SRK,
+        sellingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? ORE : SRK,
         buyingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : BNB,
         title: 'Outrace',
-        token: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : SRK,
+        token: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : ORE,
         symbol: 'ORE',
         image: 'ore.png',
         desc: 'Outrace is a one-of-a-kind play-to-earn NFT racing game showcasing its strategic concept and mechanics.',
@@ -85,7 +85,7 @@ const ProjectList: Array<IProjects> = [
             'outrace.game',
             'twitter.com/outrace_ore',
             't.me/Outrace',
-            'https://medium.com/@OutraceOfficial'
+            'medium.com/@OutraceOfficial'
         ],
     },
 
