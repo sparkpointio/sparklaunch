@@ -45,6 +45,7 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         socMeds,
         symbol,
         claimable,
+        distributionType,
         startDate,
         endDate,
     } = project;
@@ -250,6 +251,17 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                                 <Text>{buyingCoin.symbol}</Text>
                             )}
                         </Flex>
+
+                        {/* Display distribution type label for projects with distribution type */}
+                        <Flex justifyContent='space-between'>
+                            <Text color='textSubtle'>Distribution type</Text>
+                            {distributionType ? (
+                                <Text>{distributionType}</Text>
+                            ) : (
+                                <Text>-</Text>
+                            )}
+                        </Flex>
+                    
                     </DataGroup>
                 </Details>
             </StyledCardBody>
@@ -275,9 +287,9 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                             <Button  /* disabled={!redeemable} */ disabled fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
                             <Button /* </Flex></Flex>disabled={!redeemable1} */ disabled fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
                         </Flex>
-                        {symbol === 'FLASH' &&
+                        {/* {symbol === 'FLASH' &&
                             <Text style={{ color: 'red', fontSize: '14px', marginTop: '10px', marginBottom: '-18px' }}>Note: Claiming of FLASH tokens will only be available until November 11, 2021, 12:00 AM UTC</Text>
-                        }
+                        } */}
                     </Flex>
                 )}
                 </CardAction>
@@ -287,10 +299,10 @@ const LaunchCard: React.FC<IProjects> = (project) => {
             <CardAction flexDirection='column'>
                 <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
                 {/* Function to check if user has participated */}
-                <Text style={{ marginTop: '15px' }}>
+                {/* <Text style={{ marginTop: '15px' }}>
                     Thank you for participating in the IDO sale! Your {symbol} tokens will be sent shortly
                     to your wallet address
-                </Text>
+                </Text> */}
             </CardAction>}
 
             {status === STATE.upcoming && (claimable || !claimable) &&

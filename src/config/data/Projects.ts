@@ -80,7 +80,8 @@ const ProjectList: Array<IProjects> = [
         startDate: epochToDate(1637510400),
         endDate: epochToDate(1637683200),
         // hasDateEnded: dateEnded(1637596800),
-        claimable: true,
+        claimable: false,
+        distributionType: 'Vesting',
         socMeds: [
             'outrace.game',
             'twitter.com/outrace_ore',
