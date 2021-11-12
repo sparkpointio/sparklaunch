@@ -76,7 +76,7 @@ const ProjectList: Array<IProjects> = [
         // longDesc3: 'This is just a test contract',
         ownSale: 0,
         wallpaperBg: 'oreBG4.png',
-        status: 'completed',
+        status: 'upcoming',
         startDate: epochToDate(1637510400),
         endDate: epochToDate(1637683200),
         // hasDateEnded: dateEnded(1637596800),
