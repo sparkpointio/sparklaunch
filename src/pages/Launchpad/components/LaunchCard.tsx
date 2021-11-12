@@ -253,12 +253,14 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         </Flex>
 
                         {/* Display distribution type label for projects with distribution type */}
-                        {distributionType &&
-                            <Flex justifyContent='space-between'>
-                                <Text color='textSubtle'>Distribution type</Text>
+                        <Flex justifyContent='space-between'>
+                            <Text color='textSubtle'>Distribution type</Text>
+                            {distributionType ? (
                                 <Text>{distributionType}</Text>
-                            </Flex>
-                        }
+                            ) : (
+                                <Text>-</Text>
+                            )}
+                        </Flex>
                     
                     </DataGroup>
                 </Details>
