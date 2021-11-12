@@ -276,12 +276,13 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 )}
             </CardAction>}
 
-            {status === STATE.completed && claimable &&
+            {status === STATE.completed &&
                 <CardAction flexDirection='column'>
                     <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
                 {!account ? (
                     <UnlockButton fullWidth />
                 ) : (
+                    claimable &&
                     <Flex flexDirection="column">
                         <Flex flexDirection="row" style={{ justifyContent: 'space-around', columnGap: '5px' }}>
                             <Button  /* disabled={!redeemable} */ disabled fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
@@ -294,16 +295,6 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                 )}
                 </CardAction>
             }
-
-            {status === STATE.completed && !claimable &&
-            <CardAction flexDirection='column'>
-                <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
-                {/* Function to check if user has participated */}
-                {/* <Text style={{ marginTop: '15px' }}>
-                    Thank you for participating in the IDO sale! Your {symbol} tokens will be sent shortly
-                    to your wallet address
-                </Text> */}
-            </CardAction>}
 
             {status === STATE.upcoming && (claimable || !claimable) &&
             <CardAction flexDirection='column'>
