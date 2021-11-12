@@ -388,6 +388,21 @@ const ProjectComponent: React.FC = () => {
                                 {longDesc3}
                             </TextDescription>
                         </Flex>
+
+                        {/* Display distribution method for unclaimable projects with distribution type */}
+                        <Flex>
+                            {/* Distribution method and details for Vesting */}
+                            {!project.claimable && project.distributionType === 'Vesting' &&
+                                <Flex flexDirection="column">
+                                    <Text color="textSubtle" mt="10px" mb="10px" bold style={{ fontStyle: 'italic' }}>Method of Distribution:</Text>
+                                    <Text color="textSubtle" style={{ fontStyle: 'italic' }}>
+                                        20% at TGE and 4 months vesting (20% monthly) <p />
+                                        {project.title} team will be responsible for sending the {project.symbol} tokens through multi-sender. <p />
+                                        SparkLaunch team will just provide the whitelisted addresses to the {title} team.</Text>
+                                </Flex>
+                            }
+                        </Flex>
+
                     </Flex>
                     <Flex flex="1">
                         <ActionCard account={account} whiteListed={whiteListed} project={project} />
