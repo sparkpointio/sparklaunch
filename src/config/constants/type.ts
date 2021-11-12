@@ -38,6 +38,7 @@ export interface IProjects {
     startDate?: Date;
     endDate?: Date;
     claimable?: boolean;
+    distributionType?: string;
     socMeds?: string[]
     hasDateEnded?: boolean
 }
