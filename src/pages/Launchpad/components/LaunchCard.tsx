@@ -70,25 +70,25 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     const contract2 = useLaunchpadContract(cat2);
 
     useEffect(() => {
-        checkEnded(contract, contract2).then((ended) => {
-            if (!ended.round1) {
-                calculateLaunchpadStats(contract, project).then((r) => setStats(r));
-            }
-            if (ended.round1 && project.category2 && !ended.round2) {
-                calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
-            }
-            if (ended.round1 && project.category2 && ended.round2){
-                calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
-            }
-        }).catch(e => console.log(e));
+        checkEnded(contract, contract2)
+            .then((ended) => {
+                if (!ended.round1) {
+                    calculateLaunchpadStats(contract, project).then((r) => setStats(r));
+                }
+                if (ended.round1 && project.category2 && !ended.round2) {
+                    calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
+                }
+                if (ended.round1 && project.category2 && ended.round2) {
+                    calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
+                }
+            })
+            .catch((e) => console.log(e));
     }, [contract, category2, category, contract2, project]);
 
     const numberWithCommas = (x) => {
         return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
     };
 
-    // Pass the value to the modal here
-    // Todo: change to actual value and add token name for the image
     const [accountDetails, setAccountDetails] = useState({
         r1: {
             token: '',
@@ -133,10 +133,17 @@ const LaunchCard: React.FC<IProjects> = (project) => {
         });
     }, [contract, contract2, project, account, symbol, token, category2]);
 
-    const [onClaimR1Modal] = useModal(<ClaimModal rewards={accountDetails.r1} contract={contract} project={project}
-                                                  setRedeemable={setRedeemable} />);
-    const [onClaimR2Modal] = useModal(<ClaimModal rewards={accountDetails.r2} contract={contract2} project={project}
-                                                  setRedeemable={setRedeemable1} />);
+    const [onClaimR1Modal] = useModal(
+        <ClaimModal rewards={accountDetails.r1} contract={contract} project={project} setRedeemable={setRedeemable} />,
+    );
+    const [onClaimR2Modal] = useModal(
+        <ClaimModal
+            rewards={accountDetails.r2}
+            contract={contract2}
+            project={project}
+            setRedeemable={setRedeemable1}
+        />,
+    );
 
     const percentage = parseFloat(stats.percentage).toFixed(4);
     const totalSales = status !== STATE.upcoming ? parseFloat(stats.totalSales).toFixed(4) : 0;
@@ -150,20 +157,20 @@ const LaunchCard: React.FC<IProjects> = (project) => {
     return (
         <Card style={{ padding: '5px' }}>
             <StyledCardHeader src={srcsBg}>
-                <StyledImage src={srcs} alt='token-logo' />
+                <StyledImage src={srcs} alt="token-logo" />
                 <StyledHeading bold>{title}</StyledHeading>
             </StyledCardHeader>
             <StyledCardBody>
                 <Options>
                     <SocmedGroup>
                         <Anchor href={socMeds?.[0]}>
-                            <Globe size='24px' />
+                            <Globe size="24px" />
                         </Anchor>
                         <Anchor href={socMeds?.[1]}>
-                            <Twitter size='24px' fill={theme.colors.text} />
+                            <Twitter size="24px" fill={theme.colors.text} />
                         </Anchor>
                         <Anchor href={socMeds?.[2]}>
-                            <Send size='24px' fill={theme.colors.text} />
+                            <Send size="24px" fill={theme.colors.text} />
                         </Anchor>
                         <Anchor href={socMeds?.[3]}>
                             <SvgIcon width={24} Icon={MediumIcon} />
@@ -200,51 +207,61 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         <Text>{desc}</Text>
                     </div>
                     <ProgressGroup>
-                        <Text as='h1'>{status === STATE.completed ? 'Sale Completion' : 'Progress'}</Text>
-                        <Progress primaryStep={parseFloat(status !== STATE.upcoming ? percentage : '0')}
-                                  variant='flat' />
-                        <Flex justifyContent='space-between'>
-                            <Text color='textSubtle'>{status !== STATE.upcoming ? percentage : '0'}%</Text>
-                            <Text color='textSubtle'>
+                        <Text as="h1">{status === STATE.completed ? 'Sale Completion' : 'Progress'}</Text>
+                        <Progress
+                            primaryStep={parseFloat(status !== STATE.upcoming ? percentage : '0')}
+                            variant="flat"
+                        />
+                        <Flex justifyContent="space-between">
+                            <Text color="textSubtle">{status !== STATE.upcoming ? percentage : '0'}%</Text>
+                            <Text color="textSubtle">
                                 {totalSales} / {expectedSales} {buyingCoin.symbol}
                                 {/* 261.33 / 261.33 {buyingCoin.symbol} */}
                             </Text>
                         </Flex>
                     </ProgressGroup>
-                    <DataGroup flexDirection='column'>
-                        {status === STATE.active && <Flex justifyContent='space-between'>
-                            <Text color='textSubtle'>Current Round</Text>
-                            <Text>{
-                                status === STATE.upcoming ?
-                                    '-' :
-                                    <>{category2 ? 'Round 2' : 'Round 1'}</>
-                            }</Text>
-                        </Flex>}
+                    <DataGroup flexDirection="column">
+                        {status === STATE.active && (
+                            <Flex justifyContent="space-between">
+                                <Text color="textSubtle">Current Round</Text>
+                                <Text>
+                                    {status === STATE.upcoming ? '-' : <>{category2 ? 'Round 2' : 'Round 1'}</>}
+                                </Text>
+                            </Flex>
+                        )}
 
-                        <Flex justifyContent='space-between'>
-                            <Text color='textSubtle'>Total Raised</Text>
-                            <Text>{
-                                status === STATE.upcoming ?
-                                    '-' :
-                                    <>{totalSales} {buyingCoin.symbol}</>
-                            }</Text>
+                        <Flex justifyContent="space-between">
+                            <Text color="textSubtle">Total Raised</Text>
+                            <Text>
+                                {status === STATE.upcoming ? (
+                                    '-'
+                                ) : (
+                                    <>
+                                        {totalSales} {buyingCoin.symbol}
+                                    </>
+                                )}
+                            </Text>
                         </Flex>
 
-                        <Flex justifyContent='space-between'>
-                            <Text color='textSubtle'>
+                        <Flex justifyContent="space-between">
+                            <Text color="textSubtle">
                                 {status === STATE.upcoming && 'Coming Soon For Sale'}
                                 {status === STATE.completed && <>${sellingCoin.symbol} Sold</>}
                                 {status === STATE.active && <>${sellingCoin.symbol} For Sale</>}
                             </Text>
                             <Text>
                                 {status === STATE.upcoming && '-'}
-                                {status === STATE.completed && <>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</>}
-                                {status === STATE.active && <>{stats.remainingForSale === '0' ? '-' : stats.totalForSaleTokens}</>}
+                                {status === STATE.completed && (
+                                    <>{stats.totalSoldTokens === '0' ? '-' : totalSoldTokens}</>
+                                )}
+                                {status === STATE.active && (
+                                    <>{stats.remainingForSale === '0' ? '-' : stats.totalForSaleTokens}</>
+                                )}
                             </Text>
                         </Flex>
 
-                        <Flex justifyContent='space-between'>
-                            <Text color='textSubtle'>Buying Coin</Text>
+                        <Flex justifyContent="space-between">
+                            <Text color="textSubtle">Buying Coin</Text>
                             {status === STATE.upcoming ? (
                                 <Text>{buyingCoin.symbol}</Text>
                             ) : (
@@ -253,54 +270,55 @@ const LaunchCard: React.FC<IProjects> = (project) => {
                         </Flex>
 
                         {/* Display distribution type label for projects with distribution type */}
-                        <Flex justifyContent='space-between'>
-                            <Text color='textSubtle'>Distribution type</Text>
-                            {distributionType ? (
-                                <Text>{distributionType}</Text>
-                            ) : (
-                                <Text>-</Text>
-                            )}
+                        <Flex justifyContent="space-between">
+                            <Text color="textSubtle">Distribution type</Text>
+                            {distributionType ? <Text>{distributionType}</Text> : <Text>-</Text>}
                         </Flex>
-                    
                     </DataGroup>
                 </Details>
             </StyledCardBody>
-            {status === STATE.active &&
-            <CardAction>
-                {!account ? (
-                    <UnlockButton fullWidth />
-                ) : (
-                    <StyledLink to={`/projects/${address}`}>
-                        <h1 style={{ color: 'white' }}>Participate</h1>
-                    </StyledLink>
-                )}
-            </CardAction>}
+            {status === STATE.active && (
+                <CardAction>
+                    {!account ? (
+                        <UnlockButton fullWidth />
+                    ) : (
+                        <StyledLink to={`/projects/${address}`}>
+                            <h1 style={{ color: 'white' }}>Participate</h1>
+                        </StyledLink>
+                    )}
+                </CardAction>
+            )}
 
-            {status === STATE.completed &&
-                <CardAction flexDirection='column'>
+            {status === STATE.completed && (
+                <CardAction flexDirection="column">
                     <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
-                {!account ? (
-                    <UnlockButton fullWidth />
-                ) : (
-                    claimable &&
-                    <Flex flexDirection="column">
-                        <Flex flexDirection="row" style={{ justifyContent: 'space-around', columnGap: '5px' }}>
-                            <Button disabled={!redeemable} fullWidth onClick={onClaimR1Modal}>Claim R1</Button>
-                            <Button disabled={!redeemable1} fullWidth onClick={onClaimR2Modal}>Claim R2</Button>
-                        </Flex>
-                        {/* {symbol === 'FLASH' &&
+                    {!account ? (
+                        <UnlockButton fullWidth />
+                    ) : (
+                        claimable && (
+                            <Flex flexDirection="column">
+                                <Flex flexDirection="row" style={{ justifyContent: 'space-around', columnGap: '5px' }}>
+                                    <Button disabled={!redeemable} fullWidth onClick={onClaimR1Modal}>
+                                        Claim R1
+                                    </Button>
+                                    <Button disabled={!redeemable1} fullWidth onClick={onClaimR2Modal}>
+                                        Claim R2
+                                    </Button>
+                                </Flex>
+                                {/* {symbol === 'FLASH' &&
                             <Text style={{ color: 'red', fontSize: '14px', marginTop: '10px', marginBottom: '-18px' }}>Note: Claiming of FLASH tokens will only be available until November 11, 2021, 12:00 AM UTC</Text>
                         } */}
-                    </Flex>
-                )}
+                            </Flex>
+                        )
+                    )}
                 </CardAction>
-            }
+            )}
 
-            {status === STATE.upcoming && (claimable || !claimable) &&
-            <CardAction flexDirection='column'>
-                <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
-            </CardAction>}
-
+            {status === STATE.upcoming && (claimable || !claimable) && (
+                <CardAction flexDirection="column">
+                    <StyledLink to={`/projects/${address}`}>Read More</StyledLink>
+                </CardAction>
+            )}
         </Card>
     );
 };
