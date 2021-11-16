@@ -28,6 +28,12 @@ const AccountList: IAccountType[] = [
             {
                 address: '0x7C11371ca161276DE5340A08B3f204F4c6c66e3a',
             },
+            {
+                address: '0x8A672715e042f6e9d9B25C2ce9F84210e8206EF1'
+            },
+            {
+                address: '0xaE0ED8517634C8Eb6bCb76998AAd2190D0CfE72e'
+            }
         ],
     },
     /* Tester IDO whitelisted */ 
