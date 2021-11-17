@@ -80,7 +80,6 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     const theme = useContext(ThemeContext);
     const customTheme = useContext(CustomThemeContext);
     const Paddress = getFindProject();
-
     const [stats, setStats] = useState({
         totalForSaleTokens: '-',
         totalSoldTokens: '-',
@@ -110,40 +109,38 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     const _cat2 = contract2 ?? contract;
 
     const prevAccountDetails = usePrevious(accountDetails);
-
+    const prevStats =usePrevious(stats);
     useEffect(() => {
-        if (accountDetails !== prevAccountDetails) {
+        if ((accountDetails !== prevAccountDetails) || (stats !== prevStats)) {
             getAccountDetailsLaunchPad(_cat2, project, library, account)
-            .then((r) => setAccountDetails(r))
-            .catch(console.log);
+                .then((r) => setAccountDetails(r))
+                .catch(console.log);
 
-        checkEnded(contract, contract2)
-            .then((ended) => {
-                if (ended.round1 && !project.category2) {
-                    setPoolEnded(true);
-                }
-                if (ended.round2 && project.category2) {
-                    setPoolEnded(true);
-                }
-                if (!ended.round1) {
-                    calculateLaunchpadStats(contract, project).then((r) => setStats(r));
-                }
-                if (ended.round1 && project.category2 && !ended.round2) {
-                    calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
-                }
-                if (ended.round1 && project.category2 && ended.round2) {
-                    calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
-                }
-            })
-            .catch((e) => console.log(e));
+            checkEnded(contract, contract2)
+                .then((ended) => {
+                    if (ended.round1 && !project.category2) {
+                        setPoolEnded(true);
+                    }
+                    if (ended.round2 && project.category2) {
+                        setPoolEnded(true);
+                    }
+                    if (!ended.round1) {
+                        calculateLaunchpadStats(contract, project).then((r) => setStats(r));
+                    }
+                    if (ended.round1 && project.category2 && !ended.round2) {
+                        calculateLaunchpadStats(contract2, project).then((r) => setStats(r));
+                    }
+                    if (ended.round1 && project.category2 && ended.round2) {
+                        calculateLaunchpadStats(contract, project, contract2).then((r) => setStats(r));
+                    }
+                })
+                .catch((e) => console.log(e));
+
+               
         }
-    }, [account, library, contract, contract2, project, _cat2, accountDetails, prevAccountDetails]);
+    }, [account, library, contract, contract2, project, _cat2, accountDetails, prevAccountDetails, prevStats, stats]);
 
     const [onPurchaseModal] = useModal(<PurchaseModal address={Paddress} stats={stats} category={cat2} />, false);
-    // const tokenReport = {
-    //     title: `${project.progress} ${project.symbol}`,
-    // }
-
     useEffect(() => () => console.log(''), []);
 
     const percentage = parseFloat(stats.percentage).toFixed(4);
@@ -392,17 +389,21 @@ const ProjectComponent: React.FC = () => {
                         {/* Display distribution method for unclaimable projects with distribution type */}
                         <Flex>
                             {/* Distribution method and details for Vesting */}
-                            {!project.claimable && project.distributionType === 'Vesting' &&
+                            {!project.claimable && project.distributionType === 'Vesting' && (
                                 <Flex flexDirection="column">
-                                    <Text color="#FF0000" mt="10px" mb="10px" bold style={{ fontStyle: 'italic' }}>Method of Distribution:</Text>
+                                    <Text color="#FF0000" mt="10px" mb="10px" bold style={{ fontStyle: 'italic' }}>
+                                        Method of Distribution:
+                                    </Text>
                                     <Text color="#FF0000" style={{ fontStyle: 'italic' }}>
                                         20% at TGE and 4 months vesting (20% monthly) <p />
-                                        {project.title} team will be responsible for sending the {project.symbol} tokens through multi-sender. <p />
-                                        SparkLaunch team will just provide the whitelisted addresses to the {title} team.</Text>
+                                        {project.title} team will be responsible for sending the {project.symbol} tokens
+                                        through multi-sender. <p />
+                                        SparkLaunch team will just provide the whitelisted addresses to the {title}{' '}
+                                        team.
+                                    </Text>
                                 </Flex>
-                            }
+                            )}
                         </Flex>
-
                     </Flex>
                     <Flex flex="1">
                         <ActionCard account={account} whiteListed={whiteListed} project={project} />

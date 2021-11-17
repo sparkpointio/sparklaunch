@@ -6,7 +6,7 @@ import { TokenAmount } from '@sparkpointio/sparkswap-sdk';
 import { getLaunchPadAddress, ownlyLaunchPad } from 'utils/addressHelpers';
 
 import launchpadABI from '../constants/abis/launchpad.json';
-import { BNB, OWN } from '../config';
+import { BNB, OWN, TORE } from '../config';
 import { expandValue } from './index';
 import { ERC20_ABI } from '../constants/abis/erc20';
 
@@ -101,18 +101,20 @@ export const getAccountDetailsLaunchPad = async (contract, project, library, acc
     if (!account) {
         throw Error;
     }
+
+    const { buyingCoin, sellingCoin } = project;
     const details = await contract.getWhitelist(account);
-    const tokenRate = new TokenAmount(project.buyingCoin, await contract.tokenRate());
+    const tokenRate = new TokenAmount(buyingCoin, await contract.tokenRate());
     const dets = {
-        balance: new TokenAmount(BNB, (await library.getBalance(account)).toBigInt()),
-        amount: new TokenAmount(OWN, details._amount),
-        maxPayableAmount: new TokenAmount(OWN, details._maxPayableAmount),
-        rewardedAmount: new TokenAmount(OWN, details._rewardedAmount),
+        balance: new TokenAmount(buyingCoin, (await library.getBalance(account)).toBigInt()),
+        amount: new TokenAmount(sellingCoin, details._amount),
+        maxPayableAmount: new TokenAmount(sellingCoin, details._maxPayableAmount),
+        rewardedAmount: new TokenAmount(sellingCoin, details._rewardedAmount),
         redeemed: details._redeemed,
         whitelist: details._whitelist,
     };
-    const maxExpendable = new TokenAmount(project.buyingCoin, expandValue(
-        (dets.maxPayableAmount).multiply(tokenRate).toFixed(18), project.buyingCoin),
+    const maxExpendable = new TokenAmount(buyingCoin, expandValue(
+        (dets.maxPayableAmount).multiply(tokenRate).toFixed(18), buyingCoin),
     );
     return {
         ...dets,

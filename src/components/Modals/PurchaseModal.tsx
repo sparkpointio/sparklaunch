@@ -232,8 +232,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, category }) => 
         };
 
         getAccountDetailsLaunchPad(contract, project, library, account).then((r) => setAccountDetails(r));
-
-        contract.tokenRate().then((r) => setTokenRate(new TokenAmount(project.sellingCoin, r)));
+        contract.tokenRate().then((r) => setTokenRate(new TokenAmount(project.buyingCoin, r)));
         getRemainingPurchasable().then((r) => {
             const _balance = new TokenAmount(project.sellingCoin, (r.raw.toString()));
             setRemainingPurchasable(_balance);
