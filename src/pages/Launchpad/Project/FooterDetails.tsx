@@ -172,8 +172,8 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
                     <Flex justifyContent="space-between">
                         <Text>Total Supply</Text>
 
-                        {/* Total supply value for Outrace is set to [-] while Outrace project status is upcoming */}
-                        {project.symbol === 'ORE' && project.status === 'upcoming' ? 
+                        {/* Total supply value for Upcoming Projects is set to [-] */}
+                        {project.status === 'upcoming' ?
                             <Text color="textSubtle">-</Text> :
                             <Text color="textSubtle">{projectTokenInfo.totalSupply}</Text>
                         }
