@@ -75,7 +75,7 @@ const ProjectList: Array<IProjects> = [
             'Outrace is a one-of-a-kind play-to-earn NFT racing game showcasing its strategic concept and mechanics. These includes card management; dice roll management and stats management. The overall objective of the game is to win the race using the array of cars that can be purchased and customized using ORE token. ORE can be earned by racing in conqueror mode or in PVP ‘s sprint races. What makes this game so interesting is that it offers the player not only excitement and entertainment but enables them to earn crypto and earn prizes for their activity.',
         // longDesc3: 'This is just a test contract',
         ownSale: 0,
-        wallpaperBg: 'oreBG4.png',
+        wallpaperBg: 'oreBG6.png',
         status: 'active',
         startDate: epochToDate(1637586000),
         endDate: epochToDate(1637758800),
