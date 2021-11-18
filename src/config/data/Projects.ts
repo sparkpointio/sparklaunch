@@ -27,7 +27,7 @@ const ProjectList: Array<IProjects> = [
         wallpaperBg: 'ownlyBG.jpg',
         status: 'completed',
         claimable: true,
-        socMeds: ['ownly.io', 'twitter.com/ownlyio', 't.me/ownlyio', 'medium.com/ownlyio'],
+        socMeds: ['ownly.io', 'twitter.com/ownlyio', 'telegram.me/ownlyio', 'medium.com/ownlyio'],
     },
     {
         category: 'flashLoansIDO$1',
@@ -56,7 +56,7 @@ const ProjectList: Array<IProjects> = [
         socMeds: [
             'flashloans.com',
             'twitter.com/ComFlashloans',
-            't.me/joinchat/HCAFABqRGjY77vIdI2nV9g',
+            'telegram.me/joinchat/HCAFABqRGjY77vIdI2nV9g',
             'medium.com/@flashloans',
         ],
     },
@@ -85,7 +85,7 @@ const ProjectList: Array<IProjects> = [
         socMeds: [
             'outrace.game',
             'twitter.com/outrace_ore',
-            't.me/Outrace',
+            'telegram.me/Outrace',
             'medium.com/@OutraceOfficial'
         ],
     },
