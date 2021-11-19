@@ -28,6 +28,10 @@ export default {
         56: '0x75f5696c02978fd345Ad81AE89F81402aFc7342F',
         97: '0xd4eb8D841BEFF2B7C30fbFF904D0C859Cc93d997',
     },
+    outRaceIDO$2: {
+        56: '',
+        97: '0x827c12B440ddDcE11a9947768A7C081c0A724cE4'
+    },
     flashLoansIDO$1: {
         56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
         97: '0x1c1f9aC9E9A7df6713daCF4022A286Bc4C45Bf52'
