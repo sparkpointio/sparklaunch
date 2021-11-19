@@ -392,14 +392,12 @@ const ProjectComponent: React.FC = () => {
                             {!project.claimable && project.distributionType === 'Vesting' && (
                                 <Flex flexDirection="column">
                                     <Text color="#FF0000" mt="10px" mb="10px" bold style={{ fontStyle: 'italic' }}>
-                                        Method of Distribution:
+                                        Token Distribution:
                                     </Text>
                                     <Text color="#FF0000" style={{ fontStyle: 'italic' }}>
-                                        20% at TGE and 4 months vesting (20% monthly) <p />
-                                        {project.title} team will be responsible for sending the {project.symbol} tokens
-                                        through multi-sender. <p />
-                                        SparkLaunch team will just provide the whitelisted addresses to the {title}{' '}
-                                        team.
+                                        • 20% at Token Generation Event / After the sale (November 24, 2 PM UTC) <p />
+                                        • 4-month vesting for the remaining 80%. 20% of the total tokens bought will be sent every 24th of the month, from December 2021 to March 2022 <p />
+                                        • Tokens will be sent by the {project.title} Team through multi-sender
                                     </Text>
                                 </Flex>
                             )}
