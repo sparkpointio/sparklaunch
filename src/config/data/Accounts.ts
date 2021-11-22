@@ -1868,6 +1868,348 @@ const AccountList: IAccountType[] = [
                 address: '0xb8b137fcfb16c213865c1e79774231b756c0cec6'
             },
             {
+                address: '0x02E94aecb75A89c319E9e92D11DB3bcc73b3b2D2'
+            },
+            {
+                address: '0x0340A0eA290d90517D2C303f31DF35a66f2838f4'
+            },
+            {
+                address: '0x0482FB933c131883E0A3653735D18dBf3BF3BB00'
+            },
+            {
+                address: '0x089F564751D466A63504175B8fFF876353beD4C3'
+            },
+            {
+                address: '0x0a7EF98e1BB0566844c523bE0215781b6f2a11Cc'
+            },
+            {
+                address: '0x0b4a36c668D25574f9E257Db4098560139b62e68'
+            },
+            {
+                address: '0x103F7C3b3E594ADb1095b6c022F6B21342bA6989'
+            },
+            {
+                address: '0x144F183098eA7b88F2a198407E5E205F5a960828'
+            },
+            {
+                address: '0x181812e68B48B2A3b7c37C92Bb19FBAD8b4b5185'
+            },
+            {
+                address: '0x18e5cefCBd90C57D25ae0EA490B65Bbff5DdE0BE'
+            },
+            {
+                address: '0x195f0824582a4125F5Bc791Ec2bFDcA0341Bc1c0'
+            },
+            {
+                address: '0x1Db5a7Ab4ef7bAD6b0153d334f69ACA563Cd0bD6'
+            },
+            {
+                address: '0x200EbA7d40C6bb0603dfE88387c2e07515F01067'
+            },
+            {
+                address: '0x224d5c2Ca278A25D8E4646a5A289678FF467399a'
+            },
+            {
+                address: '0x22bddf61D288DaC8C2DA1584f5d78CEEaE4D21EE'
+            },
+            {
+                address: '0x264c0990cA5597e78168e904Fb68F9a29b8D1e8b'
+            },
+            {
+                address: '0x27ee0D24281EED039A34Be333F810849daCBb5a5'
+            },
+            {
+                address: '0x28ab455F806E25A07AA5505F4C21b4f534D93914'
+            },
+            {
+                address: '0x2A3847036C0Ed862aCB1BCEBF752206482D99e3a'
+            },
+            {
+                address: '0x2e1d5f2E6F3995A60c65765ceCE05792E9E09301'
+            },
+            {
+                address: '0x3689018FC1EdB3B4D4FA448bcC852CB6c657Ab9A'
+            },
+            {
+                address: '0x38d216C44fEBDbdB98954BcD1D6a40aa495E1363'
+            },
+            {
+                address: '0x3dA0F57A0b9809f3555282b1b0f419Ef2c085237'
+            },
+            {
+                address: '0x3e9904f06b512bE0CB59bf7f1D3872D82e1e115A'
+            },
+            {
+                address: '0x460B46a4d5Bef0430dc991b82DB21c762e93592B'
+            },
+            {
+                address: '0x497d09A8ebEeA0Fe4E59f673887F2c0e11AFD47E'
+            },
+            {
+                address: '0x4d5A2fD8e2B0C3E1c08AFf0Ee2acaa320D98A450'
+            },
+            {
+                address: '0x4D88aF48836fF25f0c3FC6A6D594CB9d0337A7ED'
+            },
+            {
+                address: '0x4Ea7911beD630Aa4294873fE3Ee204D75A6b814b'
+            },
+            {
+                address: '0x4FD2B19BAfF47bbc9da41453F134F016C094C729'
+            },
+            {
+                address: '0x50c9a711C6eDd37Deb6E85524BC53895AB0f4444'
+            },
+            {
+                address: '0x553aAcf16E6496F2778D810Ae37352C6342bd854'
+            },
+            {
+                address: '0x55953d895aB6CA3B4A8BFDc51684B1E97ccB274A'
+            },
+            {
+                address: '0x55e604C00755869fDC1f33244eD21252e175d685'
+            },
+            {
+                address: '0x58ba6eb7DDA492D063bf0D99F9D4130dD4004F1D'
+            },
+            {
+                address: '0x596e53072d5E4072b862a70fAE204c520B889b45'
+            },
+            {
+                address: '0x5b79b34389a0b364CF98B4FeDD1A29a62BB13522'
+            },
+            {
+                address: '0x5d5d965F52721dE9238DADF6366b42bfD7d721e5'
+            },
+            {
+                address: '0x5dbAf0A304917D0fCEA4d7Cb8a1dBcf1b0f76137'
+            },
+            {
+                address: '0x6185b474E0b955814A2EaeC8b5051B3E3447a0e6'
+            },
+            {
+                address: '0x625904627d5060c0422d2e123748f4F49D149e1E'
+            },
+            {
+                address: '0x634F1D1bDd834d21bB347992535F3506cF912E45'
+            },
+            {
+                address: '0x673B5C601741a8C992C4003acd3Da53AaB3DAf52'
+            },
+            {
+                address: '0x68763d6e494Db197a791D327852e644aa4Fc479c'
+            },
+            {
+                address: '0x69B410b401486F03b5Ec056545B05ed5f311dB9d'
+            },
+            {
+                address: '0x6aa65724F9F14AAe2f22CDB214312008921fe5b4'
+            },
+            {
+                address: '0x6ffbb6C376d0cf590289671D652Ae92213614828'
+            },
+            {
+                address: '0x769d90D15D73Bf2bf3C288EE5059F1D1ed24Ce30'
+            },
+            {
+                address: '0x77ED12AF219cdc05470ac32b020610DB33F4AdBc'
+            },
+            {
+                address: '0x7819CC33a668a35C1EdC68b3bdA1b58c79D71d50'
+            },
+            {
+                address: '0x7953e300281858db45CaDEE1d38bDb8e427576E8'
+            },
+            {
+                address: '0x7A41B12aE5c524Db1809a8aE6d2574Ec0c912305'
+            },
+            {
+                address: '0x7a82DfAd89aA7D23A1D22823A1034E4DDe1E7Ef2'
+            },
+            {
+                address: '0x7f15ef212BaaB2Cb12E014DBf790F36E0BeF8115'
+            },
+            {
+                address: '0x7fef4F28457C943E4421A7bE6AA3C1Fc068de436'
+            },
+            {
+                address: '0x7fF8a2B1932ff416cCFeBE0472a02917EDF98c63'
+            },
+            {
+                address: '0x81DCBBbE665B2C94E6D1d7a6572019D05aa97C4f'
+            },
+            {
+                address: '0x855cfeA1642Fa359ADB5692a91903836b0c09a99'
+            },
+            {
+                address: '0x87ADd8D1b9c51F48999ea310Dab4aE40d7BF0d74'
+            },
+            {
+                address: '0x88B7bB15024D9cb9D506Bb21F3dC67f50294EB8C'
+            },
+            {
+                address: '0x8a1DC6b1C136b9089B0349d7A3b6415DDce7cfA4'
+            },
+            {
+                address: '0x8a3b32e445beb0b7677a5577fc3e377c2110e5d5'
+            },
+            {
+                address: '0x8d274Cf6772Ca491d27c6FfEF8628D4D5303229A'
+            },
+            {
+                address: '0x8f514065353fe6B35E852a1d12B62b850C040a53'
+            },
+            {
+                address: '0x90B9807E265EfD8cE84eab97edD1DDAbaA45f3b6'
+            },
+            {
+                address: '0x925D8d811B54b352829568dEa15d4622F29AC25A'
+            },
+            {
+                address: '0x925f18062150FE54767aE771987dfA99b703A986'
+            },
+            {
+                address: '0x947565d460B32361bd7b08DCAd5b5d0fFD3C263E'
+            },
+            {
+                address: '0x9b4c56251070291CF45E38BE3e55668Ec1fcc07d'
+            },
+            {
+                address: '0xa08aBb513DbeF285A8852dd48208c7128399B4C0'
+            },
+            {
+                address: '0xA0E55A0F4b2302686904c1d6dD2fbC0c7463f9a7'
+            },
+            {
+                address: '0xA16EA2743543B16cAf1aDA2637FFb23cc55564b5'
+            },
+            {
+                address: '0xa1712fc331a5DaD6F9B6fA51d472EEf65e2441d7'
+            },
+            {
+                address: '0xa23b0D66Ec336ae2624BdB7d8d0C05FB1D2aFD05'
+            },
+            {
+                address: '0xa2A83D6402D96CcA4D7C215481cB749687C46E18'
+            },
+            {
+                address: '0xa34deea4c1b01a5D76B35Bf68F9758512a5C5444'
+            },
+            {
+                address: '0xa4D818C540Fefb7f98865Dbe6FF34d50d88BBC9B'
+            },
+            {
+                address: '0xAD00D657aFced12AC58D4AD0025a0894f859e361'
+            },
+            {
+                address: '0xaf4bf95ec4fd37ef817a5e015ccd890e192c210c'
+            },
+            {
+                address: '0xB1f2263b1556855b0A6C03C752fD4fAF073ea20f'
+            },
+            {
+                address: '0xb2b03d3d93E889F0Fc4975AC9233dEBa6211Eb78'
+            },
+            {
+                address: '0xB7b3fB2D3cB4ABdE1D4F5B71145AeEB14CC2230C'
+            },
+            {
+                address: '0xBa49907A9FA01C0a18896937EF606F618f08FBdC'
+            },
+            {
+                address: '0xBa88AF601916F348De04C4ce639fB8229447E156'
+            },
+            {
+                address: '0xbb2f45FE3d9b1383E3D32E99216C47593111808C'
+            },
+            {
+                address: '0xBBf4544D99dFa23762ed90540B308E183AED4F4C'
+            },
+            {
+                address: '0xBcB2F480F2e6c082f08513B5671B7d1742E13729'
+            },
+            {
+                address: '0xbE775E3ab0Ff7b38FB3523cddB4eAD4056864B22'
+            },
+            {
+                address: '0xbFd32b71B6554aBf38A6F413f41427e9B49B2f13'
+            },
+            {
+                address: '0xc3afc884447b2C821D920F0255263E93Fb338425'
+            },
+            {
+                address: '0xC4b6f49d3816572B9e758EbD30771E98E44824EE'
+            },
+            {
+                address: '0xC547220082A766125401B099BC802732B9D04414'
+            },
+            {
+                address: '0xc7B0265Aa6E9Ce9C9Dc13Cb69eBD06e2cb968Dda'
+            },
+            {
+                address: '0xc92511e8F960b2113D867814659126B537D45610'
+            },
+            {
+                address: '0xD01B11D9d88038482FBC8dFe53b95E2a94998a19'
+            },
+            {
+                address: '0xD0Bef92e9846922Fe4b22939FAf1888432107D4a'
+            },
+            {
+                address: '0xD30b568318f2e232F8C846b7Ff263C4c52252922'
+            },
+            {
+                address: '0xD82B0a0daE692691D0092E2305F283a5635b98ce'
+            },
+            {
+                address: '0xde722c0D8738a1e0EC7885483331f52fb3B7F308'
+            },
+            {
+                address: '0xdeeb3eFfeA7336f49Ce1f05140AfcFf4C6E3e41f'
+            },
+            {
+                address: '0xdEfA3Ff4AE9b111a3ebAe5a1Eb16C0F0f0FB75E9'
+            },
+            {
+                address: '0xe061d255d9FB5dB082e3e04e6Aa72409cb6f298B'
+            },
+            {
+                address: '0xE230496A348EB7CA6fa8Ce51d63edB6367CBBEc3'
+            },
+            {
+                address: '0xeB13eb5005b1689175a4b357BcD9759d183839F2'
+            },
+            {
+                address: '0xeC742DcfE664eE911De3d176F6FBF640995fE28f'
+            },
+            {
+                address: '0xeCb8cA84a51De86f1A15a3375e52D94DE9023664'
+            },
+            {
+                address: '0xeF5c525809E9a738C09f15deD89baFe601EFfF4f'
+            },
+            {
+                address: '0xf1F62C800C5e42F028F82518a9FBd803d57D2762'
+            },
+            {
+                address: '0xf33DFb0600cB1b56a0Dd0e6c97beEa300054833F'
+            },
+            {
+                address: '0xf456e33B48F41b031464286D2236Db6867Ef4054'
+            },
+            {
+                address: '0xf58C0cB4Ab4b0d32c98f393D4C1C373AdbfD977c'
+            },
+            {
+                address: '0xF9895df39b4C345cE563ebd52802A5Acd5d788d2'
+            },
+            {
+                address: '0xfb1ce46075409Bd826F021dB3BF071d3e1DD3840'
+            },
+            {
+                address: '0xff3E3567f91b7AfC291E696986aceFE93Fc147Af'
+            },
+            {
                 address: '0x054e2156085252c9269c16f18ea77b53c7c59553'
             },
             {
@@ -2094,8 +2436,8 @@ const AccountList: IAccountType[] = [
             },
             {
                 address: '0xfad172288283b26307e81bc1546911e452404d3c'
-            }
-        ],
+            },
+        ]
     },
     /* Tester IDO whitelisted */ 
     {
