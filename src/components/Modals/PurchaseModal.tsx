@@ -192,6 +192,8 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, category }) => 
             });
             const res = await getAccountDetailsLaunchPad(contract, project, library, account);
             setAccountDetails(res);
+            setInput('');
+            setOutput('');
         } catch (e) {
             const code = e.code;
             const message = e.data ? e.data.message : e.message;
