@@ -137,11 +137,11 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
                     </Flex>}
 
                     <Flex justifyContent="space-between">
-                        <Text>Opens</Text>
+                        <Text> {project.status === STATE.completed ? 'Opened' : 'Opens' } </Text>
                         <Text color="textSubtle">{project.startDate ? project.startDate?.toLocaleString() : "-"}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
-                        <Text>Closes</Text>
+                        <Text> {project.status === STATE.completed ? 'Closed' : 'Closes' } </Text>
                         <Text color="textSubtle">{project.endDate? project.endDate?.toLocaleString() : "-"}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
