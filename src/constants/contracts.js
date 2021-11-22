@@ -25,7 +25,7 @@ export default {
         97: '0x6171ef8577601bfebc36db044f53a5d874536d0e',
     },
     outRaceIDO$1: {
-        56: '0x89E82c1dfD46E5c21EC23931E669B1C3D9a87280',
+        56: '0x864B9a4a69a46B46f055b0B877bFebaa989e8f51',
         97: '0x9E3609949f5977339846F8419B12A68732f5049E',
     },
     outRaceIDO$2: {
