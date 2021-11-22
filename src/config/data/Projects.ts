@@ -77,7 +77,7 @@ const ProjectList: Array<IProjects> = [
         ownSale: 0,
         wallpaperBg: 'oreBG6.png',
         status: 'upcoming',
-        startDate: epochToDate(1637586000),
+        startDate: epochToDate(1637587800),
         endDate: epochToDate(1637758800),
         // hasDateEnded: dateEnded(1637596800),
         claimable: false,
