@@ -174,7 +174,7 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
 
                         {/* Total supply value for Upcoming Projects is set to [-] */}
                         <Text color="textSubtle">
-                            {project.status === "upcoming" ? "-" : projectTokenInfo.totalSupply}
+                            {project.status === "upcoming" || !project.claimable ? "-" : projectTokenInfo.totalSupply}
                         </Text>
 
                     </Flex>
