@@ -25,12 +25,12 @@ export default {
         97: '0x6171ef8577601bfebc36db044f53a5d874536d0e',
     },
     outRaceIDO$1: {
-        56: '0x75f5696c02978fd345Ad81AE89F81402aFc7342F',
-        97: '0xd4eb8D841BEFF2B7C30fbFF904D0C859Cc93d997',
+        56: '0x864B9a4a69a46B46f055b0B877bFebaa989e8f51',
+        97: '0x9E3609949f5977339846F8419B12A68732f5049E',
     },
     outRaceIDO$2: {
         56: '',
-        97: '0x827c12B440ddDcE11a9947768A7C081c0A724cE4'
+        97: '0xe1e0c43B4e659804e4a5bE11DD9db51874Faf5eD'
     },
     flashLoansIDO$1: {
         56: '0xDC9FA2D376F7abC807d8aDB0dD700e23a89549D0',
