@@ -395,7 +395,7 @@ const ProjectComponent: React.FC = () => {
                                         Token Distribution:
                                     </Text>
                                     <Text color="#FF0000" style={{ fontStyle: 'italic' }}>
-                                        • 20% at Token Generation Event / After the sale (November 24, 2 PM UTC) <p />
+                                        • 20% at Token Generation Event / After the sale ({project.endDate?.toLocaleString()}) <p />
                                         • 4-month vesting for the remaining 80%. 20% of the total tokens bought will be sent every 24th of the month, from December 2021 to March 2022 <p />
                                         • Tokens will be sent by the {project.title} Team through multi-sender
                                     </Text>

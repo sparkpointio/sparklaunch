@@ -137,12 +137,12 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
                     </Flex>}
 
                     <Flex justifyContent="space-between">
-                        <Text>Opens</Text>
-                        <Text color="textSubtle">{project.startDate?.toLocaleString()}</Text>
+                        <Text> {project.status === STATE.completed ? 'Opened' : 'Opens' } </Text>
+                        <Text color="textSubtle">{project.startDate ? project.startDate?.toLocaleString() : "-"}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
-                        <Text>Closes</Text>
-                        <Text color="textSubtle">{project.endDate?.toLocaleString()}</Text>
+                        <Text> {project.status === STATE.completed ? 'Closed' : 'Closes' } </Text>
+                        <Text color="textSubtle">{project.endDate? project.endDate?.toLocaleString() : "-"}</Text>
                     </Flex>
                     <Flex justifyContent="space-between">
                         <Text>Cap</Text>
@@ -174,7 +174,7 @@ const FooterDetails: React.FC<AppProps> = ({pool, project, projectTokenInfo}) =>
 
                         {/* Total supply value for Upcoming Projects is set to [-] */}
                         <Text color="textSubtle">
-                            {project.status === "upcoming" ? "-" : projectTokenInfo.totalSupply}
+                            {project.status === "upcoming" || !project.claimable ? "-" : projectTokenInfo.totalSupply}
                         </Text>
 
                     </Flex>
