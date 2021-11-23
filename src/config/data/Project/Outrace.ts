@@ -18,7 +18,7 @@ const project:IProjects = {
     // longDesc3: 'This is just a test contract',
     ownSale: 0,
     wallpaperBg: 'oreBG6.png',
-    status: 'active',
+    status: 'completed',
     startDate: epochToDate(1637586000),
     endDate: epochToDate(1637758800),
     // hasDateEnded: dateEnded(1637596800),
