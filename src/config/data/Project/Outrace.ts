@@ -4,7 +4,7 @@ import { dateEnded, epochToDate } from '../../../utils';
 
 const project:IProjects = {
     category: 'outRaceIDO$1',
-    // category2: 'outRaceIDO$2',
+    category2: 'outRaceIDO$2',
     address: '0x003',
     sellingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? ORE : TORE,
     buyingCoin: process.env.REACT_APP_CHAIN_ID === '56' ? BNB : BNB,
