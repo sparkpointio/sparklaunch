@@ -107,11 +107,10 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     const cat2 = project.category2 ?? project.category;
     const contract2 = useLaunchpadContract(cat2);
     const _cat2 = contract2 ?? contract;
-
     const prevAccountDetails = usePrevious(accountDetails);
-    const prevStats =usePrevious(stats);
+    const prevStats = usePrevious(stats);
     useEffect(() => {
-        if ((accountDetails !== prevAccountDetails) || (stats !== prevStats)) {
+        if (accountDetails !== prevAccountDetails || stats !== prevStats) {
             getAccountDetailsLaunchPad(_cat2, project, library, account)
                 .then((r) => setAccountDetails(r))
                 .catch(console.log);
@@ -135,8 +134,6 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                     }
                 })
                 .catch((e) => console.log(e));
-
-               
         }
     }, [account, library, contract, contract2, project, _cat2, accountDetails, prevAccountDetails, prevStats, stats]);
 
@@ -147,7 +144,20 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
     const totalSoldTokens = parseFloat(stats.totalSoldTokens).toFixed(4);
     const totalSales = parseFloat(stats.totalSales).toFixed(4);
     const expectedSales = parseFloat(stats.expectedSales).toFixed(2);
-    const { status } = project;
+    const maxAllocation =
+        project.status === STATE.upcoming || project.status === STATE.completed
+            ? `- ${project.symbol}`
+            : (project.category === cat2)
+            ? `${accountDetails.maxPayableAmount.toExact()} ${project.symbol}`
+            : 'No limit';
+    const maxBNBlimit =
+        project.status === STATE.upcoming && !whiteListed
+            ? '0 BNB'
+            : project.status === STATE.completed
+            ? '- BNB'
+            : project.category === cat2
+            ? `${accountDetails.maxExpendable.toExact()} BNB`
+            : 'No Limit';
 
     return (
         <CardBody
@@ -197,34 +207,15 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">Your Max Allocation</Text>
-                    <Text>
-                        {project.status === STATE.upcoming || project.status === STATE.completed 
-                            ? `- ${project.symbol}`
-                            : project.category !== project.category2 && project.symbol !== 'ORE' || !project.category2
-                            ? `${accountDetails.maxPayableAmount.toExact()} ${project.symbol}`
-                            : 'No limit'} 
-                        
-                    </Text>
+                    <Text>{maxAllocation}</Text>
                 </Flex>
                 <Flex justifyContent="space-between">
                     <Text color="primary">Your Max BNB</Text>
                     {/* <Text>{accountDetails.maxExpendable.toExact()} BNB</Text> */}
-                    {project.status === STATE.upcoming && !whiteListed ? (
-                        <Text>0 BNB</Text>
-                    ) : project.status === STATE.completed ? (
-                        <Text>- BNB</Text>
-                    ) : project.status === STATE.active && project.symbol === 'ORE' ? (
-                            <Text>No Limit</Text>
-                    ) : (
-                        <Text>
-                            {project.category !== project.category2 || !project.category2
-                                ? `${accountDetails.maxExpendable.toExact()} BNB`
-                                : 'No Limit'}{' '}
-                        </Text>
-                    )}
+                    <Text>{maxBNBlimit}</Text>
                 </Flex>
             </CustomDataGroup>
-            {!account && status === STATE.active ? (
+            {!account && project.status === STATE.active ? (
                 <div style={{ marginTop: '15px', padding: '10px 0px' }}>
                     <UnlockButton fullWidth />
                 </div>
@@ -247,7 +238,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                 <Button onClick={onPurchaseModal} fullWidth style={{marginTop: '10px'}} disabled={stats.remainingForSale === '-'}>Purchase {project.symbol}</Button>
                 } */}
 
-                    {status === STATE.active ? (
+                    {project.status === STATE.active ? (
                         <>
                             <Allocations
                                 tokenImage={project.image}
@@ -278,7 +269,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                             )}
                         </>
                     ) : (
-                        status === STATE.upcoming && (
+                        project.status === STATE.upcoming && (
                             <Allocations
                                 tokenImage={project.image}
                                 symbol={project.symbol}
@@ -398,9 +389,11 @@ const ProjectComponent: React.FC = () => {
                                         Token Distribution:
                                     </Text>
                                     <Text color="#FF0000" style={{ fontStyle: 'italic' }}>
-                                        • 20% at Token Generation Event / After the sale ({project.endDate?.toLocaleString()}) <p />
-                                        • 4-month vesting for the remaining 80%. 20% of the total tokens bought will be sent every 24th of the month, from December 2021 to March 2022 <p />
-                                        • Tokens will be sent by the {project.title} Team through multi-sender
+                                        • 20% at Token Generation Event / After the sale (
+                                        {project.endDate?.toLocaleString()}) <p />
+                                        • 4-month vesting for the remaining 80%. 20% of the total tokens bought will be
+                                        sent every 24th of the month, from December 2021 to March 2022 <p />• Tokens
+                                        will be sent by the {project.title} Team through multi-sender
                                     </Text>
                                 </Flex>
                             )}
