@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 const Anchor = ({href, children}: {href?: string; children: React.ReactNode}) => {
     return (
         <div style={{margin: '5px'}}>
-            <a href={`https://www.${href}`}>{children}</a>
+            <a href={`https://www.${href}`} target="_blank" rel="noopener noreferrer">{children}</a>
         </div>
     )
 }
