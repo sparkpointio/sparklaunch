@@ -265,7 +265,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, category }) => 
                     currency={token}
                     showMaxButton
                     onMax={handleMaxInput}
-                    remainingSupply={project.symbol === 'ORE' ? 'No Limit' : remainingExpendable.toExact()}
+                    remainingSupply={project.category2 ? 'No Limit' : remainingExpendable.toExact()}
                 />
                 <CurrencyInputPanel
                     showMaxButton
@@ -275,7 +275,7 @@ const PurchaseModal: React.FC<AppProps> = ({ onDismiss, address, category }) => 
                     value={output}
                     onUserInput={handleTypeOutput}
                     currency={project}
-                    remainingSupply={project.symbol === 'ORE' ? 'No Limit' : remainingPurchasable.toExact()}
+                    remainingSupply={project.category2 ? 'No Limit' : remainingPurchasable.toExact()}
                 />
 
                 {/* <Text>Price per BNB: <Priceperbnb/> USD</Text> */}
