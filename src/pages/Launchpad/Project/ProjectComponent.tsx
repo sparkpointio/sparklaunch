@@ -200,7 +200,7 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                     <Text>
                         {project.status === STATE.upcoming || project.status === STATE.completed 
                             ? `- ${project.symbol}`
-                            : project.category !== project.category2 && project.symbol !== 'ORE' || !project.category2
+                            : project.category !== project.category2 || !project.category2
                             ? `${accountDetails.maxPayableAmount.toExact()} ${project.symbol}`
                             : 'No limit'} 
                         
@@ -213,8 +213,6 @@ const ActionCard: React.FC<ActionProps> = ({ account, whiteListed, project }) =>
                         <Text>0 BNB</Text>
                     ) : project.status === STATE.completed ? (
                         <Text>- BNB</Text>
-                    ) : project.status === STATE.active && project.symbol === 'ORE' ? (
-                            <Text>No Limit</Text>
                     ) : (
                         <Text>
                             {project.category !== project.category2 || !project.category2
