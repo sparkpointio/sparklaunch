@@ -29,7 +29,7 @@ const PageFooter = () => {
         <Footer
             helperLinks={[
                 {
-                    label: 'Terms and Condition',
+                    label: 'Terms and Conditions',
                     href: 'https://sparkpointio.github.io/terms_and_conditions/sparkdefi-launchpad/',
                 },
                 {
