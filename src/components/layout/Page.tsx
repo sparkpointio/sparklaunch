@@ -91,7 +91,7 @@ const PageFooter = () => {
                     <SocLink socLink="mailto: support@sparkpoint.io"><Mail size="30" color="#FFFFFF" /></SocLink>
                     <SocLink socLink="https://discord.com/invite/Sgc6yDEAAe"><SiDiscord size="30" color="#FFFFFF" /></SocLink>
                 </Flex>
-                <h5>© SparkLaunch 2021</h5>
+                <h5>© SparkLaunch 2022</h5>
             </Flex>
             <ScrollButton/>
            
