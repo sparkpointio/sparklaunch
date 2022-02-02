@@ -2,13 +2,22 @@ import { MenuEntry } from '@sparkpointio/sparkswap-uikit'
 
 const config: MenuEntry[] = [
   {
-    label: "Swap",
-    icon: "TradeIcon",
-    href: "https://sparkswap.finance/#/swap",
+    label: 'Trade',
+    icon: 'TradeIcon',
+    items: [
+      {
+        label: 'Exchange',
+        href: 'https://sparkswap.finance/#/swap'
+      },
+      {
+        label: 'Liquidity',
+        href: 'https://sparkswap.finance/#/pool'
+      }
+    ],
   },
   {
-    label: "Staking",
-    icon: "FarmIcon",
+    label: 'Stake',
+    icon: 'FarmIcon',
     items: [
       {
         label: "Farms",
@@ -24,35 +33,66 @@ const config: MenuEntry[] = [
       },
     ],
   },
+  // {
+  //   label: "Farm",
+  //   icon: "FarmIcon",
+  //   href: "https://app.srk.finance/#/stake",
+  // },
+  // {
+  //   label: "Pool",
+  //   icon: "PoolIcon",
+  //   href: "/pools",
+  // },
   {
-    label: "Bridge",
-    icon: "BridgeIcon",
-    href: "https://app.srk.finance/#/bridge",
+    label: 'Bridge',
+    icon: 'BridgeIcon',
+    href: 'https://app.srk.finance/#/bridge',
   },
   {
-    label: "Launch",
-    icon: "LaunchIcon",
-    href: "/"
+    label: 'Launch',
+    icon: 'LaunchIcon',
+    href: '/',
   },
   {
-    label: "Info",
-    icon: "InfoIcon",
-    href: "https://sparkswap.info/#/home",
+    label: 'Airdrop',
+    icon: 'AirdropIcon',
+    href: 'https://app.srk.finance/#/airdrop',
   },
   {
-    label: "Airdrop",
-    icon: "AirdropIcon",
-    href: "https://app.srk.finance/#/airdrop"
+    label: 'NFT',
+    icon: 'NftIcon',
+    items: [
+      {
+        label: 'Create',
+        href: 'https://nft.sparkswap.finance/#/create',
+      },
+      {
+        label: 'MyNFT',
+        href: 'https://nft.sparkswap.finance/#/MyNFT',
+      },
+      {
+        label: 'Marketplace',
+        href: 'https://nft.sparkswap.finance/#/marketplace',
+      },
+    ],
   },
   {
-    label: "Teams",
-    icon: "GroupsIcon",
-    href: "https://srk.finance/team",
-  },
-  {
-    label: "Help",
-    icon: "MoreIcon",
-    href: "https://medium.com/theecosystem/a-beginners-guide-to-sparkswap-79f92a2f7074"
+    label: 'More',
+    icon: 'MoreIcon',
+    items: [
+      {
+        label: 'Info',
+        href: 'https://sparkswap.info/#/home',
+      },
+      {
+        label: 'Teams',
+        href: 'https://srk.finance/team',
+      },
+      {
+        label: 'Help',
+        href: 'https://medium.com/theecosystem/a-beginners-guide-to-sparkswap-79f92a2f7074',
+      },
+    ]
   },
   // {
   //   label: 'Trade',
