@@ -46,7 +46,7 @@ const config: MenuEntry[] = [
   {
     label: 'Bridge',
     icon: 'BridgeIcon',
-    href: 'https://app.srk.finance/#/bridge',
+    href: 'https://bridge.sparkswap.finance/#/',
   },
   {
     label: 'Launch',
@@ -63,11 +63,15 @@ const config: MenuEntry[] = [
     icon: 'NftIcon',
     items: [
       {
-        label: 'Create',
+        label: 'Home',
         href: 'https://nft.sparkswap.finance/#/create',
       },
       {
-        label: 'MyNFT',
+        label: 'Create',
+        href: 'https://nft.sparkswap.finance/#/createNFT',
+      },
+      {
+        label: 'My NFTs',
         href: 'https://nft.sparkswap.finance/#/MyNFT',
       },
       {
