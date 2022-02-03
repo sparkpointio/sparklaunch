@@ -2956,10 +2956,10 @@
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-"@sparkpointio/sparkswap-uikit@1.1.3":
-  version "1.1.3"
-  resolved "https://registry.yarnpkg.com/@sparkpointio/sparkswap-uikit/-/sparkswap-uikit-1.1.3.tgz#a684640dde1cf62dbaf4ea09fa819a2092260a94"
-  integrity sha512-lTKjBjdF/ZC+AjIX9QCQEHCaujDdjHNdt1rFfO3N/soVjQovjK25gwJpHFHOjv/GtNPmQbrtoksDWGbvBySzEg==
+"@sparkpointio/sparkswap-uikit@1.2.2":
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/@sparkpointio/sparkswap-uikit/-/sparkswap-uikit-1.2.2.tgz#378ad79d3e19e6ee8d9923d3b7656a6db566982e"
+  integrity sha512-N+XbrLfjiqOKtFbdjXSXKea1Jq487D0kTLOoHMGAOq5FRD15W8Q4W6K9r+M8y8a+H2MSTvu1L9VJRXJZHmt0Rg==
   dependencies:
     "@types/lodash" "^4.14.162"
     "@types/styled-system" "^5.1.10"

@@ -1,12 +1,12 @@
 import { IProjects } from 'config/constants/type';
 import { BNB, FLASH, OWN, SRK, TOWN, ORE, TORE } from '../index';
 import { dateEnded, epochToDate } from '../../utils';
-import {OwnlyProject, FlashLoansProject, OutraceProject } from './Project';
+import { OwnlyProject, FlashLoansProject } from './Project';
 
 const ProjectList: IProjects[] = [
     OwnlyProject,
-    FlashLoansProject,
-    OutraceProject,
+    FlashLoansProject 
+    // OutraceProject,
 ];
 
 export default ProjectList;
