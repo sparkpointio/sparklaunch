@@ -101,7 +101,7 @@ const RenderRoundTwo = () => {
                     <Text> This round will remain open until all tokens are sold. Once all tokens are sold, that signals the end of the IDO sale.</Text> &nbsp;
                     <Text> Once the IDO sale has been concluded, the platform will prepare the tokens for release. Once the necessary preparations are done, participants can now proceed with claiming.
                         Just click the Claim buttons designated for the first and second rounds of the sale found on the same page where the sale was conducted. Participants may choose to participate in the
-                        <StyledLink href="https://app.srk.finance/#/"> Liquidity Staking </StyledLink>
+                        <StyledLink href="https://stake.sparkswap.finance/#/farms"> Liquidity Staking </StyledLink>
                         options that will be launched after the sale to earn extra token rewards.
                     </Text> &nbsp;
                 </div>
