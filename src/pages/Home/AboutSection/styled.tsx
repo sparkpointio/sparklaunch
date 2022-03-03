@@ -97,6 +97,7 @@ export const TierFooter = styled.div`
 
 export const StyledLink = styled.a`
     text-decoration: none;
+    color: ${({theme}) => theme.colors.primary};
 
     &:focus, &:hover, &:visited, &:link, &:active {
         text-decoration: none;
