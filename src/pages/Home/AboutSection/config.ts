@@ -37,8 +37,8 @@ export const TierSystemList = [
     {
         image: 'IgniteIcon',
         title: 'IGNITE',
-        // old req
         // requirement: '50,000 SRKb/ 3,500 SFUEL Staked',
+        // poolWeight: 10,
         requirement: '325,000 SRKb/ 38,000 SFUEL Staked',
         poolWeight: 5,
         guaranteedAllocation: 'YES',
@@ -46,6 +46,8 @@ export const TierSystemList = [
     {
         image: 'SparkIcon',
         title: 'SPARK',
+        // requirement: '325,000 SRKb/ 22,000 SFUEL Staked',
+        // poolWeight: 100,
         requirement: '600,000 SRKb/ 70,000 SFUEL Staked',
         poolWeight: 10,
         guaranteedAllocation: 'YES',
@@ -53,6 +55,8 @@ export const TierSystemList = [
     {
         image: 'BlazeIcon',
         title: 'BLAZE',
+        // requirement: '2,000,000 SRKb/ 125,000 SFUEL Staked',
+        // poolWeight: 1000,
         requirement: '1,200,000 SRKb/ 140,000 SFUEL Staked',
         poolWeight: 20,
         guaranteedAllocation: 'YES',
