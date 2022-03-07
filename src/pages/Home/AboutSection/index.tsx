@@ -52,7 +52,7 @@ const RenderTierSystem = () => {
 
 const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }: TierSystem) => {
     const Tier = Tiers[image];
-    const tierElement:React.ReactElement = <Tier width="24px" mr="8px" height="24"/>
+    const tierElement:React.ReactElement = <Tier width="24px" mr="8px" height="24" />
 
     return (
         <Box>
