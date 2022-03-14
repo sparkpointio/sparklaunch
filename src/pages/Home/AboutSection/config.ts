@@ -70,7 +70,7 @@ export const TierSystemList = [
     },
     {
         image: 'BlazeIcon',
-        title: 'WILDFIRE',
+        title: 'PYRO',
         requirement: '5,200,000 SRKb/ 610,000 SFUEL Staked',
         poolWeight: 50,
         guaranteedAllocation: 'YES',
