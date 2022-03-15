@@ -34,22 +34,6 @@ const RenderDetails = () => {
     });
 };
 
-const RenderTierSystem = () => {
-    return TierSystemList.map((item) => {
-       // const { image, title, requirement, poolWeight, guaranteedAllocation } = item;
-        return (
-            <TierBox
-                key={item.title}
-                image={item.image}
-                title={item.title}
-                requirement={item.requirement}
-                poolWeight={item.poolWeight}
-                guaranteedAllocation={item.guaranteedAllocation}
-            />
-        );
-    });
-};
-
 const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }: TierSystem) => {
     const Tier = Tiers[image];
     const tierElement:React.ReactElement = <Tier width="24px" mr="8px" height="24" />
@@ -83,6 +67,22 @@ const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }
             </TierFooter>
         </Box>
     );
+};
+
+const RenderTierSystem = () => {
+    return TierSystemList.map((item) => {
+       // const { image, title, requirement, poolWeight, guaranteedAllocation } = item;
+        return (
+            <TierBox
+                key={item.title}
+                image={item.image}
+                title={item.title}
+                requirement={item.requirement}
+                poolWeight={item.poolWeight}
+                guaranteedAllocation={item.guaranteedAllocation}
+            />
+        );
+    });
 };
 
 const RenderRoundTwo = () => {
