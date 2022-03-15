@@ -29,7 +29,7 @@ export const StyledHeading = styled(Heading)`
 `;
 
 export const StyledTitle = styled(Heading)`
-    margin: 5px 15px;
+    margin: 30px 15px;
     &:after {
         content: ""; 
         display: block; 

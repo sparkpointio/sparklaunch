@@ -147,7 +147,7 @@ const Section: React.FC = () => {
             <TwoColumn style={{ textAlign: 'center', maxWidth: '800px' }}>
                 {RenderAdditionalTierSystem()}
             </TwoColumn>
-            <StyledTitle style={{ margin: '40px' }}>
+            <StyledTitle>
                 ROUND 2 - FCFS ROUND
             </StyledTitle>
             <TwoColumn>
