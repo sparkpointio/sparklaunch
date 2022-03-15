@@ -60,7 +60,10 @@ export const TierSystemList = [
         requirement: '1,200,000 SRKb/ 140,000 SFUEL Staked',
         poolWeight: 20,
         guaranteedAllocation: 'YES',
-    },
+    }
+];
+
+export const AdditionalTierSystemList = [
     {
         image: 'BlastIcon',
         title: 'BLAST',
