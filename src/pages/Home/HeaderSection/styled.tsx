@@ -12,13 +12,17 @@ export const StyledContainer = styled(Container)`
     background: ${({theme}) => theme.isDark && "linear-gradient(180deg, rgba(0,0,0,1) 0%, rgba(5,23,54,1) 50%, rgba(0,0,0,1) 100%)"}; 
     width: 100%;
     justify-content: space-evenly;
+    @media (max-width: 2560px) {
+        padding-bottom: 19vh;
+        padding-top: 19vh;
+    }
     @media (max-width: 1920px) {
-        padding-bottom: 17vh;
-    padding-top: 17vh;
+        padding-bottom: 18vh;
+    padding-top: 18vh;
     }
     @media (max-width: 1366px) {
-        padding-bottom: 15vh;
-    padding-top: 15vh;
+        padding-bottom: 17vh;
+        padding-top: 17vh;
      
     justify-content: space-around;
     }
@@ -36,8 +40,8 @@ export const AnimContainer = styled(Container)`
     width: 70vh;
     height: 70vh;
     @media (max-width: 500px) {
-        width: 40vh;
-        height: 40vh;
+        width: 35vh;
+        height: 35vh;
         margin-top: 1vh;
         margin-bottom: 5vh;
     }    
