@@ -9,4 +9,6 @@ export { default as RapidlaunchesIcon} from './Rapidlaunches'
 export { default as BlazeIcon} from './Blaze'
 export { default as SparkIcon} from './Spark'
 export { default as IgniteIcon} from './Ignite'
+export { default as BlastIcon} from './Blast'
+export { default as PyroIcon} from './Pyro'
 

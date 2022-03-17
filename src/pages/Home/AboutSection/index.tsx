@@ -4,7 +4,7 @@ import { AboutColumn as Column, TwoColumn } from 'components/Column';
 import { SvgProps } from 'components/SvgIcon/types';
 import { ThemeContext } from "styled-components";
 import { StyledContainer, StyledHeading, StyledTitle, Image, Box, BoxHeading, TierTitle, TierDetails, TierFooter, StyledLink } from './styled';
-import DetailsList, { TierSystemList } from './config';
+import DetailsList, { TierSystemList, AdditionalTierSystemList} from './config';
 import { Details, TierSystem } from './types';
 import * as IconModule from './icons';
 
@@ -36,7 +36,7 @@ const RenderDetails = () => {
 
 const TierBox = ({ image, title, requirement, poolWeight, guaranteedAllocation }: TierSystem) => {
     const Tier = Tiers[image];
-    const tierElement:React.ReactElement = <Tier width="24px" mr="8px" height="24"/>
+    const tierElement:React.ReactElement = <Tier width="24px" mr="8px" height="24" />
 
     return (
         <Box>
@@ -85,6 +85,22 @@ const RenderTierSystem = () => {
     });
 };
 
+const RenderAdditionalTierSystem = () => {
+    return AdditionalTierSystemList.map((item) => {
+       // const { image, title, requirement, poolWeight, guaranteedAllocation } = item;
+        return (
+            <TierBox
+                key={item.title}
+                image={item.image}
+                title={item.title}
+                requirement={item.requirement}
+                poolWeight={item.poolWeight}
+                guaranteedAllocation={item.guaranteedAllocation}
+            />
+        );
+    });
+};
+
 const RenderRoundTwo = () => {
        const round2Icon = `${process.env.PUBLIC_URL}/images/icons/2FCFS.png`;
        const round2Icon_light = `${process.env.PUBLIC_URL}/images/icons/2FCFS_light.png`;
@@ -93,7 +109,7 @@ const RenderRoundTwo = () => {
        return (
            <>
                 <div>
-                    <img src={theme.isDark? round2Icon : round2Icon_light } alt="roundtwo" style={{position: 'relative', width:"102%", height:"102%", marginTop: "-2vh"}}/>
+                    <img src={theme.isDark? round2Icon : round2Icon_light } alt="roundtwo" />
                 </div>
                 <div className="row">
                     <Text> All unsold tokens from the first round will be sold to all Tiered participants, and there will be NO LIMIT on how much a tiered participant can buy! </Text> &nbsp;
@@ -116,16 +132,27 @@ const Section: React.FC = () => {
             <StyledHeading size="lg" as="h2">
                 About SparkLaunch
             </StyledHeading>
-            <Column>{RenderDetails()}</Column>
+            <Column>
+                {RenderDetails()}
+            </Column>
             <StyledHeading size="lg" as="h2">
                 SparkLaunch Tiered System
             </StyledHeading>
-            <StyledTitle>ROUND 1 - ALLOCATION ROUND</StyledTitle>
-            <Column>{RenderTierSystem()}</Column>
-            &nbsp;
-            <StyledTitle>ROUND 2 - FCFS ROUND</StyledTitle>
-            &nbsp;
-            <TwoColumn>{RenderRoundTwo()}</TwoColumn>
+            <StyledTitle>
+                ROUND 1 - ALLOCATION ROUND
+            </StyledTitle>
+            <Column>
+                {RenderTierSystem()}
+            </Column>
+            <TwoColumn style={{ textAlign: 'center', maxWidth: '800px' }}>
+                {RenderAdditionalTierSystem()}
+            </TwoColumn>
+            <StyledTitle>
+                ROUND 2 - FCFS ROUND
+            </StyledTitle>
+            <TwoColumn>
+                {RenderRoundTwo()}
+            </TwoColumn>
         </StyledContainer>
     );
 };

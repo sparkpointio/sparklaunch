@@ -19,7 +19,7 @@ export const StyledHeading = styled(Heading)`
         content: ""; 
         display: block; 
         margin: 0 auto; 
-        width: 80%; 
+        width: 100%; 
         padding-top: 20px;
         border-bottom: 3px solid ${({theme}) => theme.colors.primary}; 
     }
@@ -29,7 +29,7 @@ export const StyledHeading = styled(Heading)`
 `;
 
 export const StyledTitle = styled(Heading)`
-    margin: 5px 15px;
+    margin: 30px 15px;
     &:after {
         content: ""; 
         display: block; 
