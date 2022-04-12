@@ -28,14 +28,6 @@ const App: React.FC = () => {
                         pauseOnHover
                     />
                     <Switch>
-                        <Route path='/' exact>
-                            <Home />
-                        </Route>
-                        <Route path='/projects' exact>
-                            <LaunchPad />
-                        </Route>
-                        <Route path='/projects/:ProjectAddress' component={Project} exact/>
-
                         {/* <Route path="/staking" exact>
                           <Staking />
                         </Route> */}
@@ -43,7 +35,11 @@ const App: React.FC = () => {
                         {/* <Route path="/" exact> */}
                         {/*    <Redirect to="/" /> */}
                         {/* </Route> */}
-                        <Route><Redirect to="/" /></Route>
+
+                        <Route component={() => {
+                            window.location.href = 'https://app.sparkswap.finance/#/launch';
+                            return null;
+                        }} />
                     </Switch>
                 </SuspenseWithChunkError>
             </Menu>
